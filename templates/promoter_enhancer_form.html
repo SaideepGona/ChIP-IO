@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div id="banner">
+    <div class="container form-container">
+        <div class="title">
+                <h2>Step 2:</h2>
+                <span class="byline"> Input Constraints </span>
+                <br>
+                <br>
+                <br>
+            <form action="" method="POST">
+                    {{ form.hidden_tag() }}
+
+
+                <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                    title="Study-specific parameters subset peaks based on properties of their source study">
+                    Study-Specific Parameters
+                </h1>
+                <br>
+                    <p class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="<div>
+                                Subset peaks by their target transcription factor(s).
+                            </div>
+                            <br>
+                            <div>
+                                Inputting &quotALL&quot will input all transcription factors
+                                currently in the database thereby not constraining the query. To use only a subset, 
+                                input TF names seperated by space. e.g.: TF_1 TF_2 ... TF_n 
+                            </div>
+                            <br>
+                            <div> 
+                                Current listings of all transcription_factors can be found in the &quotABOUT&quot section.
+                            </div>">
+                        {{ form.transcription_factors.label }}<br>
+                        {{ form.transcription_factors(size=32) }}
+                    </p>
+                    <p class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="<div>
+                                Subset peaks by their experimental tissue type(s).
+                            </div>
+                            <div>
+                                Inputting &quotALL&quot will input all tissue types
+                                currently in the database. To use only a subset, input TF names seperated by
+                                space. e.g.: tissue_1 tissue_2 ... tissue_n 
+                            </div>
+                            <br>
+                            <div> 
+                                Current listings of all tissue types can be found in the &quotABOUT&quot section. 
+                            </div>">
+                        {{ form.tissue_types.label }}<br>
+                        {{ form.tissue_types(size=32) }}
+                    </p>
+                    <br>
+
+
+
+                <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                    title="Peak-specific parameters allow filtering based on the quality and intensity of peak signals">
+                    Peak-Specific Parameters
+                </h1>
+                <br>
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="<div>
+                                Describes the negative log of the p-value associated with the peak &quotpileup&quot. The chart below shows a distribution
+                                of -log(p) values across all peaks in database.
+                            </div>
+                            <br>
+                            <img src={{ url_for('static',filename='images/-log_p_hist.png') }}>
+                            </img>">
+                        {{ form.log_p.label }}<br>
+                        {{ form.log_p(size=32) }}
+                    </p>
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="<div>
+                                Describes the fold enrichment. The chart below shows a distribution
+                                of fold_enrichment values across all peaks in the database.
+                            </div>
+                            <br>
+                            <img src={{ url_for('static',filename='images/fold_enrichment_hist.png') }}>
+                            </img>">
+                        {{ form.fold_enrichment.label }}<br>
+                        {{ form.fold_enrichment(size=32) }}
+                    </p>
+                    <br>
+
+
+
+                <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                    title="Regulatory region parameters allow modification of promoter/rnhancer definition.">
+                    Regulatory Region Parameters</h1><br>
+                    <p>
+                        {{ form.distance_from_TSS_upstream.label }}<br>
+                        {{ form.distance_from_TSS_upstream(size=32) }}
+                    </p>
+                    <p>
+                        {{ form.distance_from_TSS_downstream.label }}<br>
+                        {{ form.distance_from_TSS_downstream(size=32) }}
+                    </p>
+                    <br>
+
+
+
+                <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                title="Pipeline results will be sent to this email upon completion.">
+                 Email</h1><br>
+                    <p>{{ form.email.label }}<br>
+                        {{form.email(size=32)}} 
+                    </p>    
+                <br>    
+                <p>{{ form.submit() }}</p>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

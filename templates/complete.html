@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div id="banner">
+        <div class="container">
+            <div class="title">
+                <h2>Submission Successful!</h2>
+                    <p>
+                        Your output will be emailed upon completion as a compressed directory. 
+                        Included will be a Readme file 
+                        with details of the output contents. Be sure to check this out.
+                    </p>
+            </div>
+        </div>
+    </div>
+<div id="featured1">
+    <div class="container" style="height: 20vh">
+        <div class = 'col-sm'>
+            <a href="{{ url_for('construct_query') }}">
+                <button style="height: 20vh" class='col-sm btn btn-primary'>Submit New Form</button>
+            </a>  
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div id="banner">
+    <div class="container">
+        <div class="title">
+            <div id="home_title" class="titletext">WELCOME TO CHIP-IO</div>
+        </div>
+    </div>
+</div>
+<div id="featured1">
+    <div class="container">
+        <div class="title">
+            <h2>GETTING STARTED</h2>
+            <span class="byline"></span> </div>
+        <p> To perform a custom set of analyses and have the bundled output data emailed to you, 
+                navigate to the <a style="color: #8fd8f5" href="{{ url_for('construct_query') }}">"CONSTRUCT QUERY"</a> tab above.
+        </p>
+        <p> If you would prefer to directly download selected analysis presets, or are simply interested 
+            in directly downloading ChIP-Seq/Other datasets, 
+            instead navigate to the <a style="color: #8fd8f5" href="{{ url_for('downloads') }}">"DOWNLOADS"</a> tab above.
+        </p>
+        <p> For more information on the technical aspects of the site, 
+                navigate to the <a style="color: #8fd8f5" href="{{ url_for('about') }}">"ABOUT"</a> tab above.
+        </p>
+    </div>
+</div>
+<div id="featured2">
+    <div class="container">
+        <div class="title">
+            <h2>Send questions/concerns to: gona.saideep1@gmail.com </h2>
+            <span class="byline"></span> </div>
+    </div>
+</div>
+{% endblock body %}

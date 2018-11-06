@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div id="banner">
+    <div class="container">
+        <div class="title">
+            <h2>Technical Details and Acknowledgements Go Here</h2>
+            <span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span> </div>
+        <p>This is <strong>PlainDisplay</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
+    </div>
+    <ul class="actions">
+        <li><a href="#" class="button">Etiam posuere</a></li>
+    </ul>
+</div>
+
+<div id="featured1">
+    <div class="container">
+        <div class="title">
+            <h2>WHAT IS CHIP-IO?</h2>
+            <span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span> </div>
+        <p>This is <strong>PlainDisplay</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
+    </div>
+</div>
+    
+<div id="featured2">
+    <div class="container">
+        <div class="title">
+            <h2>OUR MOTIVATION</h2>
+            <span class="byline"></span> </div>
+        <p> Chromatin immunoprecipitation followed by sequencing (ChIP-Seq) continues to be a critical informer of protein-DNA binding. 
+            ChIP-IO serves as a repository for the thousands of salvageable transcription factor ChIP-Seq datasets in existance, as well as a platform for 
+            delivering rapid custom analysis on this data. </p>
+    </div>
+</div>
+
+<div id="featured1">
+    <div class="container">
+        <div class="title">
+            <h2>QUERY PIPELINE</h2>
+            <span class="byline"></span> </div>
+            <img src={{ url_for('static',filename='images/ChIP-IO_pipeline.png') }}>
+            <br>
+            <br>
+        <p>  </p>
+    </div>
+</div>
+
+
+<div id="featured2">
+        <div class="container">
+            <div class="title">
+                <h2>References</h2>
+                <span class="byline"></span> </div>
+            <p> Motif Finding</p>
+            <p>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1539026/</p>
+            <p>https://ieeexplore.ieee.org/document/6914361</p>
+            <p>https://www.cell.com/cell/pdf/S0092-8674(18)30106-5.pdf</p>
+            <p>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4121056/</p>
+            <p>Gabriel Cuellar-Partida, Fabian A. Buske, Robert C. McLeay, Tom Whitington, William Stafford Noble, and Timothy L. Bailey, "Epigenetic priors for identifying active transcription factor binding sites",
+                Bioinformatics 28(1): 56-62, 2012 </p>
+            <p>[1] Pique-Regi RP, Degner JF, Pai AA, Gaffney DG, Gilad Y, Pritchard JK. "Accurate inference of transcription factor binding from DNA sequence and chromatin accessibility data", Genome Research. 2011 Mar;21(3):447-55. [Full] [Pubmed]</p>
+        </div>
+    </div>
+{% endblock body %}

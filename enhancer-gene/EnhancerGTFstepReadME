@@ -1,0 +1,16 @@
+This document records the steps used to produce the Enhancer GTF for annotation
+
+1.) Raw enhancer-gene collection
+    - Collected from EnhancerAtlas
+2.) Adult-specific data were collected for the following tissue types:
+    - Brain
+    - Liver
+    - Small Intestine
+    - Skeletal Muscle
+    - Heart
+3.) Ensemble gene ids were converted to gene names, e.g. (ENST.... -> CTCF)
+    - process_enhancer_gene.py
+4.) Tissue data were unioned together 
+    - cat <all files>
+5.) Unioned data was converted to a GTF
+    - convert_enhancers_to_gtf.py

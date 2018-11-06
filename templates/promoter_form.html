@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div id="banner">
+    <div class="container form-container">
+        <div class="title">
+                <h2>Step 2:</h2>
+                <span class="byline"> Input Constraints </span>
+                <br>
+                <br>
+                <br>
+            <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                <h1 class = "hover-text-header" data-toggle="tooltip" data-placement="right" title="-log(p) range: (1,11)">
+                    Study-Specific Parameters</h1><br>
+                    <p>
+                        {{ form.transcription_factors.label }}<br>
+                        {{ form.transcription_factors(size=32) }}
+                    </p>
+                    <p>
+                        {{ form.tissue_types.label }}<br>
+                        {{ form.tissue_types(size=32) }}
+                    </p>
+                    <br>
+                <h1 class = "hover-text-header" data-toggle="tooltip" data-placement="right" title="-log(p) range: (1,11)">
+                    Peak-Specific Parameters</h1><br>
+                    <p>
+                        {{ form.log_p.label }}<br>
+                        {{ form.log_p(size=32) }}
+                    </p>
+                    <p>
+                        {{ form.fold_enrichment.label }}<br>
+                        {{ form.fold_enrichment(size=32) }}
+                    </p>
+                    <br>
+                <h1 class = "hover-text-header" data-toggle="tooltip" data-placement="right" title="-log(p) range: (1,11)">
+                    Association-Specific Parameters</h1><br>
+                    <p>
+                        {{ form.distance_from_TSS_upstream.label }}<br>
+                        {{ form.distance_from_TSS_upstream(size=32) }}
+                        <!-- <output id="TSSUInput">{{ form.distance_from_TSS_upstream()  }}</output> -->
+                    </p>
+                    <p>
+                        {{ form.distance_from_TSS_downstream.label }}<br>
+                        {{ form.distance_from_TSS_downstream(size=32) }}
+                    </p>
+                    <br>
+                <h1 class = "hover-text-header" data-toggle="tooltip" data-placement="right" title="Output will be sent to this email upon completion. If nothing is received, please check spam folder or redo this form with the correct email.">
+                    Provide Email</h1><br>
+                    <p>{{ form.email.label }}<br>
+                        {{form.email(size=32)}} 
+                    </p>    
+                <br>    
+                <p>{{ form.submit() }}</p>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
