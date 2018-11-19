@@ -27,17 +27,17 @@ Released   : 20140309
 <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/fonts.css') }}">
 
 <script>
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
-</script>
-<script>
-	function filenameSearch() {
+
+	function tissueFormSearch() {
 		// Declare variables 
 		var input, filter, table, tr, td, i;
-		input = document.getElementById("myFileNameInput");
+		input = document.getElementById("tissueFormNameInput");
 		filter = input.value.toUpperCase();
-		table = document.getElementById("myTable");
+		table = document.getElementById("tissueFormTable");
 		tr = table.getElementsByTagName("tr");
 	
 		// Loop through all table rows, and hide those who don't match the search query
@@ -52,44 +52,34 @@ $(function () {
 		} 
 		}
 	}
-	function tfSearch() {
+
+	function fileSearch() {
 		// Declare variables 
-		var input, filter, table, tr, td, i;
-		input = document.getElementById("myTFInput");
-		filter = input.value.toUpperCase();
-		table = document.getElementById("myTable");
+		var inputs, filters, table, tr, td, i;
+		inputs = [document.getElementById("myFileNameInput"), document.getElementById("myTFInput"), document.getElementById("myTissueInput")];
+		filters = [inputs[0].value.toUpperCase(), inputs[1].value.toUpperCase(), inputs[2].value.toUpperCase()];
+		table = document.getElementById("fileTable");
 		tr = table.getElementsByTagName("tr");
 	
 		// Loop through all table rows, and hide those who don't match the search query
 		for (i = 0; i < tr.length; i++) {
-		td = tr[i].getElementsByTagName("td")[1];
-		if (td) {
-			if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-			tr[i].style.display = "";
-			} else {
-			tr[i].style.display = "none";
-			}
-		} 
-		}
-	}
-	function tissueSearch() {
-		// Declare variables 
-		var input, filter, table, tr, td, i;
-		input = document.getElementById("myTissueInput");
-		filter = input.value.toUpperCase();
-		table = document.getElementById("myTable");
-		tr = table.getElementsByTagName("tr");
-	
-		// Loop through all table rows, and hide those who don't match the search query
-		for (i = 0; i < tr.length; i++) {
-		td = tr[i].getElementsByTagName("td")[2];
-		if (td) {
-			if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-			tr[i].style.display = "";
-			} else {
-			tr[i].style.display = "none";
-			}
-		} 
+			tds = tr[i].getElementsByTagName("td");
+			if (tds.length > 0) {
+
+				// for (j=0; j < filters.length; j++) {
+				// 	console.log(tds[j].innerHTML.toUpperCase().indexOf(filter[j]))
+				// }
+
+				if ((tds[0].innerHTML.toUpperCase().indexOf(filters[0]) > -1) 
+				&& (tds[1].innerHTML.toUpperCase().indexOf(filters[1]) > -1) 
+				&& (tds[2].innerHTML.toUpperCase().indexOf(filters[2]) > -1)) 
+				{
+					tr[i].style.display = "";
+				} 
+				else {
+					tr[i].style.display = "none";
+				}
+			} 
 		}
 	}
 </script>
@@ -108,8 +98,9 @@ $(function () {
 					<li class="current_page_item"><a href="{{ url_for('home') }}" accesskey="1" title="">CHIP-IO Home</a></li>
 					<li><a href="{{ url_for('construct_query') }}" accesskey="3" title="">Construct Query</a></li>
 					<li><a href="{{ url_for('downloads') }}" accesskey="4" title="">Downloads</a></li>
+					<li><a href="{{ url_for('tools') }}" accesskey="4" title="">Tools</a></li>
 					<li><a href="{{ url_for('about') }}" accesskey="4" title="">About</a></li>	
-					<li><a href="{{ url_for('contact') }}" accesskey="5" title="">Contact Us</a></li>
+					<li><a href="{{ url_for('contact') }}" accesskey="5" title="">Contact</a></li>
 				</ul>
 			</div>
 		</div>

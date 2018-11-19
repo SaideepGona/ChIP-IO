@@ -5,36 +5,57 @@
 <div id="banner">
     <div class="container">
         <div class="title">
-            <h2>Technical Details and Acknowledgements Go Here</h2>
-            <span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span> </div>
-        <p>This is <strong>PlainDisplay</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
+            <h2>WHAT IS CHIP-IO?</h2>
+            <span class="byline">ChIP-IO is a user-friendly web application designed to provide up-to-date, uniformly processed ChIP-Seq data and gene-specific transcription factor regulatory information. </span> 
+        </div>
     </div>
-    <ul class="actions">
-        <li><a href="#" class="button">Etiam posuere</a></li>
-    </ul>
 </div>
 
 <div id="featured1">
-    <div class="container">
-        <div class="title">
-            <h2>WHAT IS CHIP-IO?</h2>
-            <span class="byline">Donec leo, vivamus fermentum nibh in augue praesent a lacus at urna congue</span> </div>
-        <p>This is <strong>PlainDisplay</strong>, a free, fully standards-compliant CSS template designed by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>. The photos in this template are from <a href="http://fotogrph.com/"> Fotogrph</a>. This free template is released under the <a href="http://templated.co/license">Creative Commons Attribution</a> license, so you're pretty much free to do whatever you want with it (even use it commercially) provided you give us credit for it. Have fun :) </p>
-    </div>
-</div>
-    
-<div id="featured2">
     <div class="container">
         <div class="title">
             <h2>OUR MOTIVATION</h2>
             <span class="byline"></span> </div>
-        <p> Chromatin immunoprecipitation followed by sequencing (ChIP-Seq) continues to be a critical informer of protein-DNA binding. 
-            ChIP-IO serves as a repository for the thousands of salvageable transcription factor ChIP-Seq datasets in existance, as well as a platform for 
-            delivering rapid custom analysis on this data. </p>
+        <p> Chromatin immunoprecipitation followed by sequencing (ChIP-Seq) continues to be a critical informer of protein-DNA binding. As the amount
+            of data continues to grow and the needs of researchers continues to become more complex, there is a need for up-to-date, user-friendly tools to serve these
+            needs. 
+        </p>
+        <p>
+            With the initiation of projects such as the Human Cell Atlas and the rise of techniques like single-cell RNA-seq,for example, it is clear that the field is moving
+            towards more and more complex analysis at narrower and narrower scopes. ChIP-IO was designed with this in mind, allowing for tissue-specific and other 
+            metadata-specific analysis to meet increasingly nuanced needs.
+        </p>
+    </div>
+</div>
+
+<div id="featured2">
+    <div class="container">
+        <div class="title">
+            <h2>Technical Details</h2>
+            <span class="byline"></span> </div>
+        <p> 
+            ChIP-IOs underlying analysis process currently consists of two main steps. First is data collection, cleaning, and uniform processing for creation of the core database. 
+            Second is the custom-query pipeline for assessing transcription-factor gene regulatory targets. The former is external to this application, but can be used to update 
+            the reference datasets periodically. Current processed data can be directly downloaded under the <a style="color: #8fd8f5" href="{{ url_for('downloads') }}">"DOWNLOADS"</a> tab.
+            The latter is housed in this application under the <a style="color: #8fd8f5" href="{{ url_for('construct_query') }}">"CONSTRUCT QUERY"</a> tab.
+            It handles user-provided queries and actively delivers the results. Details and schematics for both are provided below.
+        </p>
     </div>
 </div>
 
 <div id="featured1">
+    <div class="container">
+        <div class="title">
+            <h2>DATA COLLECTION</h2>
+            <span class="byline"></span> </div>
+            <img src={{ url_for('static',filename='images/data_pipeline.png') }}>
+            <br>
+            <br>
+        <p>The out</p>
+    </div>
+</div>
+
+<div id="featured2">
     <div class="container">
         <div class="title">
             <h2>QUERY PIPELINE</h2>
@@ -42,12 +63,11 @@
             <img src={{ url_for('static',filename='images/ChIP-IO_pipeline.png') }}>
             <br>
             <br>
-        <p>  </p>
+        <p>The out</p>
     </div>
 </div>
 
-
-<div id="featured2">
+<div id="featured1">
         <div class="container">
             <div class="title">
                 <h2>References</h2>

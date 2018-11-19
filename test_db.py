@@ -1,5 +1,5 @@
-from flask_app import db
-from flask_app import Peaks, ChIP_Meta, Query_History
+from application import db
+from application import Peaks, ChIP_Meta, Query_History
 
 # x = Peaks.query.filter(Peaks.chrom=="chrX").all() 
 # x = Query_History.query.all() 

@@ -4,17 +4,21 @@ Author: Saideep Gona
 This script is intended to populate the given database from local files
 '''
 
-from flask_app import db
-from flask_app import ChIP_Meta, Peaks, Presets
+from application_for_build_db import db
+from application_for_build_db import ChIP_Meta, Peaks, Presets
 import glob
 import os
 import sys
 import pickle
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib
+# matplotlib.use('Agg')
+
+# import matplotlib.pyplot as plt
 import unicodedata
 
-plt.ion()
+# plt.ion()
+# plt.use('Agg')
 
 # IO ************************************************************
 
@@ -39,39 +43,23 @@ def find_duplicates(in_list):
         if count > 1:  
             print ("duplicate: " + each + " " + count)
 
-def histogram(field, data, metrics_dir):
-    plt.rc('axes',edgecolor='white')
-    plt.rc('lines', color='white')
-    plt.rc('text', color='white')
-    plt.rc('xtick', color='white')
-    plt.rc('ytick', color='white')
-    np_data = np.array(data)
-    # print(np_data)
-    # hist, bins = np.histogram(np_data, bins = 50)
-    # print(hist,bins)
-    plt.hist(data, color = 'white', bins = 50)
-    plt.xlabel("Bin Ranges", color='white')
-    plt.ylabel("Frequency", color='white')
-    plt.title("Distribution of "+field+" values across all peaks in database")
+# def histogram(field, data, metrics_dir):
+#     plt.rc('axes',edgecolor='white')
+#     plt.rc('lines', color='white')
+#     plt.rc('text', color='white')
+#     plt.rc('xtick', color='white')
+#     plt.rc('ytick', color='white')
+#     np_data = np.array(data)
 
-    # for ax, color in zip([ax1, ax2, ax3, ax4], ['white', 'white', 'white', 'white']):
-    #     for ticks in ax.xaxis.get_ticklines() + ax.yaxis.get_ticklines():
-    #         ticks.set_color('white')
-    # for pos in ['top', 'bottom', 'right', 'left']:
-    #     plt.spines[pos].set_edgecolor('white')
-    # plt.xlabel.set_color('white')
-    # plt.ylabel.set_color('white')
-    # plt.tick_params(axis='x', colors='white')
-    # plt.tick_params(axis='y', colors='white')
-    # plt.title.set_color('white')
+#     plt.hist(data, color = 'white', bins = 50)
+#     plt.xlabel("Bin Ranges", color='white')
+#     plt.ylabel("Frequency", color='white')
+#     plt.title("Distribution of "+field+" values across all peaks in database")
 
-    # # plt.plot(np.array([0,1,2,3]), color = 'blue')
-    # plt.show()
-    # print(x)
-    savefile = metrics_dir + "/" + field + "_hist.png"
-    print(savefile)
-    plt.savefig(savefile, transparent=True)
-    plt.cla()
+#     savefile = metrics_dir + "/" + field + "_hist.png"
+#     print(savefile)
+#     plt.savefig(savefile, transparent=True)
+#     plt.cla()
 
 def slugify(value):
     """
@@ -116,7 +104,7 @@ for m_f in list(metadata_dict.keys()):
             )
 
             metadata_dict_ref[m_f] = [tissue_obj, metadata_dict[m_f]["tf"]]
-            print(meta)
+            # print(meta)
             db.session.add(meta)
 
         else:
@@ -129,13 +117,13 @@ for m_f in list(metadata_dict.keys()):
                     transcription_factors = metadata_dict[m_f]["tf"]
                 )
                 metadata_dict_ref[m_f] = [tissue_obj, metadata_dict[m_f]["tf"]]
-                print(meta)
+                # print(meta)
                 db.session.add(meta)
 
 
     elif type(tissue_obj) == str:                                   # Standard single tissue entry
         tissue = slugify(tissue_obj)
-        print(tissue)
+        # print(tissue)
 
         meta = ChIP_Meta(
             experiment_accession = m_f,
@@ -188,7 +176,7 @@ for p_f in peak_files:
 
             tissue_obj = metadata_dict_ref[exp_acc][0] 
             if type(tissue_obj) == list:
-                print(tissue_obj)
+                # print(tissue_obj)
                 if len(tissue_obj) == 0:
                     tissue = "NA"
                 else:
@@ -229,7 +217,7 @@ for p_f in peak_files:
                     fold_enrichment = p_l[7],
                     log_q = p_l[8]
                 )
-                print(peak)
+                # print(peak)   
                 db.session.add(peak)
     db.session.commit()
 
@@ -242,7 +230,7 @@ peak_fields = {
     "-log_q": q_values
 }
 
-for field in peak_fields.keys():
-    histogram(field, peak_fields[field], metrics_dir)
+# for field in peak_fields.keys():
+#     histogram(field, peak_fields[field], metrics_dir)
 
 # END MAIN ********************************************************

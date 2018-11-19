@@ -4,7 +4,7 @@ Author: Saideep Gona
 This is the core script for the ChIP-Base application which hosts large-scale ChIP-Seq data. It allows for parameter specification and generation of binary
 tf-gene binding tables. Built using the python Flask framework.
 '''
-import os
+import os, sys
 from datetime import datetime
 from multiprocessing import Process, Queue
 import pickle
@@ -41,8 +41,13 @@ from wtforms_html5 import AutoAttrMeta
 #TODO Motif-finding from mapped peaks
 
 app = Flask(__name__)
+
+# os.system("python build_db.py")
+
 app.config['SECRET_KEY'] = 'sai-key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ChIP_Base.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']      #Deployment database
+# print(os.environ['DATABASE_URL'])
 
 pwd = os.getcwd()
 
@@ -61,6 +66,9 @@ with open(all_tfs_path, "r") as at:
         all_tfs.append(line.rstrip("\n"))
 print("NUMBER OF TFS: ", len(all_tfs))
 
+metadata_path = pwd + "/pass_metadata/metadata.pkl"     
+metadata_dict = pickle.load(open(metadata_path, "rb"))      # Contains metadata on all datasets
+# print(metadata_dict.keys())
 
 # New params
 
@@ -196,18 +204,18 @@ class DownloadFiles():
         peak_files = glob.glob(pwd + "/" + peak_dir + "/*")
         unpath_peak_files = ["#".join(x.split("/")) for x in peak_files]
         peak_files_strip = [x.split("/")[-1] for x in peak_files]
+        accessions = [x.rstrip("_peaks.xls") for x in peak_files_strip]
         self.peak_files = peak_files
         self.unpath_peak_files = unpath_peak_files
         self.peak_files_strip = peak_files_strip
         self.num_peak_files = len(peak_files)
+        self.tfs = [metadata_dict[x]["tf"] for x in accessions]
+        self.tissues = [metadata_dict[x]["tissue"] for x in accessions]
 
-# IF BUILDING TABLE DO NOT COMMENT OUT THE NEXT SET OF LINES
-# all_possible = {
-#     "transcription_factors": ["temp"],
-#     "tissue_types": ["temp"]
-# }
 
 # IF BUILDING TABLE, COMMENT OUT THE NEXT FEW SETS OF LINES
+
+
 
 all_possible = {
 "transcription_factors": list(set([x.transcription_factors for x in ChIP_Meta.query.all()])),
@@ -241,14 +249,18 @@ class ParameterForm(FlaskForm):
 
     transcription_factors = StringField('Transcription Factors')
     tissue_types = StringField('Tissue Types')
-
+    
+    pileup = FloatField('Pileup', validators=[DataRequired(message="pileup not right")])
     log_p = FloatField('-log(p) Value', validators=[DataRequired(message="logp not right")])
-    fold_enrichment = FloatField('Fold Enrichment', validators=[DataRequired(message="logp not right")])
+    fold_enrichment = FloatField('Fold Enrichment', validators=[DataRequired(message="enrichment not right")])
+    log_q = FloatField('-log(q) Value', validators=[DataRequired(message="logq not right")])
+
 
     # distance_from_TSS = IntegerField('Distance from TSS', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
     distance_from_TSS_upstream = IntegerField('Distance from TSS Upstream', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
     distance_from_TSS_downstream = IntegerField('Distance from TSS Downstream', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
-    
+    peak_count = IntegerField('Enhancer Peak Count', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
+
     email = StringField("Email", validators=[DataRequired(message="email not right")])
 
     submit = SubmitField('Submit')
@@ -601,8 +613,10 @@ def constraints_met(data, user_params, constraints_type):
     if constraints_type == "peaks":
         # print(data)
         # print(user_params)
-        if (float(data[7]) > user_params["log_p"] and
-            float(data[8]) > user_params["fold_enrichment"]
+        if (float(data[6]) > user_params["pileup"] and
+            float(data[7]) > user_params["log_p"] and
+            float(data[8]) > user_params["fold_enrichment"] and
+            float(data[9]) > user_params["log_q"]
         ):
             # print("Peaks constraints satisfied")
             return True
@@ -773,8 +787,12 @@ def construct_query():
 
 @app.route('/promoter_form', methods=['GET', 'POST'])
 def promoter_form():
-    form = ParameterForm(transcription_factors = "ALL", tissue_types = "ALL", )
-    print(form)
+    form = ParameterForm(transcription_factors = "ALL", tissue_types = "ALL",
+                        pileup = 1, log_p = 1, fold_enrichment = 1, log_q = 1,
+                        distance_from_TSS_upstream=1000,
+                        distance_from_TSS_downstream=100,
+                        peak_count=1,
+                        email="chip.seq@peaks.com")
     if form.validate_on_submit():
         print("valid")
         query_data = build_query_hist(form)
@@ -787,11 +805,14 @@ def promoter_form():
             "transcription_factors": parse_input(form.transcription_factors.data, ",", "transcription_factors", all_possible),
             "tissue_types": parse_input(form.tissue_types.data, ",", "tissue_types", all_possible),
 
+            "pileup": form.pileup.data,
             "log_p": form.log_p.data, 
             "fold_enrichment": form.fold_enrichment.data,
+            "log_q": form.log_q.data,
 
             "dist_tss_upstream": form.distance_from_TSS_upstream.data,
             "dist_tss_downstream": form.distance_from_TSS_downstream.data,
+            "peak_count": form.peak_count.data,
 
             "email": form.email.data,
 
@@ -803,11 +824,16 @@ def promoter_form():
             run_pipeline(query_data_dict)
 
         return render_template('complete.html')
-    return render_template('promoter_form.html', form = form)
+    return render_template('promoter_form.html', form = form, tissues=all_possible["tissue_types"], tfs=all_possible["transcription_factors"])
 
 @app.route('/enhancer_form', methods=['GET', 'POST'])
 def enhancer_form():
-    form = ParameterForm(transcription_factors = "ALL", tissue_types = "ALL", distance_from_TSS_upstream = 1, distance_from_TSS_downstream = 1) 
+    form = ParameterForm(transcription_factors = "ALL", tissue_types = "ALL",
+                        pileup = 1, log_p = 1, fold_enrichment = 1, log_q = 1,
+                        distance_from_TSS_upstream=1000,
+                        distance_from_TSS_downstream=100,
+                        peak_count=1,
+                        email="chip.seq@peaks.com")
     if form.validate_on_submit():
         query_data = build_query_hist(form)
         db.session.add(query_data)
@@ -819,11 +845,14 @@ def enhancer_form():
             "transcription_factors": parse_input(form.transcription_factors.data, ",", "transcription_factors", all_possible),
             "tissue_types": parse_input(form.tissue_types.data, ",", "tissue_types", all_possible),
 
+            "pileup": form.pileup.data,
             "log_p": form.log_p.data, 
             "fold_enrichment": form.fold_enrichment.data,
+            "log_q": form.log_q.data,
 
             "dist_tss_upstream": 1,
             "dist_tss_downstream": 1,
+            "peak_count": form.peak_count.data,
 
             "email": form.email.data,
 
@@ -835,14 +864,15 @@ def enhancer_form():
             run_pipeline(query_data_dict)
 
         return render_template('complete.html')
-    return render_template('enhancer_form.html', form = form)
+    return render_template('enhancer_form.html', form = form, tissues=all_possible["tissue_types"], tfs=all_possible["transcription_factors"])
 
 @app.route('/promoter_enhancer_form', methods=['GET', 'POST'])
 def promoter_enhancer_form():
     form = ParameterForm(transcription_factors = "ALL", tissue_types = "ALL",
-                        log_p = 1, fold_enrichment = 1,
+                        pileup = 1, log_p = 1, fold_enrichment = 1, log_q = 1,
                         distance_from_TSS_upstream=1000,
                         distance_from_TSS_downstream=100,
+                        peak_count=1,
                         email="chip.seq@peaks.com")
     if form.validate_on_submit():
         query_data = build_query_hist(form)
@@ -855,11 +885,14 @@ def promoter_enhancer_form():
             "transcription_factors": parse_input(form.transcription_factors.data, ",", "transcription_factors", all_possible),
             "tissue_types": parse_input(form.tissue_types.data, ",", "tissue_types", all_possible),
 
+            "pileup": form.pileup.data,
             "log_p": form.log_p.data, 
             "fold_enrichment": form.fold_enrichment.data,
+            "log_q": form.log_q.data,
 
             "dist_tss_upstream": form.distance_from_TSS_upstream.data,
             "dist_tss_downstream": form.distance_from_TSS_downstream.data,
+            "peak_count": form.peak_count.data,
 
             "email": form.email.data,
 
@@ -890,6 +923,11 @@ def downloads():
     # send_file("/home/saideep/Documents/GitHub_Repos/Saideep/MSCB_Sem1/Research/Research-Sys-Bio/ChIP-Base_Application/peaks/ENCSR480LIS_peaks.xls", as_attachment=True)
     return render_template('downloads.html', download_files = download_files)
 
+@app.route('/tools')
+def tools():
+    # send_file("/home/saideep/Documents/GitHub_Repos/Saideep/MSCB_Sem1/Research/Research-Sys-Bio/ChIP-Base_Application/peaks/ENCSR480LIS_peaks.xls", as_attachment=True)
+    return render_template('tools.html', tissues=all_possible["tissue_types"], tfs=all_possible["transcription_factors"])
+
 @app.route("/download_file/<file_path>", methods=['GET', 'POST'])
 def download_file(file_path):
     print("downloading,", file_path)
@@ -907,6 +945,6 @@ def contact():
     return render_template('contact.html')
 
 download_files = DownloadFiles()
-download_files.collect_peaks("peaks")
+download_files.collect_peaks("pass_peaks")
 # print(download_files.peak_files)
 

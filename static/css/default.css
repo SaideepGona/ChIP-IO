@@ -9,10 +9,11 @@
 		font-weight: bold;
 	}
 
-	.hover-text-header
+	.tooltip-inner
 	{
+		background-color: transparent;
+		max-width: 25vw;
 	}
-
 	.hover-text-header :hover 
 	{
 		color: rgb(126, 156, 170);
@@ -34,24 +35,24 @@
 		margin-bottom: 12px; /* Add some space below the input */
 	}
 	
-	#myTable {
+	#fileTable {
 		border-collapse: collapse; /* Collapse borders */
 		width: 100%; /* Full-width */
 		border: 1px solid #ddd; /* Add a grey border */
 		font-size: 18px; /* Increase font-size */
 	}
 	
-	#myTable th, #myTable td {
+	#fileTable th, #fileTable td {
 		text-align: left; /* Left-align text */
 		padding: 12px; /* Add padding */
 	}
 	
-	#myTable tr {
+	#fileTable tr {
 		/* Add a bottom border to all table rows */
 		border-bottom: 1px solid #ddd; 
 	}
 	
-	#myTable tr.header, #myTable tr:hover {
+	#fileTable tr.header, #fileTable tr:hover {
 		/* Add a grey background color to the table header and on hover */
 		background-color: #f1f1f1a8;
 	}

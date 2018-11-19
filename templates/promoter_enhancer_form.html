@@ -11,12 +11,10 @@
                 <br>
             <form action="" method="POST">
                     {{ form.hidden_tag() }}
-
-
-                <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
-                    title="Study-specific parameters subset peaks based on properties of their source study">
-                    Study-Specific Parameters
-                </h1>
+                    <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                        title="Study-specific parameters subset peaks based on properties of their source study">
+                        Study-Specific Parameters
+                    </h1>
                 <br>
                     <p class="hover-text-header" 
                     data-toggle="tooltip" 
@@ -38,6 +36,11 @@
                         {{ form.transcription_factors.label }}<br>
                         {{ form.transcription_factors(size=32) }}
                     </p>
+                <!-- <p>
+                    <a target="_blank" href="{{ url_for('tools',_anchor='tissue-selector') }}">{{ form.transcription_factors.label }}</a><br>
+                    {{ form.transcription_factors(size=32) }}                  
+                </p> -->
+                <br>
                     <p class="hover-text-header" 
                     data-toggle="tooltip" 
                     data-placement="right" 
@@ -57,9 +60,7 @@
                         {{ form.tissue_types.label }}<br>
                         {{ form.tissue_types(size=32) }}
                     </p>
-                    <br>
-
-
+                <br>
 
                 <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
                     title="Peak-specific parameters allow filtering based on the quality and intensity of peak signals">
@@ -71,11 +72,18 @@
                     data-toggle="tooltip" 
                     data-placement="right" 
                     data-html="true" 
-                    title="<div>
-                                Describes the negative log of the p-value associated with the peak &quotpileup&quot. The chart below shows a distribution
-                                of -log(p) values across all peaks in database.
-                            </div>
-                            <br>
+                    title="
+                            <img src={{ url_for('static',filename='images/pileup_hist.png') }}>
+                            </img>">
+                        {{ form.pileup.label }}<br>
+                        {{ form.pileup(size=32) }}
+                    </p>
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="
                             <img src={{ url_for('static',filename='images/-log_p_hist.png') }}>
                             </img>">
                         {{ form.log_p.label }}<br>
@@ -86,33 +94,65 @@
                     data-toggle="tooltip" 
                     data-placement="right" 
                     data-html="true" 
-                    title="<div>
-                                Describes the fold enrichment. The chart below shows a distribution
-                                of fold_enrichment values across all peaks in the database.
-                            </div>
-                            <br>
+                    title="
                             <img src={{ url_for('static',filename='images/fold_enrichment_hist.png') }}>
                             </img>">
                         {{ form.fold_enrichment.label }}<br>
                         {{ form.fold_enrichment(size=32) }}
                     </p>
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="
+                            <img src={{ url_for('static',filename='images/-log_q_hist.png') }}>
+                            </img>">
+                        {{ form.log_q.label }}<br>
+                        {{ form.log_q(size=32) }}
+                    </p>
                     <br>
-
 
 
                 <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
-                    title="Regulatory region parameters allow modification of promoter/rnhancer definition.">
+                    title="Regulatory region parameters allow modification of promoter/enhancer definition.">
                     Regulatory Region Parameters</h1><br>
-                    <p>
-                        {{ form.distance_from_TSS_upstream.label }}<br>
-                        {{ form.distance_from_TSS_upstream(size=32) }}
+
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="
+                            <img src={{ url_for('static',filename='images/Upstream.png') }}>
+                            </img>">
+                            {{ form.distance_from_TSS_upstream.label }}<br>
+                            {{ form.distance_from_TSS_upstream(size=32) }}
                     </p>
-                    <p>
-                        {{ form.distance_from_TSS_downstream.label }}<br>
-                        {{ form.distance_from_TSS_downstream(size=32) }}
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="
+                            <img src={{ url_for('static',filename='images/Downstream.png') }}>
+                            </img>">
+                            {{ form.distance_from_TSS_downstream.label }}<br>
+                            {{ form.distance_from_TSS_downstream(size=32) }}
+                    </p>
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="<div>
+                                Number of peaks peaks mapped to a gene required to qualify TF 
+                                as regulatory for that gene.
+                            </div>">
+                            {{ form.peak_count.label }}<br>
+                            {{ form.peak_count(size=32) }}
                     </p>
                     <br>
-
 
 
                 <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
