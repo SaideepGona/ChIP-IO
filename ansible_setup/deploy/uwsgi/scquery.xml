@@ -1,0 +1,15 @@
+<uwsgi>
+  <max-requests>5000</max-requests>
+  <master/>
+  <stats>/run/uwsgi/app/scquery/stats.socket</stats>
+  <enable-threads/>
+  <threads>4</threads>
+  <workers>3</workers>
+  <socket>/run/uwsgi/app/scquery/scquery.socket</socket>
+  <chdir>/opt/scquery/website</chdir>
+  <module>webtool.wsgi</module>
+  <virtualenv>/opt/scquery/venv</virtualenv>
+  <env>LC_ALL=en_US.UTF-8</env>
+  <env>LANG=en_US.UTF-8</env>
+  <env>PYTHONIOENCODING=utf-8</env>
+</uwsgi>

@@ -1,0 +1,13 @@
+[webservers]
+
+[webservers2]
+ubuntu@ec2-52-201-216-161.compute-1.amazonaws.com
+
+[webservers3]
+52.201.216.161
+
+#[webservers4]
+#ubuntu@ec2-52-201-216-161.compute-1.amazonaws.com ansible_ssh_private_key_file=~/.ssh/chipio.pem
+
+#[webservers5]
+#52.201.216.161 ansible_ssh_private_key_file=~/.ssh/chipio.pem

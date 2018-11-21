@@ -29,7 +29,7 @@ if len(sys.argv) > 1:
     metadata_dir = sys.argv[2]
     metrics_dir = sys.argv[3]
 else:
-    peak_dir = pwd + "/temp_peaks/"
+    peak_dir = pwd + "/pass_peaks/"
     metadata_path = pwd + "/pass_metadata/metadata.pkl"     
     metrics_dir =  pwd + "/static/images/"
 

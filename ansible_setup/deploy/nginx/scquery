@@ -1,0 +1,42 @@
+upstream uwsgi_scquery {
+	server unix:///run/uwsgi/app/scquery/scquery.socket;
+}
+
+# Redirect all HTTP traffic to HTTPS
+server {
+	server_name _;
+	location / {
+		return 301 https://$host$request_uri;
+	}
+}
+
+server {
+	server_name _;
+
+	listen 443 http2;
+	ssl on;
+	ssl_certificate /etc/letsencrypt/live/scquery.cs.cmu.edu/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/scquery.cs.cmu.edu/privkey.pem;
+	ssl_session_cache shared:SSL:10m;
+	ssl_session_timeout 10m;
+	ssl_protocols TLSv1.2 TLSv1.3;
+	ssl_prefer_server_ciphers on;
+	ssl_ciphers 'EECDH+AESGCM:AES256+EECDH';
+	add_header Strict-Transport-Security "max-age=63072000;";
+
+	location /static/ {
+		root /opt/scquery/;
+		expires 2d;
+		break;
+	}
+
+	# Everything else is handled by the Django app
+	location / {
+		uwsgi_pass uwsgi_scquery;
+		include /etc/nginx/uwsgi_params;
+		uwsgi_param HTTP_X_FORWARDED_PROTO $scheme;
+		uwsgi_param UWSGI_SCHEME $scheme;
+		uwsgi_read_timeout 600s;
+		uwsgi_send_timeout 600s;
+	}
+}
