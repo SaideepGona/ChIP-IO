@@ -3,14 +3,17 @@
 {% block body %}
 
 <div id="banner">
+</div>
+
+<div id="featured1">
     <div class="container">
         <div class="title">
             <h2>Analysis Presets</h2>
         </div>
         <div class="row">
-                <input class="col-6" type="text" id="presetsFileNameInput" onkeyup="fileSearch()" placeholder="Search by experiment accessions..">
-                <input class="col-3" type="text" id="presetsTFInput" onkeyup="fileSearch()" placeholder="Search by transcription factor..">
-                <input class="col-3" type="text" id="presetsTissueInput" onkeyup="fileSearch()" placeholder="Search by tissue type..">
+                <input class="col-6" type="text" id="presetsFileNameInput" onkeyup="presetsFileSearch()" placeholder="Search by experiment accessions..">
+                <input class="col-3" type="text" id="presetsTFInput" onkeyup="presetsFileSearch()" placeholder="Search by transcription factor..">
+                <input class="col-3" type="text" id="presetsTissueInput" onkeyup="presetsFileSearch()" placeholder="Search by tissue type..">
         </div>
         <div class="row" style="height:100vh; overflow: auto;">
             <table id="presetsFileTable">
@@ -20,18 +23,18 @@
                     <th style="width:24%;color:rgb(88, 88, 88)">Tissue Type</th>
                 </tr>
 
-                {% for file_ind in range(download_files.num_peak_files) %}
+                {% for file_ind in range(download_files.num_preset_files) %}
                 <tr>
                     <td>
                         <a href="{{ url_for('download_file', file_path = download_files.unpath_preset_files[loop.index]) }}">
-                            <button style="height: 100%; width: 100%" class='btn btn-secondary'>{{ download_files.preset_files_strip[loop.index] }}</button>
-                        </a>
+                            <button style="height: 100%; width: 100%" class='btn btn-secondary'>{{ download_files.preset_files_strip[file_ind] }}</button>
+                        </a>    
                     </td>
                     <td>
-                        {{ download_files.tfs[loop.index] }}
+                        {{ download_files.preset_mappings[file_ind]['tfs'] }}
                     </td>
                     <td>
-                        {{ download_files.tissues[loop.index] }}
+                        {{ download_files.preset_mappings[file_ind]['tissues'] }}
                     </td>
                 </tr>
                 {% endfor %}
@@ -40,19 +43,18 @@
     </div>
 </div>
 
-<div id="featured1">
+<div id="featured2">
     <div class="container">
         <div class="title">
             <h2>Raw Data</h2>
-                <h3>ChIP-Seq</h3>
         </div>
         <div class="row">
-            <input class="col-6" type="text" id="myFileNameInput" onkeyup="fileSearch()" placeholder="Search by experiment accessions..">
-            <input class="col-3" type="text" id="myTFInput" onkeyup="fileSearch()" placeholder="Search by transcription factor..">
-            <input class="col-3" type="text" id="myTissueInput" onkeyup="fileSearch()" placeholder="Search by tissue type..">
+            <input class="col-6" type="text" id="peakFileNameInput" onkeyup="peakFileSearch()" placeholder="Search by experiment accessions..">
+            <input class="col-3" type="text" id="peakTFInput" onkeyup="peakFileSearch()" placeholder="Search by transcription factor..">
+            <input class="col-3" type="text" id="peakTissueInput" onkeyup="peakFileSearch()" placeholder="Search by tissue type..">
         </div>
         <div class="row" style="height:100vh; overflow: auto;">
-            <table id="fileTable">
+            <table id="peakFileTable">
                 <tr class="header">
                     <th style="width:52%;color:rgb(88, 88, 88)">Filename</th>
                     <th style="width:24%;color:rgb(88, 88, 88)">Transcription Factor</th>

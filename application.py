@@ -200,6 +200,27 @@ class DownloadFiles():
     def __init__(self):
         self.make_time = datetime.utcnow
 
+
+    def collect_presets(self, preset_dir):
+
+        # Format for preset filenames should be: field1:value,field2:value2,... e.g. tissues=All,tfs=All  
+        def parse_f_name(fname):
+            all_fields = fname.split(',')
+            mapping = {}
+            for field in all_fields:
+                keyval = field.split("=")
+                mapping[keyval[0]] = keyval[1]
+            return mapping
+
+        preset_files = glob.glob(pwd + "/" + preset_dir + "/*")
+        unpath_preset_files = ["#".join(x.split("/")) for x in preset_files]
+        preset_files_strip = [x.split("/")[-1] for x in preset_files]
+        self.preset_files = preset_files
+        self.unpath_preset_files = unpath_preset_files
+        self.preset_files_strip = preset_files_strip
+        self.num_preset_files = len(preset_files)
+        self.preset_mappings = [parse_f_name(x) for x in preset_files_strip]
+
     def collect_peaks(self, peak_dir):
         peak_files = glob.glob(pwd + "/" + peak_dir + "/*")
         unpath_peak_files = ["#".join(x.split("/")) for x in peak_files]
@@ -213,8 +234,8 @@ class DownloadFiles():
         self.tissues = [metadata_dict[x]["tissue"] for x in accessions]
 
 
-# IF BUILDING TABLE, COMMENT OUT THE NEXT FEW SETS OF LINES
 
+# IF BUILDING TABLE, COMMENT OUT THE NEXT FEW SETS OF LINES
 
 
 all_possible = {
@@ -946,5 +967,6 @@ def contact():
 
 download_files = DownloadFiles()
 download_files.collect_peaks("pass_peaks")
-# print(download_files.peak_files)
+download_files.collect_presets("presets")
+print(download_files.preset_mappings)
 
