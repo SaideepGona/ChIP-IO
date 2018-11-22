@@ -12,21 +12,27 @@
             <br>
             <div class="container" id="association_box">
                 <div class="row">
-                    <div class="row">
+                    <div class="col">
                         <a href="{{ url_for('promoter_form') }}">
-                            <button style="height: 20vh;font-size: large" type="button" id="promotor_box" class="w-75 btn btn-primary associationbox"> Promoter Only</button>
+                            <button style="height: 10vh;font-size: x-large" type="button" id="promotor_box" class="w-75 btn btn-primary associationbox"> Promoter Only</button>
                         </a>
                     </div>
-                    <div class="row">
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
                         <a href="{{ url_for('enhancer_form') }}">
-                            <button style="height: 20vh;font-size: large" type="button" id="enhancer_box" class="w-75 btn btn-primary associationbox"> Enhancer Only</button>
+                            <button style="height: 10vh;font-size: x-large" type="button" id="enhancer_box" class="w-75 btn btn-primary associationbox"> Enhancer Only</button>
                         </a>
                     </div>
-                    <div class="row">
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
                         <a href="{{ url_for('promoter_enhancer_form') }}">
-                            <button style="height: 20vh;font-size: large" type="button" id="promotor_enhancer_box" class="w-75 btn btn-primary associationbox"> Promoter and Enhancer</button>
+                            <button style="height: 10vh;font-size: x-large" type="button" id="promotor_enhancer_box" class="w-75 btn btn-primary associationbox"> Promoter and Enhancer</button>
                         </a>
-                    </div>
+                    </div>  
                 </div>
             </div>
         </div>

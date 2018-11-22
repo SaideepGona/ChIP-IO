@@ -35,6 +35,7 @@
      - gunicorn
      # for the Ansible postgresql modules; must be installed in system Python
      - python3-psycopg2
+     - bedtools
 
 # Clone git repo and flesh out directory structure
 - hosts: webservers
@@ -140,6 +141,11 @@
   
 
 # To set up a compatible ec2 instance, consult https://www.nginx.com/blog/setting-up-nginx/
+
+# Install bioinformatics packages
+# bedtools
+# fimo
+# meme
 
 
 
