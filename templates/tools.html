@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div id="banner">
+    <div class="container">
+        <div class="title">
+            <h2>Useful Tools for More Complex Queries</h2>
+        </div>
+    </div>
+</div>
+
+<div id="featured1">
+    <div id="tissue-selector" class="container">
+        <div class="title">
+            <h2>Tissue Selector</h2>
+            <div class="col-3">
+                <div class="row">
+                    <input class="col-6" type="text" id="tissueFormNameInput" onkeyup="tissueFormSearch()" placeholder="Search by tissue type..">
+                </div>
+                <div class="row" style="height:100vh; overflow: auto;">
+                    <table id="tissueFormTable">
+                        <tr class="header">
+                            <th style="width:100%;color:rgb(88, 88, 88)">Filename</th>
+                        </tr>
+                {% for tissue in tissues %}
+                <tr>
+                    <td>
+                        <input style="width:100%" type="button" id="theButton" value="{{ tissue }}" 
+                        onclick="document.getElementById('tissue_types').innerHTML({{ tissue }})">
+                    </td>
+                </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
