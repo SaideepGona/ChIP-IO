@@ -280,7 +280,7 @@ class ParameterForm(FlaskForm):
     # distance_from_TSS = IntegerField('Distance from TSS', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
     distance_from_TSS_upstream = IntegerField('Distance from TSS Upstream', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
     distance_from_TSS_downstream = IntegerField('Distance from TSS Downstream', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
-    peak_count = IntegerField('Enhancer Peak Count', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
+    peak_count = IntegerField('Regulatory Peak Count', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
 
     email = StringField("Email", validators=[DataRequired(message="email not right")])
 
@@ -813,7 +813,7 @@ def promoter_form():
                         distance_from_TSS_upstream=1000,
                         distance_from_TSS_downstream=100,
                         peak_count=1,
-                        email="chip.seq@peaks.com")
+                        email="send.results.here@peaks.com")
     if form.validate_on_submit():
         print("valid")
         query_data = build_query_hist(form)
@@ -854,7 +854,7 @@ def enhancer_form():
                         distance_from_TSS_upstream=1000,
                         distance_from_TSS_downstream=100,
                         peak_count=1,
-                        email="chip.seq@peaks.com")
+                        email="send.results.here@peaks.com")
     if form.validate_on_submit():
         query_data = build_query_hist(form)
         db.session.add(query_data)
@@ -894,7 +894,7 @@ def promoter_enhancer_form():
                         distance_from_TSS_upstream=1000,
                         distance_from_TSS_downstream=100,
                         peak_count=1,
-                        email="chip.seq@peaks.com")
+                        email="send.results.here@peaks.com")
     if form.validate_on_submit():
         query_data = build_query_hist(form)
         db.session.add(query_data)

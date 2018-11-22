@@ -12,7 +12,7 @@
             <form action="" method="POST">
                     {{ form.hidden_tag() }}
                     <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
-                        title="Study-specific parameters subset peaks based on properties of their source study">
+                        title="Subset peaks based on properties of their source study">
                         Study-Specific Parameters
                     </h1>
                 <br>
@@ -25,13 +25,11 @@
                             </div>
                             <br>
                             <div>
-                                Inputting &quotALL&quot will input all transcription factors
-                                currently in the database thereby not constraining the query. To use only a subset, 
-                                input TF names seperated by space. e.g.: TF_1 TF_2 ... TF_n 
+                                Input Format: Input &quotALL&quot, or input space-delimited TFs  e.g.: CTCF SOX1 ... TF_n 
                             </div>
                             <br>
                             <div> 
-                                Current listings of all transcription_factors can be found in the &quotABOUT&quot section.
+                                Visit the &quotTools&quot tab for help constructing queries.
                             </div>">
                         {{ form.transcription_factors.label }}<br>
                         {{ form.transcription_factors(size=32) }}
@@ -49,13 +47,11 @@
                                 Subset peaks by their experimental tissue type(s).
                             </div>
                             <div>
-                                Inputting &quotALL&quot will input all tissue types
-                                currently in the database. To use only a subset, input TF names seperated by
-                                space. e.g.: tissue_1 tissue_2 ... tissue_n 
+                                Input &quotALL&quot, or input space-delimited tissues  e.g.: brain lung ... tissue_n  
                             </div>
                             <br>
                             <div> 
-                                Current listings of all tissue types can be found in the &quotABOUT&quot section. 
+                                Visit the &quotTools&quot tab for help constructing queries.
                             </div>">
                         {{ form.tissue_types.label }}<br>
                         {{ form.tissue_types(size=32) }}
@@ -63,7 +59,7 @@
                 <br>
 
                 <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
-                    title="Peak-specific parameters allow filtering based on the quality and intensity of peak signals">
+                    title="Filter based on the quality and intensity of peak signals">
                     Peak-Specific Parameters
                 </h1>
                 <br>
@@ -115,7 +111,7 @@
 
 
                 <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
-                    title="Regulatory region parameters allow modification of promoter/enhancer definition.">
+                    title="Modifify definition of promoter/enhancer regions">
                     Regulatory Region Parameters</h1><br>
 
                     <p
@@ -146,8 +142,7 @@
                     data-placement="right" 
                     data-html="true" 
                     title="<div>
-                                Number of peaks peaks mapped to a gene required to qualify TF 
-                                as regulatory for that gene.
+                                Per gene number of TF peaks mapped to regulatory regions to qualify TF as regulatory for that gene.
                             </div>">
                             {{ form.peak_count.label }}<br>
                             {{ form.peak_count(size=32) }}
@@ -155,10 +150,11 @@
                     <br>
 
 
-                <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
-                title="Pipeline results will be sent to this email upon completion.">
+                <h1>
                  Email</h1><br>
-                    <p>{{ form.email.label }}<br>
+                    <p class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                    title="Pipeline results will be sent to this email upon completion.">
+                        {{ form.email.label }}<br>
                         {{form.email(size=32)}} 
                     </p>    
                 <br>    

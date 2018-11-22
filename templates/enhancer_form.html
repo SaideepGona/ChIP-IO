@@ -9,35 +9,135 @@
                 <br>
                 <br>
                 <br>
-            <form action="" method="POST" class="association_form">
-                    {{ form.hidden_tag() }} 
-                <h1 class = "hover-text-header" data-toggle="tooltip" data-placement="right" title="-log(p) range: (1,11)">Study-Specific Parameters</h1><br>
-                    <p>
-                        {{ form.transcription_factors.label }}<br>
-                        {{ form.transcription_factors(size=32) }}
-                    </p>
-                    <p>
-                        {{ form.tissue_types.label }}<br>
-                        {{ form.tissue_types(size=32) }}
-                    </p>
+                <form action="" method="POST">
+                        {{ form.hidden_tag() }}
+                        <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                            title="Subset peaks based on properties of their source study">
+                            Study-Specific Parameters
+                        </h1>
                     <br>
-                <h1 class = "hover-text-header" data-toggle="tooltip" data-placement="right" title="-log(p) range: (1,11)">Peak-Specific Parameters</h1><br>
-                    <p>
-                        {{ form.log_p.label }}<br>
-                        {{ form.log_p(size=32) }}
-                    </p>
-                    <p>
-                        {{ form.fold_enrichment.label }}<br>
-                        {{ form.fold_enrichment(size=32) }}
-                    </p>
+                        <p class="hover-text-header" 
+                        data-toggle="tooltip" 
+                        data-placement="right" 
+                        data-html="true" 
+                        title="<div>
+                                    Subset peaks by their target transcription factor(s).
+                                </div>
+                                <br>
+                                <div>
+                                    Input Format: Input &quotALL&quot, or input space-delimited TFs  e.g.: CTCF SOX1 ... TF_n 
+                                </div>
+                                <br>
+                                <div> 
+                                    Visit the &quotTools&quot tab for help constructing queries.
+                                </div>">
+                            {{ form.transcription_factors.label }}<br>
+                            {{ form.transcription_factors(size=32) }}
+                        </p>
+                    <!-- <p>
+                        <a target="_blank" href="{{ url_for('tools',_anchor='tissue-selector') }}">{{ form.transcription_factors.label }}</a><br>
+                        {{ form.transcription_factors(size=32) }}                  
+                    </p> -->
                     <br>
-                <h1 class = "hover-text-header" data-toggle="tooltip" data-placement="right" title="-log(p) range: (1,11)">Provide Email</h1><br>
-                    <p>{{ form.email.label }}<br>
-                        {{form.email(size=32)}} 
-                    </p>    
-                <br>    
-                <p>{{ form.submit() }}</p>
-            </form>
+                        <p class="hover-text-header" 
+                        data-toggle="tooltip" 
+                        data-placement="right" 
+                        data-html="true" 
+                        title="<div>
+                                    Subset peaks by their experimental tissue type(s).
+                                </div>
+                                <div>
+                                    Input &quotALL&quot, or input space-delimited tissues  e.g.: brain lung ... tissue_n  
+                                </div>
+                                <br>
+                                <div> 
+                                    Visit the &quotTools&quot tab for help constructing queries.
+                                </div>">
+                            {{ form.tissue_types.label }}<br>
+                            {{ form.tissue_types(size=32) }}
+                        </p>
+                    <br>
+    
+                    <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                        title="Filter based on the quality and intensity of peak signals">
+                        Peak-Specific Parameters
+                    </h1>
+                    <br>
+                        <p
+                        class="hover-text-header" 
+                        data-toggle="tooltip" 
+                        data-placement="right" 
+                        data-html="true" 
+                        title="
+                                <img src={{ url_for('static',filename='images/pileup_hist.png') }}>
+                                </img>">
+                            {{ form.pileup.label }}<br>
+                            {{ form.pileup(size=32) }}
+                        </p>
+                        <p
+                        class="hover-text-header" 
+                        data-toggle="tooltip" 
+                        data-placement="right" 
+                        data-html="true" 
+                        title="
+                                <img src={{ url_for('static',filename='images/-log_p_hist.png') }}>
+                                </img>">
+                            {{ form.log_p.label }}<br>
+                            {{ form.log_p(size=32) }}
+                        </p>
+                        <p
+                        class="hover-text-header" 
+                        data-toggle="tooltip" 
+                        data-placement="right" 
+                        data-html="true" 
+                        title="
+                                <img src={{ url_for('static',filename='images/fold_enrichment_hist.png') }}>
+                                </img>">
+                            {{ form.fold_enrichment.label }}<br>
+                            {{ form.fold_enrichment(size=32) }}
+                        </p>
+                        <p
+                        class="hover-text-header" 
+                        data-toggle="tooltip" 
+                        data-placement="right" 
+                        data-html="true" 
+                        title="
+                                <img src={{ url_for('static',filename='images/-log_q_hist.png') }}>
+                                </img>">
+                            {{ form.log_q.label }}<br>
+                            {{ form.log_q(size=32) }}
+                        </p>
+                        <br>
+    
+    
+                    <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                        title="Modifify definition of promoter/enhancer regions">
+                        Regulatory Region Parameters</h1><br>
+    
+                        <p
+                        class="hover-text-header" 
+                        data-toggle="tooltip" 
+                        data-placement="right" 
+                        data-html="true" 
+                        title="<div>
+                                    Per gene number of TF peaks mapped to regulatory regions to qualify TF as regulatory for that gene.
+                                </div>">
+                                {{ form.peak_count.label }}<br>
+                                {{ form.peak_count(size=32) }}
+                        </p>
+                        <br>
+    
+    
+                    <h1>
+                     Email</h1><br>
+                        <p class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                        title="Pipeline results will be sent to this email upon completion.">
+                            {{ form.email.label }}<br>
+                            {{form.email(size=32)}} 
+                        </p>    
+                    <br>    
+                    <p>{{ form.submit() }}</p>
+                </form>
         </div>
     </div>
 </div>
