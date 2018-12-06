@@ -20,13 +20,13 @@
             <h2>OUR MOTIVATION</h2>
             <span class="byline"></span> </div>
         <p> Chromatin immunoprecipitation followed by sequencing (ChIP-Seq) continues to be a critical informer of protein-DNA binding. As the amount
-            of data continues to grow and the needs of researchers continues to become more complex, there is a need for up-to-date, user-friendly tools to serve these
+            of data continues to grow and the needs of researchers continue to become more complex, there is a need for up-to-date, user-friendly tools to serve these
             needs. 
         </p>
         <p>
-            With the initiation of projects such as the Human Cell Atlas and the rise of techniques like single-cell RNA-seq,for example, it is clear that the field is moving
+            With the initiation of projects such as the Human Cell Atlas and the rise of techniques like single-cell RNA-seq, for example, it is clear that the field is moving
             towards more and more complex analysis at narrower and narrower scopes. ChIP-IO was designed with this in mind, allowing for tissue-specific and other 
-            metadata-specific analysis to meet increasingly nuanced needs.
+            metadata-specific analysis to meet increasingly nuanced requirements.
         </p>
     </div>
 </div>
@@ -37,9 +37,9 @@
             <h2>Technical Details</h2>
             <span class="byline"></span> </div>
         <p> 
-            ChIP-IO's underlying analysis currently consists of two main steps. First is data collection, cleaning, and uniform processing for creation of the core database. 
+            ChIP-IO's underlying analysis currently consists of two main steps. First is data collection, cleansing, and uniform processing for creation of the core database. 
             Second is the custom-query pipeline for assessing transcription-factor gene regulatory targets. The former is external to this application, but can be used to update 
-            the reference datasets periodically. Current processed data can be directly downloaded under the <a style="color: #8fd8f5" href="{{ url_for('downloads') }}">"DOWNLOADS"</a> tab.
+            the reference datasets periodically. Current processed data  from the collection step can be directly downloaded under the <a style="color: #8fd8f5" href="{{ url_for('downloads') }}">"DOWNLOADS"</a> tab.
             The latter is housed in this application under the <a style="color: #8fd8f5" href="{{ url_for('construct_query') }}">"CONSTRUCT QUERY"</a> tab.
             It handles user-provided queries and actively delivers the results. Details and schematics for both are provided below.
         </p>

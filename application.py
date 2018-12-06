@@ -268,9 +268,12 @@ class ParameterForm(FlaskForm):
     tfs = [(x,x) for x in all_possible["transcription_factors"]]
     tissues = [(x,x) for x in all_possible["tissue_types"]]
 
-    transcription_factors = StringField('Transcription Factors')
+    transcription_factors = StringField('Transcription Factors')                  # Blank form format
     tissue_types = StringField('Tissue Types')
     
+    # transcription_factors = SelectField('Transcription Factors', choices=tfs)                  # Dropdown format
+    # tissue_types = SelectField('Tissue Types', choices=tissues)
+
     pileup = FloatField('Pileup', validators=[DataRequired(message="pileup not right")])
     log_p = FloatField('-log(p) Value', validators=[DataRequired(message="logp not right")])
     fold_enrichment = FloatField('Fold Enrichment', validators=[DataRequired(message="enrichment not right")])

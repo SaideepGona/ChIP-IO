@@ -24,7 +24,7 @@
 		width: 30% !important;
 	}
 
-	#peakFileNameInput, #peakTFInput, #peakTissueInput, #presetsFileNameInput, #presetsTFInput, #presetsTissueInput {
+	#peakFileNameInput, #peakTFInput, #peakTissueInput, #presetsFileNameInput, #presetsTFInput, #presetsTissueInput, #tissueFormNameInput, #tfFormNameInput, #tissueFormOutput, #tfFormOutput {
 		background-image: url('/css/searchicon.png'); /* Add a search icon to input */
 		background-position: 10px 12px; /* Position the search icon */
 		background-repeat: no-repeat; /* Do not repeat the icon image */
@@ -35,24 +35,24 @@
 		margin-bottom: 12px; /* Add some space below the input */
 	}
 	
-	#peakFileTable, #presetsFileTable {
+	#peakFileTable, #presetsFileTable, #tissueFormTable, #tfFormTable {
 		border-collapse: collapse; /* Collapse borders */
 		width: 100%; /* Full-width */
 		border: 1px solid #ddd; /* Add a grey border */
 		font-size: 18px; /* Increase font-size */
 	}
 	
-	#peakFileTable th, #peakFileTable td, presetsFileTable th, presetsFileTable td {
+	#peakFileTable th, #peakFileTable td, #presetsFileTable th, #presetsFileTable td, #tissueFormTable th, #tissueFormTable td, #tfFormTable th, #tfFormTable td {
 		text-align: left; /* Left-align text */
 		padding: 12px; /* Add padding */
 	}
 	
-	#peakFileTable tr, presetsFileTable tr {
+	#peakFileTable tr, #presetsFileTable tr, #tissueFormTable tr, #tfFormTable tr {
 		/* Add a bottom border to all table rows */
 		border-bottom: 1px solid #ddd; 
 	}
 	
-	#peakFileTable tr.header, #peakFileTable tr:hover, #presetsFileTable tr.header, #presetsFileTable tr:hover  {
+	#peakFileTable tr.header, #peakFileTable tr:hover, #presetsFileTable tr.header, #presetsFileTable tr:hover, #tissueFormTable tr.header, #tissueFormTable tr:hover, #tfFormTable tr.header, #tfFormTable tr:hover {
 		/* Add a grey background color to the table header and on hover */
 		background-color: #f1f1f1a8;
 	}
