@@ -1,5 +1,10 @@
 ---
-# Make sure python is installed on target system
+
+# NOTES
+# Best run on a large memory (16GB+) ubuntu linux machine
+# 
+
+  # Make sure python is installed on target system
 - hosts: all
   gather_facts: False
   tasks:
@@ -36,6 +41,8 @@
      # for the Ansible postgresql modules; must be installed in system Python
      - python3-psycopg2
      - bedtools
+
+# SETUP NGINX AND GUNICORN CONFIG FILES
 
 # Clone git repo and flesh out directory structure
 - hosts: webservers
@@ -74,6 +81,13 @@
       group: 1000
       state: directory
       mode: 0755
+  - name: create annotations directory
+    file:
+      path: /home/ubuntu/opt/ChIP-IO/annotations
+      owner: 1000
+      group: 1000
+      state: directory
+      mode: 0755
   - name: create intermediates directory
     file:
       path: /home/ubuntu/opt/ChIP-IO/intermediates
@@ -84,6 +98,13 @@
   - name: create presets directory
     file:
       path: /home/ubuntu/opt/ChIP-IO/presets
+      owner: 1000
+      group: 1000
+      state: directory
+      mode: 0755
+  - name: create results directory
+    file:
+      path: /home/ubuntu/opt/ChIP-IO/results
       owner: 1000
       group: 1000
       state: directory
@@ -118,6 +139,12 @@
       dest: /home/ubuntu/opt/ChIP-IO/presets/
     with_fileglob:
       - /home/saideep/Documents/GitHub_Repos/Saideep/ChIP-IO/presets/*
+  - name: copy over annotation files
+    copy:
+      src: "{{ item }}"
+      dest: /home/ubuntu/opt/ChIP-IO/annotations/
+    with_fileglob:
+      - /home/saideep/Documents/GitHub_Repos/Saideep/ChIP-IO/annotations/*
 
 # Set up python environment and install requirements packages
 - hosts: webservers

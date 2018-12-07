@@ -294,6 +294,7 @@ class ParameterForm(FlaskForm):
 def run_pipeline(user_params):
 
     time_string = user_params["time"]
+    print("QUERY TIME STRING: "+time_string)
 
     print("BEGIN PIPELINE *************************************************************************************************************")
     # print(user_params)
@@ -392,48 +393,66 @@ def run_pipeline(user_params):
 
     print("||||||||||||||||||Annotations Parsed")
 
-    output_files = []
+    output_files_dir = pwd + "/intermediates/" + time_string + "_output/"
+    os.mkdir(output_files_dir)
 
     # print("Starting Motif Matching")
-    # motif_sites_file = pwd + "/intermediates/" + time_string + "_motif_matches/"                       # Perform motif finding on regulatory regions
+    # motif_sites_file = output_files_dir + time_string + "_motif_matches/"                       # Perform motif finding on regulatory regions
     # removable_junk.append(motif_sites_file)
     # output_files.append(motif_sites_file)
     # motif_site_find(motif_sites_file)
 
     print("Writing tg table")
-    tg_write_file = pwd + "/intermediates/" + "tgtable_" + time_string + ".tgtable"                       # Output file for tg-table
+    tg_write_file = output_files_dir + "tgtable_" + time_string + ".tgtable"                       # Output file for tg-table
     removable_junk.append(tg_write_file)
-    output_files.append(tg_write_file)
     write_dict_tsv(tg_table, all_genes, all_tfs, tg_write_file)
 
-    print("Starting Motif Discovery")
-    motifs_disc_file = pwd + "/intermediates/" + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
-    removable_junk.append(motifs_disc_file)
-    output_files.append(motifs_disc_file)
-    motif_discovery(all_reg_regions, time_string, motifs_disc_file)
+    # print("Starting Motif Discovery")
+    # motifs_disc_file = pwd + "/intermediates/" + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
+    # removable_junk.append(motifs_disc_file)
+    # output_files.append(motifs_disc_file)
+    # motif_discovery(all_reg_regions, time_string, motifs_disc_file)
 
     print("||||||||||||||||||Motif Matching, Discovery and TG Table Complete")
 
     print("Zipping Output Files")
-    zipped_contents = pwd + "/intermediates/" + time_string + "_output.tar.gz" 
-    os.system("tar -cvzf "+zipped_contents+ " " + " ".join(output_files))
+    zipped_contents = pwd + "/intermediates/" + time_string + ".tar.gz" 
+    removable_junk.append(zipped_contents)
+    # print("tar -cvzf "+zipped_contents+ " -C " + pwd+"/intermediates/ " + " ".join(output_files))
+    os.system("tar -cvzf "+zipped_contents+ " -C " + output_files_dir + " .")
     solo_zipped_filename = zipped_contents.split("/")[-1]
+    print("cp "+zipped_contents+" "+pwd+"/results/"+solo_zipped_filename)
+    os.system("cp "+zipped_contents+" "+pwd+"/results/"+solo_zipped_filename)
 
-    send_from = "ChIPBaseApp@gmail.com"
-    password = "chipbase"
-    send_to = user_params["email"]
-    subject = "Your output from ChIP-IO"
-    text = "Here is your transcription factor - gene interaction table"
-    server = 'smtp.gmail.com'
-    send_mail(send_from, send_to, subject, text, zipped_tg_table, solo_zipped_filename, server, send_from, password)
-    print(user_params["email"])
+    print("||||||||||||||||||Results Ready")
 
-    print("||||||||||||||||||Email Sent")
+    # send_from = "ChIPBaseApp@gmail.com"
+    # password = "chipbase"
+    # send_to = user_params["email"]
+    # subject = "Your output from ChIP-IO"
+    # text = "Here is your transcription factor - gene interaction table"
+    # server = 'smtp.gmail.com'    # send_from = "ChIPBaseApp@gmail.com"
+    # password = "chipbase"
+    # send_to = user_params["email"]
+    # subject = "Your output from ChIP-IO"
+    # text = "Here is your transcription factor - gene interaction table"
+    # server = 'smtp.gmail.com'
+    # send_mail(send_from, send_to, subject, text, zipped_contents, solo_zipped_filename, server, send_from, password)
+    # print(user_params["email"])
 
+    # print("||||||||||||||||||Email Sent")
+    # send_mail(send_from, send_to, subject, text, zipped_contents, solo_zipped_filename, server, send_from, password)
+    # print(user_params["email"])
+
+    # print("||||||||||||||||||Email Sent")
+
+
+    os.system("rm -rf "+output_files_dir)
     for f in removable_junk:
         try:
             os.remove(f)
         except:
+            print("Can't dispose of junk: " + f)
             continue
 
     print("END PIPELINE *************************************************************************************************************")
@@ -741,7 +760,7 @@ def send_mail(send_from, send_to, subject, text, file_path, file_name, server, e
     msg['To'] = send_to
     msg['Subject'] = subject
 
-    body = 'Hi there, sending this email from Python!'
+    body = 'Hi there, here is your output from ChIP-IO! Be sure to check the Readme(not yet implemented)'
     msg.attach(MIMEText(body,'plain'))
 
     filename=file_path
@@ -847,7 +866,7 @@ def promoter_form():
         if pid==0:
             run_pipeline(query_data_dict)
 
-        return render_template('complete.html')
+        return render_template('complete.html', time=query_data_dict["time"])
     return render_template('promoter_form.html', form = form, tissues=all_possible["tissue_types"], tfs=all_possible["transcription_factors"])
 
 @app.route('/enhancer_form', methods=['GET', 'POST'])
@@ -887,7 +906,7 @@ def enhancer_form():
         if pid==0:
             run_pipeline(query_data_dict)
 
-        return render_template('complete.html')
+        return render_template('complete.html', time=query_data_dict["time"])
     return render_template('enhancer_form.html', form = form, tissues=all_possible["tissue_types"], tfs=all_possible["transcription_factors"])
 
 @app.route('/promoter_enhancer_form', methods=['GET', 'POST'])
@@ -927,7 +946,7 @@ def promoter_enhancer_form():
         if pid==0:
             run_pipeline(query_data_dict)
 
-        return render_template('complete.html')
+        return render_template('complete.html', time=query_data_dict["time"])
     return render_template('promoter_enhancer_form.html', form = form)
 
 @app.route('/output')
@@ -963,6 +982,13 @@ def download_file(file_path):
     except Exception as e:
         print("problem with path")
     # return render_template('downloads.html', download_files = download_files)
+
+@app.route("/download_results/<query_id>", methods=['GET', 'POST'])
+def download_results(query_id):
+    pwd = os.getcwd()
+    results_file = pwd + "/results/" + query_id + ".tar.gz"
+    print("download page refresh")
+    return render_template('results.html', query_id = query_id, results_file = results_file, results_file_unpath = "#".join(results_file.split("/")), file_ready = os.path.isfile(results_file))
 
 @app.route('/contact')
 def contact():

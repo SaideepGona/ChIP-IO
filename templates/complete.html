@@ -6,21 +6,26 @@
             <div class="title">
                 <h2>Submission Successful!</h2>
                     <p>
-                        Your output will be emailed upon completion as a compressed directory. 
-                        Included will be a Readme file 
-                        with details of the output contents. Be sure to check this out.
+                        Your results will be complete within ~30 minutes. 
+                        Go to "Results Download Page" to collect results.
                     </p>
             </div>
         </div>
-    </div>
-<div id="featured1">
-    <div class="container" style="height: 20vh">
-        <div class = 'col-sm'>
-            <a href="{{ url_for('construct_query') }}">
-                <button style="height: 20vh" class='col-sm btn btn-primary'>Submit New Form</button>
-            </a>  
+        <div class="container" style="height: 20vh">
+            <div class = 'col-sm'>
+                <a href="{{ url_for('download_results', query_id=time) }}">
+                    <button style="height: 20vh;font-size: x-large" class='col-sm btn btn-primary'>Results Download Page</button>
+                </a>  
+            </div>
         </div>
+        <div class="container" style="height: 20vh">
+            <div class = 'col-sm'>
+                <a href="{{ url_for('construct_query') }}">
+                    <button style="height: 10vh;font-size: x-large" class='col-sm btn btn-primary'>Submit New Form</button>
+                </a>  
+            </div>
+        </div>
+        <hr>
     </div>
-</div>
 
 {% endblock body %}
