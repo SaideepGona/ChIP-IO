@@ -396,6 +396,8 @@ def run_pipeline(user_params):
     output_files_dir = pwd + "/intermediates/" + time_string + "_output/"
     os.mkdir(output_files_dir)
 
+    os.system("cp "+pwd+"/readme_files/ChIP_IO_tg_README.pdf "+output_files_dir+"Readme")
+
     # print("Starting Motif Matching")
     # motif_sites_file = output_files_dir + time_string + "_motif_matches/"                       # Perform motif finding on regulatory regions
     # removable_junk.append(motif_sites_file)

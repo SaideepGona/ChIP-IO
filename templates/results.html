@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div id="banner">
+    <div class="container">
+        <div class="title">
+            <h2>Results</h2>
+            <hr>
+            <p>Refresh page to check for completion of download.</p>
+            <p>Save this page URL to pick up results later.</p>
+        </div>
+    </div>
+</div>
+
+<div id="featured1">
+    <div class="container">
+        <div class="title">
+            {% if file_ready %}
+                <a href="{{ url_for('download_file', file_path = results_file_unpath) }}">
+                    <button style="height: 100%; width: 100%" class='btn btn-secondary'>Click to Download</button>
+                </a>
+            {% else %}
+                <p>
+                    Download not yet ready.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
