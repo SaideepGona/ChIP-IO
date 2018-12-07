@@ -1,8 +1,15 @@
 ---
 
 # NOTES
-# Best run on a large memory (16GB+) ubuntu linux machine
+# Best run on a large memory (32GB+) ubuntu linux machine
 # 
+
+# Add 20GB of Swap
+# sudo dd if=/dev/zero of=/var/myswap bs=1M count=20480
+# sudo mkswap /var/myswap
+# sudo swapon /var/myswap
+# Add: /var/myswap    swap        swap    defaults        0 0
+#     To the file: /etc/fstab
 
   # Make sure python is installed on target system
 - hosts: all
