@@ -234,10 +234,6 @@ class DownloadFiles():
         self.tissues = [metadata_dict[x]["tissue"] for x in accessions]
 
 
-
-# IF BUILDING TABLE, COMMENT OUT THE NEXT FEW SETS OF LINES
-
-
 all_possible = {
 "transcription_factors": list(set([x.transcription_factors for x in ChIP_Meta.query.all()])),
 "tissue_types": list(set([x.tissue_types for x in ChIP_Meta.query.all()]))
@@ -311,17 +307,16 @@ def run_pipeline(user_params):
                     Peaks.query.filter(Peaks.tissue_types.in_(user_params["tissue_types"]))
                     .filter(Peaks.transcription_factors.in_(user_params["transcription_factors"]))
                     )
-            
-    study_list = [x.experiment_accession for x in peak_subset]
+    # sys.exit()
+
+    temp_peaks_file = pwd + "/intermediates/" + "temppeaks_" + time_string + ".bed"
+    removable_junk.append(temp_peaks_file)
+    convert_query_to_file(peaks_column_list, peak_subset, user_params, temp_peaks_file)        # Creates peak bed file   
 
     inter_promoter = pwd + "/intermediates/promoters_" + time_string + ".bed"
     removable_junk.append(inter_promoter)
     create_promoters(user_params, inter_promoter, all_reg_regions)                          # Creates custom promoter set with query vals
-
-    temp_peaks_file = pwd + "/intermediates/" + "temppeaks_" + time_string + ".bed"
-    removable_junk.append(temp_peaks_file)
-    convert_query_to_file(peaks_column_list, peak_subset, user_params,  temp_peaks_file)        # Creates peak bed file    
-
+    print("promoters created") 
     # os.system("sort -k 1,1 -k2,2n " + temp_peaks_file)
 
     print("||||||||||||||||||Peaks Queried and Promoters Created")
@@ -458,6 +453,9 @@ def run_pipeline(user_params):
             continue
 
     print("END PIPELINE *************************************************************************************************************")
+
+# def filter_peaks(user_params, peak_array):
+
 
 def create_promoters(user_params, filename, all_reg_regions):
 
@@ -787,16 +785,39 @@ def convert_query_to_file(columns, query_result, user_params, file_path):
     '''
     Converts the output of a db query to a tsv file and saves the file
     '''
+
+# def get_all_trades(self):
+#     pagesize = 1000000
+#     row_count = self.session.query(Trade).count()
+#     offset = 0
+#     while offset < row_count:
+#         query = self.session.query(Trade). \
+#                 order_by(Trade.time). \
+#                 slice(offset, offset+pagesize). \
+#                 limit(pagesize)
+#         offset += pagesize
+#         for d in query:
+#             yield d
+
+
     peaks_list = []
     with open(file_path, "a") as f:
-        x = 0
-        for item in query_result:
-            outputs = [str(getattr(item,x)) for x in columns]
-            if constraints_met(outputs, user_params, "peaks"):
-                peaks_list.append(outputs)
-                writeable = "\t".join(outputs) + "\n"
-                # print(writeable, "WRITE LINE")
-                f.write(writeable)
+        pagesize = 5000000
+        offset = 0
+        row_count = Peaks.query.count()
+        print("row count: ",row_count)
+        while offset < row_count:
+            new_query = query_result.slice(offset, offset+pagesize).limit(pagesize)
+            offset += pagesize
+            print(offset)
+            for item in new_query:
+                # print(item, "item")
+                outputs = [str(getattr(item,x)) for x in columns]
+                if constraints_met(outputs, user_params, "peaks"):
+                    peaks_list.append(outputs)
+                    writeable = "\t".join(outputs) + "\n"
+                    # print(writeable, "WRITE LINE")
+                    f.write(writeable)
 
     # return peaks_list
     

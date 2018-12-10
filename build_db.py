@@ -28,10 +28,12 @@ if len(sys.argv) > 1:
     peak_dir = sys.argv[1]
     metadata_dir = sys.argv[2]
     metrics_dir = sys.argv[3]
+    peak_array = sys.argv[4]
 else:
     peak_dir = pwd + "/pass_peaks/"
     metadata_path = pwd + "/pass_metadata/metadata.pkl"     
     metrics_dir =  pwd + "/static/images/"
+    peak_array = pwd + "/peak_array.pkl"
 
 # IO END *********************************************************
 
@@ -147,8 +149,13 @@ p_values = []
 fold_enrichment = []
 q_values = []
 
+full_peak_array = []
+
 peak_files = glob.glob(peak_dir+"/*")
+p_f_count = 1
 for p_f in peak_files:
+    print(p_f_count)
+    p_f_count += 1
     with open(p_f, "r") as pre_f:
         f = pre_f.readlines()[24:]
         for line in f:
@@ -182,6 +189,21 @@ for p_f in peak_files:
                 else:
                     for tissue_p in tissue_obj:
                         tissue = slugify(tissue_p)
+                        write_list = {
+                            "experiment_accession": p_f.rstrip("_peaks.xls").split("/")[-1],
+                            "tissue_types": tissue,
+                            "transcription_factors": metadata_dict_ref[exp_acc][1],
+                            "chrom": p_l[0],
+                            "start": str(int(p_l[1]) - 1),
+                            "end": str(int(p_l[2]) - 1),
+                            "length": p_l[3],
+                            "summit": str(int(p_l[4]) - 1),
+                            "pileup": p_l[5],
+                            "log_p": p_l[6],
+                            "fold_enrichment": p_l[7],
+                            "log_q": p_l[8]
+                        }
+                        full_peak_array.append(write_list)
                         peak = Peaks(
                             experiment_accession = p_f.rstrip("_peaks.xls").split("/")[-1],
                             tissue_types = tissue,
@@ -196,13 +218,28 @@ for p_f in peak_files:
                             fold_enrichment = p_l[7],
                             log_q = p_l[8]
                         )  
-                        db.session.add(peak)
+                        # db.session.add(peak)
 
             elif type(tissue_obj) == str:                                   # Standard single tissue entry
                 tissue = slugify(tissue_obj)
 
                 # Peak columns:
                 # chr   start   end length  summit  pileup  -log_p   fold_enrichment -log_q
+                write_list = {
+                    "experiment_accession": p_f.rstrip("_peaks.xls").split("/")[-1],
+                    "tissue_types": tissue,
+                    "transcription_factors": metadata_dict_ref[exp_acc][1],
+                    "chrom": p_l[0],
+                    "start": str(int(p_l[1]) - 1),
+                    "end": str(int(p_l[2]) - 1),
+                    "length": p_l[3],
+                    "summit": str(int(p_l[4]) - 1),
+                    "pileup": p_l[5],
+                    "log_p": p_l[6],
+                    "fold_enrichment": p_l[7],
+                    "log_q": p_l[8]
+                }
+                full_peak_array.append(write_list)
                 peak = Peaks(
                     experiment_accession = p_f.rstrip("_peaks.xls").split("/")[-1],
                     tissue_types = tissue,
@@ -218,10 +255,14 @@ for p_f in peak_files:
                     log_q = p_l[8]
                 )
                 # print(peak)   
-                db.session.add(peak)
-    db.session.commit()
+                # db.session.add(peak)
+    # db.session.commit()
 
-print(len(p_values), max(p_values), min(p_values))
+with open(peak_array, 'wb') as f:
+    # Pickle the 'data' dictionary using the highest protocol available.
+    pickle.dump(full_peak_array, f, pickle.HIGHEST_PROTOCOL)
+
+# print(len(p_values), max(p_values), min(p_values))
 
 peak_fields = {
     "pileup": pileup,
