@@ -28,12 +28,18 @@ if len(sys.argv) > 1:
     peak_dir = sys.argv[1]
     metadata_dir = sys.argv[2]
     metrics_dir = sys.argv[3]
-    peak_array = sys.argv[4]
+    peak_file = sys.argv[4]
 else:
     peak_dir = pwd + "/pass_peaks/"
     metadata_path = pwd + "/pass_metadata/metadata.pkl"     
     metrics_dir =  pwd + "/static/images/"
-    peak_array = pwd + "/peak_array.pkl"
+    peak_file = pwd + "/all_peaks.tsv"
+
+if os.path.isfile(peak_file):
+    os.remove(peak_file)
+    os.system("touch "+peak_file)
+else:
+    os.system("touch")
 
 # IO END *********************************************************
 
@@ -144,123 +150,169 @@ db.session.commit()
 
 # Read in all peak files
 
-pileup = []
-p_values = []
-fold_enrichment = []
-q_values = []
 
-full_peak_array = []
+with open(peak_file, "a") as peak_file:
 
-peak_files = glob.glob(peak_dir+"/*")
-p_f_count = 1
-for p_f in peak_files:
-    print(p_f_count)
-    p_f_count += 1
-    with open(p_f, "r") as pre_f:
-        f = pre_f.readlines()[24:]
-        for line in f:
-            p_l = line.rstrip("\n").split("\t")
-            if len(p_l) != 10:
-                continue
-            try:
-                int(p_l[1])
-            except:
-                continue
-            exp_acc = p_f.rstrip("_peaks.xls").split("/")[-1]
-            if exp_acc not in metadata_dict_ref:
-                print(exp_acc, " not in metadata!")
-                continue
+    peak_id_count = 0
 
-            if p_l[1] == "0":
-                print(p_l)
-                sys.exit()
-            pileup.append(float(p_l[5]))
-            p_values.append(float(p_l[6]))
-            fold_enrichment.append(float(p_l[7]))
-            q_values.append(float(p_l[8]))
+    pileup = []
+    p_values = []
+    fold_enrichment = []
+    q_values = []
 
-            # Handle multiple tissue-specification entries
+    full_peak_array = []
 
-            tissue_obj = metadata_dict_ref[exp_acc][0] 
-            if type(tissue_obj) == list:
-                # print(tissue_obj)
-                if len(tissue_obj) == 0:
-                    tissue = "NA"
-                else:
-                    for tissue_p in tissue_obj:
-                        tissue = slugify(tissue_p)
-                        write_list = {
-                            "experiment_accession": p_f.rstrip("_peaks.xls").split("/")[-1],
-                            "tissue_types": tissue,
-                            "transcription_factors": metadata_dict_ref[exp_acc][1],
-                            "chrom": p_l[0],
-                            "start": str(int(p_l[1]) - 1),
-                            "end": str(int(p_l[2]) - 1),
-                            "length": p_l[3],
-                            "summit": str(int(p_l[4]) - 1),
-                            "pileup": p_l[5],
-                            "log_p": p_l[6],
-                            "fold_enrichment": p_l[7],
-                            "log_q": p_l[8]
-                        }
-                        full_peak_array.append(write_list)
-                        peak = Peaks(
-                            experiment_accession = p_f.rstrip("_peaks.xls").split("/")[-1],
-                            tissue_types = tissue,
-                            transcription_factors = metadata_dict_ref[exp_acc][1],
-                            chrom = p_l[0],
-                            start = str(int(p_l[1]) - 1),
-                            end = str(int(p_l[2]) - 1),
-                            length = p_l[3],
-                            summit = str(int(p_l[4]) - 1),
-                            pileup = p_l[5],
-                            log_p = p_l[6],
-                            fold_enrichment = p_l[7],
-                            log_q = p_l[8]
-                        )  
-                        # db.session.add(peak)
+    peak_files = glob.glob(peak_dir+"/*")
+    p_f_count = 1
 
-            elif type(tissue_obj) == str:                                   # Standard single tissue entry
-                tissue = slugify(tissue_obj)
+    for p_f in peak_files:
+        print(p_f_count)
+        p_f_count += 1
+        with open(p_f, "r") as pre_f:
+            f = pre_f.readlines()[24:]
+            for line in f:
+                p_l = line.rstrip("\n").split("\t")
+                if len(p_l) != 10:
+                    continue
+                try:
+                    int(p_l[1])
+                except:
+                    continue
+                exp_acc = p_f.rstrip("_peaks.xls").split("/")[-1]
+                if exp_acc not in metadata_dict_ref:
+                    print(exp_acc, " not in metadata!")
+                    continue
 
-                # Peak columns:
-                # chr   start   end length  summit  pileup  -log_p   fold_enrichment -log_q
-                write_list = {
-                    "experiment_accession": p_f.rstrip("_peaks.xls").split("/")[-1],
-                    "tissue_types": tissue,
-                    "transcription_factors": metadata_dict_ref[exp_acc][1],
-                    "chrom": p_l[0],
-                    "start": str(int(p_l[1]) - 1),
-                    "end": str(int(p_l[2]) - 1),
-                    "length": p_l[3],
-                    "summit": str(int(p_l[4]) - 1),
-                    "pileup": p_l[5],
-                    "log_p": p_l[6],
-                    "fold_enrichment": p_l[7],
-                    "log_q": p_l[8]
-                }
-                full_peak_array.append(write_list)
-                peak = Peaks(
-                    experiment_accession = p_f.rstrip("_peaks.xls").split("/")[-1],
-                    tissue_types = tissue,
-                    transcription_factors = metadata_dict_ref[exp_acc][1],
-                    chrom = p_l[0],
-                    start = str(int(p_l[1]) - 1),
-                    end = str(int(p_l[2]) - 1),
-                    length = p_l[3],
-                    summit = str(int(p_l[4]) - 1),
-                    pileup = p_l[5],
-                    log_p = p_l[6],
-                    fold_enrichment = p_l[7],
-                    log_q = p_l[8]
-                )
-                # print(peak)   
-                # db.session.add(peak)
-    # db.session.commit()
+                if p_l[1] == "0":
+                    print(p_l)
+                    sys.exit()
+                pileup.append(float(p_l[5]))
+                p_values.append(float(p_l[6]))
+                fold_enrichment.append(float(p_l[7]))
+                q_values.append(float(p_l[8]))
 
-with open(peak_array, 'wb') as f:
-    # Pickle the 'data' dictionary using the highest protocol available.
-    pickle.dump(full_peak_array, f, pickle.HIGHEST_PROTOCOL)
+                # Handle multiple tissue-specification entries
+
+                tissue_obj = metadata_dict_ref[exp_acc][0] 
+                if type(tissue_obj) == list:
+                    # print(tissue_obj)
+                    if len(tissue_obj) == 0:
+                        tissue = "NA"
+                    else:
+                        for tissue_p in tissue_obj:
+                            tissue = slugify(tissue_p)
+                            write_dict = {
+                                "experiment_accession": p_f.rstrip("_peaks.xls").split("/")[-1],
+                                "tissue_types": tissue,
+                                "transcription_factors": metadata_dict_ref[exp_acc][1],
+                                "chrom": p_l[0],
+                                "start": str(int(p_l[1]) - 1),
+                                "end": str(int(p_l[2]) - 1),
+                                "length": p_l[3],
+                                "summit": str(int(p_l[4]) - 1),
+                                "pileup": p_l[5],
+                                "log_p": p_l[6],
+                                "fold_enrichment": p_l[7],
+                                "log_q": p_l[8],
+                                "id": peak_id_count
+                            }
+                            peak_id_count+=1
+                            peaks_column_list = [
+                                "chrom",
+                                "start",
+                                "end",
+                                "id",
+                                "length",
+                                "summit",
+                                "pileup",
+                                "log_p",
+                                "fold_enrichment",
+                                "log_q",
+                                "transcription_factors",
+                                "tissue_types",
+                                "experiment_accession",
+                                "id"
+                                ]
+                            write_list = [str(write_dict[x]) for x in peaks_column_list]
+                            peak_file.write("\t".join(write_list)+"\n")
+                            # full_peak_array.append(write_list)
+                            # peak = Peaks(
+                            #     experiment_accession = p_f.rstrip("_peaks.xls").split("/")[-1],
+                            #     tissue_types = tissue,
+                            #     transcription_factors = metadata_dict_ref[exp_acc][1],
+                            #     chrom = p_l[0],
+                            #     start = str(int(p_l[1]) - 1),
+                            #     end = str(int(p_l[2]) - 1),
+                            #     length = p_l[3],
+                            #     summit = str(int(p_l[4]) - 1),
+                            #     pileup = p_l[5],
+                            #     log_p = p_l[6],
+                            #     fold_enrichment = p_l[7],
+                            #     log_q = p_l[8]
+                            # )  
+                            # db.session.add(peak)
+
+                elif type(tissue_obj) == str:                                   # Standard single tissue entry
+                    tissue = slugify(tissue_obj)
+
+                    # Peak columns:
+                    # chr   start   end length  summit  pileup  -log_p   fold_enrichment -log_q
+                    write_dict = {
+                        "experiment_accession": p_f.rstrip("_peaks.xls").split("/")[-1],
+                        "tissue_types": tissue,
+                        "transcription_factors": metadata_dict_ref[exp_acc][1],
+                        "chrom": p_l[0],
+                        "start": str(int(p_l[1]) - 1),
+                        "end": str(int(p_l[2]) - 1),
+                        "length": p_l[3],
+                        "summit": str(int(p_l[4]) - 1),
+                        "pileup": p_l[5],
+                        "log_p": p_l[6],
+                        "fold_enrichment": p_l[7],
+                        "log_q": p_l[8],
+                        "id": peak_id_count
+                    }
+                    peak_id_count += 1
+                    peaks_column_list = [
+                        "chrom",
+                        "start",
+                        "end",
+                        "id",
+                        "length",
+                        "summit",
+                        "pileup",
+                        "log_p",
+                        "fold_enrichment",
+                        "log_q",
+                        "transcription_factors",
+                        "tissue_types",
+                        "experiment_accession",
+                        "id"
+                        ]
+                    write_list = [str(write_dict[x]) for x in peaks_column_list]
+                    peak_file.write("\t".join(write_list)+"\n")
+                    # full_peak_array.append(write_list)
+                    # peak = Peaks(
+                    #     experiment_accession = p_f.rstrip("_peaks.xls").split("/")[-1],
+                    #     tissue_types = tissue,
+                    #     transcription_factors = metadata_dict_ref[exp_acc][1],
+                    #     chrom = p_l[0],
+                    #     start = str(int(p_l[1]) - 1),
+                    #     end = str(int(p_l[2]) - 1),
+                    #     length = p_l[3],
+                    #     summit = str(int(p_l[4]) - 1),
+                    #     pileup = p_l[5],
+                    #     log_p = p_l[6],
+                    #     fold_enrichment = p_l[7],
+                    #     log_q = p_l[8]
+                    # )
+                    # print(peak)   
+                    # db.session.add(peak)
+        # db.session.commit()
+
+# with open(peak_array, 'wb') as f:
+#     # Pickle the 'data' dictionary using the highest protocol available.
+#     pickle.dump(full_peak_array, f, pickle.HIGHEST_PROTOCOL)
 
 # print(len(p_values), max(p_values), min(p_values))
 

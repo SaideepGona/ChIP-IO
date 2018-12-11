@@ -122,6 +122,12 @@
   remote_user: root
   become: yes
   tasks:
+  - name : copy over full peak file
+    copy:
+      src: "{{ item }}"
+      dest: /home/ubuntu/opt/ChIP-IO/
+    with_fileglob:
+      - /home/saideep/Documents/GitHub_Repos/Saideep/ChIP-IO/all_peaks.tsv
   - name: copy over peak files
     copy:
       src: "{{ item }}"

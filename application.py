@@ -28,17 +28,18 @@ from wtforms_html5 import AutoAttrMeta
 
 # NEXT STEP IS TO HAVE EVERYTHING WORKING
 
-#TODO PEAK COUNT PER REGION constraint
+#TODO Memory-efficient implementation - This is pretty touch
+
 #TODO Epigenetic priors
 #TODO Convert hg19 studies and update input peaks + metadata
-#TODO Searchable download table
 #TODO Write up general text, Home, About, and Contact
 #TODO Collect more motifs from hocomoco, etc.
-
-
-# Implemented, but still testing
 #TODO Motif-mapping for non-ChIP-Seq TFs, build new database
 #TODO Motif-finding from mapped peaks
+#TODO Start writing formal writeup
+#TODO Get ansible deployment running
+#TODO Get cmu domain name
+
 
 app = Flask(__name__)
 
@@ -68,7 +69,8 @@ print("NUMBER OF TFS: ", len(all_tfs))
 
 metadata_path = pwd + "/pass_metadata/metadata.pkl"     
 metadata_dict = pickle.load(open(metadata_path, "rb"))      # Contains metadata on all datasets
-# print(metadata_dict.keys())
+
+all_peaks = pwd+"/all_peaks.tsv"
 
 # New params
 
@@ -96,7 +98,6 @@ class ChIP_Meta(db.Model):
         + '<Transcription Factor {}>'.format(self.transcription_factors)
         + '<Tissue Type {}>'.format(self.tissue_types) 
         )
-
 
 # The order of this list determines write order 
 peaks_column_list = [
@@ -303,19 +304,22 @@ def run_pipeline(user_params):
     with open(all_reg_regions, "w") as all_reg:
         print(all_reg_regions, " all regulatory regions stored here")
 
-    peak_subset = (
-                    Peaks.query.filter(Peaks.tissue_types.in_(user_params["tissue_types"]))
-                    .filter(Peaks.transcription_factors.in_(user_params["transcription_factors"]))
-                    )
+    # peak_subset = (
+    #                 Peaks.query.filter(Peaks.tissue_types.in_(user_params["tissue_types"]))
+    #                 .filter(Peaks.transcription_factors.in_(user_params["transcription_factors"]))
+    #                 )
     # sys.exit()
 
     temp_peaks_file = pwd + "/intermediates/" + "temppeaks_" + time_string + ".bed"
     removable_junk.append(temp_peaks_file)
-    convert_query_to_file(peaks_column_list, peak_subset, user_params, temp_peaks_file)        # Creates peak bed file   
+    # convert_query_to_file(peaks_column_list, peak_subset, user_params, temp_peaks_file)        # Creates peak bed file   
+    filter_peaks(peaks_column_list, user_params, all_peaks, temp_peaks_file, True, time_string, removable_junk)
 
     inter_promoter = pwd + "/intermediates/promoters_" + time_string + ".bed"
     removable_junk.append(inter_promoter)
-    create_promoters(user_params, inter_promoter, all_reg_regions)                          # Creates custom promoter set with query vals
+    create_promoters(user_params, inter_promoter, all_reg_regions)
+    os.system("sort -k 1,1 -k2,2n -o " + inter_promoter + " " +inter_promoter)
+                              # Creates custom promoter set with query vals
     print("promoters created") 
     # os.system("sort -k 1,1 -k2,2n " + temp_peaks_file)
 
@@ -333,6 +337,7 @@ def run_pipeline(user_params):
         "-b",
         temp_peaks_file,
         "-wb",
+        "-sorted",
         ">",
         promoter_intersect
         ]
@@ -343,15 +348,15 @@ def run_pipeline(user_params):
         enhancer_bed_dir = pwd + "/enhancer-gene/processed/tissue_beds/"
         intersect_output = pwd + "/intermediates/" + "annotation_" + time_string + ".bed"
         removable_junk.append(intersect_output)
-        process_enhancers_peaks(user_params, intersect_output, enhancer_bed_dir, all_reg_regions)   # Computes tissue-specific intersect of peaks with enhancers
+        process_enhancers(user_params, intersect_output, enhancer_bed_dir, all_reg_regions, time_string)   # Computes tissue-specific intersect of peaks with enhancers
 
     elif user_params["promoter"] and user_params["enhancer"]:   # Promoter and Enhancer
 
         enhancer_bed_dir = pwd + "/enhancer-gene/processed/tissue_beds/"
         intersect_output = pwd + "/intermediates/" + "annotation_" + time_string + ".bed"
         removable_junk.append(intersect_output)
-        process_enhancers(user_params, intersect_output, enhancer_bed_dir, all_reg_regions)      # Computes tissue-specific intersect of peaks with enhancers
-
+        process_enhancers(user_params, intersect_output, enhancer_bed_dir, all_reg_regions, time_string)      # Computes tissue-specific intersect of peaks with enhancers
+        print("enhancers processed")
         promoter_intersect = pwd + "/intermediates/" + "promintersect_" + time_string + ".bed"       #Computes intersect of peaks with promoter regions
         removable_junk.append(promoter_intersect)
         bed_command = [
@@ -362,6 +367,7 @@ def run_pipeline(user_params):
         "-b",
         temp_peaks_file,
         "-wb",
+        "-sorted",
         ">",
         promoter_intersect
         ]
@@ -384,6 +390,7 @@ def run_pipeline(user_params):
 
     elif user_params["promoter"] and user_params["enhancer"]:   # Promoter and Enhancer
         parse_promoter(user_params, promoter_intersect, tg_table, final_peak_file)      # Adds promoter-mapped peaks to tf-gene table
+        print("promoter parsed")
         parse_enhancer(user_params, intersect_output, tg_table, final_peak_file)        # Adds enhancer-mapped peaks to tf-gene table
 
     print("||||||||||||||||||Annotations Parsed")
@@ -423,34 +430,30 @@ def run_pipeline(user_params):
 
     print("||||||||||||||||||Results Ready")
 
-    # send_from = "ChIPBaseApp@gmail.com"
-    # password = "chipbase"
-    # send_to = user_params["email"]
-    # subject = "Your output from ChIP-IO"
-    # text = "Here is your transcription factor - gene interaction table"
-    # server = 'smtp.gmail.com'    # send_from = "ChIPBaseApp@gmail.com"
-    # password = "chipbase"
-    # send_to = user_params["email"]
-    # subject = "Your output from ChIP-IO"
-    # text = "Here is your transcription factor - gene interaction table"
-    # server = 'smtp.gmail.com'
+    send_from = "ChIPBaseApp@gmail.com"
+    password = "chipbase"
+    send_to = user_params["email"]
+    subject = "Your output from ChIP-IO"
+    text = "Your ChIP-IO query is complete! Here is your download_link: " + url_for('download_results', query_id=time_string)
+    server = 'smtp.gmail.com'    # send_from = "ChIPBaseApp@gmail.com"
+    password = "chipbase"
+    send_mail(send_from, send_to, subject, text, None, None, server, send_from, password)
+    print(user_params["email"])
+
+    print("||||||||||||||||||Email Sent")
+
     # send_mail(send_from, send_to, subject, text, zipped_contents, solo_zipped_filename, server, send_from, password)
     # print(user_params["email"])
 
     # print("||||||||||||||||||Email Sent")
-    # send_mail(send_from, send_to, subject, text, zipped_contents, solo_zipped_filename, server, send_from, password)
-    # print(user_params["email"])
 
-    # print("||||||||||||||||||Email Sent")
-
-
-    os.system("rm -rf "+output_files_dir)
-    for f in removable_junk:
-        try:
-            os.remove(f)
-        except:
-            print("Can't dispose of junk: " + f)
-            continue
+    # os.system("rm -rf "+output_files_dir)
+    # for f in removable_junk:
+    #     try:
+    #         os.remove(f)
+    #     except:
+    #         print("Can't dispose of junk: " + f)
+    #         continue
 
     print("END PIPELINE *************************************************************************************************************")
 
@@ -555,14 +558,12 @@ def motif_discovery(bed_file, time_string, output_file):
 
     os.remove(intermediate_file)
 
-def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions):
+def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions, time_string):
     '''
     Processes enhancers on a tissue-by-tissue basis. Takes in an already filtered set of
     peaks and partitions them by tissue-type. Annotation is then performed individually
     and the combined results concatenated into a single file
     '''
-
-
 
     file_prefix = intersect_out.rstrip(".bed")
     tissue_peak_beds = []
@@ -573,18 +574,17 @@ def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions):
         if not os.path.isfile(enhancer_bed):
             continue
 
-        temp_peaks_file = file_prefix+"_temppeaks_"+tissue+".bed"
+        temp_peaks_file = pwd + "/intermediates/annotation_"+ tissue +"_" + time_string + ".bed"
         tissue_peak_beds.append(temp_peaks_file)
         tissue_intersect = file_prefix+"_tempintersect_"+tissue+".bed"
         tissue_intersect_beds.append(tissue_intersect)
 
-        peak_subset = (
-                        Peaks.query.filter(Peaks.tissue_types.in_([tissue]))
-                        .filter(Peaks.transcription_factors.in_(user_params["transcription_factors"]))
-                        )
+        # peak_subset = (
+        #                 Peaks.query.filter(Peaks.tissue_types.in_([tissue]))
+        #                 .filter(Peaks.transcription_factors.in_(user_params["transcription_factors"]))
+        #                 )
 
-        convert_query_to_file(peaks_column_list, peak_subset, user_params, temp_peaks_file)
-
+        # convert_query_to_file(peaks_column_list, peak_subset, user_params, temp_peaks_file)
 
         try:
             with open(enhancer_bed, "r") as eb:
@@ -594,7 +594,10 @@ def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions):
                         reg_line = [p_line[0],p_line[1],p_line[2],p_line[6], "enhancer"]
                         reg.write("\t".join(reg_line) + "\n")
         except Exception as e:
-            print(e)
+            print("Error in process_enhancers",e)
+
+        # enhancer_bed: 7 cols, index 6 is gene name
+        # temp_peaks_file: 13 cols, index 10 is tf name (17 when intersected)
 
         bed_command = [
         "bedtools",
@@ -604,6 +607,7 @@ def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions):
         "-b",
         temp_peaks_file,
         "-wb",
+        "-sorted",
         ">",
         tissue_intersect
         ]
@@ -611,9 +615,6 @@ def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions):
     
     intersect_files = " ".join(tissue_intersect_beds)
     os.system("cat "+ intersect_files+ " > "+intersect_out)
-    
-    for f in (tissue_intersect_beds + tissue_peak_beds):
-        os.remove(f)
 
 
 def write_dict_tsv(tg_table, all_genes, all_tfs, table_write):
@@ -648,6 +649,108 @@ def create_empty_table(gene_list, tf_list):
     
     return table
 
+def parse_enhancer(user_params, anno_file, tf_gene_table, full_peak_bed):
+    '''
+    Updates tf-gene table with enhancer annotation results which pass constraints
+    '''
+
+    # Example line from anno_file: chrX	12974102	12974429	88841	chrX	12809489	PRPS2	chrX	12974102	12974429	70528	328	12974406	22.35	6.99766	3.33623	3.13225	eGFP-PYGO2	blood	ENCSR410DWC
+
+    print("parsing enhancer")
+    print("anno", anno_file)
+    line_count = 0
+    with open(full_peak_bed, "a") as full:
+        with open(anno_file, "r") as anno:
+            # print(tf_gene_table["PAX7"].keys())
+            for line in anno:
+                # print(line)
+                p_l= line.rstrip("\n").split("\t")
+                # print(p_l, "annotation line")
+                # print(line_count)
+                if line_count == 0:
+                    line_count += 1
+                    continue
+
+                peak_bedline_l = p_l[7:10]                          # Write regualtory peaks to to cumulative regulatory peak bedfile       
+                peak_bedline = "\t".join(peak_bedline_l) + "\n"
+                full.write(peak_bedline)
+
+                # peak_id = int(p_l[10])
+                gene_id = p_l[6]
+                ori_peak_tf = p_l[17]
+
+                print(p_l, "enhancer anno line")
+
+                # ori_peak_tf = Peaks.query.filter(Peaks.id==peak_id)[0].transcription_factors
+
+                if gene_id in tf_gene_table:
+
+                    # print("CHECK gene")
+                    if ori_peak_tf in tf_gene_table[gene_id]:
+                        # print("CHECK 2, added")
+                        tf_gene_table[gene_id][ori_peak_tf] += 1
+                else:
+                    print("Did not pass Check 1 ", gene_id)
+                line_count += 1
+
+
+def parse_promoter(user_params, anno_file, tf_gene_table, full_peak_bed):
+    '''
+    Updates tf-gene table with promoter annotation results which pass constraints
+    '''
+    entry_count = 0
+    line_count = 0
+    with open(full_peak_bed, "a") as full:
+        with open(anno_file, "r") as anno:
+            # print(tf_gene_table["PAX7"].keys())
+            for line in anno:
+                p_l= line.rstrip("\n").split("\t")
+                # print(p_l, "annotation line")
+                # print(line_count)
+                if line_count == 0:
+                    line_count += 1
+                    continue
+
+                peak_bedline_l = p_l[5:8]                           # Write regualtory peaks to to cumulative regulatory peak bedfile   
+                peak_bedline = "\t".join(peak_bedline_l) + "\n"
+                full.write(peak_bedline)
+
+                peak_id = int(p_l[8])
+                gene_id = p_l[4]
+                ori_peak_tf = p_l[15]                # print(ori_peak_tf, "ori peak")
+                if gene_id in tf_gene_table:
+
+                    # print("CHECK gene")
+                    if ori_peak_tf in tf_gene_table[gene_id]:
+                        entry_count += 1
+                        # print("CHECK 2, added")
+                        tf_gene_table[gene_id][ori_peak_tf] += 1
+                else:
+                    print("Did not pass Check 1 ", gene_id)
+                line_count += 1
+    print("Sum of promoter entries in output table: " + str(entry_count))
+
+
+def send_mail(send_from, send_to, subject, text, file_path, file_name, server, email_user, email_password):
+
+    msg = MIMEMultipart()
+    msg['From'] = send_from
+    msg['To'] = send_to
+    msg['Subject'] = subject
+
+    body = text
+    msg.attach(MIMEText(body,'plain'))
+
+    # msg.attach(part)
+    text = msg.as_string()  
+    server = smtplib.SMTP(server,587)
+    server.starttls()
+    server.login(email_user,email_password)
+
+
+    server.sendmail(email_user,send_to,text)
+    server.quit()
+
 def constraints_met(data, user_params, constraints_type):
     '''
     Given some data in list form(a line in a bed file), the user input parameters, and the "type"
@@ -678,127 +781,59 @@ def constraints_met(data, user_params, constraints_type):
         else:
             return False
 
-def parse_enhancer(user_params, anno_file, tf_gene_table, full_peak_bed):
-    '''
-    Updates tf-gene table with enhancer annotation results which pass constraints
-    '''
+def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissues, time_string, removal_bin):
 
-    # Example line from anno_file: chrX	12974102	12974429	88841	chrX	12809489	PRPS2	chrX	12974102	12974429	70528	328	12974406	22.35	6.99766	3.33623	3.13225	eGFP-PYGO2	blood	ENCSR410DWC
+    to_be_sorted = []
 
-    print("parsing enhancer")
-    line_count = 0
-    with open(full_peak_bed, "a") as full:
-        with open(anno_file, "r") as anno:
-            # print(tf_gene_table["PAX7"].keys())
-            for line in anno:
-                # print(line)
-                p_l= line.rstrip("\n").split("\t")
-                # print(p_l, "annotation line")
-                # print(line_count)
-                if line_count == 0:
-                    line_count += 1
-                    continue
+    def write_tissue(tissue_file, line):
+        write_line = line[3:] + line[:3]
+        if os.path.exists(tissue_file):
+            with open(tissue_file, "a") as tf:
+                tf.write("\t".join(write_line) + "\n")
+        else:
+            os.system("touch "+tissue_file)
+            removal_bin.append(tissue_file)
+            to_be_sorted.append(tissue_file)
+            with open(tissue_file, "a") as tf:
+                tf.write("\t".join(write_line) + "\n")
 
-                peak_bedline_l = p_l[7:10]                          # Write regualtory peaks to to cumulative regulatory peak bedfile       
-                peak_bedline = "\t".join(peak_bedline_l) + "\n"
-                full.write(peak_bedline)
+    if not os.path.exists(out_file_path):
+        os.system("touch "+out_file_path)
+        removal_bin.append(out_file_path)
+        to_be_sorted.append(out_file_path)
 
-                peak_id = int(p_l[10])
-                gene_id = p_l[6]
-                ori_peak_tf = Peaks.query.filter(Peaks.id==peak_id)[0].transcription_factors
+    # write_dict = {
+    #     "experiment_accession": p_f.rstrip("_peaks.xls").split("/")[-1],
+    #     "tissue_types": tissue,
+    #     "transcription_factors": metadata_dict_ref[exp_acc][1],
+    #     "chrom": p_l[0],
+    #     "start": str(int(p_l[1]) - 1),
+    #     "end": str(int(p_l[2]) - 1),
+    #     "length": p_l[3],
+    #     "summit": str(int(p_l[4]) - 1),
+    #     "pileup": p_l[5],
+    #     "log_p": p_l[6],
+    #     "fold_enrichment": p_l[7],
+    #     "log_q": p_l[8]
+    # }
 
-                if gene_id in tf_gene_table:
+    with open(in_file_path, "r") as infile:
+        with open(out_file_path, "a") as out:
+            for line in infile:
+                p_line = line.rstrip("\n").split("\t")
+                # print(p_line)
+                if constraints_met(p_line, user_params, "peaks"):
+                    write_tissue(pwd + "/intermediates/annotation_"+ p_line[11] +"_" + time_string + ".bed", p_line)
+                    out.write("\t".join(p_line)+"\n")
 
-                    # print("CHECK gene")
-                    if ori_peak_tf in tf_gene_table[gene_id]:
-                        # print("CHECK 2, added")
-                        tf_gene_table[gene_id][ori_peak_tf] += 1
-                else:
-                    print("Did not pass Check 1 ", gene_id)
-                line_count += 1
+    for f in to_be_sorted:
+        os.system("sort -k 1,1 -k2,2n -o " + f + " " +f)
 
-
-def parse_promoter(user_params, anno_file, tf_gene_table, full_peak_bed):
-    '''
-    Updates tf-gene table with promoter annotation results which pass constraints
-    '''
-    line_count = 0
-    with open(full_peak_bed, "a") as full:
-        with open(anno_file, "r") as anno:
-            # print(tf_gene_table["PAX7"].keys())
-            for line in anno:
-                p_l= line.rstrip("\n").split("\t")
-                # print(p_l, "annotation line")
-                # print(line_count)
-                if line_count == 0:
-                    line_count += 1
-                    continue
-
-                peak_bedline_l = p_l[5:8]                           # Write regualtory peaks to to cumulative regulatory peak bedfile   
-                peak_bedline = "\t".join(peak_bedline_l) + "\n"
-                full.write(peak_bedline)
-
-                peak_id = int(p_l[8])
-                gene_id = p_l[4]
-                ori_peak_tf = Peaks.query.filter(Peaks.id==peak_id)[0].transcription_factors
-                # print(ori_peak_tf, "ori peak")
-                if gene_id in tf_gene_table:
-
-                    # print("CHECK gene")
-                    if ori_peak_tf in tf_gene_table[gene_id]:
-                        # print("CHECK 2, added")
-                        tf_gene_table[gene_id][ori_peak_tf] += 1
-                else:
-                    print("Did not pass Check 1 ", gene_id)
-                line_count += 1
-
-
-def send_mail(send_from, send_to, subject, text, file_path, file_name, server, email_user, email_password):
-
-    msg = MIMEMultipart()
-    msg['From'] = send_from
-    msg['To'] = send_to
-    msg['Subject'] = subject
-
-    body = 'Hi there, here is your output from ChIP-IO! Be sure to check the Readme(not yet implemented)'
-    msg.attach(MIMEText(body,'plain'))
-
-    filename=file_path
-    attachment=open(filename,'rb')
-
-    part = MIMEBase('application','octet-stream')
-    part.set_payload((attachment).read())
-    encoders.encode_base64(part)
-    part.add_header('Content-Disposition',"attachment; filename= "+file_name)
-
-    msg.attach(part)
-    text = msg.as_string()
-    server = smtplib.SMTP(server,587)
-    server.starttls()
-    server.login(email_user,email_password)
-
-
-    server.sendmail(email_user,send_to,text)
-    server.quit()
 
 def convert_query_to_file(columns, query_result, user_params, file_path):
     '''
-    Converts the output of a db query to a tsv file and saves the file
+    Converts the output of a db query to a tsv file and saves the file00000
     '''
-
-# def get_all_trades(self):
-#     pagesize = 1000000
-#     row_count = self.session.query(Trade).count()
-#     offset = 0
-#     while offset < row_count:
-#         query = self.session.query(Trade). \
-#                 order_by(Trade.time). \
-#                 slice(offset, offset+pagesize). \
-#                 limit(pagesize)
-#         offset += pagesize
-#         for d in query:
-#             yield d
-
 
     peaks_list = []
     with open(file_path, "a") as f:
@@ -807,7 +842,15 @@ def convert_query_to_file(columns, query_result, user_params, file_path):
         row_count = Peaks.query.count()
         print("row count: ",row_count)
         while offset < row_count:
-            new_query = query_result.slice(offset, offset+pagesize).limit(pagesize)
+
+
+            peak_subset = (
+                            Peaks.query.filter(Peaks.tissue_types.in_(user_params["tissue_types"]))
+                            .filter(Peaks.transcription_factors.in_(user_params["transcription_factors"]))
+                            .slice(offset, offset+pagesize).limit(pagesize)
+                            )
+
+            # new_query = query_result.slice(offset, offset+pagesize).limit(pagesize)   
             offset += pagesize
             print(offset)
             for item in new_query:
