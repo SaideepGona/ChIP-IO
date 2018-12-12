@@ -248,6 +248,8 @@ all_possible = {
 cur_tfs_path = pwd + "/static_lists/all_tfs_cur.txt"
 cur_tiss_path = pwd + "/static_lists/all_tissues_cur.txt"
 
+print("NUMBER OF TFS FROM ChIP-SEQ STUDIES: " + str(len(all_possible["tissue_types"])))
+
 with open(cur_tfs_path, "w") as cur_tfs:
     for tf in all_possible["transcription_factors"]:
         cur_tfs.write(tf + "\n")
@@ -433,7 +435,7 @@ def run_pipeline(user_params):
     # print("tar -cvzf "+zipped_contents+ " -C " + pwd+"/intermediates/ " + " ".join(output_files))
     os.system("tar -cvzf "+zipped_contents+ " -C " + output_files_dir + " .")
     solo_zipped_filename = zipped_contents.split("/")[-1]
-    print("cp "+zipped_contents+" "+pwd+"/results/"+solo_zipped_filename)
+    # print("cp "+zipped_contents+" "+pwd+"/results/"+solo_zipped_filename)
     os.system("cp "+zipped_contents+" "+pwd+"/results/"+solo_zipped_filename)
 
     print("||||||||||||||||||Results Ready")
@@ -907,10 +909,12 @@ def construct_query():
 @app.route('/promoter_form', methods=['GET', 'POST'])
 def promoter_form():
     form = ParameterForm(transcription_factors = "ALL", tissue_types = "ALL",
-                        pileup = 1, log_p = 1, fold_enrichment = 1, log_q = 1,
+                        pileup = 1, log_p = 3, fold_enrichment = 1, log_q = 3,
                         distance_from_TSS_upstream=1000,
                         distance_from_TSS_downstream=100,
                         peak_count=1,
+                        include_motif_sites=True,
+                        motif_discovery=False,
                         email="send.results.here@peaks.com")
     if form.validate_on_submit():
         print("valid")
@@ -948,10 +952,12 @@ def promoter_form():
 @app.route('/enhancer_form', methods=['GET', 'POST'])
 def enhancer_form():
     form = ParameterForm(transcription_factors = "ALL", tissue_types = "ALL",
-                        pileup = 1, log_p = 1, fold_enrichment = 1, log_q = 1,
+                        pileup = 1, log_p = 3, fold_enrichment = 1, log_q = 3,
                         distance_from_TSS_upstream=1000,
                         distance_from_TSS_downstream=100,
                         peak_count=1,
+                        include_motif_sites=True,
+                        motif_discovery=False,
                         email="send.results.here@peaks.com")
     if form.validate_on_submit():
         query_data = build_query_hist(form)
@@ -988,10 +994,12 @@ def enhancer_form():
 @app.route('/promoter_enhancer_form', methods=['GET', 'POST'])
 def promoter_enhancer_form():
     form = ParameterForm(transcription_factors = "ALL", tissue_types = "ALL",
-                        pileup = 1, log_p = 1, fold_enrichment = 1, log_q = 1,
+                        pileup = 1, log_p = 3, fold_enrichment = 1, log_q = 3,
                         distance_from_TSS_upstream=1000,
                         distance_from_TSS_downstream=100,
                         peak_count=1,
+                        include_motif_sites=True,
+                        motif_discovery=False,
                         email="send.results.here@peaks.com")
     if form.validate_on_submit():
         query_data = build_query_hist(form)

@@ -16,6 +16,7 @@ import numpy as np
 
 # import matplotlib.pyplot as plt
 import unicodedata
+import multiprocessing
 
 # plt.ion()
 # plt.use('Agg')
@@ -23,6 +24,7 @@ import unicodedata
 # IO ************************************************************
 
 pwd = os.getcwd()
+num_cpus = multiprocessing.cpu_count()
 
 if len(sys.argv) > 1:
     peak_dir = sys.argv[1]
@@ -151,7 +153,7 @@ db.session.commit()
 # Read in all peak files
 
 
-with open(peak_file, "a") as peak_file:
+with open(peak_file, "a") as p_file:
 
     peak_id_count = 0
 
@@ -168,6 +170,8 @@ with open(peak_file, "a") as peak_file:
     for p_f in peak_files:
         print(p_f_count)
         p_f_count += 1
+        if peak_id_count > 100:
+            break
         with open(p_f, "r") as pre_f:
             f = pre_f.readlines()[24:]
             for line in f:
@@ -234,7 +238,7 @@ with open(peak_file, "a") as peak_file:
                                 "id"
                                 ]
                             write_list = [str(write_dict[x]) for x in peaks_column_list]
-                            peak_file.write("\t".join(write_list)+"\n")
+                            p_file.write("\t".join(write_list)+"\n")
                             # full_peak_array.append(write_list)
                             # peak = Peaks(
                             #     experiment_accession = p_f.rstrip("_peaks.xls").split("/")[-1],
@@ -290,7 +294,7 @@ with open(peak_file, "a") as peak_file:
                         "id"
                         ]
                     write_list = [str(write_dict[x]) for x in peaks_column_list]
-                    peak_file.write("\t".join(write_list)+"\n")
+                    p_file.write("\t".join(write_list)+"\n")
                     # full_peak_array.append(write_list)
                     # peak = Peaks(
                     #     experiment_accession = p_f.rstrip("_peaks.xls").split("/")[-1],
@@ -310,11 +314,8 @@ with open(peak_file, "a") as peak_file:
                     # db.session.add(peak)
         # db.session.commit()
 
-# with open(peak_array, 'wb') as f:
-#     # Pickle the 'data' dictionary using the highest protocol available.
-#     pickle.dump(full_peak_array, f, pickle.HIGHEST_PROTOCOL)
-
-# print(len(p_values), max(p_values), min(p_values))
+print(num_cpus)
+os.system("split --number=l/"+str(num_cpus)+" "+peak_file+" "+peak_file+"_")
 
 peak_fields = {
     "pileup": pileup,
@@ -322,6 +323,8 @@ peak_fields = {
     "fold_enrichment": fold_enrichment,
     "-log_q": q_values
 }
+
+
 
 # for field in peak_fields.keys():
 #     histogram(field, peak_fields[field], metrics_dir)

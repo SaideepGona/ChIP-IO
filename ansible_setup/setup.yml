@@ -1,7 +1,7 @@
 ---
 
 # NOTES
-# Best run on a large memory (32GB+) ubuntu linux machine
+# Best run on a large memory (32GB+) and multicore ubuntu linux machine
 # 
 
 # Add 20GB of Swap
