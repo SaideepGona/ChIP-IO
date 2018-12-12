@@ -26,9 +26,14 @@ from wtforms.validators import DataRequired, NumberRange, Length
 from wtforms.fields.html5 import IntegerRangeField 
 from wtforms_html5 import AutoAttrMeta
 
+import multiprocessing
+
+
 # NEXT STEP IS TO HAVE EVERYTHING WORKING
 
-#TODO Memory-efficient implementation - This is pretty touch
+#TODO Memory-efficient implementation - This is pretty tough
+#TODO Parallelize IO to improve speed
+#TODO Get cmu domain name
 
 #TODO Epigenetic priors
 #TODO Convert hg19 studies and update input peaks + metadata
@@ -38,7 +43,6 @@ from wtforms_html5 import AutoAttrMeta
 #TODO Motif-finding from mapped peaks
 #TODO Start writing formal writeup
 #TODO Get ansible deployment running
-#TODO Get cmu domain name
 
 
 app = Flask(__name__)
@@ -51,6 +55,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ChIP_Base.db'
 # print(os.environ['DATABASE_URL'])
 
 pwd = os.getcwd()
+num_cpus = multiprocessing.cpu_count()
 
 all_genes_path = pwd + "/static_lists/all_genes.txt"
 all_tfs_path = pwd + "/static_lists/all_tfs_list.txt"
@@ -282,6 +287,9 @@ class ParameterForm(FlaskForm):
     distance_from_TSS_downstream = IntegerField('Distance from TSS Downstream', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
     peak_count = IntegerField('Regulatory Peak Count', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
 
+    include_motif_sites = BooleanField("Motif Inclusion")
+    motif_discovery = BooleanField('Motif Discovery')
+
     email = StringField("Email", validators=[DataRequired(message="email not right")])
 
     submit = SubmitField('Submit')
@@ -431,7 +439,7 @@ def run_pipeline(user_params):
     print("||||||||||||||||||Results Ready")
 
     send_from = "ChIPBaseApp@gmail.com"
-    password = "chipbase"
+    password = "chip_basic"
     send_to = user_params["email"]
     subject = "Your output from ChIP-IO"
     text = "Your ChIP-IO query is complete! Here is your download_link: " + url_for('download_results', query_id=time_string)
@@ -548,6 +556,8 @@ def motif_discovery(bed_file, time_string, output_file):
     find_motifs = [
         "meme",
         intermediate_file,
+        "-p",
+        str(num_cpus),
         "-o",
         output_file
     ]

@@ -149,7 +149,76 @@
                     </p>
                     <br>
 
+                <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                    title="Modifify definition of promoter/enhancer regions">
+                    Regulatory Region Parameters</h1><br>
 
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="
+                            <img src={{ url_for('static',filename='images/Upstream.png') }}>
+                            </img>">
+                            {{ form.distance_from_TSS_upstream.label }}<br>
+                            {{ form.distance_from_TSS_upstream(size=32) }}
+                    </p>
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="
+                            <img src={{ url_for('static',filename='images/Downstream.png') }}>
+                            </img>">
+                            {{ form.distance_from_TSS_downstream.label }}<br>
+                            {{ form.distance_from_TSS_downstream(size=32) }}
+                    </p>
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="<div>
+                            Number of TF peaks mapped to a gene's select regulatory regions to qualify TF as regulatory for that gene.
+                            </div>">
+                            {{ form.peak_count.label }}<br>
+                            {{ form.peak_count(size=32) }}
+                    </p>
+                    <br>
+
+                <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
+                title="Modifify definition of promoter/enhancer regions">
+                Motif Parameters</h1><br>
+
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="<div>
+                        Positive selection will allow incorporation of predicted motif binding sites into 
+                        results. These sites are filtered through incorporation of epigenetic priors.
+                        </div>">
+                            STILL IN DEVELOPMENT<br>
+                            {{ form.include_motif_sites.label }}
+                            {{ form.include_motif_sites(size=32) }}
+                    </p>
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="<div>
+                        Positive selection will allow incorporation of predicted motif binding sites into 
+                        results. These sites are filtered through incorporation of epigenetic priors.
+                        </div>">
+                            STILL IN DEVELOPMENT<br>
+                            {{ form.motif_discovery.label }}
+                            {{ form.motif_discovery(size=32) }}
+                    </p>
+                   
                 <h1>
                  Email</h1><br>
                     <p class="hover-text-header" data-toggle="tooltip" data-placement="right" 
