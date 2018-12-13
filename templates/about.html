@@ -36,13 +36,17 @@
         <div class="title">
             <h2>Technical Details</h2>
             <span class="byline"></span> </div>
-        <p> 
-            ChIP-IO's underlying analysis currently consists of two main steps. First is data collection, cleansing, and uniform processing for creation of the core database. 
-            Second is the custom-query pipeline for assessing transcription-factor gene regulatory targets. The former is external to this application, but can be used to update 
-            the reference datasets periodically. Current processed data  from the collection step can be directly downloaded under the <a style="color: #8fd8f5" href="{{ url_for('downloads') }}">"DOWNLOADS"</a> tab.
-            The latter is housed in this application under the <a style="color: #8fd8f5" href="{{ url_for('construct_query') }}">"CONSTRUCT QUERY"</a> tab.
-            It handles user-provided queries and actively delivers the results. Details and schematics for both are provided below.
-        </p>
+            <p> 
+                Full technical details can be found here: (DOES NOT EXIST YET)
+            </p>
+            <p> 
+                ChIP-IO's underlying analysis currently consists of two main steps. First is data collection, cleansing, and uniform processing for creation of the core database. 
+                Second is the custom-query pipeline for assessing transcription-factor gene regulatory targets. The former is external to this application, but can be used to update 
+                the reference datasets periodically. Current processed data  from the collection step can be directly
+                downloaded under the <a style="color: #8fd8f5" href="{{ url_for('downloads') }}">"DOWNLOADS"</a> tab.
+                The latter is housed in this application under the <a style="color: #8fd8f5" href="{{ url_for('construct_query') }}">"CONSTRUCT QUERY"</a> tab.
+                It handles user-provided queries and actively delivers the results. Details and schematics for both are provided below.
+            </p>
     </div>
 </div>
 
@@ -51,10 +55,12 @@
         <div class="title">
             <h2>DATA COLLECTION</h2>
             <span class="byline"></span> </div>
-            <img src={{ url_for('static',filename='images/data_pipeline.png') }}>
             <br>
             <br>
-        <p>The out</p>
+            <p> Data was collected from two databases: NCBI's Gene Expression Omnibus (GEO) and ENCODE. Pipelines
+
+            </p>
+            <img src={{ url_for('static',filename='images/Data_Collection_Pipeline.png') }}>
     </div>
 </div>
 
@@ -63,10 +69,10 @@
         <div class="title">
             <h2>QUERY PIPELINE</h2>
             <span class="byline"></span> </div>
+            <br>
+            <br>
+            <p>The out</p>
             <img src={{ url_for('static',filename='images/ChIP-IO_pipeline.png') }}>
-            <br>
-            <br>
-        <p>The out</p>
     </div>
 </div>
 
@@ -76,6 +82,10 @@
                 <h2>References</h2>
                 <span class="byline"></span> </div>
             <p> Motif Finding</p>
+            <p>Barrett T, Wilhite SE, Ledoux P, Evangelista C, Kim IF, Tomashevsky M, Marshall KA, Phillippy KH, Sherman PM, Holko M, Yefanov A, Lee H, Zhang N, Robertson CL, Serova N, Davis S, Soboleva A.
+                NCBI GEO: archive for functional genomics data sets--update.
+            </p>
+            <p>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3439153/</p>
             <p>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1539026/</p>
             <p>https://ieeexplore.ieee.org/document/6914361</p>
             <p>https://www.cell.com/cell/pdf/S0092-8674(18)30106-5.pdf</p>

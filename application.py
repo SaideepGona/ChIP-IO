@@ -35,13 +35,16 @@ import multiprocessing
 #TODO Parallelize IO to improve speed
 #TODO Get cmu domain name
 
+#TODO Standardize Tissue Names
+#TODO Loading bar for query
 #TODO Epigenetic priors
+#TODO Get email sending working
 #TODO Convert hg19 studies and update input peaks + metadata
 #TODO Write up general text, Home, About, and Contact
 #TODO Collect more motifs from hocomoco, etc.
 #TODO Motif-mapping for non-ChIP-Seq TFs, build new database
 #TODO Motif-finding from mapped peaks
-#TODO Start writing formal writeup
+#TODO Start writing formal writeup for BioArXive
 #TODO Get ansible deployment running
 
 
@@ -56,6 +59,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ChIP_Base.db'
 
 pwd = os.getcwd()
 num_cpus = multiprocessing.cpu_count()
+url_root = "http://ec2-54-145-225-122.compute-1.amazonaws.com"
 
 all_genes_path = pwd + "/static_lists/all_genes.txt"
 all_tfs_path = pwd + "/static_lists/all_tfs_list.txt"
@@ -248,7 +252,7 @@ all_possible = {
 cur_tfs_path = pwd + "/static_lists/all_tfs_cur.txt"
 cur_tiss_path = pwd + "/static_lists/all_tissues_cur.txt"
 
-print("NUMBER OF TFS FROM ChIP-SEQ STUDIES: " + str(len(all_possible["tissue_types"])))
+print("NUMBER OF TFS FROM ChIP-SEQ STUDIES: " + str(len(all_possible["transcription_factors"])))
 
 with open(cur_tfs_path, "w") as cur_tfs:
     for tf in all_possible["transcription_factors"]:
@@ -408,7 +412,9 @@ def run_pipeline(user_params):
     output_files_dir = pwd + "/intermediates/" + time_string + "_output/"
     os.mkdir(output_files_dir)
 
-    os.system("cp "+pwd+"/readme_files/ChIP_IO_tg_README.pdf "+output_files_dir+"Readme")
+    out_readme = output_files_dir+"Readme.txt"
+    os.system("cp "+pwd+"/readme_files/ChIP_IO_tg_README.txt "+out_readme)         # Copy over readme file
+    build_readme(time_string, user_params, out_readme)
 
     # print("Starting Motif Matching")
     # motif_sites_file = output_files_dir + time_string + "_motif_matches/"                       # Perform motif finding on regulatory regions
@@ -440,17 +446,17 @@ def run_pipeline(user_params):
 
     print("||||||||||||||||||Results Ready")
 
-    send_from = "ChIPBaseApp@gmail.com"
-    password = "chip_basic"
-    send_to = user_params["email"]
-    subject = "Your output from ChIP-IO"
-    text = "Your ChIP-IO query is complete! Here is your download_link: " + url_for('download_results', query_id=time_string)
-    server = 'smtp.gmail.com'    # send_from = "ChIPBaseApp@gmail.com"
-    password = "chipbase"
-    send_mail(send_from, send_to, subject, text, None, None, server, send_from, password)
-    print(user_params["email"])
+    # send_from = "chipbaseapp@gmail.com"
+    # password = "chip_basic"
+    # send_to = user_params["email"]
+    # subject = "Your output from ChIP-IO"
+    # text = "Your ChIP-IO query is complete! Here is your download_link: " + url_root + url_for('download_results', query_id=time_string)
+    # server = 'smtp.gmail.com'    # send_from = "ChIPBaseApp@gmail.com"
+    # password = "chipbase"
+    # send_mail(send_from, send_to, subject, text, None, None, server, send_from, password)
+    # print(user_params["email"])
 
-    print("||||||||||||||||||Email Sent")
+    # print("||||||||||||||||||Email Sent")
 
     # send_mail(send_from, send_to, subject, text, zipped_contents, solo_zipped_filename, server, send_from, password)
     # print(user_params["email"])
@@ -469,6 +475,28 @@ def run_pipeline(user_params):
 
 # def filter_peaks(user_params, peak_array):
 
+def build_readme(time_string, user_params, readme_file):
+    write_string = "\n\n" + "time stamp: "+time_string + "\n\n"
+    
+    write_string += "\n\n".join([
+        "promoter: " + str(user_params["promoter"]), 
+        "enhancer: " + str(user_params["enhancer"]),
+        "transcription_factors: " + ",".join([str(x) for x in user_params["transcription_factors"]]),
+        "tissue_types: " + str(",".join([str(x) for x in user_params["tissue_types"]])),
+        "pileup: "+str(user_params["pileup"]),
+        "log_p: "+str(user_params["log_p"]),
+        "fold_enrichment: "+str(user_params["fold_enrichment"]),
+        "log_q: "+str(user_params["log_q"]),
+        "dist_tss_upstream: "+str(user_params["dist_tss_upstream"]),
+        "dist_tss_downstream: "+str(user_params["dist_tss_downstream"]),
+        "peak_count: "+str(user_params["peak_count"]),
+        "include_motif_sites: "+ str(user_params["include_motif_sites"]),
+        "motif_discovery: "+ str(user_params["motif_discovery"]),
+        "email: "+ str(user_params["email"])
+    ])
+
+    with open(readme_file, "a") as rf:
+        rf.write(write_string)
 
 def create_promoters(user_params, filename, all_reg_regions):
 
@@ -937,6 +965,9 @@ def promoter_form():
             "dist_tss_downstream": form.distance_from_TSS_downstream.data,
             "peak_count": form.peak_count.data,
 
+            "include_motif_sites": form.include_motif_sites,
+            "motif_discovery": form.motif_discovery,
+
             "email": form.email.data,
 
             "time": "_".join(str(datetime.utcnow()).split(" "))
@@ -979,6 +1010,9 @@ def enhancer_form():
             "dist_tss_downstream": 1,
             "peak_count": form.peak_count.data,
 
+            "include_motif_sites": form.include_motif_sites,
+            "motif_discovery": form.motif_discovery,
+
             "email": form.email.data,
 
             "time": "_".join(str(datetime.utcnow()).split(" "))
@@ -1020,6 +1054,9 @@ def promoter_enhancer_form():
             "dist_tss_upstream": form.distance_from_TSS_upstream.data,
             "dist_tss_downstream": form.distance_from_TSS_downstream.data,
             "peak_count": form.peak_count.data,
+
+            "include_motif_sites": form.include_motif_sites,
+            "motif_discovery": form.motif_discovery,
 
             "email": form.email.data,
 
@@ -1072,7 +1109,13 @@ def download_results(query_id):
     pwd = os.getcwd()
     results_file = pwd + "/results/" + query_id + ".tar.gz"
     print("download page refresh")
-    return render_template('results.html', query_id = query_id, results_file = results_file, results_file_unpath = "#".join(results_file.split("/")), file_ready = os.path.isfile(results_file))
+    return render_template(
+                            'results.html', 
+                            results_url = url_root+url_for('download_results', query_id=query_id),
+                            query_id = query_id, 
+                            results_file = results_file, 
+                            results_file_unpath = "#".join(results_file.split("/")), 
+                            file_ready = os.path.isfile(results_file))
 
 @app.route('/contact')
 def contact():
