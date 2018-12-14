@@ -60,6 +60,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ChIP_Base.db'
 pwd = os.getcwd()
 num_cpus = multiprocessing.cpu_count()
 url_root = "http://ec2-54-145-225-122.compute-1.amazonaws.com"
+current_stats = {}
 
 all_genes_path = pwd + "/static_lists/all_genes.txt"
 all_tfs_path = pwd + "/static_lists/all_tfs_list.txt"
@@ -68,12 +69,14 @@ all_genes = []
 with open(all_genes_path, "r") as ag:
     for line in ag:
         all_genes.append(line.rstrip("\n"))
+current_stats["all_genes"]=str(len(all_genes))
 print("NUMBER OF GENES: ", len(all_genes))
 
 all_tfs = []
 with open(all_tfs_path, "r") as at:
     for line in at:
         all_tfs.append(line.rstrip("\n"))
+current_stats["all_tfs"]=str(len(all_tfs))
 print("NUMBER OF TFS: ", len(all_tfs))
 
 metadata_path = pwd + "/pass_metadata/metadata.pkl"     
@@ -253,7 +256,7 @@ cur_tfs_path = pwd + "/static_lists/all_tfs_cur.txt"
 cur_tiss_path = pwd + "/static_lists/all_tissues_cur.txt"
 
 print("NUMBER OF TFS FROM ChIP-SEQ STUDIES: " + str(len(all_possible["transcription_factors"])))
-
+current_stats["study_tfs"]=str(len(all_possible["transcription_factors"]))
 with open(cur_tfs_path, "w") as cur_tfs:
     for tf in all_possible["transcription_factors"]:
         cur_tfs.write(tf + "\n")
@@ -463,13 +466,13 @@ def run_pipeline(user_params):
 
     # print("||||||||||||||||||Email Sent")
 
-    # os.system("rm -rf "+output_files_dir)
-    # for f in removable_junk:
-    #     try:
-    #         os.remove(f)
-    #     except:
-    #         print("Can't dispose of junk: " + f)
-    #         continue
+    os.system("rm -rf "+output_files_dir)
+    for f in removable_junk:
+        try:
+            os.remove(f)
+        except:
+            print("Can't dispose of junk: " + f)
+            continue
 
     print("END PIPELINE *************************************************************************************************************")
 
@@ -928,7 +931,7 @@ def build_query_hist(form):
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', current_stats=current_stats)
 
 @app.route('/construct_query')
 def construct_query():
@@ -1124,5 +1127,5 @@ def contact():
 download_files = DownloadFiles()
 download_files.collect_peaks("pass_peaks")
 download_files.collect_presets("presets")
-print(download_files.preset_mappings)
+# print(download_files.preset_mappings)
 
