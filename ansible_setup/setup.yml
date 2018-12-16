@@ -74,6 +74,13 @@
       group: 1000
       state: directory
       mode: 0755
+  - name: create temp directory
+    file:
+      path: /home/ubuntu/opt/ChIP-IO/tmp
+      owner: 1000
+      group: 1000
+      state: directory
+      mode: 0755
   - name: create motifs directory
     file:
       path: /home/ubuntu/opt/ChIP-IO/motifs

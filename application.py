@@ -28,39 +28,32 @@ from wtforms_html5 import AutoAttrMeta
 
 import multiprocessing
 
-
-# NEXT STEP IS TO HAVE EVERYTHING WORKING
-
+#TODO Get cmu domain name
 #TODO Memory-efficient implementation - This is pretty tough
 #TODO Parallelize IO to improve speed
-#TODO Get cmu domain name
-
-#TODO Standardize Tissue Names
+#TODO Start writing formal writeup for BioArXive
+#TODO Standardize tissue Names
 #TODO Loading bar for query
 #TODO Epigenetic priors
+#TODO Include pickled output and other useful output versions
 #TODO Get email sending working
 #TODO Convert hg19 studies and update input peaks + metadata
-#TODO Write up general text, Home, About, and Contact
 #TODO Collect more motifs from hocomoco, etc.
 #TODO Motif-mapping for non-ChIP-Seq TFs, build new database
 #TODO Motif-finding from mapped peaks
-#TODO Start writing formal writeup for BioArXive
+#TODO More data cleaning and processing
 #TODO Get ansible deployment running
-
 
 app = Flask(__name__)
 
-# os.system("python build_db.py")
-
 app.config['SECRET_KEY'] = 'sai-key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ChIP_Base.db'
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']      #Deployment database
-# print(os.environ['DATABASE_URL'])
 
 pwd = os.getcwd()
 num_cpus = multiprocessing.cpu_count()
 url_root = "http://ec2-54-145-225-122.compute-1.amazonaws.com"
 current_stats = {}
+version = "v1.0.1"
 
 all_genes_path = pwd + "/static_lists/all_genes.txt"
 all_tfs_path = pwd + "/static_lists/all_tfs_list.txt"
@@ -311,7 +304,10 @@ def run_pipeline(user_params):
     print("QUERY TIME STRING: "+time_string)
 
     print("BEGIN PIPELINE *************************************************************************************************************")
-    # print(user_params)
+    print(user_params)
+
+    tf_set = set(user_params["transcription_factors"])
+    tissue_set = set(user_params["tissue_types"])
 
     removable_junk = []
 
@@ -331,6 +327,7 @@ def run_pipeline(user_params):
     removable_junk.append(temp_peaks_file)
     # convert_query_to_file(peaks_column_list, peak_subset, user_params, temp_peaks_file)        # Creates peak bed file   
     filter_peaks(peaks_column_list, user_params, all_peaks, temp_peaks_file, True, time_string, removable_junk)
+    sort_in_place(temp_peaks_file)
 
     inter_promoter = pwd + "/intermediates/promoters_" + time_string + ".bed"
     removable_junk.append(inter_promoter)
@@ -346,19 +343,8 @@ def run_pipeline(user_params):
 
         promoter_intersect = pwd + "/intermediates/" + "promintersect_" + time_string + ".bed"       # Computes intersect of peaks with promoter regions
         removable_junk.append(promoter_intersect)
-        bed_command = [
-        "bedtools",
-        "intersect",
-        "-a",
-        inter_promoter,
-        "-b",
-        temp_peaks_file,
-        "-wb",
-        "-sorted",
-        ">",
-        promoter_intersect
-        ]
-        os.system(" ".join(bed_command))
+        bed_intersect(inter_promoter, temp_peaks_file, promoter_intersect)
+        sort_in_place(promoter_intersect)
 
     elif user_params["enhancer"] and not user_params["promoter"]:   # Enhancer only
 
@@ -376,19 +362,9 @@ def run_pipeline(user_params):
         print("enhancers processed")
         promoter_intersect = pwd + "/intermediates/" + "promintersect_" + time_string + ".bed"       #Computes intersect of peaks with promoter regions
         removable_junk.append(promoter_intersect)
-        bed_command = [
-        "bedtools",
-        "intersect",
-        "-a",
-        inter_promoter,
-        "-b",
-        temp_peaks_file,
-        "-wb",
-        "-sorted",
-        ">",
-        promoter_intersect
-        ]
-        os.system(" ".join(bed_command))
+
+        bed_intersect(inter_promoter, temp_peaks_file, promoter_intersect)
+        sort_in_place(promoter_intersect)
 
     print("||||||||||||||||||Peaks Annotated")
 
@@ -396,8 +372,7 @@ def run_pipeline(user_params):
     removable_junk.append(final_peak_file)
     with open(final_peak_file, "w") as final:
         print(final_peak_file, "contains all final peaks")
-
-    tg_table = create_empty_table(all_genes, all_tfs)           # Create empty tf-gene table data structure
+    tg_table = create_empty_table(all_genes, all_tfs, tf_set)           # Create empty tf-gene table data structure
 
     if user_params["promoter"] and not user_params["enhancer"]: # Promoter only
         parse_promoter(user_params, promoter_intersect, tg_table, final_peak_file)      # Adds promoter-mapped peaks to tf-gene table
@@ -428,7 +403,7 @@ def run_pipeline(user_params):
     print("Writing tg table")
     tg_write_file = output_files_dir + "tgtable_" + time_string + ".tgtable"                       # Output file for tg-table
     removable_junk.append(tg_write_file)
-    write_dict_tsv(tg_table, all_genes, all_tfs, tg_write_file)
+    write_dict_tsv(tg_table, all_genes, all_tfs, tg_write_file, tf_set)
 
     # print("Starting Motif Discovery")
     # motifs_disc_file = pwd + "/intermediates/" + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
@@ -465,7 +440,7 @@ def run_pipeline(user_params):
     # print(user_params["email"])
 
     # print("||||||||||||||||||Email Sent")
-
+    print(removable_junk)
     os.system("rm -rf "+output_files_dir)
     for f in removable_junk:
         try:
@@ -477,6 +452,30 @@ def run_pipeline(user_params):
     print("END PIPELINE *************************************************************************************************************")
 
 # def filter_peaks(user_params, peak_array):
+
+def sort_in_place(f):
+    temp_dir = pwd + "/tmp/"
+    temp_f = f+".tmp"
+
+    os.system("sort -k 1,1 -k2,2n -T " +temp_dir+" "+f+" > "+temp_f)
+    os.system("rm "+f)
+    os.system("mv "+temp_f+" "+f)
+ 
+def bed_intersect(file1, file2, out):
+
+    bed_command = [
+    "bedtools",
+    "intersect",
+    "-a",
+    file1,
+    "-b",
+    file2,
+    "-wb",
+    "-sorted",
+    ">",
+    out
+    ]
+    os.system(" ".join(bed_command))
 
 def build_readme(time_string, user_params, readme_file):
     write_string = "\n\n" + "time stamp: "+time_string + "\n\n"
@@ -563,7 +562,6 @@ def motif_site_find(bed_file, time_string, output_dir, tf_set):
     motif_mapping = [
         "fimo",
         motif_file,
-
     ]
 
 def motif_discovery(bed_file, time_string, output_file):
@@ -584,7 +582,7 @@ def motif_discovery(bed_file, time_string, output_file):
         bed_file,
         "-fo",
         intermediate_file
-        ]
+    ]
     
     find_motifs = [
         "meme",
@@ -641,44 +639,34 @@ def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions, time
 
         # enhancer_bed: 7 cols, index 6 is gene name
         # temp_peaks_file: 13 cols, index 10 is tf name (17 when intersected)
-
-        bed_command = [
-        "bedtools",
-        "intersect",
-        "-a",
-        enhancer_bed,
-        "-b",
-        temp_peaks_file,
-        "-wb",
-        "-sorted",
-        ">",
-        tissue_intersect
-        ]
-        os.system(" ".join(bed_command))
+        sort_in_place(temp_peaks_file)
+        bed_intersect(enhancer_bed, temp_peaks_file, tissue_intersect)
+        sort_in_place(tissue_intersect)
     
     intersect_files = " ".join(tissue_intersect_beds)
     os.system("cat "+ intersect_files+ " > "+intersect_out)
 
 
-def write_dict_tsv(tg_table, all_genes, all_tfs, table_write):
+def write_dict_tsv(tg_table, all_genes, all_tfs, table_write, tf_set):
     '''
     Writes dictionary table to a tsv file
     '''
     with open(table_write, "a") as tw:
 
-        tw.write("Genes\t" + "\t".join(all_tfs) + "\n")
+        cur_tfs = [x for x in all_tfs if x in tf_set]
+
+        tw.write("Genes\t" + "\t".join(cur_tfs) + "\n")
 
         for gene in all_genes:
             # if gene not in tg_table:
             #     continue
             cur_gene_string = gene + "\t"
             for tf in all_tfs:
-                # if tf not in tg_table[gene]:
-                #     continue
-                cur_gene_string += (str(tg_table[gene][tf]) + "\t")
+                if tf in tf_set:
+                    cur_gene_string += (str(tg_table[gene][tf]) + "\t")
             tw.write(cur_gene_string.rstrip("\t")+"\n")
 
-def create_empty_table(gene_list, tf_list):
+def create_empty_table(gene_list, tf_list, tf_set):
     '''
     Creates an empty table (dictionary[tfs]->dictionary[genes]) initializing all values
     to 0 based upon a list of genes and tfs
@@ -687,7 +675,8 @@ def create_empty_table(gene_list, tf_list):
     for gene in gene_list:
         tf_dict = {}
         for tf in tf_list:
-            tf_dict[tf] = 0
+            if tf in tf_set: 
+                tf_dict[tf] = 0
         table[gene] = tf_dict
     
     return table
@@ -860,6 +849,7 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissue
     #     "log_q": p_l[8]
     # }
 
+    num_pass_peaks = 0
     with open(in_file_path, "r") as infile:
         with open(out_file_path, "a") as out:
             for line in infile:
@@ -868,9 +858,10 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissue
                 if constraints_met(p_line, user_params, "peaks"):
                     write_tissue(pwd + "/intermediates/annotation_"+ p_line[11] +"_" + time_string + ".bed", p_line)
                     out.write("\t".join(p_line)+"\n")
-
+                    num_pass_peaks += 1
+    print("number of passed peaks: "+str(num_pass_peaks))
     for f in to_be_sorted:
-        os.system("sort -k 1,1 -k2,2n -o " + f + " " +f)
+        sort_in_place(f)
 
 
 def convert_query_to_file(columns, query_result, user_params, file_path):
@@ -914,8 +905,8 @@ def parse_input(in_string, delim, field, all_possible):
 
     if in_string.strip() == "ALL":
         return all_possible[field]
-
-    return(in_string.strip().split(delim))
+    else:
+        return(in_string.strip().split(delim))
 
 def build_query_hist(form):
 
@@ -931,7 +922,7 @@ def build_query_hist(form):
 
 @app.route('/')
 def home():
-    return render_template('home.html', current_stats=current_stats)
+    return render_template('home.html', current_stats=current_stats, version=version)
 
 @app.route('/construct_query')
 def construct_query():

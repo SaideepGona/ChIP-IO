@@ -37,7 +37,7 @@
             <h2>Technical Details</h2>
             <span class="byline"></span> </div>
             <p> 
-                Full technical details can be found here: (DOES NOT EXIST YET)
+                Full technical details can be found here: (PAPER DOES NOT EXIST YET)
             </p>
             <p> 
                 ChIP-IO's underlying analysis currently consists of two main steps. First is data collection, cleansing, and uniform processing for creation of the core database. 
@@ -57,8 +57,11 @@
             <span class="byline"></span> </div>
             <br>
             <br>
-            <p> Data was collected from two databases: NCBI's Gene Expression Omnibus (GEO) and ENCODE. Pipelines
-
+            <p> Data was collected from two databases: NCBI's Gene Expression Omnibus (GEO) 
+                and the Encyclopedia of DNA Elements(ENCODE). Aligned reads were obtained either by directly or by aligning 
+                raw reads using Bowtie2. Study replicates were organized as replicates/controls 
+                and then peak calling performed using MACS2 default parameters. Peak parameters
+                such as pileup, p-values, etc are in reference to the output of MACS2.
             </p>
             <img src={{ url_for('static',filename='images/Data_Collection_Pipeline.png') }}>
     </div>
@@ -76,7 +79,7 @@
     </div>
 </div>
 
-<div id="featured2">
+<!-- <div id="featured2">
         <div class="container">
             <div class="title">
                 <h2>References</h2>
@@ -94,5 +97,5 @@
                 Bioinformatics 28(1): 56-62, 2012 </p>
             <p>[1] Pique-Regi RP, Degner JF, Pai AA, Gaffney DG, Gilad Y, Pritchard JK. "Accurate inference of transcription factor binding from DNA sequence and chromatin accessibility data", Genome Research. 2011 Mar;21(3):447-55. [Full] [Pubmed]</p>
         </div>
-    </div>
+    </div> -->
 {% endblock body %}
