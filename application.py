@@ -31,18 +31,19 @@ import multiprocessing
 #TODO Get cmu domain name
 #TODO Memory-efficient implementation - This is pretty tough
 #TODO Parallelize IO to improve speed
-#TODO Start writing formal writeup for BioArXive
-#TODO Standardize tissue Names
+#TODO Standardize tissue names
 #TODO Loading bar for query
 #TODO Epigenetic priors
-#TODO Include pickled output and other useful output versions
 #TODO Get email sending working
+#TODO Start writing formal writeup for BioArXive
 #TODO Convert hg19 studies and update input peaks + metadata
 #TODO Collect more motifs from hocomoco, etc.
 #TODO Motif-mapping for non-ChIP-Seq TFs, build new database
 #TODO Motif-finding from mapped peaks
 #TODO More data cleaning and processing
 #TODO Get ansible deployment running
+#TODO Reorganize python code
+
 
 app = Flask(__name__)
 
@@ -300,6 +301,7 @@ class ParameterForm(FlaskForm):
 
 def run_pipeline(user_params):
 
+    step_num = 0
     time_string = user_params["time"]
     print("QUERY TIME STRING: "+time_string)
 
@@ -337,6 +339,7 @@ def run_pipeline(user_params):
     print("promoters created") 
     # os.system("sort -k 1,1 -k2,2n " + temp_peaks_file)
 
+    step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Peaks Queried and Promoters Created")
 
     if user_params["promoter"] and not user_params["enhancer"]: # Promoter only
@@ -366,6 +369,7 @@ def run_pipeline(user_params):
         bed_intersect(inter_promoter, temp_peaks_file, promoter_intersect)
         sort_in_place(promoter_intersect)
 
+    step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Peaks Annotated")
 
     final_peak_file = pwd + "/intermediates/" + time_string + "_finalpeaks.bed"    # Place all the peaks which successfully match regulatory regions here.
@@ -385,6 +389,7 @@ def run_pipeline(user_params):
         print("promoter parsed")
         parse_enhancer(user_params, intersect_output, tg_table, final_peak_file)        # Adds enhancer-mapped peaks to tf-gene table
 
+    step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Annotations Parsed")
 
     output_files_dir = pwd + "/intermediates/" + time_string + "_output/"
@@ -405,6 +410,15 @@ def run_pipeline(user_params):
     removable_junk.append(tg_write_file)
     write_dict_tsv(tg_table, all_genes, all_tfs, tg_write_file, tf_set)
 
+    bin_tg_write_file = output_files_dir + "tgtable_" + time_string + ".bintgtable"                       # Output file for tg-table
+    removable_junk.append(bin_tg_write_file)
+    binarize_tsv(tg_table, all_genes, all_tfs, bin_tg_write_file, tf_set, user_params)
+
+    pickle_tg_table = output_files_dir + "tgtable_" + time_string + ".pkl"                       # Pickle file for tg-table
+    removable_junk.append(pickle_tg_table)
+    with open(pickle_tg_table, "w")  as ptable:
+        pickle.save(pickle.highest_protocol)
+
     # print("Starting Motif Discovery")
     # motifs_disc_file = pwd + "/intermediates/" + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
     # removable_junk.append(motifs_disc_file)
@@ -422,6 +436,7 @@ def run_pipeline(user_params):
     # print("cp "+zipped_contents+" "+pwd+"/results/"+solo_zipped_filename)
     os.system("cp "+zipped_contents+" "+pwd+"/results/"+solo_zipped_filename)
 
+    step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Results Ready")
 
     # send_from = "chipbaseapp@gmail.com"
@@ -452,6 +467,13 @@ def run_pipeline(user_params):
     print("END PIPELINE *************************************************************************************************************")
 
 # def filter_peaks(user_params, peak_array):
+
+def make_check(num, time_string, removal):
+    check_file = pwd+"/intermediates/" + time_string + "_check_" + str(num)
+    print(check_file, "Checkfile", num)
+    os.system("touch " + check_file)
+    removal.append(check_file)
+    return num+1
 
 def sort_in_place(f):
     temp_dir = pwd + "/tmp/"
@@ -664,6 +686,29 @@ def write_dict_tsv(tg_table, all_genes, all_tfs, table_write, tf_set):
             for tf in all_tfs:
                 if tf in tf_set:
                     cur_gene_string += (str(tg_table[gene][tf]) + "\t")
+            tw.write(cur_gene_string.rstrip("\t")+"\n")
+
+def binarize_tsv(tg_table, all_genes, all_tfs, table_write, tf_set, user_params):
+    '''
+    Writes dictionary table to a tsv file but in binary form based on supplied peak count
+    '''
+    with open(table_write, "a") as tw:
+
+        cur_tfs = [x for x in all_tfs if x in tf_set]
+
+        tw.write("Genes\t" + "\t".join(cur_tfs) + "\n")
+
+        for gene in all_genes:
+            # if gene not in tg_table:
+            #     continue
+            cur_gene_string = gene + "\t"
+            for tf in all_tfs:
+                if tf in tf_set:
+                    if tg_table[gene][tf] >= user_params["peak_count"] :
+                        cur_gene_string += ("1" + "\t")
+                    else:
+                        cur_gene_string += ("0" + "\t")
+
             tw.write(cur_gene_string.rstrip("\t")+"\n")
 
 def create_empty_table(gene_list, tf_list, tf_set):

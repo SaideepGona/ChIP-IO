@@ -19,6 +19,15 @@ Table entries correspond to the number of ChIP-Seq peaks for a given transcripti
 a given gene. Currently these peaks come only from raw ChIP-Seq peak data, but future versions will include motif/epigenetic
 prior binding site prediction to reduce false positive rates where applicable.
 
+*** .bintgtable file ***
+
+Same as above, except entries are binarized as 0 or 1 based on the "peak count" threshold.
+
+*** .pkl file ***
+
+Python readable binarytable object. Holds the same information as the above .tsv files but can be read into python as a nested
+dictionary object. Once read in, entries can be pulled as table[gene][tf]
+
 ------------ Important Notes! ------------
 
 - In general, "0" table entries are not intended to provide confidence for lack of TF-gene association. ChIP-Seq studies still 
