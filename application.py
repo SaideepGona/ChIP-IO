@@ -415,10 +415,10 @@ def run_pipeline(user_params):
     removable_junk.append(bin_tg_write_file)
     binarize_tsv(tg_table, all_genes, all_tfs, bin_tg_write_file, tf_set, user_params)
 
-    pickle_tg_table = output_files_dir + "tgtable_" + time_string + ".pkl"                       # Pickle file for tg-table
-    removable_junk.append(pickle_tg_table)
-    with open(pickle_tg_table, "w")  as ptable:
-        pickle.save(pickle.highest_protocol)
+    # pickle_tg_table = output_files_dir + "tgtable_" + time_string + ".pkl"                       # Pickle file for tg-table
+    # removable_junk.append(pickle_tg_table)
+    # with open(pickle_tg_table, "w")  as ptable:
+    #     pickle.save(pickle.highest_protocol)
 
     # print("Starting Motif Discovery")
     # motifs_disc_file = pwd + "/intermediates/" + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
