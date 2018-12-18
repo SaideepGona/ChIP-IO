@@ -362,6 +362,7 @@ def run_pipeline(user_params):
         intersect_output = pwd + "/intermediates/" + "annotation_" + time_string + ".bed"
         removable_junk.append(intersect_output)
         process_enhancers(user_params, intersect_output, enhancer_bed_dir, all_reg_regions, time_string)      # Computes tissue-specific intersect of peaks with enhancers
+        sort_in_place(intersect_output)
         print("enhancers processed")
         promoter_intersect = pwd + "/intermediates/" + "promintersect_" + time_string + ".bed"       #Computes intersect of peaks with promoter regions
         removable_junk.append(promoter_intersect)
@@ -628,6 +629,8 @@ def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions, time
     and the combined results concatenated into a single file
     '''
 
+
+
     file_prefix = intersect_out.rstrip(".bed")
     tissue_peak_beds = []
     tissue_intersect_beds = []
@@ -666,8 +669,10 @@ def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions, time
         sort_in_place(tissue_intersect)
     
     intersect_files = " ".join(tissue_intersect_beds)
-    os.system("cat "+ intersect_files+ " > "+intersect_out)
-
+    if len(intersect_files) == 0:
+        os.system("touch "+intersect_out)
+    else:
+        os.system("cat "+ intersect_files+ " > "+intersect_out)
 
 def write_dict_tsv(tg_table, all_genes, all_tfs, table_write, tf_set):
     '''
