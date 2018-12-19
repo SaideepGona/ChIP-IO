@@ -20,13 +20,13 @@
             <h2>OUR MOTIVATION</h2>
             <span class="byline"></span> </div>
         <p> Chromatin immunoprecipitation followed by sequencing (ChIP-Seq) continues to be a critical informer of protein-DNA binding. As the amount
-            of data continues to grow and the needs of researchers continue to become more complex, there is a need for up-to-date, user-friendly tools to serve these
-            needs. 
+            of data continues to grow and the needs of researchers continue to become more complex, more can be done to facilitate the use of this critical 
+            data source.
         </p>
         <p>
-            With the initiation of projects such as the Human Cell Atlas and the rise of techniques like single-cell RNA-seq, for example, it is clear that the field is moving
-            towards more and more complex analysis at narrower and narrower scopes. ChIP-IO was designed with this in mind, allowing for tissue-specific and other 
-            metadata-specific analysis to meet increasingly nuanced requirements.
+            Furthermore, with the initiation of projects such as the Human Cell Atlas and the rise of techniques like single-cell RNA-seq, it is clear that the 
+            field is moving towards more and more complex analysis at narrower and narrower scopes. ChIP-IO was designed with all things considered, hosting
+            a large pool of uniformly processed ChIP-seq data and using it for metadata-specific analysis to meet increasingly nuanced demands.
         </p>
     </div>
 </div>
@@ -41,7 +41,7 @@
             </p>
             <p> 
                 ChIP-IO's underlying analysis currently consists of two main steps. First is data collection, cleansing, and uniform processing for creation of the core database. 
-                Second is the custom-query pipeline for assessing transcription-factor gene regulatory targets. The former is external to this application, but can be used to update 
+                Second is the custom query pipeline for assessing transcription-factor gene regulatory targets. The former is external to this application, but can be used to update 
                 the reference datasets periodically. Current processed data  from the collection step can be directly
                 downloaded under the <a style="color: #8fd8f5" href="{{ url_for('downloads') }}">"DOWNLOADS"</a> tab.
                 The latter is housed in this application under the <a style="color: #8fd8f5" href="{{ url_for('construct_query') }}">"CONSTRUCT QUERY"</a> tab.
@@ -74,7 +74,12 @@
             <span class="byline"></span> </div>
             <br>
             <br>
-            <p>The out</p>
+            <p>All peaks and relevant metadata are collected into a single database. Upon submission of a query, peaks are filtered based on provided peak constrains such as
+                p-values and fold-enrichment. Next, valid regulatory regions (promoters, enhancers) are collected depending on other provided constraints and mapped to their
+                corresponding genes. Peaks are then annotated to these regions and peak counts bucketed based on the peak's source transcription factor and the regulatory 
+                region's gene. These bins consitute the program output. Future work will include epigenetic prior-based motif binding predictions as well as motif discovery 
+                based on peak sequences. 
+            </p>
             <img src={{ url_for('static',filename='images/ChIP-IO_pipeline.png') }}>
     </div>
 </div>

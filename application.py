@@ -29,6 +29,7 @@ from wtforms_html5 import AutoAttrMeta
 import multiprocessing
 
 #TODO Get cmu domain name
+#TODO Do peak-subsetting in memory to reduce number of write operations.
 #TODO Memory-efficient implementation - This is pretty tough
 #TODO Parallelize IO to improve speed
 #TODO Standardize tissue names
@@ -58,6 +59,14 @@ version = "v1.0.1"
 
 all_genes_path = pwd + "/static_lists/all_genes.txt"
 all_tfs_path = pwd + "/static_lists/all_tfs_list.txt"
+
+en_tiss_dir = pwd + "/enhancer-gene/processed/tissue_beds/"
+en_tiss_files = glob.glob(en_tiss_dir+"*")
+enhancer_tissues_list = [x.split("/")[-1][:-4] for x in en_tiss_files]
+enhancer_tissues = ", ".join(enhancer_tissues_list)
+enhancer_tissues = enhancer_tissues.replace("_", " ")
+
+print("Enhancer-supported tissues: " + enhancer_tissues)
 
 all_genes = []
 with open(all_genes_path, "r") as ag:
@@ -456,7 +465,7 @@ def run_pipeline(user_params):
     # print(user_params["email"])
 
     # print("||||||||||||||||||Email Sent")
-    print(removable_junk)
+    # print(removable_junk)
     os.system("rm -rf "+output_files_dir)
     for f in removable_junk:
         try:
@@ -976,7 +985,7 @@ def home():
 
 @app.route('/construct_query')
 def construct_query():
-    return render_template('construct_query.html')
+    return render_template('construct_query.html', enhancer_tissues = enhancer_tissues)
 
 @app.route('/promoter_form', methods=['GET', 'POST'])
 def promoter_form():
