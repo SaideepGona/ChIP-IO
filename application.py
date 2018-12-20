@@ -28,7 +28,7 @@ from wtforms_html5 import AutoAttrMeta
 
 import multiprocessing
 
-#TODO Get cmu domain name
+#TODO Daemon logging
 #TODO Do peak-subsetting in memory to reduce number of write operations.
 #TODO Memory-efficient implementation - This is pretty tough
 #TODO Parallelize IO to improve speed
@@ -53,7 +53,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ChIP_Base.db'
 
 pwd = os.getcwd()
 num_cpus = multiprocessing.cpu_count()
-url_root = "http://ec2-54-145-225-122.compute-1.amazonaws.com"
+# url_root = "http://ec2-54-145-225-122.compute-1.amazonaws.com"
+url_root = chipio.cs.cmu.edu
 current_stats = {}
 version = "v1.0.1"
 
