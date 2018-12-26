@@ -21,14 +21,33 @@
     <div class="container">
         <div class="title">
             {% if file_ready %}
-                <p>Download Complete</p>
+                <p>Download Complete!</p>
                 <a href="{{ url_for('download_file', file_path = results_file_unpath) }}">
-                    <button style="height: 100%; width: 100%" class='btn btn-secondary'>Click to Download</button>
+                    <button style="height: 5vh;font-size: x-large"  
+                    class="w-75 btn btn-primary associationbox">Click to Download</button>
                 </a>
             {% else %}
                 <p>
                     Download not yet ready...
                 </p>
+
+                <button style="height: 5vh;font-size: x-large" 
+                type="button" onclick="window.location.reload()" 
+                class="w-75 btn btn-primary associationbox"> 
+                Refresh</button>
+
+                <!-- <div class="container">
+                    <div class="row">
+                        <div class="col-2 checkpoint" id="check0"></div>
+                        <div class="col-2 checkpoint" id="check1"></div>
+                        <div class="col-2 checkpoint" id="check2"></div>
+                        <div class="col-2 checkpoint" id="check3"></div>
+                        <div class="col-2 checkpoint" id="check4"></div>
+                    </div>
+                    <div class="row">
+                        Subsetting Peaks
+                    </div>
+                </div> -->
             {% endif %}
         </div>
     </div>

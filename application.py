@@ -28,23 +28,21 @@ from wtforms_html5 import AutoAttrMeta
 
 import multiprocessing
 
-#TODO Daemon logging
+#TODO Motif-mapping for non-ChIP-Seq TFs, build new database
+#TODO Motif-finding from mapped peaks
+#TODO Epigenetic priors
 #TODO Do peak-subsetting in memory to reduce number of write operations.
 #TODO Memory-efficient implementation - This is pretty tough
+#TODO Reorganize python code
 #TODO Parallelize IO to improve speed
 #TODO Standardize tissue names
-#TODO Loading bar for query
-#TODO Epigenetic priors
 #TODO Get email sending working
 #TODO Start writing formal writeup for BioArXive
 #TODO Convert hg19 studies and update input peaks + metadata
 #TODO Collect more motifs from hocomoco, etc.
-#TODO Motif-mapping for non-ChIP-Seq TFs, build new database
-#TODO Motif-finding from mapped peaks
 #TODO More data cleaning and processing
 #TODO Get ansible deployment running
-#TODO Reorganize python code
-
+#TODO Loading bar for query
 
 app = Flask(__name__)
 
@@ -54,7 +52,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ChIP_Base.db'
 pwd = os.getcwd()
 num_cpus = multiprocessing.cpu_count()
 # url_root = "http://ec2-54-145-225-122.compute-1.amazonaws.com"
-url_root = chipio.cs.cmu.edu
+url_root = "chipio.cs.cmu.edu"
 current_stats = {}
 version = "v1.0.1"
 
@@ -311,7 +309,7 @@ class ParameterForm(FlaskForm):
 
 def run_pipeline(user_params):
 
-    step_num = 0
+    step_num = 1
     time_string = user_params["time"]
     print("QUERY TIME STRING: "+time_string)
 
@@ -329,30 +327,22 @@ def run_pipeline(user_params):
     with open(all_reg_regions, "w") as all_reg:
         print(all_reg_regions, " all regulatory regions stored here")
 
-    # peak_subset = (
-    #                 Peaks.query.filter(Peaks.tissue_types.in_(user_params["tissue_types"]))
-    #                 .filter(Peaks.transcription_factors.in_(user_params["transcription_factors"]))
-    #                 )
-    # sys.exit()
-
     temp_peaks_file = pwd + "/intermediates/" + "temppeaks_" + time_string + ".bed"
     removable_junk.append(temp_peaks_file)
     # convert_query_to_file(peaks_column_list, peak_subset, user_params, temp_peaks_file)        # Creates peak bed file   
     filter_peaks(peaks_column_list, user_params, all_peaks, temp_peaks_file, True, time_string, removable_junk)
     sort_in_place(temp_peaks_file)
 
-    inter_promoter = pwd + "/intermediates/promoters_" + time_string + ".bed"
-    removable_junk.append(inter_promoter)
-    create_promoters(user_params, inter_promoter, all_reg_regions)
-    os.system("sort -k 1,1 -k2,2n -o " + inter_promoter + " " +inter_promoter)
-                              # Creates custom promoter set with query vals
-    print("promoters created") 
-    # os.system("sort -k 1,1 -k2,2n " + temp_peaks_file)
-
     step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Peaks Queried and Promoters Created")
 
     if user_params["promoter"] and not user_params["enhancer"]: # Promoter only
+
+        inter_promoter = pwd + "/intermediates/promoters_" + time_string + ".bed"
+        removable_junk.append(inter_promoter)
+        create_promoters(user_params, inter_promoter, all_reg_regions)
+        os.system("sort -k 1,1 -k2,2n -o " + inter_promoter + " " +inter_promoter)
+        print("promoters created")     
 
         promoter_intersect = pwd + "/intermediates/" + "promintersect_" + time_string + ".bed"       # Computes intersect of peaks with promoter regions
         removable_junk.append(promoter_intersect)
@@ -367,6 +357,12 @@ def run_pipeline(user_params):
         process_enhancers(user_params, intersect_output, enhancer_bed_dir, all_reg_regions, time_string)   # Computes tissue-specific intersect of peaks with enhancers
 
     elif user_params["promoter"] and user_params["enhancer"]:   # Promoter and Enhancer
+
+        inter_promoter = pwd + "/intermediates/promoters_" + time_string + ".bed"
+        removable_junk.append(inter_promoter)
+        create_promoters(user_params, inter_promoter, all_reg_regions)
+        os.system("sort -k 1,1 -k2,2n -o " + inter_promoter + " " +inter_promoter)
+        print("promoters created")     
 
         enhancer_bed_dir = pwd + "/enhancer-gene/processed/tissue_beds/"
         intersect_output = pwd + "/intermediates/" + "annotation_" + time_string + ".bed"
@@ -467,13 +463,14 @@ def run_pipeline(user_params):
 
     # print("||||||||||||||||||Email Sent")
     # print(removable_junk)
-    os.system("rm -rf "+output_files_dir)
-    for f in removable_junk:
-        try:
-            os.remove(f)
-        except:
-            print("Can't dispose of junk: " + f)
-            continue
+    
+    # os.system("rm -rf "+output_files_dir)
+    # for f in removable_junk:
+    #     try:
+    #         os.remove(f)
+    #     except:
+    #         print("Can't dispose of junk: " + f)
+    #         continue
 
     print("END PIPELINE *************************************************************************************************************")
 
@@ -495,7 +492,9 @@ def sort_in_place(f):
     os.system("mv "+temp_f+" "+f)
  
 def bed_intersect(file1, file2, out):
-
+    '''
+    Bedtools intersect file2 with file1 keeping the associated metadata
+    '''
     bed_command = [
     "bedtools",
     "intersect",
@@ -532,6 +531,11 @@ def build_readme(time_string, user_params, readme_file):
 
     with open(readme_file, "a") as rf:
         rf.write(write_string)
+
+    sub_log = pwd + "/logs/submission_logs.txt"
+    with open(sub_log, "a") as sl:
+        sl.write(write_string +
+        "\n\n******************************************************************************")
 
 def create_promoters(user_params, filename, all_reg_regions):
 
@@ -632,37 +636,31 @@ def motif_discovery(bed_file, time_string, output_file):
 
     os.remove(intermediate_file)
 
-def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions, time_string):
+def process_enhancers(user_params, intersect_out, enh_bed_dir, all_reg_regions, time_string):
     '''
-    Processes enhancers on a tissue-by-tissue basis. Takes in an already filtered set of
-    peaks and partitions them by tissue-type. Annotation is then performed individually
-    and the combined results concatenated into a single file
+    Processes enhancers on a tissue-by-tissue basis. Annotation is performed individually
+    by annotating peaks for a given tissue type to their respective tissue-specific enhancers
+    and the combined results 
+    concatenated into a single file
     '''
-
-
 
     file_prefix = intersect_out.rstrip(".bed")
     tissue_peak_beds = []
     tissue_intersect_beds = []
     for tissue in user_params["tissue_types"]:
         # print(tissue)
-        enhancer_bed = bed_dir + "/" + tissue + ".bed"                              # Write enhancers to regulatory region file
+        enhancer_bed = enh_bed_dir + "/" + tissue + ".bed"   # Write enhancers to regulatory region file
         if not os.path.isfile(enhancer_bed):
+            print(enhancer_bed, " is not an enhancer bed file")
             continue
 
-        temp_peaks_file = pwd + "/intermediates/annotation_"+ tissue +"_" + time_string + ".bed"
-        tissue_peak_beds.append(temp_peaks_file)
+        temp_peaks_file = pwd + "/intermediates/annotation_"+ tissue +"_" + time_string + ".bed"   # Temporary, tissue-specific peak file
+        print(temp_peaks_file)
+        tissue_peak_beds.append(temp_peaks_file)                                                            
         tissue_intersect = file_prefix+"_tempintersect_"+tissue+".bed"
-        tissue_intersect_beds.append(tissue_intersect)
+        tissue_intersect_beds.append(tissue_intersect)                                                      
 
-        # peak_subset = (
-        #                 Peaks.query.filter(Peaks.tissue_types.in_([tissue]))
-        #                 .filter(Peaks.transcription_factors.in_(user_params["transcription_factors"]))
-        #                 )
-
-        # convert_query_to_file(peaks_column_list, peak_subset, user_params, temp_peaks_file)
-
-        try:
+        try:    # write enhancer regions to all regulatory regions
             with open(enhancer_bed, "r") as eb:
                 with open(all_reg_regions, "a") as reg:
                     for line in eb:
@@ -683,6 +681,13 @@ def process_enhancers(user_params, intersect_out, bed_dir, all_reg_regions, time
         os.system("touch "+intersect_out)
     else:
         os.system("cat "+ intersect_files+ " > "+intersect_out)
+
+    for f in tissue_intersect_beds:
+        try:
+            os.remove(f)
+        except:
+            print("Can't dispose of intersect file: " + f)
+            continue
 
 def write_dict_tsv(tg_table, all_genes, all_tfs, table_write, tf_set):
     '''
@@ -751,6 +756,7 @@ def parse_enhancer(user_params, anno_file, tf_gene_table, full_peak_bed):
     print("parsing enhancer")
     print("anno", anno_file)
     line_count = 0
+    enh_add_count = 0
     with open(full_peak_bed, "a") as full:
         with open(anno_file, "r") as anno:
             # print(tf_gene_table["PAX7"].keys())
@@ -771,20 +777,21 @@ def parse_enhancer(user_params, anno_file, tf_gene_table, full_peak_bed):
                 gene_id = p_l[6]
                 ori_peak_tf = p_l[17]
 
-                print(p_l, "enhancer anno line")
+                # print(p_l, "enhancer anno line")
 
                 # ori_peak_tf = Peaks.query.filter(Peaks.id==peak_id)[0].transcription_factors
-
+                
                 if gene_id in tf_gene_table:
 
                     # print("CHECK gene")
                     if ori_peak_tf in tf_gene_table[gene_id]:
                         # print("CHECK 2, added")
+                        enh_add_count += 1
                         tf_gene_table[gene_id][ori_peak_tf] += 1
                 else:
                     print("Did not pass Check 1 ", gene_id)
                 line_count += 1
-
+    print("enhancer add count: ", enh_add_count)
 
 def parse_promoter(user_params, anno_file, tf_gene_table, full_peak_bed):
     '''
@@ -878,16 +885,15 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissue
     to_be_sorted = []
 
     def write_tissue(tissue_file, line):
-        write_line = line[3:] + line[:3]
         if os.path.exists(tissue_file):
             with open(tissue_file, "a") as tf:
-                tf.write("\t".join(write_line) + "\n")
+                tf.write(line)
         else:
             os.system("touch "+tissue_file)
             removal_bin.append(tissue_file)
             to_be_sorted.append(tissue_file)
             with open(tissue_file, "a") as tf:
-                tf.write("\t".join(write_line) + "\n")
+                tf.write(line)
 
     if not os.path.exists(out_file_path):
         os.system("touch "+out_file_path)
@@ -916,7 +922,7 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissue
                 p_line = line.rstrip("\n").split("\t")
                 # print(p_line)
                 if constraints_met(p_line, user_params, "peaks"):
-                    write_tissue(pwd + "/intermediates/annotation_"+ p_line[11] +"_" + time_string + ".bed", p_line)
+                    write_tissue(pwd + "/intermediates/annotation_"+ p_line[11] +"_" + time_string + ".bed", "\t".join(p_line)+"\n")
                     out.write("\t".join(p_line)+"\n")
                     num_pass_peaks += 1
     print("number of passed peaks: "+str(num_pass_peaks))

@@ -2,6 +2,19 @@
 /* Added Manually                                                                 */
 /*********************************************************************************/
 
+	.checkpoint
+	{
+		border-color: #ddd;
+		border-width: thick;
+		background: transparent;
+		height: 5vh;
+	}
+
+	#check0
+	{
+		background: yellow;
+	}
+
 	#home_title
 	{
 		color: white;
