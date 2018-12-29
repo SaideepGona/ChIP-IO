@@ -1,0 +1,33 @@
+
+
+time stamp: 2018-12-28_11:05:33.382703
+
+promoter: True
+
+enhancer: False
+
+transcription_factors: CTCF
+
+tissue_types: Jurkat,_clone_E6-1_T_lymphocyte,adipose_tissue,extraembryonic_component,prostate_gland,NA,Epithelial_cells_immortalized_with_hTERT,epithelium,vasculature,lung_carcinoma_cells,T-acute_lymphoblastic_leukemia_(T-ALL)_cell_line,brain,skin_of_body,embryo,lymphoid_tissue,esophagus,EBV_positive_B_lymphocyte_line,Breast_cancer_derived_cell_line,blood,gonad,None,Human_keratinocytes,human_hepatic_stellate_cells,uterus,bronchus,Th1,Epstein-Barr_Virus_transformed_lymphoblastoid,blood_vessel,vein,vagina,spinal_cord,breast_carcinoma_cell_line,CD133+_expanded_UCB,stomach,HSPC,EBV_positive_B-cells,liver,lung,kidney,penis,corneal_epithelium_cell_(CEC)_line,neonatal_human_foreskin_fibroblasts_(primary_culture_cells),placenta,CD34+_derived_erythroblasts,breast,bodily_fluid,pancreas,nerve,myelogenous_leukaemia,large_intestine,musculature_of_body,thyroid_gland,lymph_node,peripheral_blood_mononuclear_cells_(PBMCs),bone_element,spleen,mammary_gland,limb,Leukemic_T-cell,lymphoblastoid,connective_tissue,artery,colorectal_carcinoma,eye,adrenal_gland,testis,intestine,KSHV_positive_B_cell_lymphoma,ovary,heart
+
+pileup: 1.0
+
+log_p: 3.0
+
+fold_enrichment: 1.0
+
+log_q: 3.0
+
+dist_tss_upstream: 10000
+
+dist_tss_downstream: 1000
+
+peak_count: 1
+
+include_motif_sites: <input checked id="include_motif_sites" name="include_motif_sites" type="checkbox" value="y">
+
+motif_discovery: <input id="motif_discovery" name="motif_discovery" type="checkbox" value="y">
+
+email: send.results.here@peaks.com
+
+******************************************************************************

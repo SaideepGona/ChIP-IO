@@ -538,7 +538,10 @@ def build_readme(time_string, user_params, readme_file):
         "\n\n******************************************************************************")
 
 def create_promoters(user_params, filename, all_reg_regions):
-
+    '''
+    Takes in user-defined promoter definition and constructs promoters from known
+    TSS sites
+    '''
     chrom_lengths = {}
     with open(pwd + "/GRCh38/chrom_lengths.txt") as cl:
         for line in cl:
@@ -1159,9 +1162,15 @@ def download_file(file_path):
     if file_path is None:
         print("path is None")
     try:
+        time = "_".join(str(datetime.utcnow()).split(" "))
+        down_log = pwd + "/logs/download_logs.txt"
+        with open(down_log, "a") as dl:
+            dl.write(time + " | " + file_path_proper +
+            "\n\n******************************************************************************")
         return send_file(file_path_proper, as_attachment=True)
     except Exception as e:
         print("problem with path")
+        return 
     # return render_template('downloads.html', download_files = download_files)
 
 @app.route("/download_results/<query_id>", methods=['GET', 'POST'])
