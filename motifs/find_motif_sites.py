@@ -11,8 +11,16 @@ import pickle
 
 pwd = os.getcwd()
 
-reference_genome = pwd+"/../GRCh38/GRCh38.p12.genome.fa"
+# reference_genome = pwd+"/../GRCh38/GRCh38.p12.genome.fa"
+reference_genome = pwd + "/all_regs/allregs.fa"
 occurences_dir = pwd + "/motif_occurences/"
+
+# GENERAL ANALYSIS
+
+
+
+# TISSUE SPECIFIC ANALYSIS
+
 # metadata_path = pwd + "/../pass_metadata/metadata.pkl"     
 
 # metadata_dict = pickle.load(open(metadata_path, "rb"))      # Contains metadata on all datasets
@@ -39,6 +47,7 @@ for pf in prior_files_all:
 print(len(prior_files_wig))
 # prior_tissues = set([x.split("/")[-1].rstrip(".wig") for x in prior_files])
 
+p_thresh="4"
 
 def exe(command):
     joint = " ".join(command)
@@ -54,27 +63,34 @@ def find_motifs_for(motif_file, tissue_prior, ref, occurences_dir):
     tissue_prior_dist = tissue_prior.rstrip(".wig") + ".dist"
     tf = motif_file.split("/")[-1].rstrip(".meme")
     tissue = tissue_prior.split("/")[-1].rstrip(".wig")
-    output_dir = occurences_dir + tf+"_"+tissue+"_occurences/"
+    output_dir = occurences_dir + tf+"_"+tissue+"_occurences.tsv"
 
     motif_find = [
         "fimo",
-        "--o",
-        output_dir,
-        "--psp",
-        tissue_prior,
-        "--prior-dist",
-        tissue_prior_dist,
+        # "--o",
+        # output_dir,
+        # "--psp",
+        # tissue_prior,
+        # "--prior-dist",
+        # tissue_prior_dist,
+        "--text",
+        "--thresh",
+        "1e-"+p_thresh,
+        "--verbosity",
+        "4",
         motif_file,
-        ref
+        ref,
+        ">",
+        output_dir
     ]
+
+    if os.path.isfile(output_dir):
+        print(output_dir)
+        return
 
     exe(motif_find)
 
 # Cycle through all motifs and tissues
-
+tissue = "general"
 for motif in motif_files:
-    for tissue in prior_files_wig:
-        find_motifs_for(motif, tissue, reference_genome, occurences_dir)
-
-        break
-    break
+    find_motifs_for(motif, tissue, reference_genome, occurences_dir)

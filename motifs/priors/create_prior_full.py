@@ -45,13 +45,13 @@ def order_wig(valid_headers_list, edit_file, new_file):
     headers = [("fixedStep chrom="+x+" start=1 step="+wig_step+" span="+wig_step+"\n") for x in valid_headers_list]
     remove = False
     current_header = ""
-    with open(edit_file, "r") as e_f:
-        with open(new_file, "w+") as n_f:
-            first_line = read_first_line(edit_file)
-            n_f.write(first_line)
-            for header in headers:
-                n_f.write(header)
-                print(header, " written")
+    with open(new_file, "w+") as n_f:
+        first_line = read_first_line(edit_file)
+        n_f.write(first_line)
+        for header in headers:
+            n_f.write(header)
+            print(header, " written")
+            with open(edit_file, "r") as e_f:
                 for line in e_f:
                     if line[0] == "f":
                         print(line)
@@ -129,7 +129,7 @@ wig_edited = bigwig_file.rstrip(".bigWig") + "_edited.wig"
 # edit_wig(valid_chroms, wig, wig_edited)              # TOGGLE
 print("Sorting wig file to match reference")
 wig_final = bigwig_file.rstrip(".bigWig") + "_final.wig"
-order_wig(valid_chroms, wig_edited, wig_final)              # TOGGLE
+# order_wig(valid_chroms, wig_edited, wig_final)              # TOGGLE
 
 # Create priors
 remove_dir = [

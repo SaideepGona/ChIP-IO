@@ -29,20 +29,30 @@ from wtforms_html5 import AutoAttrMeta
 import multiprocessing
 
 #TODO Motif-mapping for non-ChIP-Seq TFs, build new database
-#TODO Motif-finding from mapped peaks
-#TODO Epigenetic priors
-#TODO Do peak-subsetting in memory to reduce number of write operations.
-#TODO Memory-efficient implementation - This is pretty tough
-#TODO Reorganize python code
-#TODO Parallelize IO to improve speed
+#TODO Motif-finding from mapped peaks 
+#TODO Subset peaks based on the presence of an overlapping motif(should it occur near summit?)
+#TODO With epigenetic priors
+#TODO Improve searchability via google
 #TODO Standardize tissue names
-#TODO Get email sending working
-#TODO Start writing formal writeup for BioArXive
+#TODO Loading bar for query
 #TODO Convert hg19 studies and update input peaks + metadata
+#TODO Start writing formal writeup for BioArXive
+#TODO Figure out how to limit processes with gunicorn
 #TODO Collect more motifs from hocomoco, etc.
+#TODO Reorganize python code
 #TODO More data cleaning and processing
 #TODO Get ansible deployment running
-#TODO Loading bar for query
+#TODO Set up a test server with ansible deployment
+#TODO Parallelize IO to improve speed
+#TODO Get email sending working
+#TODO Incorporate TRRUST interactions
+#TODO Similar work includes TRANSFAC, iRegulon, GTRD
+#TODO Do peak-subsetting in memory to reduce number of write operations.
+
+# MEETING NOTES
+#   Status of motif finding
+#   Payment - Allison 
+#   Upcoming semester plans
 
 app = Flask(__name__)
 
@@ -87,7 +97,6 @@ metadata_dict = pickle.load(open(metadata_path, "rb"))      # Contains metadata 
 all_peaks = pwd+"/all_peaks.tsv"
 
 # New params
-
 
 # Database Specs
 
@@ -476,6 +485,7 @@ def run_pipeline(user_params):
 
 # def filter_peaks(user_params, peak_array):
 
+
 def make_check(num, time_string, removal):
     check_file = pwd+"/intermediates/" + time_string + "_check_" + str(num)
     print(check_file, "Checkfile", num)
@@ -630,7 +640,7 @@ def motif_discovery(bed_file, time_string, output_file):
         "-p",
         str(num_cpus),
         "-o",
-        output_file
+        output_file 
     ]
 
     os.system(" ".join(convert_bed_fasta))
@@ -884,8 +894,16 @@ def constraints_met(data, user_params, constraints_type):
             return False
 
 def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissues, time_string, removal_bin):
+    '''
+    filters the full set of peaks based on the user provided parameters and 
+    pre-computed motif occurences
+    '''
 
-    to_be_sorted = []
+    def subset_peaks_motif_occurences():
+        '''
+        Takes in a set of peaks and associated metadata and subsets them based on whether there exists a known 
+        motif occurence for that peak's TF
+        '''
 
     def write_tissue(tissue_file, line):
         if os.path.exists(tissue_file):
@@ -897,6 +915,8 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissue
             to_be_sorted.append(tissue_file)
             with open(tissue_file, "a") as tf:
                 tf.write(line)
+
+    to_be_sorted = []
 
     if not os.path.exists(out_file_path):
         os.system("touch "+out_file_path)
