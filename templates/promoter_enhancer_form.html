@@ -110,7 +110,8 @@
                     <br>
 
                 <h1 class="hover-text-header" data-toggle="tooltip" data-placement="right" 
-                    title="Modifify definition of promoter/enhancer regions">
+                    title="Modify definition of promoter/enhancer regions. Promoter range definition
+                    is 10000 bp upstream and 1000 downstream of TSS">
                     Regulatory Region Parameters</h1><br>
 
                     <p
@@ -164,6 +165,20 @@
                             STILL IN DEVELOPMENT<br>
                             {{ form.include_motif_sites.label }}
                             {{ form.include_motif_sites(size=32) }}
+                    </p>
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
+                    title="<div>
+                        If motif data will be incorporated, choose a p-value cutoff to be used
+                        </div>">
+                            STILL IN DEVELOPMENT
+                            NOTE THE P-VALUE vs. Q-VALUE DISTINCTION IN THE FIMO PAPER
+                            <br>
+                            {{ form.motif_p_val.label }}
+                            {{ form.motif_p_val(size=32) }}
                     </p>
                     <p
                     class="hover-text-header" 

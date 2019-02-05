@@ -28,6 +28,11 @@ from wtforms_html5 import AutoAttrMeta
 
 import multiprocessing
 
+#TODO Calculate more complex distributions
+#TODO Include aliases in gene target lists
+#TODO More data cleaning and processing
+#TODO Quantify and reasses data collection strategies
+#TODO Collect data for mouse
 #TODO Motif-mapping for non-ChIP-Seq TFs, build new database
 #TODO Motif-finding from mapped peaks 
 #TODO Subset peaks based on the presence of an overlapping motif(should it occur near summit?)
@@ -37,10 +42,8 @@ import multiprocessing
 #TODO Loading bar for query
 #TODO Convert hg19 studies and update input peaks + metadata
 #TODO Start writing formal writeup for BioArXive
-#TODO Figure out how to limit processes with gunicorn
 #TODO Collect more motifs from hocomoco, etc.
 #TODO Reorganize python code
-#TODO More data cleaning and processing
 #TODO Get ansible deployment running
 #TODO Set up a test server with ansible deployment
 #TODO Parallelize IO to improve speed
@@ -49,10 +52,6 @@ import multiprocessing
 #TODO Similar work includes TRANSFAC, iRegulon, GTRD
 #TODO Do peak-subsetting in memory to reduce number of write operations.
 
-# MEETING NOTES
-#   Status of motif finding
-#   Payment - Allison 
-#   Upcoming semester plans
 
 app = Flask(__name__)
 
@@ -138,6 +137,15 @@ peaks_column_list = [
             "tissue_types",
             "experiment_accession"
             ]
+
+motif_occs_column_list = [
+            "log_p",
+            "score",
+            "gene_target"
+            "transcription_factors",
+            "gene",
+            "tissue_types"
+]
 
 class Peaks(db.Model):
     '''
@@ -244,6 +252,8 @@ class DownloadFiles():
         self.preset_files_strip = preset_files_strip
         self.num_preset_files = len(preset_files)
         self.preset_mappings = [parse_f_name(x) for x in preset_files_strip]
+        print(self.preset_files_strip)
+        print(self.preset_mappings)
 
     def collect_peaks(self, peak_dir):
         peak_files = glob.glob(pwd + "/" + peak_dir + "/*")
@@ -303,11 +313,12 @@ class ParameterForm(FlaskForm):
 
 
     # distance_from_TSS = IntegerField('Distance from TSS', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
-    distance_from_TSS_upstream = IntegerField('Distance from TSS Upstream', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
-    distance_from_TSS_downstream = IntegerField('Distance from TSS Downstream', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
+    distance_from_TSS_upstream = IntegerField('Distance from TSS Upstream', validators=[NumberRange(0, 10000, message="Must be an integer in range [0,100000]")])
+    distance_from_TSS_downstream = IntegerField('Distance from TSS Downstream', validators=[NumberRange(0, 1000, message="Must be an integer in range [0,100000]")])
     peak_count = IntegerField('Regulatory Peak Count', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
 
     include_motif_sites = BooleanField("Motif Inclusion")
+    motif_p_val = FloatField('-log(p) Value', validators=[DataRequired(message="logp for motifs not right")])
     motif_discovery = BooleanField('Motif Discovery')
 
     email = StringField("Email", validators=[DataRequired(message="email not right")])
@@ -336,11 +347,16 @@ def run_pipeline(user_params):
     with open(all_reg_regions, "w") as all_reg:
         print(all_reg_regions, " all regulatory regions stored here")
 
+    # Perform filtering of ChIP-Seq peaks
     temp_peaks_file = pwd + "/intermediates/" + "temppeaks_" + time_string + ".bed"
-    removable_junk.append(temp_peaks_file)
-    # convert_query_to_file(peaks_column_list, peak_subset, user_params, temp_peaks_file)        # Creates peak bed file   
+    removable_junk.append(temp_peaks_file) 
     filter_peaks(peaks_column_list, user_params, all_peaks, temp_peaks_file, True, time_string, removable_junk)
     sort_in_place(temp_peaks_file)
+
+    # Perform similar filtering of motif occurences
+    temp_motif_occs_file = pwd + "/intermediates/tempmotifs_" + time_string + ".bed"
+    removable_junk.append(temp_motif_occs_file)
+    filter_peaks(motif_occs_column_list, user_params, )
 
     step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Peaks Queried and Promoters Created")
@@ -899,12 +915,6 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissue
     pre-computed motif occurences
     '''
 
-    def subset_peaks_motif_occurences():
-        '''
-        Takes in a set of peaks and associated metadata and subsets them based on whether there exists a known 
-        motif occurence for that peak's TF
-        '''
-
     def write_tissue(tissue_file, line):
         if os.path.exists(tissue_file):
             with open(tissue_file, "a") as tf:
@@ -952,6 +962,58 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissue
     for f in to_be_sorted:
         sort_in_place(f)
 
+def filter_motif_occs(columns, user_params, in_file_path, out_file_path, build_tissues, time_string, removal_bin):
+    '''
+    filters the full set of peaks based on the user provided parameters and 
+    pre-computed motif occurences
+    '''
+
+    def write_tissue(tissue_file, line):
+        if os.path.exists(tissue_file):
+            with open(tissue_file, "a") as tf:
+                tf.write(line)
+        else:
+            os.system("touch "+tissue_file)
+            removal_bin.append(tissue_file)
+            to_be_sorted.append(tissue_file)
+            with open(tissue_file, "a") as tf:
+                tf.write(line)
+
+    to_be_sorted = []
+
+    if not os.path.exists(out_file_path):
+        os.system("touch "+out_file_path)
+        removal_bin.append(out_file_path)
+        to_be_sorted.append(out_file_path)
+
+    # write_dict = {
+    #     "experiment_accession": p_f.rstrip("_peaks.xls").split("/")[-1],
+    #     "tissue_types": tissue,
+    #     "transcription_factors": metadata_dict_ref[exp_acc][1],
+    #     "chrom": p_l[0],
+    #     "start": str(int(p_l[1]) - 1),
+    #     "end": str(int(p_l[2]) - 1),
+    #     "length": p_l[3],
+    #     "summit": str(int(p_l[4]) - 1),
+    #     "pileup": p_l[5],
+    #     "log_p": p_l[6],
+    #     "fold_enrichment": p_l[7],
+    #     "log_q": p_l[8]
+    # }
+
+    num_pass_mos = 0
+    with open(in_file_path, "r") as infile:
+        with open(out_file_path, "a") as out:
+            for line in infile:
+                p_line = line.rstrip("\n").split("\t")
+                # print(p_line)
+                if constraints_met(p_line, user_params, "peaks"):
+                    write_tissue(pwd + "/intermediates/annotation_"+ p_line[11] +"_" + time_string + ".bed", "\t".join(p_line)+"\n")
+                    out.write("\t".join(p_line)+"\n")
+                    num_pass_peaks += 1
+    print("number of passed peaks: "+str(num_pass_peaks))
+    for f in to_be_sorted:
+        sort_in_place(f)
 
 def convert_query_to_file(columns, query_result, user_params, file_path):
     '''

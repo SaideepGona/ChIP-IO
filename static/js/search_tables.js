@@ -73,7 +73,7 @@ function presetsFileSearch() {
 function peakFileSearch() {
     // Declare variables 
     var inputs, filters, table, tr, td, i;
-    inputs = [document.getElementById("pfileFileNameInput"), document.getElementById("pfileTFInput"), document.getElementById("pfileTissueInput")];
+    inputs = [document.getElementById("peakFileNameInput"), document.getElementById("peakTFInput"), document.getElementById("peakTissueInput")];
     filters = [inputs[0].value.toUpperCase(), inputs[1].value.toUpperCase(), inputs[2].value.toUpperCase()];
     table = document.getElementById("peakFileTable");
     tr = table.getElementsByTagName("tr");

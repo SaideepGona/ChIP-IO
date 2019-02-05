@@ -31,7 +31,7 @@
                 {% for file_ind in range(download_files.num_preset_files) %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('download_file', file_path = download_files.unpath_preset_files[loop.index]) }}">
+                        <a href="{{ url_for('download_file', file_path = download_files.unpath_preset_files[file_ind]) }}">
                             <button style="height: 100%; width: 100%" class='btn btn-secondary'>{{ download_files.preset_files_strip[file_ind] }}</button>
                         </a>    
                     </td>
