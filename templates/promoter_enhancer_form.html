@@ -160,7 +160,7 @@
                     data-html="true" 
                     title="<div>
                         Positive selection will allow incorporation of predicted motif binding sites into 
-                        results. These sites are filtered through incorporation of epigenetic priors.
+                        results. These sites are filtered through incorporation of epigenetic priors (Priors are still in development).
                         </div>">
                             STILL IN DEVELOPMENT<br>
                             {{ form.include_motif_sites.label }}
@@ -171,27 +171,20 @@
                     data-toggle="tooltip" 
                     data-placement="right" 
                     data-html="true" 
-                    title="<div>
-                        If motif data will be incorporated, choose a p-value cutoff to be used
-                        </div>">
-                            STILL IN DEVELOPMENT
-                            NOTE THE P-VALUE vs. Q-VALUE DISTINCTION IN THE FIMO PAPER
-                            <br>
-                            {{ form.motif_p_val.label }}
-                            {{ form.motif_p_val(size=32) }}
+                    title="<img src={{ url_for('static',filename='images/fold_enrichment_hist.png') }}>
+                        </img>">
+                            {{ form.motif_score.label }}<br>
+                            {{ form.motif_score(size=32) }}
                     </p>
                     <p
                     class="hover-text-header" 
                     data-toggle="tooltip" 
                     data-placement="right" 
                     data-html="true" 
-                    title="<div>
-                        Positive selection will allow incorporation of predicted motif binding sites into 
-                        results. These sites are filtered through incorporation of epigenetic priors.
-                        </div>">
-                            STILL IN DEVELOPMENT<br>
-                            {{ form.motif_discovery.label }}
-                            {{ form.motif_discovery(size=32) }}
+                    title="<img src={{ url_for('static',filename='images/fold_enrichment_hist.png') }}>
+                        </img>">
+                            {{ form.motif_p_val.label }}<br>
+                            {{ form.motif_p_val(size=32) }}
                     </p>
                    
                 <!-- <h1>

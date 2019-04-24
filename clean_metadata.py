@@ -7,7 +7,7 @@ This script is intended to:
 3.) Standardize TF names between studies
 4.) Establish some pseudonym matching and modify metadata accordingly
 5.) Output finalized files into the correct directories
-This should be run as an initialization step prior to constructing database. 
+This should be run as an initialization step prior to constructing the database/starting files. 
 '''
 
 import os,sys,glob
@@ -22,15 +22,18 @@ pwd = os.getcwd()
 if len(sys.argv) > 1:
     tf_standard_path = sys.argv[1]
     metadata_dir = pwd + sys.argv[2]
-    pass_metadata_dir = pwd + sys.argv[3]                   #"pass" implies that study targets a valid tf
+    pass_metadata_dir = pwd + sys.argv[3]    #"pass" implies that study targets a valid tf
     all_peaks_dir = pwd + sys.argv[4]
     pass_peaks_dir = pwd + sys.argv[5]
+    motif_occurences_dir = pwd + sys.argv[6]
 else:
     tf_standard_path = pwd + "/all_tfs_list.txt"
     metadata_dir = pwd + "/metadata/tissue_types.pkl"
-    pass_metadata_dir = pwd + "/pass_metadata/metadata.pkl"                     #"pass" implies that study targets a valid tf
+    pass_metadata_dir = pwd + "/pass_metadata/metadata.pkl"     #"pass" implies that study targets a valid tf
     all_peaks_dir = pwd + "/peaks/"
     pass_peaks_dir = pwd + "/pass_peaks/"
+    motif_occurences_dir = pwd + "/motifs/motif_occurences/"
+
 
 # IO END *********************************************************
 
@@ -212,7 +215,6 @@ class CleanTF():
         for study in valid_study_files:
             os.system("cp " + all_peaks_dir + study + " " + pass_peaks_dir)
         
-
 
 standard_cleaner = CleanTF(tf_standard_path, 80.0)
 standard_cleaner.within_standard_fuzzy_mapping_gen()

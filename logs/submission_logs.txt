@@ -31,3 +31,35 @@ motif_discovery: <input id="motif_discovery" name="motif_discovery" type="checkb
 email: send.results.here@peaks.com
 
 ******************************************************************************
+
+time stamp: 2019-01-18_19:01:38.053106
+
+promoter: True
+
+enhancer: True
+
+transcription_factors: CTCF
+
+tissue_types: brain
+
+pileup: 1.0
+
+log_p: 3.0
+
+fold_enrichment: 1.0
+
+log_q: 3.0
+
+dist_tss_upstream: 10000
+
+dist_tss_downstream: 1000
+
+peak_count: 1
+
+include_motif_sites: <input checked id="include_motif_sites" name="include_motif_sites" type="checkbox" value="y">
+
+motif_discovery: <input id="motif_discovery" name="motif_discovery" type="checkbox" value="y">
+
+email: send.results.here@peaks.com
+
+******************************************************************************

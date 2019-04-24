@@ -28,30 +28,36 @@ from wtforms_html5 import AutoAttrMeta
 
 import multiprocessing
 
-#TODO Calculate more complex distributions
-#TODO Include aliases in gene target lists
-#TODO More data cleaning and processing
-#TODO Quantify and reasses data collection strategies
-#TODO Collect data for mouse
-#TODO Motif-mapping for non-ChIP-Seq TFs, build new database
+#TODO Split application.py into app_modules
+#TODO Finish motif mapping!
+    # Reorganize motif mapping occurences to be bed files
+    # Modify the motif filtering to match the bed file
+    # Treat the motifs as peak files in terms of overlap testing
+    # Generate seperate and joint count tables as output
+
 #TODO Motif-finding from mapped peaks 
-#TODO Subset peaks based on the presence of an overlapping motif(should it occur near summit?)
-#TODO With epigenetic priors
-#TODO Improve searchability via google
+#TODO Motif finding with epigenetic priors
 #TODO Standardize tissue names
-#TODO Loading bar for query
-#TODO Convert hg19 studies and update input peaks + metadata
+#TODO Calculate more complex distributions of peak p-values
 #TODO Start writing formal writeup for BioArXive
 #TODO Collect more motifs from hocomoco, etc.
+#TODO Subset peaks based on the presence of an overlapping motif(should it occur near summit?)
+#TODO Loading bar for query
 #TODO Reorganize python code
 #TODO Get ansible deployment running
 #TODO Set up a test server with ansible deployment
 #TODO Parallelize IO to improve speed
+#TODO Include aliases in gene target lists
 #TODO Get email sending working
 #TODO Incorporate TRRUST interactions
-#TODO Similar work includes TRANSFAC, iRegulon, GTRD
-#TODO Do peak-subsetting in memory to reduce number of write operations.
+#TODO Collect data for mouse
+#TODO Improve searchability via google
 
+# DONE?
+#TODO Convert hg19 studies and update input peaks + metadata
+
+# OTHER COMMENTS
+# Similar work includes TRANSFAC, iRegulon, GTRD
 
 app = Flask(__name__)
 
@@ -94,6 +100,7 @@ metadata_path = pwd + "/pass_metadata/metadata.pkl"
 metadata_dict = pickle.load(open(metadata_path, "rb"))      # Contains metadata on all datasets
 
 all_peaks = pwd+"/all_peaks.tsv"
+all_motif_occs = pwd + "/all_motif_occs.tsv"
 
 # New params
 
@@ -215,7 +222,6 @@ class Query_History(db.Model):
 
     date_posted = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
 
-
 class Presets(db.Model):
     '''
     Store a set of preset TF matrices for rapid download
@@ -318,8 +324,10 @@ class ParameterForm(FlaskForm):
     peak_count = IntegerField('Regulatory Peak Count', validators=[NumberRange(0, 100000, message="Must be an integer in range [0,100000]")])
 
     include_motif_sites = BooleanField("Motif Inclusion")
-    motif_p_val = FloatField('-log(p) Value', validators=[DataRequired(message="logp for motifs not right")])
+
     motif_discovery = BooleanField('Motif Discovery')
+    motif_p_val = FloatField('-log(p) Value', validators=[DataRequired(message="logp for motifs not right")])
+    motif_score = FloatField('Fimo score', validators=[DataRequired(message="Score motifs not right")])
 
     email = StringField("Email", validators=[DataRequired(message="email not right")])
 
@@ -339,7 +347,7 @@ def run_pipeline(user_params):
     tf_set = set(user_params["transcription_factors"])
     tissue_set = set(user_params["tissue_types"])
 
-    removable_junk = []
+    removable_junk = []                         # Store disposable file paths here
 
     # All regulatory regions columns: chr   start   end    gene    region_type
     all_reg_regions = pwd + "/intermediates/" + time_string + "_allregregions.bed"         # Place all regulatory regions for current query here
@@ -350,13 +358,15 @@ def run_pipeline(user_params):
     # Perform filtering of ChIP-Seq peaks
     temp_peaks_file = pwd + "/intermediates/" + "temppeaks_" + time_string + ".bed"
     removable_junk.append(temp_peaks_file) 
+    # columns, user_params, in_file_path, out_file_path, build_tissues, time_string, removal_bin   
     filter_peaks(peaks_column_list, user_params, all_peaks, temp_peaks_file, True, time_string, removable_junk)
     sort_in_place(temp_peaks_file)
 
     # Perform similar filtering of motif occurences
     temp_motif_occs_file = pwd + "/intermediates/tempmotifs_" + time_string + ".bed"
     removable_junk.append(temp_motif_occs_file)
-    filter_peaks(motif_occs_column_list, user_params, )
+    filter_motif_occs(motif_occs_column_list, user_params, all_motif_occs, temp_motif_occs_file, False, time_string, removable_junk)
+    # sort_in_place(temp_motif_occs_file)
 
     step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Peaks Queried and Promoters Created")
@@ -896,6 +906,17 @@ def constraints_met(data, user_params, constraints_type):
             return True
         else:
             return False
+    
+    elif constraints_type == "motif_occs":
+
+        if (float(data[7]) > user_params["motif_p_val"] and
+            float(data[6]) > user_params["motif_score"]
+        ):
+            # print("Peaks constraints satisfied")
+            return True
+        else:
+            return False
+
     elif constraints_type == "annotations":
         try:
             int(data[9])
@@ -908,8 +929,9 @@ def constraints_met(data, user_params, constraints_type):
             return True
         else:
             return False
+    
 
-def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissues, time_string, removal_bin):
+def filter_peaks(columns, user_params, in_file_path, out_file_path, time_string, removal_bin):
     '''
     filters the full set of peaks based on the user provided parameters and 
     pre-computed motif occurences
@@ -958,13 +980,14 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, build_tissue
                     write_tissue(pwd + "/intermediates/annotation_"+ p_line[11] +"_" + time_string + ".bed", "\t".join(p_line)+"\n")
                     out.write("\t".join(p_line)+"\n")
                     num_pass_peaks += 1
+
     print("number of passed peaks: "+str(num_pass_peaks))
     for f in to_be_sorted:
         sort_in_place(f)
 
-def filter_motif_occs(columns, user_params, in_file_path, out_file_path, build_tissues, time_string, removal_bin):
+def filter_motif_occs(columns, user_params, in_file_path, out_file_path, time_string, removal_bin):
     '''
-    filters the full set of peaks based on the user provided parameters and 
+    filters the full set of motif occurences based on the user provided parameters and 
     pre-computed motif occurences
     '''
 
@@ -1007,10 +1030,11 @@ def filter_motif_occs(columns, user_params, in_file_path, out_file_path, build_t
             for line in infile:
                 p_line = line.rstrip("\n").split("\t")
                 # print(p_line)
-                if constraints_met(p_line, user_params, "peaks"):
+                if constraints_met(p_line, user_params, "motif_occs"):
                     write_tissue(pwd + "/intermediates/annotation_"+ p_line[11] +"_" + time_string + ".bed", "\t".join(p_line)+"\n")
                     out.write("\t".join(p_line)+"\n")
-                    num_pass_peaks += 1
+                    num_pass_mos += 1
+
     print("number of passed peaks: "+str(num_pass_peaks))
     for f in to_be_sorted:
         sort_in_place(f)
@@ -1088,6 +1112,8 @@ def promoter_form():
                         peak_count=1,
                         include_motif_sites=True,
                         motif_discovery=False,
+                        motif_p_val = 3,
+                        motif_score = 0,
                         email="send.results.here@peaks.com")
     if form.validate_on_submit():
         print("valid")
@@ -1134,6 +1160,8 @@ def enhancer_form():
                         peak_count=1,
                         include_motif_sites=True,
                         motif_discovery=False,
+                        motif_p_val = 3,
+                        motif_score = 0,
                         email="send.results.here@peaks.com")
     if form.validate_on_submit():
         query_data = build_query_hist(form)
@@ -1179,6 +1207,8 @@ def promoter_enhancer_form():
                         peak_count=1,
                         include_motif_sites=True,
                         motif_discovery=False,
+                        motif_p_val = 3,
+                        motif_score = 0,
                         email="send.results.here@peaks.com")
     if form.validate_on_submit():
         query_data = build_query_hist(form)
