@@ -28,12 +28,12 @@ from wtforms_html5 import AutoAttrMeta
 
 import multiprocessing
 
-#TODO Split application.py into app_modules
 #TODO Finish motif mapping!
     # Reorganize motif mapping occurences to be bed files
     # Modify the motif filtering to match the bed file
     # Treat the motifs as peak files in terms of overlap testing
     # Generate seperate and joint count tables as output
+    # TEST OUT CURRENT IMPLIMENTATION
 
 #TODO Motif-finding from mapped peaks 
 #TODO Motif finding with epigenetic priors
@@ -43,6 +43,7 @@ import multiprocessing
 #TODO Collect more motifs from hocomoco, etc.
 #TODO Subset peaks based on the presence of an overlapping motif(should it occur near summit?)
 #TODO Loading bar for query
+#TODO Split application.py into app_modules
 #TODO Reorganize python code
 #TODO Get ansible deployment running
 #TODO Set up a test server with ansible deployment
@@ -358,7 +359,6 @@ def run_pipeline(user_params):
     # Perform filtering of ChIP-Seq peaks
     temp_peaks_file = pwd + "/intermediates/" + "temppeaks_" + time_string + ".bed"
     removable_junk.append(temp_peaks_file) 
-    # columns, user_params, in_file_path, out_file_path, build_tissues, time_string, removal_bin   
     filter_peaks(peaks_column_list, user_params, all_peaks, temp_peaks_file, True, time_string, removable_junk)
     sort_in_place(temp_peaks_file)
 
@@ -366,26 +366,35 @@ def run_pipeline(user_params):
     temp_motif_occs_file = pwd + "/intermediates/tempmotifs_" + time_string + ".bed"
     removable_junk.append(temp_motif_occs_file)
     filter_motif_occs(motif_occs_column_list, user_params, all_motif_occs, temp_motif_occs_file, False, time_string, removable_junk)
-    # sort_in_place(temp_motif_occs_file)
 
     step_num = make_check(step_num, time_string, removable_junk)
-    print("||||||||||||||||||Peaks Queried and Promoters Created")
+    print("||||||||||||||||||Peaks Queried and Filtered")
 
     if user_params["promoter"] and not user_params["enhancer"]: # Promoter only
 
+        # Creates promoter regions bed file
         inter_promoter = pwd + "/intermediates/promoters_" + time_string + ".bed"
         removable_junk.append(inter_promoter)
         create_promoters(user_params, inter_promoter, all_reg_regions)
         os.system("sort -k 1,1 -k2,2n -o " + inter_promoter + " " +inter_promoter)
         print("promoters created")     
 
+        # Calculates peak-promoter intersection
         promoter_intersect = pwd + "/intermediates/" + "promintersect_" + time_string + ".bed"       # Computes intersect of peaks with promoter regions
         removable_junk.append(promoter_intersect)
         bed_intersect(inter_promoter, temp_peaks_file, promoter_intersect)
         sort_in_place(promoter_intersect)
 
+        # Calculates motif-promoter intersection
+        if user_params["include_motif_sites"]:
+            promoter_motif_intersect = pwd + "/intermediates/" + "prommotifintersect_" + time_string + ".bed"
+            removable_junk.append(promoter_motif_intersect)
+            bed_intersect(inter_promoter, temp_motif_occs_file, promoter_motif_intersect)
+            sort_in_place(promoter_motif_intersect)       
+
     elif user_params["enhancer"] and not user_params["promoter"]:   # Enhancer only
 
+        # Calculates enhancer-peak intersection
         enhancer_bed_dir = pwd + "/enhancer-gene/processed/tissue_beds/"
         intersect_output = pwd + "/intermediates/" + "annotation_" + time_string + ".bed"
         removable_junk.append(intersect_output)
@@ -393,47 +402,74 @@ def run_pipeline(user_params):
 
     elif user_params["promoter"] and user_params["enhancer"]:   # Promoter and Enhancer
 
+        # Creates promoter regions bed file
         inter_promoter = pwd + "/intermediates/promoters_" + time_string + ".bed"
         removable_junk.append(inter_promoter)
         create_promoters(user_params, inter_promoter, all_reg_regions)
         os.system("sort -k 1,1 -k2,2n -o " + inter_promoter + " " +inter_promoter)
         print("promoters created")     
 
-        enhancer_bed_dir = pwd + "/enhancer-gene/processed/tissue_beds/"
-        intersect_output = pwd + "/intermediates/" + "annotation_" + time_string + ".bed"
-        removable_junk.append(intersect_output)
-        process_enhancers(user_params, intersect_output, enhancer_bed_dir, all_reg_regions, time_string)      # Computes tissue-specific intersect of peaks with enhancers
-        sort_in_place(intersect_output)
-        print("enhancers processed")
+        # Calculates peak-promoter intersection
         promoter_intersect = pwd + "/intermediates/" + "promintersect_" + time_string + ".bed"       #Computes intersect of peaks with promoter regions
         removable_junk.append(promoter_intersect)
-
         bed_intersect(inter_promoter, temp_peaks_file, promoter_intersect)
         sort_in_place(promoter_intersect)
 
+        # Calculates motif-promoter intersection
+        if user_params["include_motif_sites"]:
+            promoter_motif_intersect = pwd + "/intermediates/" + "prommotifintersect_" + time_string + ".bed"
+            removable_junk.append(promoter_motif_intersect)
+            bed_intersect(inter_promoter, temp_motif_occs_file, promoter_motif_intersect)
+            sort_in_place(promoter_motif_intersect)
+
+        # Calculates enhancer-peak intersection
+        enhancer_bed_dir = pwd + "/enhancer-gene/processed/tissue_beds/"
+        enhancer_intersect = pwd + "/intermediates/" + "enhancerintersect_" + time_string + ".bed"
+        removable_junk.append(enhancer_intersect)
+        process_enhancers(user_params, enhancer_intersect, enhancer_bed_dir, all_reg_regions, time_string)      # Computes tissue-specific intersect of peaks with enhancers
+        sort_in_place(enhancer_intersect_output)
+        print("enhancers processed")
+
+        # Calculates enhancer-peak intersection
+        if user_params["include_motif_sites"]:
+            enhancer_motif_intersect = pwd + "/intermediates/" + "enhancermotifintersect_" + time_string + ".bed"
+            removable_junk.append(enhancer_motif_intersect)
+            process_enhancers(user_params, enhancer_motif_intersect, enhancer_bed_dir, all_reg_regions, time_string)      # Computes tissue-specific intersect of peaks with enhancers
+            sort_in_place(enhancer_motif_intersect)
+
+
     step_num = make_check(step_num, time_string, removable_junk)
-    print("||||||||||||||||||Peaks Annotated")
+    print("||||||||||||||||||Peaks and Motifs Intersected")
 
     final_peak_file = pwd + "/intermediates/" + time_string + "_finalpeaks.bed"    # Place all the peaks which successfully match regulatory regions here.
     removable_junk.append(final_peak_file)
     with open(final_peak_file, "w") as final:
         print(final_peak_file, "contains all final peaks")
     tg_table = create_empty_table(all_genes, all_tfs, tf_set)           # Create empty tf-gene table data structure
+    motif_tg_table = create_empty_table(all_genes, all_tfs, tf_set)
 
     if user_params["promoter"] and not user_params["enhancer"]: # Promoter only
-        parse_promoter(user_params, promoter_intersect, tg_table, final_peak_file)      # Adds promoter-mapped peaks to tf-gene table
+        promoter_tgtable_update(user_params, promoter_intersect, tg_table, final_peak_file)      # Adds promoter-mapped peaks to tf-gene table
+        if user_params["include_motif_sites"]:
+            promoter_motif_tgtable_update(user_params, promoter_motif_intersect, motif_tg_table)
 
     elif user_params["enhancer"] and not user_params["promoter"]:   # Enhancer only
-        parse_enhancer(user_params, intersect_output, tg_table, final_peak_file)        # Adds enhancer-mapped peaks to tf-gene table
+        enhancer_tgtable_update(user_params, enhancer_intersect, tg_table, final_peak_file)        # Adds enhancer-mapped peaks to tf-gene table
+        if user_params["include_motif_sites"]:
+            enhancer_motif_tgtable_update(user_params, enhancer_motif_intersect, motif_tg_table)
 
     elif user_params["promoter"] and user_params["enhancer"]:   # Promoter and Enhancer
-        parse_promoter(user_params, promoter_intersect, tg_table, final_peak_file)      # Adds promoter-mapped peaks to tf-gene table
-        print("promoter parsed")
-        parse_enhancer(user_params, intersect_output, tg_table, final_peak_file)        # Adds enhancer-mapped peaks to tf-gene table
+        promoter_tgtable_update(user_params, promoter_intersect, tg_table, final_peak_file)      # Adds promoter-mapped peaks to tf-gene table
+        if user_params["include_motif_sites"]:
+            promoter_motif_tgtable_update(user_params, promoter_motif_intersect, motif_tg_table)
+        enhancer_tgtable_update(user_params, enhancer_intersect, tg_table, final_peak_file)        # Adds enhancer-mapped peaks to tf-gene table
+        if user_params["include_motif_sites"]:
+            enhancer_motif_tgtable_update(user_params, enhancer_motif_intersect, motif_tg_table)
 
     step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Annotations Parsed")
 
+    # Output file directory for current pipeline completed files
     output_files_dir = pwd + "/intermediates/" + time_string + "_output/"
     os.mkdir(output_files_dir)
 
@@ -456,16 +492,25 @@ def run_pipeline(user_params):
     removable_junk.append(bin_tg_write_file)
     binarize_tsv(tg_table, all_genes, all_tfs, bin_tg_write_file, tf_set, user_params)
 
+    print("Writing motif tg table")
+    motiftg_write_file = output_files_dir + "motiftgtable_" + time_string + ".tgtable"                       # Output file for tg-table
+    removable_junk.append(motiftg_write_file)
+    write_dict_tsv(motiftg_table, all_genes, all_tfs, motiftg_write_file, tf_set)
+
+    bin_motiftg_write_file = output_files_dir + "motiftgtable_" + time_string + ".bintgtable"                       # Output file for tg-table
+    removable_junk.append(bin_motiftg_write_file)
+    binarize_tsv(motiftg_table, all_genes, all_tfs, bin_motiftg_write_file, tf_set, user_params)
+
     # pickle_tg_table = output_files_dir + "tgtable_" + time_string + ".pkl"                       # Pickle file for tg-table
     # removable_junk.append(pickle_tg_table)
     # with open(pickle_tg_table, "w")  as ptable:
     #     pickle.save(pickle.highest_protocol)
 
-    # print("Starting Motif Discovery")
-    # motifs_disc_file = pwd + "/intermediates/" + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
-    # removable_junk.append(motifs_disc_file)
-    # output_files.append(motifs_disc_file)
-    # motif_discovery(all_reg_regions, time_string, motifs_disc_file)
+    print("Starting Motif Discovery")
+    motifs_disc_file = pwd + "/intermediates/" + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
+    removable_junk.append(motifs_disc_file)
+    output_files.append(motifs_disc_file)
+    motif_discovery(final_peak_file, time_string, motifs_disc_file)
 
     print("||||||||||||||||||Motif Matching, Discovery and TG Table Complete")
 
@@ -481,22 +526,6 @@ def run_pipeline(user_params):
     step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Results Ready")
 
-    # send_from = "chipbaseapp@gmail.com"
-    # password = "chip_basic"
-    # send_to = user_params["email"]
-    # subject = "Your output from ChIP-IO"
-    # text = "Your ChIP-IO query is complete! Here is your download_link: " + url_root + url_for('download_results', query_id=time_string)
-    # server = 'smtp.gmail.com'    # send_from = "ChIPBaseApp@gmail.com"
-    # password = "chipbase"
-    # send_mail(send_from, send_to, subject, text, None, None, server, send_from, password)
-    # print(user_params["email"])
-
-    # print("||||||||||||||||||Email Sent")
-
-    # send_mail(send_from, send_to, subject, text, zipped_contents, solo_zipped_filename, server, send_from, password)
-    # print(user_params["email"])
-
-    # print("||||||||||||||||||Email Sent")
     # print(removable_junk)
     
     # os.system("rm -rf "+output_files_dir)
@@ -508,8 +537,6 @@ def run_pipeline(user_params):
     #         continue
 
     print("END PIPELINE *************************************************************************************************************")
-
-# def filter_peaks(user_params, peak_array):
 
 
 def make_check(num, time_string, removal):
@@ -530,6 +557,9 @@ def sort_in_place(f):
 def bed_intersect(file1, file2, out):
     '''
     Bedtools intersect file2 with file1 keeping the associated metadata
+    
+    Output Style:
+
     '''
     bed_command = [
     "bedtools",
@@ -561,6 +591,8 @@ def build_readme(time_string, user_params, readme_file):
         "dist_tss_downstream: "+str(user_params["dist_tss_downstream"]),
         "peak_count: "+str(user_params["peak_count"]),
         "include_motif_sites: "+ str(user_params["include_motif_sites"]),
+        "motif_score: "+ str(user_params["motif_score"]),
+        "motif_log_p: "+ str(user_params["motif_p_val"])
         "motif_discovery: "+ str(user_params["motif_discovery"]),
         "email: "+ str(user_params["email"])
     ])
@@ -629,20 +661,11 @@ def create_promoters(user_params, filename, all_reg_regions):
                     tmp_proms.write("\t".join(new_line) + "\n")
                     reg.write("\t".join(reg_region_line) + "\n")
 
-def motif_site_find(bed_file, time_string, output_dir, tf_set):
-    '''
-    Converts a bed file of regulatory regions into a fasta, and then performs motif finding 
-    for each tf of interest. Outputs a file of locations and corresponding genes/tfs
-    '''
-
-    motif_mapping = [
-        "fimo",
-        motif_file,
-    ]
 
 def motif_discovery(bed_file, time_string, output_file):
     '''
-    Converts a bed file into a fasta, and then performs motif discovery on it using MEME.
+    Converts a bed file into a fasta, and then performs motif discovery 
+    on it using MEME.
     '''
     reference = pwd + "/GRCh38/GRCh38.p12.genome.fa"
 
@@ -677,8 +700,10 @@ def motif_discovery(bed_file, time_string, output_file):
 
 def process_enhancers(user_params, intersect_out, enh_bed_dir, all_reg_regions, time_string):
     '''
-    Processes enhancers on a tissue-by-tissue basis. Annotation is performed individually
-    by annotating peaks for a given tissue type to their respective tissue-specific enhancers
+    Processes enhancers on a tissue-by-tissue basis. 
+    Annotation is performed individually
+    by annotating peaks for a given tissue type to their 
+    respective tissue-specific enhancers
     and the combined results 
     concatenated into a single file
     '''
@@ -785,7 +810,38 @@ def create_empty_table(gene_list, tf_list, tf_set):
     
     return table
 
-def parse_enhancer(user_params, anno_file, tf_gene_table, full_peak_bed):
+def promoter_tgtable_update(user_params, anno_file, tf_gene_table, full_peak_bed):
+    '''
+    Updates tf-gene table with promoter annotation results which pass constraints
+    '''
+    entry_count = 0
+    line_count = 0
+    with open(full_peak_bed, "a") as full:
+        with open(anno_file, "r") as anno:
+            for line in anno:
+                p_l= line.rstrip("\n").split("\t")
+                if line_count == 0:
+                    line_count += 1
+                    continue
+
+                peak_bedline_l = p_l[5:8]                           # Write regualtory peaks to to cumulative regulatory peak bedfile   
+                peak_bedline = "\t".join(peak_bedline_l) + "\n"
+                full.write(peak_bedline)
+
+                peak_id = int(p_l[8])
+                gene_id = p_l[4]
+                ori_peak_tf = p_l[15]    
+
+                if gene_id in tf_gene_table:
+                    if ori_peak_tf in tf_gene_table[gene_id]:
+                        entry_count += 1
+                        tf_gene_table[gene_id][ori_peak_tf] += 1
+                else:
+                    print("Did not pass Check 1 ", gene_id)
+                line_count += 1
+    print("Sum of promoter entries in output table: " + str(entry_count))
+
+def enhancer_tgtable_update(user_params, anno_file, tf_gene_table, full_peak_bed):
     '''
     Updates tf-gene table with enhancer annotation results which pass constraints
     '''
@@ -798,12 +854,8 @@ def parse_enhancer(user_params, anno_file, tf_gene_table, full_peak_bed):
     enh_add_count = 0
     with open(full_peak_bed, "a") as full:
         with open(anno_file, "r") as anno:
-            # print(tf_gene_table["PAX7"].keys())
             for line in anno:
-                # print(line)
                 p_l= line.rstrip("\n").split("\t")
-                # print(p_l, "annotation line")
-                # print(line_count)
                 if line_count == 0:
                     line_count += 1
                     continue
@@ -812,19 +864,12 @@ def parse_enhancer(user_params, anno_file, tf_gene_table, full_peak_bed):
                 peak_bedline = "\t".join(peak_bedline_l) + "\n"
                 full.write(peak_bedline)
 
-                # peak_id = int(p_l[10])
+                peak_id = int(p_l[10])
                 gene_id = p_l[6]
                 ori_peak_tf = p_l[17]
 
-                # print(p_l, "enhancer anno line")
-
-                # ori_peak_tf = Peaks.query.filter(Peaks.id==peak_id)[0].transcription_factors
-                
                 if gene_id in tf_gene_table:
-
-                    # print("CHECK gene")
                     if ori_peak_tf in tf_gene_table[gene_id]:
-                        # print("CHECK 2, added")
                         enh_add_count += 1
                         tf_gene_table[gene_id][ori_peak_tf] += 1
                 else:
@@ -832,62 +877,65 @@ def parse_enhancer(user_params, anno_file, tf_gene_table, full_peak_bed):
                 line_count += 1
     print("enhancer add count: ", enh_add_count)
 
-def parse_promoter(user_params, anno_file, tf_gene_table, full_peak_bed):
+def promoter_motif_tgtable_update(user_params, anno_file, tf_gene_table):
     '''
     Updates tf-gene table with promoter annotation results which pass constraints
     '''
+
+    # Example line from anno_file: chrX	12974102	12974429	88841	chrX	12809489	PRPS2	chrX	12974102	12974429	70528	328	12974406	22.35	6.99766	3.33623	3.13225	eGFP-PYGO2	blood	ENCSR410DWC
+
     entry_count = 0
     line_count = 0
-    with open(full_peak_bed, "a") as full:
-        with open(anno_file, "r") as anno:
-            # print(tf_gene_table["PAX7"].keys())
-            for line in anno:
-                p_l= line.rstrip("\n").split("\t")
-                # print(p_l, "annotation line")
-                # print(line_count)
-                if line_count == 0:
-                    line_count += 1
-                    continue
-
-                peak_bedline_l = p_l[5:8]                           # Write regualtory peaks to to cumulative regulatory peak bedfile   
-                peak_bedline = "\t".join(peak_bedline_l) + "\n"
-                full.write(peak_bedline)
-
-                peak_id = int(p_l[8])
-                gene_id = p_l[4]
-                ori_peak_tf = p_l[15]                # print(ori_peak_tf, "ori peak")
-                if gene_id in tf_gene_table:
-
-                    # print("CHECK gene")
-                    if ori_peak_tf in tf_gene_table[gene_id]:
-                        entry_count += 1
-                        # print("CHECK 2, added")
-                        tf_gene_table[gene_id][ori_peak_tf] += 1
-                else:
-                    print("Did not pass Check 1 ", gene_id)
+    with open(anno_file, "r") as anno:
+        for line in anno:
+            p_l= line.rstrip("\n").split("\t")
+            if line_count == 0:
                 line_count += 1
-    print("Sum of promoter entries in output table: " + str(entry_count))
+                continue
 
+            peak_id = int(p_l[8])
+            gene_id = p_l[4]
+            ori_peak_tf = p_l[15]    
 
-def send_mail(send_from, send_to, subject, text, file_path, file_name, server, email_user, email_password):
+            if gene_id in tf_gene_table:
+                if ori_peak_tf in tf_gene_table[gene_id]:
+                    entry_count += 1
+                    tf_gene_table[gene_id][ori_peak_tf] += 1
+            else:
+                print("Did not pass Check 1 ", gene_id)
+            line_count += 1
+    print("Sum of motif promoter entries in output table: " + str(entry_count))
 
-    msg = MIMEMultipart()
-    msg['From'] = send_from
-    msg['To'] = send_to
-    msg['Subject'] = subject
+def enhancer_motif_tgtable_update(user_params, anno_file, tf_gene_table):
+    '''
+    Updates tf-gene table with enhancer annotation results which pass constraints
+    '''
 
-    body = text
-    msg.attach(MIMEText(body,'plain'))
+    # Example line from anno_file: chrX	12974102	12974429	88841	chrX	12809489	PRPS2	chrX	12974102	12974429	70528	328	12974406	22.35	6.99766	3.33623	3.13225	eGFP-PYGO2	blood	ENCSR410DWC
 
-    # msg.attach(part)
-    text = msg.as_string()  
-    server = smtplib.SMTP(server,587)
-    server.starttls()
-    server.login(email_user,email_password)
+    print("parsing enhancer")
+    print("anno", anno_file)
+    line_count = 0
+    enh_add_count = 0
+    with open(anno_file, "r") as anno:
+        for line in anno:
+            p_l= line.rstrip("\n").split("\t")
+            if line_count == 0:
+                line_count += 1
+                continue
 
+            peak_id = int(p_l[10])
+            gene_id = p_l[6]
+            ori_peak_tf = p_l[17]
 
-    server.sendmail(email_user,send_to,text)
-    server.quit()
+            if gene_id in tf_gene_table:
+                if ori_peak_tf in tf_gene_table[gene_id]:
+                    enh_add_count += 1
+                    tf_gene_table[gene_id][ori_peak_tf] += 1
+            else:
+                print("Did not pass Check 1 ", gene_id)
+            line_count += 1
+    print("motif enhancer add count: ", enh_add_count)
 
 def constraints_met(data, user_params, constraints_type):
     '''
@@ -902,17 +950,15 @@ def constraints_met(data, user_params, constraints_type):
             float(data[8]) > user_params["fold_enrichment"] and
             float(data[9]) > user_params["log_q"]
         ):
-            # print("Peaks constraints satisfied")
             return True
         else:
             return False
     
     elif constraints_type == "motif_occs":
 
-        if (float(data[7]) > user_params["motif_p_val"] and
-            float(data[6]) > user_params["motif_score"]
+        if (float(data[5]) > user_params["motif_score"] and
+            float(data[6]) > user_params["motif_p_val"]
         ):
-            # print("Peaks constraints satisfied")
             return True
         else:
             return False
@@ -1009,20 +1055,17 @@ def filter_motif_occs(columns, user_params, in_file_path, out_file_path, time_st
         removal_bin.append(out_file_path)
         to_be_sorted.append(out_file_path)
 
-    # write_dict = {
-    #     "experiment_accession": p_f.rstrip("_peaks.xls").split("/")[-1],
-    #     "tissue_types": tissue,
-    #     "transcription_factors": metadata_dict_ref[exp_acc][1],
-    #     "chrom": p_l[0],
-    #     "start": str(int(p_l[1]) - 1),
-    #     "end": str(int(p_l[2]) - 1),
-    #     "length": p_l[3],
-    #     "summit": str(int(p_l[4]) - 1),
-    #     "pileup": p_l[5],
-    #     "log_p": p_l[6],
-    #     "fold_enrichment": p_l[7],
-    #     "log_q": p_l[8]
-    # }
+        # write_dict = {
+        #     "tissue_types": tissue,
+        #     "transcription_factors": tf,
+        #     "chrom": p_l[0],
+        #     "start": str(int(p_l[1]) - 1),
+        #     "end": str(int(p_l[2]) - 1),
+        #     "length": p_l[3],
+        #     "score": p_l[5]
+        #     "log_p": p_l[6],
+        #     "id": motif_id_count
+        # }
 
     num_pass_mos = 0
     with open(in_file_path, "r") as infile:
@@ -1093,6 +1136,26 @@ def build_query_hist(form):
 
     return query_data
 
+def send_mail(send_from, send_to, subject, text, file_path, file_name, server, email_user, email_password):
+
+    msg = MIMEMultipart()
+    msg['From'] = send_from
+    msg['To'] = send_to
+    msg['Subject'] = subject
+
+    body = text
+    msg.attach(MIMEText(body,'plain'))
+
+    # msg.attach(part)
+    text = msg.as_string()  
+    server = smtplib.SMTP(server,587)
+    server.starttls()
+    server.login(email_user,email_password)
+
+
+    server.sendmail(email_user,send_to,text)
+    server.quit()
+
 # View Functions
 
 @app.route('/')
@@ -1138,6 +1201,9 @@ def promoter_form():
 
             "include_motif_sites": form.include_motif_sites,
             "motif_discovery": form.motif_discovery,
+
+            "motif_score": form.motif_score,
+            "motif_p_val": form.motif_p_val,
 
             "email": form.email.data,
 
@@ -1186,6 +1252,9 @@ def enhancer_form():
             "include_motif_sites": form.include_motif_sites,
             "motif_discovery": form.motif_discovery,
 
+            "motif_score": form.motif_score,
+            "motif_p_val": form.motif_p_val,
+
             "email": form.email.data,
 
             "time": "_".join(str(datetime.utcnow()).split(" "))
@@ -1232,6 +1301,9 @@ def promoter_enhancer_form():
 
             "include_motif_sites": form.include_motif_sites,
             "motif_discovery": form.motif_discovery,
+
+            "motif_score": form.motif_score,
+            "motif_p_val": form.motif_p_val,
 
             "email": form.email.data,
 
@@ -1305,5 +1377,6 @@ def contact():
 download_files = DownloadFiles()
 download_files.collect_peaks("pass_peaks")
 download_files.collect_presets("presets")
+
 # print(download_files.preset_mappings)
 

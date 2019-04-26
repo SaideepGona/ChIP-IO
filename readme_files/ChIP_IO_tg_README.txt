@@ -9,7 +9,7 @@ Current Annotation: gencode.v29
 
 *** .tgtable file ***
 
-Your output folder contains a .tgtable file. This is actually a tab-seperated value(tsv) file. It contains tabular data 
+Your output folder contains one or more .tgtable files. This is actually a tab-seperated value(tsv) file. It contains tabular data 
 with the metadata:
 
 Rows: Gene + Gene Regions
@@ -30,8 +30,8 @@ dictionary object. Once read in, entries can be pulled as table[gene][tf]
 
 ------------ Important Notes! ------------
 
-- In general, "0" table entries are not intended to provide confidence for lack of TF-gene association. ChIP-Seq studies still 
-cover only a subset of transcription factors, and there may always be variation across cell states which is not well
+- In general, "0" table entries are not intended to provide confidence for lack of TF-gene association (True Negatives). ChIP-Seq 
+studies still cover only a subset of transcription factors, and there may always be variation across cell states which is not well
 captured. Instead, focus on interpreting non-zero entries as providing experimental confidence of association over neutral.
 
 - If multi-tissue selection was done, the final output table will contain a union of data across tissue types specified in the

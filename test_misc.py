@@ -1,4 +1,5 @@
 import os,sys
+import glob
 
 pwd = os.getcwd()
 
@@ -29,4 +30,32 @@ def create_promoters(filename):
 
                 tmp_proms.write("\t".join(new_line) + "\n")
 
-create_promoters("test_proms.bed")
+# create_promoters("test_proms.bed")
+
+def bed_intersect(file1, file2, out):
+    '''
+    Bedtools intersect file2 with file1 keeping the associated metadata
+    
+    Output Style:
+
+    '''
+    bed_command = [
+    "bedtools",
+    "intersect",
+    "-a",
+    file1,
+    "-b",
+    file2,
+    "-wb",
+    "-sorted",
+    ">",
+    out
+    ]
+    os.system(" ".join(bed_command))
+
+# peaks = glob.glob(pwd + "/pass_peaks/*")
+b1 = pwd + "/testb1.bed"
+b2 = pwd + "/testb2.bed"
+out = pwd + "/test_bintersect.bed"
+
+bed_intersect(b1,b2,out)

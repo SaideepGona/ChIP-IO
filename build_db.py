@@ -38,7 +38,7 @@ else:
     metadata_path = pwd + "/pass_metadata/metadata.pkl"     
     metrics_dir =  pwd + "/static/images/"
     peak_file = pwd + "/all_peaks.tsv"
-    motif_occ_dir = pwd + "/motifs/motif_occurences/"
+    motif_occ_dir = pwd + "/motifs/pass_motifs/"
     motif_occ_file = pwd + "/all_motif_occs.tsv"
 
 
@@ -350,11 +350,10 @@ if peak_bool:
 motif_occ_files = glob.glob(motif_occ_dir + "/*")
 # motif_occ_files = [x.split("/")[-1] for x in motif_occ_files_glob]
 
-
-
 if motif_bool:
     score = []
     p_values = []
+    motif_id_count = 0
     for mof in motif_occ_files:
         print(mof)
         mof_split = mof.split("/")[-1]
@@ -363,6 +362,7 @@ if motif_bool:
         with open(motif_occ_file, "a") as out:
             with open(mof, "r") as m:
                 line_count = 1
+                p_title = motif_occ_file.split("\t")[-1].split("_")
                 for line in m:
                     if line_count == 1:
                         line_count+=1
@@ -371,23 +371,33 @@ if motif_bool:
                     # print(line)
                     p_line = line.rstrip("\n").split("\t")
                     write_dict = {
-                        "-log_p": str((-1)*log_p_conv(p_line[7])),
-                        "score": p_line[6],
-                        "gene_target": p_line[2],
+                        "tissue_types": tissue,
                         "transcription_factors": tf,
-                        "tissue_types":tissue,
+                        "chrom": p_l[0],
+                        "start": str(int(p_l[1]) - 1),
+                        "end": str(int(p_l[2]) - 1),
+                        "length": p_l[3],
+                        "score": p_l[5]
+                        "log_p": p_l[6],
+                        "id": motif_id_count
                     }
                     column_list = [
-                        "-log_p",
-                        "score",
-                        "gene_target",
-                        "transcription_factors",
-                        "tissue_types"
-                    ]
+                            "chrom",
+                            "start",
+                            "end",
+                            "id",
+                            "length",
+                            "score",
+                            "log_p",
+                            "transcription_factors",
+                            "tissue_types"
+                            ]
                     score.append(p_line[2])
                     p_values.append(str((-1)*log_p_conv(p_line[7])))
                     write_list = [str(write_dict[x]) for x in column_list]
                     out.write("\t".join(write_list)+"\n")
+
+                    motif_id_count += 1
 
 
     motif_fields = {
