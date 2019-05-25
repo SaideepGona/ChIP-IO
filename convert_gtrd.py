@@ -27,7 +27,7 @@ all_tfs = set()
 def sort_in_place(f):
     temp_dir = pwd + "/tmp/"
     temp_f = f+".tmp"
-
+    print("sort -k 1,1 -k2,2n -T " +temp_dir+" "+f+" > "+temp_f)
     os.system("sort -k 1,1 -k2,2n -T " +temp_dir+" "+f+" > "+temp_f)
     os.system("rm "+f)
     os.system("mv "+temp_f+" "+f)
@@ -79,6 +79,8 @@ with open(tf_list, "r") as tfs:
         tf = line.rstrip("\n")
         all_tfs.add(tf)
 
+# Convert GTRD peaks to individual files
+
 # Gtrd Columns:
 #CHROM	START	END	-10*log10(pvalue)	FDR(%)	antibody	cellLine	experiment	fold_enrichment	summit	tags	tfClassId	tfTitle	treatment	uniprotId
 
@@ -104,7 +106,8 @@ if False:
                 tf = p_line[12]
                 if tf in all_tfs:
                     accession = p_line[7]
-                    tissue = p_line[5]
+                    tissue = p_line[6]
+                    print(tissue)
                     metadata_dict[accession] = {
                         "tissue": tissue,
                         "tf": tf
@@ -134,16 +137,16 @@ if False:
                 print(line)
                 continue
 
-
     with open(metadata_path, 'wb') as meta:
         pickle.dump(metadata_dict, meta, protocol=pickle.HIGHEST_PROTOCOL)
 
+print("Done 1")
 
 # FOOTPRINT PROCESSING
 
 # Metadata Columns
 # id	peaks_id	species	info_(treatment)	source	source_id	cell_type	cell_type_id	cellosaurus_id	cell_ontology_id	exp_factor_ontology_id	uberon_id	external references
-if False:
+if True:
     os.system('rm '+gtrd_footprints_dir+"*")
     raw_footprint_files = glob.glob(gtrd_raw_footprint_dir + "*")
 
@@ -187,24 +190,26 @@ if False:
                 print(e)
                 print(line)
                 continue
+
 print("Done 2") 
 #Create tissue-specific motif predictions
 
 if True:
     motif_occ_files = glob.glob(motif_occ_dir+"*")
+    print("Sorting files")
     for m_f in motif_occ_files:
         sort_in_place(m_f)
     footprint_files = glob.glob(gtrd_footprints_dir+"*")
     for f_f in footprint_files:
         sort_in_place(f_f)
     # os.system('rm '+pass_motif_dir+"*")
-
+    print(motif_occ_files)
+    print(footprint_files)
     for m_f in motif_occ_files:
         for f_f in footprint_files:
             tf = m_f.split("/")[-1].split("_")[0]
-            print(tf)
             tissue = f_f.split("/")[-1].split(".")[0]
             f_name = pass_motif_dir + "/" + tf + "_" + tissue + "_occurences.tsv"
-            print(f_name)
+            print(tf,f_name)
             keep_intersect(m_f, f_f, f_name)
 

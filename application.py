@@ -29,6 +29,8 @@ from wtforms_html5 import AutoAttrMeta
 import multiprocessing
 
 #TODO Replace data with GTRD data
+#TODO Set up reusable aliasing for TF names, tissue names
+#TODO Figure out load handling before wide adoption
 #TODO Finish motif mapping!
     # Reorganize motif mapping occurences to be bed files
     # Modify the motif filtering to match the bed file
@@ -148,11 +150,14 @@ peaks_column_list = [
             ]
 
 motif_occs_column_list = [
-            "log_p",
+            "chrom",
+            "start",
+            "end",
+            "id",
+            "length",
             "score",
-            "gene_target"
+            "log_p",
             "transcription_factors",
-            "gene",
             "tissue_types"
 ]
 
