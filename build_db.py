@@ -68,7 +68,7 @@ def find_duplicates(in_list):
             print ("duplicate: " + each + " " + count)
 
 def histogram(field, data, metrics_dir):
-    print(data, "d for h")
+    # print(data, "d for h")
     plt.rc('axes',edgecolor='white')
     plt.rc('lines', color='white')
     plt.rc('text', color='white')
@@ -82,7 +82,7 @@ def histogram(field, data, metrics_dir):
     plt.title("Distribution of "+field+" values across all peaks in database")
     # field = "_".join(metrics_dir.split(" "))
     savefile = metrics_dir + "/" + field + "_hist.png"
-    print(savefile)
+    # print(savefile)
     plt.savefig(savefile, transparent=True)
     plt.clf()
 
@@ -122,7 +122,7 @@ print(len(list(metadata_dict.keys())), " NUMBER OF STUDIES")
 # print(metadata_files)
 for m_f in list(metadata_dict.keys()): # This loop updates the metadata database information with current metadata
     # print(m_f)
-
+    print(metadata_dict[m_f])
     tissue_obj = metadata_dict[m_f]["tissue"]  # If list of tissues, creates duplicate entries for each 
     if type(tissue_obj) == list:
         tissue_obj = setify(tissue_obj)
@@ -171,7 +171,7 @@ for m_f in list(metadata_dict.keys()): # This loop updates the metadata database
 
 db.session.commit()                 
 
-# Read in all peak files that have already been filtered into the "pass peaks directory"
+# Read in and group all peak files that have already been filtered into the "pass peaks directory"
 
 if peak_bool:
     with open(peak_file, "a") as p_file:            
@@ -189,15 +189,20 @@ if peak_bool:
         p_f_count = 1
 
         for p_f in peak_files:
-            print(p_f_count)
+            print(p_f_count, "pfcount")
             p_f_count += 1
             if peak_id_count > 100:
+                print("peak id break")
                 break
             with open(p_f, "r") as pre_f:
-                f = pre_f.readlines()[24:]
+                if p_f[0:3] == "EXP":
+                    f = pre_f.readlines()
+                else:
+                    f = pre_f.readlines()[24:]
                 for line in f:
                     p_l = line.rstrip("\n").split("\t")
-                    if len(p_l) != 10:
+                    if len(p_l) < 10:
+                        print("length wrong")
                         continue
                     try:
                         int(p_l[1])
