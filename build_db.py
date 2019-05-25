@@ -186,14 +186,15 @@ if peak_bool:
         full_peak_array = []
 
         peak_files = glob.glob(peak_dir+"/*")
+        print(peak_files)
         p_f_count = 1
 
         for p_f in peak_files:
             print(p_f_count, "pfcount")
             p_f_count += 1
-            if peak_id_count > 100:
-                print("peak id break")
-                break
+            # if peak_id_count > 100:
+            #     print("peak id break")
+            #     break
             with open(p_f, "r") as pre_f:
                 if p_f[0:3] == "EXP":
                     f = pre_f.readlines()
