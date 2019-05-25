@@ -50,6 +50,9 @@ motif_occs_files = glob.glob(args.occurence_dir + "*")
 for mof in motif_occs_files:
     with open(mof, "r") as m:
         file_suf = mof.split("/")[-1]
+        if os.path.exists(args.output_dir + file_suf):
+            print(args.output_dir + file_suf, " exists")
+            continue
         with open(args.output_dir + file_suf, "w") as out:
 
             line_count = 0
