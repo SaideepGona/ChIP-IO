@@ -32,6 +32,9 @@ def sort_in_place(f):
     os.system("rm "+f)
     os.system("mv "+temp_f+" "+f)
 
+def remove_trailing_tabs(f):
+    os.system("sed -i 's/[\t]*$//' "+f)
+
 def add_to_bed(file_name, line):
 
     if os.path.exists(file_name):
