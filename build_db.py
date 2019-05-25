@@ -54,8 +54,8 @@ if os.path.isfile(motif_occ_file):
 else:
     os.system("touch "+motif_occ_file)
 
-peak_bool = False
-motif_bool = True
+peak_bool = True
+motif_bool = False
 
 # IO END *********************************************************
 
@@ -191,6 +191,7 @@ if peak_bool:
 
         for p_f in peak_files:
             print(p_f_count, "pfcount")
+            print(p_f)
             p_f_count += 1
             # if peak_id_count > 100:
             #     print("peak id break")
@@ -215,8 +216,8 @@ if peak_bool:
                         continue
 
                     if p_l[1] == "0":
-                        print(p_l)
-                        sys.exit()
+                        print(p_l, "0 start")
+                        # sys.exit()
                     pileup.append(float(p_l[5]))
                     p_values.append(float(p_l[6]))
                     fold_enrichment.append(float(p_l[7]))
