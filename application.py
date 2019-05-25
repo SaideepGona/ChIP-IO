@@ -28,6 +28,7 @@ from wtforms_html5 import AutoAttrMeta
 
 import multiprocessing
 
+#TODO Replace data with GTRD data
 #TODO Finish motif mapping!
     # Reorganize motif mapping occurences to be bed files
     # Modify the motif filtering to match the bed file
@@ -100,7 +101,7 @@ print("NUMBER OF TFS: ", len(all_tfs))
 metadata_path = pwd + "/pass_metadata/metadata.pkl"     
 metadata_dict = pickle.load(open(metadata_path, "rb"))      # Contains metadata on all datasets
 
-all_peaks = pwd+"/all_peaks.tsv"
+all_peaks = pwd+"/all_peaks_small.tsv"
 all_motif_occs = pwd + "/all_motif_occs.tsv"
 
 # New params
@@ -327,8 +328,9 @@ class ParameterForm(FlaskForm):
     include_motif_sites = BooleanField("Motif Inclusion")
 
     motif_discovery = BooleanField('Motif Discovery')
+
     motif_p_val = FloatField('-log(p) Value', validators=[DataRequired(message="logp for motifs not right")])
-    motif_score = FloatField('Fimo score', validators=[DataRequired(message="Score motifs not right")])
+    motif_score = FloatField('Motif Score', validators=[DataRequired(message="Motif score not right")])
 
     email = StringField("Email", validators=[DataRequired(message="email not right")])
 
@@ -359,13 +361,13 @@ def run_pipeline(user_params):
     # Perform filtering of ChIP-Seq peaks
     temp_peaks_file = pwd + "/intermediates/" + "temppeaks_" + time_string + ".bed"
     removable_junk.append(temp_peaks_file) 
-    filter_peaks(peaks_column_list, user_params, all_peaks, temp_peaks_file, True, time_string, removable_junk)
+    filter_peaks(peaks_column_list, user_params, all_peaks, temp_peaks_file, time_string, removable_junk)  
     sort_in_place(temp_peaks_file)
 
     # Perform similar filtering of motif occurences
     temp_motif_occs_file = pwd + "/intermediates/tempmotifs_" + time_string + ".bed"
     removable_junk.append(temp_motif_occs_file)
-    filter_motif_occs(motif_occs_column_list, user_params, all_motif_occs, temp_motif_occs_file, False, time_string, removable_junk)
+    filter_motif_occs(motif_occs_column_list, user_params, all_motif_occs, temp_motif_occs_file, time_string, removable_junk)
 
     step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Peaks Queried and Filtered")
@@ -427,7 +429,7 @@ def run_pipeline(user_params):
         enhancer_intersect = pwd + "/intermediates/" + "enhancerintersect_" + time_string + ".bed"
         removable_junk.append(enhancer_intersect)
         process_enhancers(user_params, enhancer_intersect, enhancer_bed_dir, all_reg_regions, time_string)      # Computes tissue-specific intersect of peaks with enhancers
-        sort_in_place(enhancer_intersect_output)
+        sort_in_place(enhancer_intersect)
         print("enhancers processed")
 
         # Calculates enhancer-peak intersection
@@ -495,11 +497,11 @@ def run_pipeline(user_params):
     print("Writing motif tg table")
     motiftg_write_file = output_files_dir + "motiftgtable_" + time_string + ".tgtable"                       # Output file for tg-table
     removable_junk.append(motiftg_write_file)
-    write_dict_tsv(motiftg_table, all_genes, all_tfs, motiftg_write_file, tf_set)
+    write_dict_tsv(motif_tg_table, all_genes, all_tfs, motiftg_write_file, tf_set)
 
     bin_motiftg_write_file = output_files_dir + "motiftgtable_" + time_string + ".bintgtable"                       # Output file for tg-table
     removable_junk.append(bin_motiftg_write_file)
-    binarize_tsv(motiftg_table, all_genes, all_tfs, bin_motiftg_write_file, tf_set, user_params)
+    binarize_tsv(motif_tg_table, all_genes, all_tfs, bin_motiftg_write_file, tf_set, user_params)
 
     # pickle_tg_table = output_files_dir + "tgtable_" + time_string + ".pkl"                       # Pickle file for tg-table
     # removable_junk.append(pickle_tg_table)
@@ -507,9 +509,9 @@ def run_pipeline(user_params):
     #     pickle.save(pickle.highest_protocol)
 
     print("Starting Motif Discovery")
-    motifs_disc_file = pwd + "/intermediates/" + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
+    motifs_disc_file = output_files_dir + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
     removable_junk.append(motifs_disc_file)
-    output_files.append(motifs_disc_file)
+    # output_files.append(motifs_disc_file)
     motif_discovery(final_peak_file, time_string, motifs_disc_file)
 
     print("||||||||||||||||||Motif Matching, Discovery and TG Table Complete")
@@ -592,7 +594,7 @@ def build_readme(time_string, user_params, readme_file):
         "peak_count: "+str(user_params["peak_count"]),
         "include_motif_sites: "+ str(user_params["include_motif_sites"]),
         "motif_score: "+ str(user_params["motif_score"]),
-        "motif_log_p: "+ str(user_params["motif_p_val"])
+        "motif_log_p: "+ str(user_params["motif_p_val"]),
         "motif_discovery: "+ str(user_params["motif_discovery"]),
         "email: "+ str(user_params["email"])
     ])
@@ -955,7 +957,7 @@ def constraints_met(data, user_params, constraints_type):
             return False
     
     elif constraints_type == "motif_occs":
-
+        # print(data)
         if (float(data[5]) > user_params["motif_score"] and
             float(data[6]) > user_params["motif_p_val"]
         ):
@@ -1067,18 +1069,18 @@ def filter_motif_occs(columns, user_params, in_file_path, out_file_path, time_st
         #     "id": motif_id_count
         # }
 
-    num_pass_mos = 0
+    num_pass_motifs = 0
     with open(in_file_path, "r") as infile:
         with open(out_file_path, "a") as out:
             for line in infile:
                 p_line = line.rstrip("\n").split("\t")
-                # print(p_line)
+                # print(p_line)   
                 if constraints_met(p_line, user_params, "motif_occs"):
                     write_tissue(pwd + "/intermediates/annotation_"+ p_line[11] +"_" + time_string + ".bed", "\t".join(p_line)+"\n")
                     out.write("\t".join(p_line)+"\n")
-                    num_pass_mos += 1
+                    num_pass_motifs += 1
 
-    print("number of passed peaks: "+str(num_pass_peaks))
+    print("number of passed motifs: "+str(num_pass_motifs))
     for f in to_be_sorted:
         sort_in_place(f)
 
@@ -1176,10 +1178,10 @@ def promoter_form():
                         include_motif_sites=True,
                         motif_discovery=False,
                         motif_p_val = 3,
-                        motif_score = 0,
+                        motif_score = 0.1,
                         email="send.results.here@peaks.com")
     if form.validate_on_submit():
-        print("valid")
+        # print("valid")
         query_data = build_query_hist(form)
         db.session.add(query_data)
         db.session.commit()
@@ -1199,11 +1201,11 @@ def promoter_form():
             "dist_tss_downstream": form.distance_from_TSS_downstream.data,
             "peak_count": form.peak_count.data,
 
-            "include_motif_sites": form.include_motif_sites,
-            "motif_discovery": form.motif_discovery,
+            "include_motif_sites": form.include_motif_sites.data,
+            "motif_discovery": form.motif_discovery.data,
 
-            "motif_score": form.motif_score,
-            "motif_p_val": form.motif_p_val,
+            "motif_score": form.motif_score.data,
+            "motif_p_val": form.motif_p_val.data,
 
             "email": form.email.data,
 
@@ -1215,6 +1217,9 @@ def promoter_form():
             run_pipeline(query_data_dict)
 
         return render_template('complete.html', time=query_data_dict["time"])
+    else:
+        print(form.errors)
+
     return render_template('promoter_form.html', form = form, tissues=all_possible["tissue_types"], tfs=all_possible["transcription_factors"])
 
 @app.route('/enhancer_form', methods=['GET', 'POST'])
@@ -1227,7 +1232,7 @@ def enhancer_form():
                         include_motif_sites=True,
                         motif_discovery=False,
                         motif_p_val = 3,
-                        motif_score = 0,
+                        motif_score = 0.1,
                         email="send.results.here@peaks.com")
     if form.validate_on_submit():
         query_data = build_query_hist(form)
@@ -1249,11 +1254,11 @@ def enhancer_form():
             "dist_tss_downstream": 1,
             "peak_count": form.peak_count.data,
 
-            "include_motif_sites": form.include_motif_sites,
-            "motif_discovery": form.motif_discovery,
+            "include_motif_sites": form.include_motif_sites.data,
+            "motif_discovery": form.motif_discovery.data,
 
-            "motif_score": form.motif_score,
-            "motif_p_val": form.motif_p_val,
+            "motif_score": form.motif_score.data,
+            "motif_p_val": form.motif_p_val.data,
 
             "email": form.email.data,
 
@@ -1265,6 +1270,9 @@ def enhancer_form():
             run_pipeline(query_data_dict)
 
         return render_template('complete.html', time=query_data_dict["time"])
+
+    else:
+        print(form.errors)
     return render_template('enhancer_form.html', form = form, tissues=all_possible["tissue_types"], tfs=all_possible["transcription_factors"])
 
 @app.route('/promoter_enhancer_form', methods=['GET', 'POST'])
@@ -1277,7 +1285,7 @@ def promoter_enhancer_form():
                         include_motif_sites=True,
                         motif_discovery=False,
                         motif_p_val = 3,
-                        motif_score = 0,
+                        motif_score = 0.1,
                         email="send.results.here@peaks.com")
     if form.validate_on_submit():
         query_data = build_query_hist(form)
@@ -1299,11 +1307,11 @@ def promoter_enhancer_form():
             "dist_tss_downstream": form.distance_from_TSS_downstream.data,
             "peak_count": form.peak_count.data,
 
-            "include_motif_sites": form.include_motif_sites,
-            "motif_discovery": form.motif_discovery,
+            "include_motif_sites": form.include_motif_sites.data,
+            "motif_discovery": form.motif_discovery.data,
 
-            "motif_score": form.motif_score,
-            "motif_p_val": form.motif_p_val,
+            "motif_score": form.motif_score.data,
+            "motif_p_val": form.motif_p_val.data,
 
             "email": form.email.data,
 
@@ -1315,6 +1323,9 @@ def promoter_enhancer_form():
             run_pipeline(query_data_dict)
 
         return render_template('complete.html', time=query_data_dict["time"])
+
+    else:
+        print(form.errors)
     return render_template('promoter_enhancer_form.html', form = form)
 
 @app.route('/output')

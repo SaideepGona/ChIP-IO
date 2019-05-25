@@ -123,6 +123,27 @@
       group: 1000
       state: directory
       mode: 0755
+  - name: create gtrd footprints directory
+    file:
+      path: /home/ubuntu/opt/ChIP-IO/gtrd_footprints
+      owner: 1000
+      group: 1000
+      state: directory
+      mode: 0755
+  - name: create gtrd raw footprints directory
+    file:
+      path: /home/ubuntu/opt/ChIP-IO/gtrd_raw_footprints
+      owner: 1000
+      group: 1000
+      state: directory
+      mode: 0755
+  - name: create pass motifs directory
+    file:
+      path: /home/ubuntu/opt/ChIP-IO/pass_motifs
+      owner: 1000
+      group: 1000
+      state: directory
+      mode: 0755
 
 # Add all relevant files not within the git repo
 - hosts: webservers

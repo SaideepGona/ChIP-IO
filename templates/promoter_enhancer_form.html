@@ -171,6 +171,20 @@
                     data-toggle="tooltip" 
                     data-placement="right" 
                     data-html="true" 
+                    title="<div>
+                        Positive selection will allow the querying of chip-seq peak sequences for
+                        enriched motifs which may indicate new transcription factor binding motifs.
+                        </div>">
+                            STILL IN DEVELOPMENT<br>
+                            {{ form.motif_discovery.label }}
+                            {{ form.motif_discovery(size=32) }}
+                    </p>
+
+                    <p
+                    class="hover-text-header" 
+                    data-toggle="tooltip" 
+                    data-placement="right" 
+                    data-html="true" 
                     title="<img src={{ url_for('static',filename='images/fold_enrichment_hist.png') }}>
                         </img>">
                             {{ form.motif_score.label }}<br>

@@ -24,6 +24,13 @@ default= pwd + "/../pass_motifs/", nargs='?')
 
 args = parser.parse_args()
 
+def sort_in_place(f):
+    temp_dir = pwd + "/tmp/"
+    temp_f = f+".tmp"
+
+    os.system("sort -k 1,1 -k2,2n -T " +temp_dir+" "+f+" > "+temp_f)
+    os.system("rm "+f)
+    os.system("mv "+temp_f+" "+f)
 
 # Create dictionary mapping regulatory region to genome coords
 
@@ -52,8 +59,8 @@ for mof in motif_occs_files:
                     continue
 
                 p_l = line.rstrip("\n").split("\t")
-                print(p_l)
-# motif_id	motif_alt_id	sequence_name	start	stop	strand	score	p-value	q-value	matched_sequence
+                # print(p_l)
+                # motif_id	motif_alt_id	sequence_name	start	stop	strand	score	p-value	q-value	matched_sequence
                 cur_reg = p_l[2]
                 chrom = reg_map[cur_reg]["chr"]
                 new_start = str(int(reg_map[cur_reg]["start"]) + int(p_l[3]))

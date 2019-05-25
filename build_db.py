@@ -38,7 +38,7 @@ else:
     metadata_path = pwd + "/pass_metadata/metadata.pkl"     
     metrics_dir =  pwd + "/static/images/"
     peak_file = pwd + "/all_peaks.tsv"
-    motif_occ_dir = pwd + "/motifs/pass_motifs/"
+    motif_occ_dir = pwd + "/pass_motifs/"
     motif_occ_file = pwd + "/all_motif_occs.tsv"
 
 
@@ -68,6 +68,7 @@ def find_duplicates(in_list):
             print ("duplicate: " + each + " " + count)
 
 def histogram(field, data, metrics_dir):
+    print(data, "d for h")
     plt.rc('axes',edgecolor='white')
     plt.rc('lines', color='white')
     plt.rc('text', color='white')
@@ -79,11 +80,11 @@ def histogram(field, data, metrics_dir):
     plt.xlabel("Bin Ranges", color='white')
     plt.ylabel("Frequency", color='white')
     plt.title("Distribution of "+field+" values across all peaks in database")
-
+    # field = "_".join(metrics_dir.split(" "))
     savefile = metrics_dir + "/" + field + "_hist.png"
     print(savefile)
     plt.savefig(savefile, transparent=True)
-    plt.cla()
+    plt.clf()
 
 def slugify(value):
     """
@@ -346,9 +347,17 @@ if peak_bool:
         histogram(field, peak_fields[field], metrics_dir)
 
 # Move over the motif occurences
+# Motif processing steps
+    # 1.) Download PWMs to: (/motifs/motif_dir)
+    # 2.) Run find_motif_sites.py (/motifs/find_motif_sites.py)
+    # 3.) Run convert_occs_to_bed.py (/motifs/convert_occs_to_bed.py)
+    # 4.) Download DNase-Seq footprints to: (/gtrd_raw_footprints/)
+    # 5.) Run convert_gtrd.py (/convert_gtrd.py)
+        # Creates tissue-specific mappings using footprints
 
 motif_occ_files = glob.glob(motif_occ_dir + "/*")
 # motif_occ_files = [x.split("/")[-1] for x in motif_occ_files_glob]
+print(motif_occ_files)
 
 if motif_bool:
     score = []
@@ -369,7 +378,7 @@ if motif_bool:
                         continue
                     line_count += 1
                     # print(line)
-                    p_line = line.rstrip("\n").split("\t")
+                    p_l = line.rstrip("\n").split("\t")
                     write_dict = {
                         "tissue_types": tissue,
                         "transcription_factors": tf,
@@ -377,8 +386,8 @@ if motif_bool:
                         "start": str(int(p_l[1]) - 1),
                         "end": str(int(p_l[2]) - 1),
                         "length": p_l[3],
-                        "score": p_l[5]
-                        "log_p": p_l[6],
+                        "score": p_l[5],
+                        "log_p": str((-1)*log_p_conv(p_l[6])),
                         "id": motif_id_count
                     }
                     column_list = [
@@ -392,8 +401,8 @@ if motif_bool:
                             "transcription_factors",
                             "tissue_types"
                             ]
-                    score.append(p_line[2])
-                    p_values.append(str((-1)*log_p_conv(p_line[7])))
+                    score.append(float(p_l[5]))
+                    p_values.append((-1)*log_p_conv(p_l[6]))
                     write_list = [str(write_dict[x]) for x in column_list]
                     out.write("\t".join(write_list)+"\n")
 
@@ -401,8 +410,8 @@ if motif_bool:
 
 
     motif_fields = {
-        "motif score": score,
-        "-log_p motif": p_values
+        "motif_score": score,
+        "-log_p_motif": p_values
     }
 
     for field in motif_fields.keys():

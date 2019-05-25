@@ -1,0 +1,2765 @@
+TFAP2A	Yes	Known motif				
+TFAP2B	Yes	Known motif				
+TFAP2C	Yes	Known motif				
+TFAP2D	Yes	Known motif				
+TFAP2E	Yes	Known motif				
+ARID1A	No	Unlikely to be sequence specific TF				
+ARID1B	No	Unlikely to be sequence specific TF				
+ARID3A	Yes	Known motif				
+ARID3B	Yes	Inferred motif				
+ARID3C	Yes	Inferred motif				
+ARID4A	No	Unlikely to be sequence specific TF				
+ARID4B	No	Unlikely to be sequence specific TF				
+ARID5A	Yes	Known motif				
+ARID5B	Yes	Known motif				
+JARID2	No	Unlikely to be sequence specific TF				
+KDM5A	No	Unlikely to be sequence specific TF				
+KDM5B	Yes	Likely to be sequence specific TF				
+KDM5C	No	Unlikely to be sequence specific TF				
+KDM5D	No	Unlikely to be sequence specific TF				
+ARID2	Yes	Likely to be sequence specific TF				
+AHCTF1	Yes	Likely to be sequence specific TF				
+AHDC1	Yes	Likely to be sequence specific TF				
+AKNA	Yes	Likely to be sequence specific TF				
+ASH1L	Yes	Likely to be sequence specific TF				
+CBX2	Yes	Likely to be sequence specific TF				
+DNTTIP1	Yes	Likely to be sequence specific TF				
+DOT1L	Yes	Likely to be sequence specific TF				
+GLYR1	Yes	Likely to be sequence specific TF				
+HMGA1	Yes	Known motif				
+HMGA2	Yes	Known motif				
+PHF20	Yes	Likely to be sequence specific TF				
+PHF21A	Yes	Likely to be sequence specific TF				
+PRR12	Yes	Likely to be sequence specific TF				
+SCML4	Yes	Likely to be sequence specific TF				
+SETBP1	Yes	Likely to be sequence specific TF				
+SRCAP	Yes	Likely to be sequence specific TF				
+C11orf95	Yes	Likely to be sequence specific TF				
+FAM200B	Yes	Likely to be sequence specific TF				
+SGSM2	Yes	Likely to be sequence specific TF				
+ZBED1	Yes	Known motif				
+ZBED2	Yes	Likely to be sequence specific TF				
+ZBED3	Yes	Likely to be sequence specific TF				
+ZBED4	Yes	Likely to be sequence specific TF				
+ZBED5	Yes	Likely to be sequence specific TF				
+ZBED6	Yes	Inferred motif				
+ZBED8	No	Unlikely to be sequence specific TF				
+ZBED9	Yes	Likely to be sequence specific TF				
+AHR	Yes	Known motif				
+AHRR	Yes	Inferred motif				
+ARNT	Yes	Known motif				
+ARNT2	Yes	Known motif				
+ARNTL	Yes	Known motif				
+ARNTL2	Yes	Inferred motif				
+ASCL1	Yes	Known motif				
+ASCL2	Yes	Known motif				
+ASCL3	Yes	Inferred motif				
+ASCL4	Yes	Inferred motif				
+ASCL5	Yes	Inferred motif				
+ATOH1	Yes	Known motif				
+ATOH7	Yes	Known motif				
+ATOH8	Yes	Inferred motif				
+BHLHA15	Yes	Known motif				
+BHLHA9	Yes	Likely to be sequence specific TF				
+BHLHE22	Yes	Known motif				
+BHLHE23	Yes	Known motif				
+BHLHE40	Yes	Known motif				
+BHLHE41	Yes	Known motif				
+CCDC169-SOHLH2	Yes	Known motif				
+CLOCK	Yes	Known motif				
+EPAS1	Yes	Known motif				
+FERD3L	Yes	Known motif				
+FIGLA	Yes	Known motif				
+HAND1	Yes	Known motif				
+HAND2	Yes	Known motif				
+HELT	Yes	Inferred motif				
+HES1	Yes	Known motif				
+HES2	Yes	Known motif				
+HES3	Yes	Inferred motif				
+HES4	Yes	Inferred motif				
+HES5	Yes	Known motif				
+HES6	Yes	Known motif				
+HES7	Yes	Known motif				
+HEY1	Yes	Known motif				
+HEY2	Yes	Known motif				
+HEYL	Yes	Inferred motif				
+HIF1A	Yes	Known motif				
+HIF3A	Yes	Inferred motif				
+ID1	No	Unlikely to be sequence specific TF				
+ID2	No	Unlikely to be sequence specific TF				
+ID3	No	Unlikely to be sequence specific TF				
+ID4	No	Unlikely to be sequence specific TF				
+LYL1	Yes	Inferred motif				
+MAX	Yes	Known motif				
+MESP1	Yes	Known motif				
+MESP2	Yes	Known motif				
+MITF	Yes	Known motif				
+MLX	Yes	Known motif				
+MLXIP	Yes	Inferred motif				
+MLXIPL	Yes	Known motif				
+MNT	Yes	Known motif				
+MSC	Yes	Known motif				
+MSGN1	Yes	Known motif				
+MXD1	Yes	Inferred motif				
+MXD3	Yes	Inferred motif				
+MXD4	Yes	Inferred motif				
+MXI1	Yes	Known motif				
+MYC	Yes	Known motif				
+MYCL	Yes	Inferred motif				
+MYCN	Yes	Known motif				
+MYF5	Yes	Known motif				
+MYF6	Yes	Known motif				
+MYOD1	Yes	Known motif				
+MYOG	Yes	Known motif				
+NCOA1	Yes	Likely to be sequence specific TF				
+NCOA2	Yes	Likely to be sequence specific TF				
+NCOA3	Yes	Likely to be sequence specific TF				
+NEUROD1	Yes	Known motif				
+NEUROD2	Yes	Known motif				
+NEUROD4	Yes	Inferred motif				
+NEUROD6	Yes	Inferred motif				
+NEUROG1	Yes	Known motif				
+NEUROG2	Yes	Known motif				
+NEUROG3	Yes	Inferred motif				
+NHLH1	Yes	Known motif				
+NHLH2	Yes	Known motif				`
+NPAS1	Yes	Inferred motif				
+NPAS2	Yes	Known motif				
+NPAS3	Yes	Inferred motif				
+NPAS4	Yes	Inferred motif				
+OLIG1	Yes	Known motif				
+OLIG2	Yes	Known motif				
+OLIG3	Yes	Known motif				
+PTF1A	Yes	Known motif				
+SCX	Yes	Inferred motif				
+SIM1	Yes	Inferred motif				
+SIM2	Yes	Inferred motif				
+SOHLH1	Yes	Likely to be sequence specific TF				
+SOHLH2	Yes	Known motif				
+SREBF1	Yes	Known motif				
+SREBF2	Yes	Known motif				
+TAL1	Yes	Known motif				
+TAL2	Yes	Inferred motif				
+TCF12	Yes	Known motif				
+TCF15	Yes	Inferred motif				
+TCF21	Yes	Known motif				
+TCF23	Yes	Inferred motif				
+TCF24	Yes	Inferred motif				
+TCF3	Yes	Known motif				
+TCF4	Yes	Known motif				
+TCFL5	Yes	Known motif				
+TFAP4	Yes	Known motif				
+TFE3	Yes	Known motif				
+TFEB	Yes	Known motif				
+TFEC	Yes	Known motif				
+TWIST1	Yes	Known motif				
+TWIST2	Yes	Known motif				
+USF1	Yes	Known motif				
+USF2	Yes	Known motif				
+USF3	Yes	Likely to be sequence specific TF				
+POGK	Yes	Likely to be sequence specific TF				
+AC023509.3	Yes	Known motif				
+APC2	No	Unlikely to be sequence specific TF				
+ATF1	Yes	Known motif				
+ATF2	Yes	Known motif				
+ATF3	Yes	Known motif				
+ATF4	Yes	Known motif				
+ATF5	Yes	Known motif				
+ATF6	Yes	Known motif				
+ATF6B	Yes	Known motif				
+ATF7	Yes	Known motif				
+BACH1	Yes	Known motif				
+BACH2	Yes	Known motif				
+BATF	Yes	Known motif				
+BATF2	Yes	Likely to be sequence specific TF				
+BATF3	Yes	Known motif				
+BEND4	No	Unlikely to be sequence specific TF				
+CCDC3	No	Unlikely to be sequence specific TF				
+CCDC83	No	Unlikely to be sequence specific TF				
+CEBPA	Yes	Known motif				
+CEBPB	Yes	Known motif				
+CEBPD	Yes	Known motif				
+CEBPE	Yes	Known motif				
+CEBPG	Yes	Known motif				
+CREB1	Yes	Known motif				
+CREB3	Yes	Known motif				
+CREB3L1	Yes	Known motif				
+CREB3L2	Yes	Known motif				
+CREB3L3	Yes	Likely to be sequence specific TF				
+CREB3L4	Yes	Known motif				
+CREB5	Yes	Known motif				
+CREBL2	Yes	Inferred motif				
+CREBRF	No	Unlikely to be sequence specific TF				
+CREBZF	Yes	Inferred motif				
+CREM	Yes	Known motif				
+DBP	Yes	Known motif				
+DDIT3	Yes	Known motif				
+FOS	Yes	Known motif				
+FOSB	Yes	Known motif				
+FOSL1	Yes	Known motif				
+FOSL2	Yes	Known motif				
+GULP1	No	Unlikely to be sequence specific TF				
+HLF	Yes	Known motif				
+HOOK2	No	Unlikely to be sequence specific TF				
+IQGAP1	No	Unlikely to be sequence specific TF				
+JDP2	Yes	Known motif				
+JUN	Yes	Known motif				
+JUNB	Yes	Known motif				
+JUND	Yes	Known motif				
+KIF15	No	Unlikely to be sequence specific TF				
+KRT13	No	Unlikely to be sequence specific TF				
+MAF	Yes	Known motif				
+MAFA	Yes	Known motif				
+MAFB	Yes	Known motif				
+MAFF	Yes	Known motif				
+MAFG	Yes	Known motif				
+MAFK	Yes	Known motif				
+MORC3	No	ssDNA/RNA binding				
+NDC80	No	Unlikely to be sequence specific TF				
+NFE2	Yes	Known motif				
+NFE2L1	Yes	Known motif				
+NFE2L2	Yes	Known motif				
+NFE2L3	Yes	Known motif				
+NFIL3	Yes	Known motif				
+NRBF2	No	Unlikely to be sequence specific TF				
+NRL	Yes	Known motif				
+PPP1R21	No	Unlikely to be sequence specific TF				
+RAB11FIP4	No	Unlikely to be sequence specific TF				
+RNF219	No	Unlikely to be sequence specific TF				
+SCOC	No	Unlikely to be sequence specific TF				
+TEF	Yes	Known motif				
+TRAK2	No	Unlikely to be sequence specific TF				
+XBP1	Yes	Known motif				
+AC008770.3	Yes	Likely to be sequence specific TF				
+AC092835.1	Yes	Likely to be sequence specific TF				
+AC138696.1	Yes	Known motif				
+AEBP2	Yes	Likely to be sequence specific TF				
+AKAP8	Yes	Likely to be sequence specific TF				
+AKAP8L	Yes	Likely to be sequence specific TF				
+ANKZF1	Yes	Likely to be sequence specific TF				
+ATMIN	Yes	Likely to be sequence specific TF				
+BCL11A	Yes	Known motif				
+BCL11B	Yes	Known motif				
+BCL6	Yes	Known motif				
+BCL6B	Yes	Known motif				
+BNC1	Yes	Inferred motif				
+BNC2	Yes	Inferred motif				
+CASZ1	Yes	Likely to be sequence specific TF				
+CCDC17	Yes	Likely to be sequence specific TF				
+CHAMP1	Yes	Likely to be sequence specific TF				
+CPXCR1	Yes	Likely to be sequence specific TF				
+CTCF	Yes	Known motif				
+CTCFL	Yes	Known motif				
+DPF1	Yes	Known motif				
+DPF3	Yes	Inferred motif				
+DZIP1	Yes	Likely to be sequence specific TF				
+E4F1	Yes	Known motif				
+EEA1	Yes	Likely to be sequence specific TF				
+EGR1	Yes	Known motif				
+EGR2	Yes	Known motif				
+EGR3	Yes	Known motif				
+EGR4	Yes	Known motif				
+FAM170A	Yes	Likely to be sequence specific TF				
+FEZF1	Yes	Known motif				
+FEZF2	Yes	Inferred motif				
+FIZ1	Yes	Likely to be sequence specific TF				
+GFI1	Yes	Known motif				
+GFI1B	Yes	Known motif				
+GLI1	Yes	Known motif				
+GLI2	Yes	Known motif				
+GLI3	Yes	Known motif				
+GLI4	Yes	Known motif				
+GLIS1	Yes	Known motif				
+GLIS2	Yes	Known motif				
+GLIS3	Yes	Known motif				
+GTF3A	Yes	Known motif				
+GZF1	Yes	Known motif				
+HIC1	Yes	Known motif				
+HIC2	Yes	Known motif				
+HINFP	Yes	Known motif				
+HIVEP1	Yes	Known motif				
+HIVEP2	Yes	Known motif				
+HIVEP3	Yes	Inferred motif				
+HKR1	Yes	Known motif				
+IKZF1	Yes	Known motif				
+IKZF2	Yes	Known motif				
+IKZF3	Yes	Known motif				
+IKZF4	Yes	Inferred motif				
+IKZF5	Yes	Inferred motif				
+INSM1	Yes	Known motif				
+INSM2	Yes	Likely to be sequence specific TF				
+JAZF1	Yes	Likely to be sequence specific TF				
+KAT7	Yes	Likely to be sequence specific TF				
+KCMF1	Yes	Likely to be sequence specific TF				
+KIN	Yes	Likely to be sequence specific TF				
+KLF1	Yes	Known motif				
+KLF10	Yes	Known motif				
+KLF11	Yes	Known motif				
+KLF12	Yes	Known motif				
+KLF13	Yes	Known motif				
+KLF14	Yes	Known motif				
+KLF15	Yes	Known motif				
+KLF16	Yes	Known motif				
+KLF17	Yes	Known motif				
+KLF2	Yes	Known motif				
+KLF3	Yes	Known motif				
+KLF4	Yes	Known motif				
+KLF5	Yes	Known motif				
+KLF6	Yes	Known motif				
+KLF7	Yes	Known motif				
+KLF8	Yes	Known motif				
+KLF9	Yes	Known motif				
+L3MBTL1	Yes	Likely to be sequence specific TF				
+L3MBTL3	Yes	Likely to be sequence specific TF				
+L3MBTL4	Yes	Likely to be sequence specific TF				
+MAZ	Yes	Known motif				
+MECOM	Yes	Known motif				
+MTF1	Yes	Known motif				
+MYNN	Yes	Known motif				
+MYT1	Yes	Likely to be sequence specific TF				
+MYT1L	Yes	Inferred motif				
+MZF1	Yes	Known motif				
+NUFIP1	No	ssDNA/RNA binding				
+OSR1	Yes	Known motif				
+OSR2	Yes	Known motif				
+OVOL1	Yes	Known motif				
+OVOL2	Yes	Known motif				
+OVOL3	Yes	Likely to be sequence specific TF				
+PEG3	Yes	Likely to be sequence specific TF				
+PLAG1	Yes	Known motif				
+PLAGL1	Yes	Known motif				
+PLAGL2	Yes	Known motif				
+PRDM1	Yes	Known motif				
+PRDM10	Yes	Likely to be sequence specific TF				
+PRDM12	Yes	Known motif				
+PRDM13	Yes	Likely to be sequence specific TF				
+PRDM14	Yes	Known motif				
+PRDM15	Yes	Known motif				
+PRDM16	Yes	Inferred motif				
+PRDM2	Yes	Likely to be sequence specific TF				
+PRDM4	Yes	Known motif				
+PRDM5	Yes	Likely to be sequence specific TF				
+PRDM6	Yes	Known motif				
+PRDM8	Yes	Likely to be sequence specific TF				
+PRDM9	Yes	Known motif				
+PRMT3	Yes	Likely to be sequence specific TF				
+RBAK	Yes	Known motif				
+RBSN	Yes	Likely to be sequence specific TF				
+REPIN1	Yes	Likely to be sequence specific TF				
+REST	Yes	Known motif				
+RLF	Yes	Likely to be sequence specific TF				
+RREB1	Yes	Known motif				
+SALL1	Yes	Inferred motif				
+SALL2	Yes	Known motif				
+SALL3	Yes	Likely to be sequence specific TF				
+SALL4	Yes	Inferred motif				
+SCRT1	Yes	Known motif				
+SCRT2	Yes	Known motif				
+SLC2A4RG	Yes	Likely to be sequence specific TF				
+SNAI1	Yes	Known motif				
+SNAI2	Yes	Known motif				
+SNAI3	Yes	Known motif				
+SP1	Yes	Known motif				
+SP2	Yes	Known motif				
+SP3	Yes	Known motif				
+SP4	Yes	Known motif				
+SP5	Yes	Known motif				
+SP6	Yes	Inferred motif				
+SP7	Yes	Known motif				
+SP8	Yes	Known motif				
+SP9	Yes	Known motif				
+ST18	Yes	Inferred motif				
+TRAFD1	Yes	Likely to be sequence specific TF				
+TSHZ1	Yes	Likely to be sequence specific TF				
+TSHZ2	Yes	Likely to be sequence specific TF				
+TSHZ3	Yes	Likely to be sequence specific TF				
+VEZF1	Yes	Known motif				
+WIZ	Yes	Likely to be sequence specific TF				
+WT1	Yes	Known motif				
+YY1	Yes	Known motif				
+YY2	Yes	Known motif				
+ZBTB1	Yes	Known motif				
+ZBTB10	Yes	Likely to be sequence specific TF				
+ZBTB11	Yes	Known motif				
+ZBTB12	Yes	Known motif				
+ZBTB14	Yes	Known motif				
+ZBTB16	Yes	Known motif				
+ZBTB17	Yes	Likely to be sequence specific TF				
+ZBTB18	Yes	Known motif				
+ZBTB2	Yes	Known motif				
+ZBTB20	Yes	Known motif				
+ZBTB21	Yes	Likely to be sequence specific TF				
+ZBTB22	Yes	Known motif				
+ZBTB25	Yes	Likely to be sequence specific TF				
+ZBTB26	Yes	Known motif				
+ZBTB3	Yes	Known motif				
+ZBTB32	Yes	Known motif				
+ZBTB33	Yes	Known motif				
+ZBTB34	Yes	Inferred motif				
+ZBTB37	Yes	Known motif				
+ZBTB38	Yes	Likely to be sequence specific TF				
+ZBTB39	Yes	Likely to be sequence specific TF				
+ZBTB4	Yes	Known motif				
+ZBTB40	Yes	Likely to be sequence specific TF				
+ZBTB41	Yes	Likely to be sequence specific TF				
+ZBTB42	Yes	Known motif				
+ZBTB43	Yes	Known motif				
+ZBTB44	Yes	Known motif				
+ZBTB45	Yes	Known motif				
+ZBTB46	Yes	Likely to be sequence specific TF				
+ZBTB47	Yes	Likely to be sequence specific TF				
+ZBTB48	Yes	Known motif				
+ZBTB49	Yes	Known motif				
+ZBTB5	Yes	Likely to be sequence specific TF				
+ZBTB6	Yes	Known motif				
+ZBTB7A	Yes	Known motif				
+ZBTB7B	Yes	Known motif				
+ZBTB7C	Yes	Known motif				
+ZBTB8A	Yes	Likely to be sequence specific TF				
+ZBTB8B	Yes	Likely to be sequence specific TF				
+ZBTB9	Yes	Likely to be sequence specific TF				
+ZFAT	Yes	Likely to be sequence specific TF				
+ZFP1	Yes	Known motif				
+ZFP14	Yes	Known motif				
+ZFP2	Yes	Inferred motif				
+ZFP28	Yes	Known motif				
+ZFP3	Yes	Known motif				
+ZFP30	Yes	Inferred motif				
+ZFP37	Yes	Likely to be sequence specific TF				
+ZFP41	Yes	Known motif				
+ZFP42	Yes	Known motif				
+ZFP57	Yes	Known motif				
+ZFP62	Yes	Likely to be sequence specific TF				
+ZFP64	Yes	Known motif				
+ZFP69	Yes	Known motif				
+ZFP69B	Yes	Known motif				
+ZFP82	Yes	Known motif				
+ZFP90	Yes	Known motif				
+ZFP91	Yes	Likely to be sequence specific TF				
+ZFP92	Yes	Known motif				
+ZFPL1	No	Unlikely to be sequence specific TF				
+ZFPM1	Yes	Likely to be sequence specific TF				
+ZFPM2	Yes	Likely to be sequence specific TF				
+ZFR	No	ssDNA/RNA binding				
+ZFR2	No	ssDNA/RNA binding				
+ZFX	Yes	Known motif				
+ZFY	Yes	Inferred motif				
+ZIC1	Yes	Known motif				
+ZIC2	Yes	Known motif				
+ZIC3	Yes	Known motif				
+ZIC4	Yes	Known motif				
+ZIC5	Yes	Known motif				
+ZIK1	Yes	Known motif				
+ZIM2	Yes	Known motif				
+ZIM3	Yes	Known motif				
+ZKSCAN1	Yes	Known motif				
+ZKSCAN2	Yes	Known motif				
+ZKSCAN3	Yes	Known motif				
+ZKSCAN4	Yes	Likely to be sequence specific TF				
+ZKSCAN5	Yes	Known motif				
+ZKSCAN7	Yes	Known motif				
+ZKSCAN8	Yes	Likely to be sequence specific TF				
+ZMAT1	Yes	Likely to be sequence specific TF				
+ZMAT3	No	ssDNA/RNA binding				
+ZMAT4	Yes	Likely to be sequence specific TF				
+ZNF10	Yes	Known motif				
+ZNF100	Yes	Known motif				
+ZNF101	Yes	Known motif				
+ZNF106	No	Unlikely to be sequence specific TF				
+ZNF107	Yes	Likely to be sequence specific TF				
+ZNF112	Yes	Likely to be sequence specific TF				
+ZNF114	Yes	Known motif				
+ZNF117	Yes	Inferred motif				
+ZNF12	Yes	Known motif				
+ZNF121	Yes	Known motif				
+ZNF124	Yes	Known motif				
+ZNF131	Yes	Likely to be sequence specific TF				
+ZNF132	Yes	Known motif				
+ZNF133	Yes	Known motif				
+ZNF134	Yes	Known motif				
+ZNF135	Yes	Known motif				
+ZNF136	Yes	Known motif				
+ZNF138	Yes	Likely to be sequence specific TF				
+ZNF14	Yes	Likely to be sequence specific TF				
+ZNF140	Yes	Known motif				
+ZNF141	Yes	Known motif				
+ZNF142	Yes	Likely to be sequence specific TF				
+ZNF143	Yes	Known motif				
+ZNF146	Yes	Known motif				
+ZNF148	Yes	Known motif				
+ZNF154	Yes	Known motif				
+ZNF155	Yes	Likely to be sequence specific TF				
+ZNF157	Yes	Known motif				
+ZNF16	Yes	Known motif				
+ZNF160	Yes	Likely to be sequence specific TF				
+ZNF165	Yes	Likely to be sequence specific TF				
+ZNF169	Yes	Known motif				
+ZNF17	Yes	Known motif				
+ZNF174	Yes	Known motif				
+ZNF175	Yes	Known motif				
+ZNF177	Yes	Known motif				
+ZNF18	Yes	Known motif				
+ZNF180	Yes	Known motif				
+ZNF181	Yes	Known motif				
+ZNF182	Yes	Known motif				
+ZNF184	Yes	Known motif				
+ZNF189	Yes	Known motif				
+ZNF19	Yes	Known motif				
+ZNF195	Yes	Likely to be sequence specific TF				
+ZNF197	Yes	Known motif				
+ZNF2	Yes	Known motif				
+ZNF20	Yes	Likely to be sequence specific TF				
+ZNF200	Yes	Known motif				
+ZNF202	Yes	Known motif				
+ZNF205	Yes	Known motif				
+ZNF207	Yes	Likely to be sequence specific TF				
+ZNF208	Yes	Likely to be sequence specific TF				
+ZNF211	Yes	Known motif				
+ZNF212	Yes	Known motif				
+ZNF213	Yes	Known motif				
+ZNF214	Yes	Known motif				
+ZNF215	Yes	Likely to be sequence specific TF				
+ZNF217	Yes	Known motif				
+ZNF219	Yes	Known motif				
+ZNF22	Yes	Known motif				
+ZNF221	Yes	Likely to be sequence specific TF				
+ZNF222	Yes	Known motif				
+ZNF223	Yes	Known motif				
+ZNF224	Yes	Known motif				
+ZNF225	Yes	Known motif				
+ZNF226	Yes	Likely to be sequence specific TF				
+ZNF227	Yes	Likely to be sequence specific TF				
+ZNF229	Yes	Likely to be sequence specific TF				
+ZNF23	Yes	Known motif				
+ZNF230	Yes	Likely to be sequence specific TF				
+ZNF232	Yes	Known motif				
+ZNF233	Yes	Likely to be sequence specific TF				
+ZNF234	Yes	Likely to be sequence specific TF				
+ZNF235	Yes	Known motif				
+ZNF236	Yes	Known motif				
+ZNF239	Yes	Likely to be sequence specific TF				
+ZNF24	Yes	Likely to be sequence specific TF				
+ZNF248	Yes	Known motif				
+ZNF25	Yes	Known motif				
+ZNF250	Yes	Known motif				
+ZNF251	Yes	Likely to be sequence specific TF				
+ZNF253	Yes	Likely to be sequence specific TF				
+ZNF254	Yes	Known motif				
+ZNF256	Yes	Likely to be sequence specific TF				
+ZNF257	Yes	Known motif				
+ZNF26	Yes	Known motif				
+ZNF260	Yes	Known motif				
+ZNF263	Yes	Known motif				
+ZNF264	Yes	Known motif				
+ZNF266	Yes	Known motif				
+ZNF267	Yes	Known motif				
+ZNF268	Yes	Likely to be sequence specific TF				
+ZNF273	Yes	Known motif				
+ZNF274	Yes	Known motif				
+ZNF275	Yes	Likely to be sequence specific TF				
+ZNF276	Yes	Known motif				
+ZNF28	Yes	Known motif				
+ZNF280A	Yes	Known motif				
+ZNF280B	Yes	Likely to be sequence specific TF				
+ZNF280C	Yes	Likely to be sequence specific TF				
+ZNF280D	Yes	Likely to be sequence specific TF				
+ZNF281	Yes	Known motif				
+ZNF282	Yes	Known motif				
+ZNF283	Yes	Known motif				
+ZNF284	Yes	Known motif				
+ZNF285	Yes	Known motif				
+ZNF286A	Yes	Likely to be sequence specific TF				
+ZNF286B	Yes	Likely to be sequence specific TF				
+ZNF287	Yes	Known motif				
+ZNF292	Yes	Likely to be sequence specific TF				
+ZNF296	Yes	Known motif				
+ZNF3	Yes	Known motif				
+ZNF30	Yes	Known motif				
+ZNF300	Yes	Known motif				
+ZNF302	Yes	Known motif				
+ZNF304	Yes	Known motif				
+ZNF311	Yes	Known motif				
+ZNF316	Yes	Known motif				
+ZNF317	Yes	Known motif				
+ZNF318	Yes	Likely to be sequence specific TF				
+ZNF319	Yes	Likely to be sequence specific TF				
+ZNF32	Yes	Known motif				
+ZNF320	Yes	Known motif				
+ZNF322	Yes	Known motif				
+ZNF324	Yes	Known motif				
+ZNF324B	Yes	Known motif				
+ZNF326	Yes	Likely to be sequence specific TF				
+ZNF329	Yes	Known motif				
+ZNF331	Yes	Known motif				
+ZNF333	Yes	Known motif				
+ZNF334	Yes	Known motif				
+ZNF335	Yes	Likely to be sequence specific TF				
+ZNF337	Yes	Known motif				
+ZNF33A	Yes	Known motif				
+ZNF33B	Yes	Known motif				
+ZNF34	Yes	Known motif				
+ZNF341	Yes	Known motif				
+ZNF343	Yes	Known motif				
+ZNF345	Yes	Known motif				
+ZNF346	Yes	Likely to be sequence specific TF				
+ZNF347	Yes	Likely to be sequence specific TF				
+ZNF35	Yes	Known motif				
+ZNF350	Yes	Known motif				
+ZNF354A	Yes	Known motif				
+ZNF354B	Yes	Known motif				
+ZNF354C	Yes	Known motif				
+ZNF355P	No	Unlikely to be sequence specific TF				
+ZNF358	Yes	Likely to be sequence specific TF				
+ZNF362	Yes	Likely to be sequence specific TF				
+ZNF365	Yes	Likely to be sequence specific TF				
+ZNF366	Yes	Likely to be sequence specific TF				
+ZNF367	Yes	Likely to be sequence specific TF				
+ZNF37A	Yes	Known motif				
+ZNF382	Yes	Known motif				
+ZNF383	Yes	Known motif				
+ZNF384	Yes	Known motif				
+ZNF385A	Yes	Likely to be sequence specific TF				
+ZNF385B	Yes	Likely to be sequence specific TF				
+ZNF385C	Yes	Likely to be sequence specific TF				
+ZNF385D	Yes	Known motif				
+ZNF391	Yes	Likely to be sequence specific TF				
+ZNF394	Yes	Known motif				
+ZNF395	Yes	Likely to be sequence specific TF				
+ZNF396	Yes	Known motif				
+ZNF397	Yes	Likely to be sequence specific TF				
+ZNF398	Yes	Known motif				
+ZNF404	Yes	Likely to be sequence specific TF				
+ZNF407	Yes	Likely to be sequence specific TF				
+ZNF408	Yes	Likely to be sequence specific TF				
+ZNF41	Yes	Known motif				
+ZNF410	Yes	Known motif				
+ZNF414	Yes	Likely to be sequence specific TF				
+ZNF415	Yes	Known motif				
+ZNF416	Yes	Known motif				
+ZNF417	Yes	Known motif				
+ZNF418	Yes	Known motif				
+ZNF419	Yes	Known motif				
+ZNF420	Yes	Likely to be sequence specific TF				
+ZNF423	Yes	Known motif				
+ZNF425	Yes	Known motif				
+ZNF426	Yes	Likely to be sequence specific TF				
+ZNF428	Yes	Likely to be sequence specific TF				
+ZNF429	Yes	Known motif				
+ZNF43	Yes	Likely to be sequence specific TF				
+ZNF430	Yes	Known motif				
+ZNF431	Yes	Known motif				
+ZNF432	Yes	Known motif				
+ZNF433	Yes	Known motif				
+ZNF436	Yes	Known motif				
+ZNF438	Yes	Likely to be sequence specific TF				
+ZNF439	Yes	Known motif				
+ZNF44	Yes	Known motif				
+ZNF440	Yes	Known motif				
+ZNF441	Yes	Known motif				
+ZNF442	Yes	Known motif				
+ZNF443	Yes	Known motif				
+ZNF444	Yes	Known motif				
+ZNF445	Yes	Known motif				
+ZNF446	Yes	Likely to be sequence specific TF				
+ZNF449	Yes	Known motif				
+ZNF45	Yes	Known motif				
+ZNF451	Yes	Likely to be sequence specific TF				
+ZNF454	Yes	Known motif				
+ZNF460	Yes	Known motif				
+ZNF461	Yes	Likely to be sequence specific TF				
+ZNF462	Yes	Likely to be sequence specific TF				
+ZNF467	Yes	Known motif				
+ZNF468	Yes	Known motif				
+ZNF469	Yes	Likely to be sequence specific TF				
+ZNF470	Yes	Likely to be sequence specific TF				
+ZNF471	Yes	Likely to be sequence specific TF				
+ZNF473	Yes	Likely to be sequence specific TF				
+ZNF474	Yes	Likely to be sequence specific TF				
+ZNF479	Yes	Known motif				
+ZNF48	Yes	Likely to be sequence specific TF				
+ZNF480	Yes	Known motif				
+ZNF483	Yes	Known motif				
+ZNF484	Yes	Known motif				
+ZNF485	Yes	Known motif				
+ZNF486	Yes	Known motif				
+ZNF487	Yes	Known motif				
+ZNF488	Yes	Likely to be sequence specific TF				
+ZNF490	Yes	Known motif				
+ZNF491	Yes	Likely to be sequence specific TF				
+ZNF492	Yes	Known motif				
+ZNF493	Yes	Likely to be sequence specific TF				
+ZNF496	Yes	Known motif				
+ZNF497	Yes	Likely to be sequence specific TF				
+ZNF500	Yes	Likely to be sequence specific TF				
+ZNF501	Yes	Known motif				
+ZNF502	Yes	Known motif				
+ZNF503	Yes	Likely to be sequence specific TF				
+ZNF506	Yes	Known motif				
+ZNF507	Yes	Likely to be sequence specific TF				
+ZNF510	Yes	Likely to be sequence specific TF				
+ZNF511	Yes	Likely to be sequence specific TF				
+ZNF512B	Yes	Likely to be sequence specific TF				
+ZNF513	Yes	Known motif				
+ZNF514	Yes	Likely to be sequence specific TF				
+ZNF516	Yes	Likely to be sequence specific TF				
+ZNF517	Yes	Likely to be sequence specific TF				
+ZNF518A	Yes	Likely to be sequence specific TF				
+ZNF518B	Yes	Likely to be sequence specific TF				
+ZNF519	Yes	Known motif				
+ZNF521	Yes	Known motif				
+ZNF525	Yes	Known motif				
+ZNF526	Yes	Likely to be sequence specific TF				
+ZNF527	Yes	Known motif				
+ZNF528	Yes	Known motif				
+ZNF529	Yes	Known motif				
+ZNF530	Yes	Known motif				
+ZNF532	Yes	Likely to be sequence specific TF				
+ZNF534	Yes	Known motif				
+ZNF536	Yes	Likely to be sequence specific TF				
+ZNF540	Yes	Known motif				
+ZNF542P	No	Unlikely to be sequence specific TF				
+ZNF543	Yes	Known motif				
+ZNF544	Yes	Likely to be sequence specific TF				
+ZNF546	Yes	Likely to be sequence specific TF				
+ZNF547	Yes	Known motif				
+ZNF548	Yes	Known motif				
+ZNF549	Yes	Known motif				
+ZNF550	Yes	Known motif				
+ZNF551	Yes	Likely to be sequence specific TF				
+ZNF552	Yes	Known motif				
+ZNF554	Yes	Known motif				
+ZNF555	Yes	Known motif				
+ZNF556	Yes	Likely to be sequence specific TF				
+ZNF557	Yes	Known motif				
+ZNF558	Yes	Known motif				
+ZNF559	Yes	Likely to be sequence specific TF				
+ZNF560	Yes	Likely to be sequence specific TF				
+ZNF561	Yes	Known motif				
+ZNF562	Yes	Known motif				
+ZNF563	Yes	Known motif				
+ZNF564	Yes	Known motif				
+ZNF565	Yes	Known motif				
+ZNF566	Yes	Known motif				
+ZNF567	Yes	Known motif				
+ZNF568	Yes	Likely to be sequence specific TF				
+ZNF569	Yes	Likely to be sequence specific TF				
+ZNF57	Yes	Likely to be sequence specific TF				
+ZNF570	Yes	Known motif				
+ZNF571	Yes	Known motif				
+ZNF572	Yes	Likely to be sequence specific TF				
+ZNF573	Yes	Known motif				
+ZNF574	Yes	Known motif				
+ZNF575	Yes	Likely to be sequence specific TF				
+ZNF576	Yes	Likely to be sequence specific TF				
+ZNF577	Yes	Likely to be sequence specific TF				
+ZNF578	Yes	Likely to be sequence specific TF				
+ZNF579	Yes	Likely to be sequence specific TF				
+ZNF580	Yes	Known motif				
+ZNF581	Yes	Known motif				
+ZNF582	Yes	Known motif				
+ZNF583	Yes	Likely to be sequence specific TF				
+ZNF584	Yes	Known motif				
+ZNF585A	Yes	Known motif				
+ZNF585B	Yes	Likely to be sequence specific TF				
+ZNF586	Yes	Known motif				
+ZNF587	Yes	Known motif				
+ZNF587B	Yes	Likely to be sequence specific TF				
+ZNF589	Yes	Known motif				
+ZNF592	Yes	Likely to be sequence specific TF				
+ZNF593	No	Unlikely to be sequence specific TF				
+ZNF594	Yes	Known motif				
+ZNF595	Yes	Known motif				
+ZNF596	Yes	Known motif				
+ZNF597	Yes	Known motif				
+ZNF598	Yes	Likely to be sequence specific TF				
+ZNF599	Yes	Likely to be sequence specific TF				
+ZNF600	Yes	Likely to be sequence specific TF				
+ZNF605	Yes	Known motif				
+ZNF606	Yes	Likely to be sequence specific TF				
+ZNF607	Yes	Likely to be sequence specific TF				
+ZNF608	Yes	Likely to be sequence specific TF				
+ZNF609	Yes	Likely to be sequence specific TF				
+ZNF610	Yes	Known motif				
+ZNF611	Yes	Known motif				
+ZNF613	Yes	Known motif				
+ZNF614	Yes	Known motif				
+ZNF615	Yes	Known motif				
+ZNF616	Yes	Known motif				
+ZNF618	Yes	Likely to be sequence specific TF				
+ZNF619	Yes	Known motif				
+ZNF620	Yes	Known motif				
+ZNF621	Yes	Known motif				
+ZNF622	No	ssDNA/RNA binding				
+ZNF623	Yes	Likely to be sequence specific TF				
+ZNF624	Yes	Likely to be sequence specific TF				
+ZNF625	Yes	Likely to be sequence specific TF				
+ZNF626	Yes	Known motif				
+ZNF627	Yes	Known motif				
+ZNF628	Yes	Known motif				
+ZNF629	Yes	Likely to be sequence specific TF				
+ZNF630	Yes	Likely to be sequence specific TF				
+ZNF639	Yes	Likely to be sequence specific TF				
+ZNF641	Yes	Known motif				
+ZNF644	Yes	Likely to be sequence specific TF				
+ZNF645	Yes	Likely to be sequence specific TF				
+ZNF646	Yes	Likely to be sequence specific TF				
+ZNF648	Yes	Likely to be sequence specific TF				
+ZNF649	Yes	Known motif				
+ZNF652	Yes	Inferred motif				
+ZNF654	Yes	Likely to be sequence specific TF				
+ZNF655	Yes	Known motif				
+ZNF658	Yes	Known motif				
+ZNF66	Yes	Likely to be sequence specific TF				
+ZNF660	Yes	Known motif				
+ZNF662	Yes	Known motif				
+ZNF664	Yes	Inferred motif				
+ZNF665	Yes	Likely to be sequence specific TF				
+ZNF667	Yes	Known motif				
+ZNF668	Yes	Likely to be sequence specific TF				
+ZNF669	Yes	Known motif				
+ZNF670	Yes	Likely to be sequence specific TF				
+ZNF671	Yes	Known motif				
+ZNF672	Yes	Likely to be sequence specific TF				
+ZNF674	Yes	Known motif				
+ZNF675	Yes	Known motif				
+ZNF676	Yes	Likely to be sequence specific TF				
+ZNF677	Yes	Known motif				
+ZNF678	Yes	Likely to be sequence specific TF				
+ZNF679	Yes	Inferred motif				
+ZNF680	Yes	Known motif				
+ZNF681	Yes	Known motif				
+ZNF682	Yes	Known motif				
+ZNF683	Yes	Likely to be sequence specific TF				
+ZNF684	Yes	Known motif				
+ZNF687	Yes	Likely to be sequence specific TF				
+ZNF688	Yes	Likely to be sequence specific TF				
+ZNF689	Yes	Likely to be sequence specific TF				
+ZNF69	Yes	Known motif				
+ZNF691	Yes	Inferred motif				
+ZNF692	Yes	Known motif				
+ZNF695	Yes	Known motif				
+ZNF696	Yes	Likely to be sequence specific TF				
+ZNF697	Yes	Inferred motif				
+ZNF699	Yes	Likely to be sequence specific TF				
+ZNF7	Yes	Known motif				
+ZNF70	Yes	Likely to be sequence specific TF				
+ZNF700	Yes	Likely to be sequence specific TF				
+ZNF701	Yes	Known motif				
+ZNF703	Yes	Likely to be sequence specific TF				
+ZNF704	Yes	Known motif				
+ZNF705A	Yes	Inferred motif				
+ZNF705B	Yes	Inferred motif				
+ZNF705D	Yes	Inferred motif				
+ZNF705E	Yes	Likely to be sequence specific TF				
+ZNF705G	Yes	Known motif				
+ZNF706	Yes	Likely to be sequence specific TF				
+ZNF707	Yes	Known motif				
+ZNF708	Yes	Known motif				
+ZNF709	Yes	Likely to be sequence specific TF				
+ZNF71	Yes	Known motif				
+ZNF710	Yes	Likely to be sequence specific TF				
+ZNF711	Yes	Known motif				
+ZNF713	Yes	Known motif				
+ZNF714	Yes	Known motif				
+ZNF716	Yes	Known motif				
+ZNF717	Yes	Likely to be sequence specific TF				
+ZNF718	Yes	Known motif				
+ZNF721	Yes	Likely to be sequence specific TF				
+ZNF724	Yes	Likely to be sequence specific TF				
+ZNF726	Yes	Likely to be sequence specific TF				
+ZNF727	Yes	Known motif				
+ZNF728	Yes	Likely to be sequence specific TF				
+ZNF729	Yes	Likely to be sequence specific TF				
+ZNF73	No	Unlikely to be sequence specific TF				
+ZNF730	Yes	Known motif				
+ZNF732	Yes	Likely to be sequence specific TF				
+ZNF735	Yes	Known motif				
+ZNF736	Yes	Known motif				
+ZNF737	Yes	Known motif				
+ZNF74	Yes	Known motif				
+ZNF740	Yes	Known motif				
+ZNF746	Yes	Likely to be sequence specific TF				
+ZNF747	Yes	Likely to be sequence specific TF				
+ZNF749	Yes	Known motif				
+ZNF750	Yes	Likely to be sequence specific TF				
+ZNF75A	Yes	Known motif				
+ZNF75D	Yes	Known motif				
+ZNF76	Yes	Known motif				
+ZNF761	Yes	Known motif				
+ZNF763	Yes	Likely to be sequence specific TF				
+ZNF764	Yes	Known motif				
+ZNF765	Yes	Known motif				
+ZNF766	Yes	Known motif				
+ZNF768	Yes	Known motif				
+ZNF77	Yes	Known motif				
+ZNF770	Yes	Known motif				
+ZNF771	Yes	Known motif				
+ZNF772	Yes	Likely to be sequence specific TF				
+ZNF773	Yes	Likely to be sequence specific TF				
+ZNF774	Yes	Known motif				
+ZNF775	Yes	Likely to be sequence specific TF				
+ZNF776	Yes	Known motif				
+ZNF777	Yes	Known motif				
+ZNF778	Yes	Known motif				
+ZNF780A	Yes	Known motif				
+ZNF780B	Yes	Likely to be sequence specific TF				
+ZNF781	Yes	Likely to be sequence specific TF				
+ZNF782	Yes	Known motif				
+ZNF783	Yes	Known motif				
+ZNF784	Yes	Known motif				
+ZNF785	Yes	Known motif				
+ZNF786	Yes	Known motif				
+ZNF787	Yes	Known motif				
+ZNF788	Yes	Likely to be sequence specific TF				
+ZNF789	Yes	Known motif				
+ZNF79	Yes	Known motif				
+ZNF790	Yes	Known motif				
+ZNF791	Yes	Known motif				
+ZNF792	Yes	Known motif				
+ZNF793	Yes	Known motif				
+ZNF799	Yes	Known motif				
+ZNF8	Yes	Known motif				
+ZNF80	Yes	Likely to be sequence specific TF				
+ZNF800	Yes	Likely to be sequence specific TF				
+ZNF804A	Yes	Likely to be sequence specific TF				
+ZNF804B	Yes	Likely to be sequence specific TF				
+ZNF805	Yes	Known motif				
+ZNF808	Yes	Known motif				
+ZNF81	Yes	Known motif				
+ZNF812P	No	Unlikely to be sequence specific TF				
+ZNF813	Yes	Likely to be sequence specific TF				
+ZNF814	Yes	Likely to be sequence specific TF				
+ZNF816	Yes	Known motif				
+ZNF821	Yes	Known motif				
+ZNF823	Yes	Known motif				
+ZNF827	Yes	Likely to be sequence specific TF				
+ZNF829	Yes	Likely to be sequence specific TF				
+ZNF83	Yes	Likely to be sequence specific TF				
+ZNF830	Yes	Likely to be sequence specific TF				
+ZNF831	Yes	Likely to be sequence specific TF				
+ZNF835	Yes	Likely to be sequence specific TF				
+ZNF836	Yes	Likely to be sequence specific TF				
+ZNF837	Yes	Likely to be sequence specific TF				
+ZNF839	No	Unlikely to be sequence specific TF				
+ZNF84	Yes	Known motif				
+ZNF841	Yes	Likely to be sequence specific TF				
+ZNF843	Yes	Likely to be sequence specific TF				
+ZNF844	Yes	Likely to be sequence specific TF				
+ZNF845	Yes	Likely to be sequence specific TF				
+ZNF846	Yes	Known motif				
+ZNF85	Yes	Known motif				
+ZNF850	Yes	Likely to be sequence specific TF				
+ZNF852	Yes	Inferred motif				
+ZNF853	Yes	Likely to be sequence specific TF				
+ZNF860	Yes	Known motif				
+ZNF865	Yes	Likely to be sequence specific TF				
+ZNF878	Yes	Likely to be sequence specific TF				
+ZNF879	Yes	Known motif				
+ZNF880	Yes	Known motif				
+ZNF883	Yes	Known motif				
+ZNF888	Yes	Likely to be sequence specific TF				
+ZNF891	Yes	Known motif				
+ZNF90	Yes	Known motif				
+ZNF91	Yes	Likely to be sequence specific TF				
+ZNF92	Yes	Likely to be sequence specific TF				
+ZNF93	Yes	Known motif				
+ZNF98	Yes	Known motif				
+ZNF99	Yes	Likely to be sequence specific TF				
+ZSCAN1	Yes	Known motif				
+ZSCAN10	Yes	Inferred motif				
+ZSCAN12	Yes	Likely to be sequence specific TF				
+ZSCAN16	Yes	Known motif				
+ZSCAN18	Yes	Likely to be sequence specific TF				
+ZSCAN2	Yes	Likely to be sequence specific TF				
+ZSCAN20	Yes	Likely to be sequence specific TF				
+ZSCAN21	Yes	Likely to be sequence specific TF				
+ZSCAN22	Yes	Known motif				
+ZSCAN23	Yes	Known motif				
+ZSCAN25	Yes	Likely to be sequence specific TF				
+ZSCAN26	Yes	Known motif				
+ZSCAN29	Yes	Known motif				
+ZSCAN30	Yes	Known motif				
+ZSCAN31	Yes	Known motif				
+ZSCAN32	Yes	Likely to be sequence specific TF				
+ZSCAN4	Yes	Known motif				
+ZSCAN5A	Yes	Known motif				
+ZSCAN5B	Yes	Likely to be sequence specific TF				
+ZSCAN5C	Yes	Known motif				
+ZSCAN5DP	No	Unlikely to be sequence specific TF				
+ZSCAN9	Yes	Known motif				
+ZUFSP	Yes	Likely to be sequence specific TF				
+ZXDA	Yes	Likely to be sequence specific TF				
+ZXDB	Yes	Likely to be sequence specific TF				
+ZXDC	Yes	Likely to be sequence specific TF				
+PATZ1	Yes	Known motif				
+ZBTB24	Yes	Likely to be sequence specific TF				
+ZNF524	Yes	Known motif				
+ZNF653	Yes	Known motif				
+ZNF277	Yes	Likely to be sequence specific TF				
+ZNF512	Yes	Likely to be sequence specific TF				
+ZEB1	Yes	Known motif				
+ZEB2	Yes	Inferred motif				
+ZFHX3	Yes	Known motif				
+ZFHX4	Yes	Inferred motif				
+TRERF1	Yes	Inferred motif				
+ZNF541	Yes	Known motif				
+NFYA	Yes	Known motif				
+CPSF4	No	ssDNA/RNA binding				
+CPSF4L	No	ssDNA/RNA binding				
+DHX57	No	ssDNA/RNA binding				
+DUS3L	No	ssDNA/RNA binding				
+HELZ	No	ssDNA/RNA binding				
+MBNL1	No	ssDNA/RNA binding				
+MBNL2	Yes	Likely to be sequence specific TF				
+MBNL3	No	ssDNA/RNA binding				
+MKRN1	No	ssDNA/RNA binding				
+MKRN2	No	ssDNA/RNA binding				
+NUPL2	No	ssDNA/RNA binding				
+PARP12	No	ssDNA/RNA binding				
+PPP1R10	No	ssDNA/RNA binding				
+PRR3	No	ssDNA/RNA binding				
+RC3H1	No	ssDNA/RNA binding				
+RC3H2	No	ssDNA/RNA binding				
+RNF113A	No	ssDNA/RNA binding				
+RNF113B	No	ssDNA/RNA binding				
+TOE1	No	ssDNA/RNA binding				
+TRMT1	No	ssDNA/RNA binding				
+UNK	No	ssDNA/RNA binding				
+UNKL	No	ssDNA/RNA binding				
+ZC3H10	No	ssDNA/RNA binding				
+ZC3H11A	No	ssDNA/RNA binding				
+ZC3H12A	No	ssDNA/RNA binding				
+ZC3H13	No	ssDNA/RNA binding				
+ZC3H14	No	ssDNA/RNA binding				
+ZC3H15	No	ssDNA/RNA binding				
+ZC3H18	No	ssDNA/RNA binding				
+ZC3H3	No	ssDNA/RNA binding				
+ZC3H4	No	ssDNA/RNA binding				
+ZC3H6	No	ssDNA/RNA binding				
+ZC3H7A	No	ssDNA/RNA binding				
+ZC3H7B	No	ssDNA/RNA binding				
+ZC3H8	Yes	Likely to be sequence specific TF				
+ZC3HAV1	No	ssDNA/RNA binding				
+ZFP36	No	ssDNA/RNA binding				
+ZFP36L1	No	ssDNA/RNA binding				
+ZFP36L2	No	ssDNA/RNA binding				
+ZGPAT	Yes	Likely to be sequence specific TF				
+ZMAT5	No	ssDNA/RNA binding				
+ZRSR1	No	ssDNA/RNA binding				
+ZRSR2	No	ssDNA/RNA binding				
+CENPB	Yes	Known motif				
+CENPBD1	Yes	Known motif				
+JRK	Yes	Likely to be sequence specific TF				
+JRKL	Yes	Inferred motif				
+TIGD1	Yes	Known motif				
+TIGD2	Yes	Inferred motif				
+TIGD3	Yes	Likely to be sequence specific TF				
+TIGD4	Yes	Likely to be sequence specific TF				
+TIGD5	Yes	Likely to be sequence specific TF				
+TIGD6	Yes	Inferred motif				
+TIGD7	Yes	Likely to be sequence specific TF				
+CAMTA1	Yes	Likely to be sequence specific TF				
+CAMTA2	Yes	Likely to be sequence specific TF				
+CARHSP1	No	ssDNA/RNA binding				
+CSDC2	No	ssDNA/RNA binding				
+CSDE1	No	ssDNA/RNA binding				
+LIN28A	Yes	Inferred motif				
+LIN28B	Yes	Known motif				
+YBX1	Yes	Known motif				
+YBX2	Yes	Inferred motif				
+YBX3	Yes	Known motif				
+RBPJ	Yes	Known motif				
+RBPJL	Yes	Inferred motif				
+CUX1	Yes	Known motif				
+CUX2	Yes	Known motif				
+ONECUT1	Yes	Known motif				
+ONECUT2	Yes	Known motif				
+ONECUT3	Yes	Known motif				
+SATB1	Yes	Known motif				
+SATB2	Yes	Inferred motif				
+CXXC1	Yes	Known motif				
+CXXC4	Yes	Likely to be sequence specific TF				
+CXXC5	Yes	Known motif				
+DNMT1	Yes	Known motif				
+FBXL19	Yes	Likely to be sequence specific TF				
+KDM2A	Yes	Likely to be sequence specific TF				
+KDM2B	Yes	Known motif				
+TET1	Yes	Known motif				
+TET3	Yes	Likely to be sequence specific TF				
+KMT2A	Yes	Known motif				
+KMT2B	Yes	Likely to be sequence specific TF				
+DMRT1	Yes	Known motif				
+DMRT2	Yes	Known motif				
+DMRT3	Yes	Known motif				
+DMRTA1	Yes	Known motif				
+DMRTA2	Yes	Known motif				
+DMRTB1	Yes	Likely to be sequence specific TF				
+DMRTC2	Yes	Known motif				
+E2F1	Yes	Known motif				
+E2F2	Yes	Known motif				
+E2F3	Yes	Known motif				
+E2F4	Yes	Known motif				
+E2F5	Yes	Known motif				
+E2F6	Yes	Known motif				
+E2F7	Yes	Known motif				
+E2F8	Yes	Known motif				
+TFDP1	Yes	Known motif				
+TFDP2	Yes	Inferred motif				
+TFDP3	Yes	Inferred motif				
+EBF1	Yes	Known motif				
+EBF2	Yes	Known motif				
+EBF3	Yes	Known motif				
+EBF4	Yes	Known motif				
+EHF	Yes	Known motif				
+ELF1	Yes	Known motif				
+ELF2	Yes	Known motif				
+ELF4	Yes	Known motif				
+ELF5	Yes	Known motif				
+ELK1	Yes	Known motif				
+ELK3	Yes	Known motif				
+ELK4	Yes	Known motif				
+ERF	Yes	Known motif				
+ERG	Yes	Known motif				
+ETS1	Yes	Known motif				
+ETS2	Yes	Known motif				
+ETV1	Yes	Known motif				
+ETV2	Yes	Known motif				
+ETV3	Yes	Known motif				
+ETV3L	Yes	Known motif				
+ETV4	Yes	Known motif				
+ETV5	Yes	Known motif				
+ETV6	Yes	Known motif				
+ETV7	Yes	Known motif				
+FEV	Yes	Known motif				
+FLI1	Yes	Known motif				
+GABPA	Yes	Known motif				
+SPDEF	Yes	Known motif				
+SPI1	Yes	Known motif				
+SPIB	Yes	Known motif				
+SPIC	Yes	Known motif				
+ELF3	Yes	Known motif				
+FLYWCH1	Yes	Likely to be sequence specific TF				
+FOXA1	Yes	Known motif				
+FOXA2	Yes	Known motif				
+FOXA3	Yes	Known motif				
+FOXB1	Yes	Known motif				
+FOXB2	Yes	Inferred motif				
+FOXC1	Yes	Known motif				
+FOXC2	Yes	Known motif				
+FOXD1	Yes	Known motif				
+FOXD2	Yes	Known motif				
+FOXD3	Yes	Known motif				
+FOXD4	Yes	Inferred motif				
+FOXD4L1	Yes	Inferred motif				
+FOXD4L2	No	Unlikely to be sequence specific TF				
+FOXD4L3	Yes	Inferred motif				
+FOXD4L4	Yes	Known motif				
+FOXD4L5	Yes	Inferred motif				
+FOXD4L6	Yes	Inferred motif				
+FOXE1	Yes	Known motif				
+FOXE3	Yes	Inferred motif				
+FOXF1	Yes	Known motif				
+FOXF2	Yes	Known motif				
+FOXG1	Yes	Known motif				
+FOXH1	Yes	Known motif				
+FOXI1	Yes	Known motif				
+FOXI2	Yes	Inferred motif				
+FOXI3	Yes	Inferred motif				
+FOXJ1	Yes	Known motif				
+FOXJ2	Yes	Known motif				
+FOXJ3	Yes	Known motif				
+FOXK1	Yes	Known motif				
+FOXK2	Yes	Inferred motif				
+FOXL1	Yes	Known motif				
+FOXL2	Yes	Known motif				
+FOXM1	Yes	Known motif				
+FOXN1	Yes	Known motif				
+FOXN2	Yes	Known motif				
+FOXN3	Yes	Known motif				
+FOXN4	Yes	Known motif				
+FOXO1	Yes	Known motif				
+FOXO3	Yes	Known motif				
+FOXO4	Yes	Known motif				
+FOXO6	Yes	Known motif				
+FOXP1	Yes	Known motif				
+FOXP2	Yes	Known motif				
+FOXP3	Yes	Known motif				
+FOXP4	Yes	Inferred motif				
+FOXQ1	Yes	Known motif				
+FOXR1	Yes	Known motif				
+FOXR2	Yes	Known motif				
+FOXS1	Yes	Inferred motif				
+ZFYVE26	No	Unlikely to be sequence specific TF				
+GATA1	Yes	Known motif				
+GATA2	Yes	Known motif				
+GATA3	Yes	Known motif				
+GATA4	Yes	Known motif				
+GATA5	Yes	Known motif				
+GATA6	Yes	Known motif				
+GATAD1	No	Unlikely to be sequence specific TF				
+GATAD2A	Yes	Likely to be sequence specific TF				
+GATAD2B	Yes	Likely to be sequence specific TF				
+TRPS1	Yes	Known motif				
+ZGLP1	Yes	Likely to be sequence specific TF				
+GCM1	Yes	Known motif				
+GCM2	Yes	Known motif				
+GRHL1	Yes	Known motif				
+GRHL2	Yes	Known motif				
+GRHL3	Yes	Likely to be sequence specific TF				
+TFCP2	Yes	Known motif				
+TFCP2L1	Yes	Known motif				
+UBP1	Yes	Known motif				
+GTF2I	Yes	Known motif				
+GTF2IRD1	Yes	Known motif				
+GTF2IRD2	Yes	Likely to be sequence specific TF				
+GTF2IRD2B	Yes	Likely to be sequence specific TF				
+AC105001.2	No	Unlikely to be sequence specific TF				
+BBX	Yes	Known motif				
+CCDC124	No	Unlikely to be sequence specific TF				
+CHD3	No	Unlikely to be sequence specific TF				
+CHD4	No	Unlikely to be sequence specific TF				
+CIC	Yes	Known motif				
+HBP1	Yes	Known motif				
+HMG20A	Yes	Likely to be sequence specific TF				
+HMG20B	Yes	Inferred motif				
+HMGB1	No	Unlikely to be sequence specific TF				
+HMGB2	No	Unlikely to be sequence specific TF				
+HMGB3	No	Unlikely to be sequence specific TF				
+HMGB4	No	Unlikely to be sequence specific TF				
+HMGN1	No	Unlikely to be sequence specific TF				
+HMGN3	Yes	Likely to be sequence specific TF				
+HMGXB3	No	Unlikely to be sequence specific TF				
+HMGXB4	No	Unlikely to be sequence specific TF				
+KMT2C	No	Unlikely to be sequence specific TF				
+KMT2D	No	Unlikely to be sequence specific TF				
+LEF1	Yes	Known motif				
+MAEL	No	ssDNA/RNA binding				
+NSD2	No	Unlikely to be sequence specific TF				
+PBRM1	No	Unlikely to be sequence specific TF				
+PMS1	No	Unlikely to be sequence specific TF				
+SMARCE1	No	Unlikely to be sequence specific TF				
+SOX1	Yes	Known motif				
+SOX10	Yes	Known motif				
+SOX11	Yes	Known motif				
+SOX12	Yes	Known motif				
+SOX13	Yes	Known motif				
+SOX14	Yes	Known motif				
+SOX15	Yes	Known motif				
+SOX17	Yes	Known motif				
+SOX18	Yes	Known motif				
+SOX2	Yes	Known motif				
+SOX21	Yes	Known motif				
+SOX3	Yes	Known motif				
+SOX30	Yes	Known motif				
+SOX4	Yes	Known motif				
+SOX5	Yes	Known motif				
+SOX6	Yes	Known motif				
+SOX7	Yes	Known motif				
+SOX8	Yes	Known motif				
+SOX9	Yes	Known motif				
+SRY	Yes	Known motif				
+SSRP1	No	Unlikely to be sequence specific TF				
+TCF7	Yes	Known motif				
+TCF7L1	Yes	Known motif				
+TCF7L2	Yes	Known motif				
+TFAM	No	Unlikely to be sequence specific TF				
+TOX	No	Unlikely to be sequence specific TF				
+TOX2	No	Unlikely to be sequence specific TF				
+TOX3	No	Unlikely to be sequence specific TF				
+TOX4	No	Unlikely to be sequence specific TF				
+UBTF	No	Unlikely to be sequence specific TF				
+UBTFL1	No	Unlikely to be sequence specific TF				
+WDHD1	No	Unlikely to be sequence specific TF				
+BHMG1	No	Unlikely to be sequence specific TF				
+ADNP	Yes	Likely to be sequence specific TF				
+ADNP2	Yes	Likely to be sequence specific TF				
+ALX1	Yes	Known motif				
+ALX3	Yes	Known motif				
+ALX4	Yes	Known motif				
+ANHX	Yes	Known motif				
+ARGFX	Yes	Known motif				
+ARX	Yes	Known motif				
+BARHL1	Yes	Known motif				
+BARHL2	Yes	Known motif				
+BARX1	Yes	Known motif				
+BARX2	Yes	Known motif				
+BSX	Yes	Known motif				
+CDX1	Yes	Known motif				
+CDX2	Yes	Known motif				
+CDX4	Yes	Known motif				
+CERS2	No	Unlikely to be sequence specific TF				
+CERS3	No	Unlikely to be sequence specific TF				
+CERS4	No	Unlikely to be sequence specific TF				
+CERS5	No	Unlikely to be sequence specific TF				
+CERS6	No	Unlikely to be sequence specific TF				
+CRX	Yes	Known motif				
+DBX1	Yes	Inferred motif				
+DBX2	Yes	Inferred motif				
+DLX1	Yes	Known motif				
+DLX2	Yes	Known motif				
+DLX3	Yes	Known motif				
+DLX4	Yes	Known motif				
+DLX5	Yes	Known motif				
+DLX6	Yes	Known motif				
+DMBX1	Yes	Known motif				
+DPRX	Yes	Known motif				
+DRGX	Yes	Known motif				
+DUX1	Yes	Known motif				
+DUX3	Yes	Known motif				
+DUX4	Yes	Known motif				
+DUXA	Yes	Known motif				
+EMX1	Yes	Known motif				
+EMX2	Yes	Known motif				
+EN1	Yes	Known motif				
+EN2	Yes	Known motif				
+ESX1	Yes	Known motif				
+EVX1	Yes	Known motif				
+EVX2	Yes	Known motif				
+GBX1	Yes	Known motif				
+GBX2	Yes	Known motif				
+GSC	Yes	Known motif				
+GSC2	Yes	Known motif				
+GSX1	Yes	Known motif				
+GSX2	Yes	Known motif				
+HDX	Yes	Known motif				
+HESX1	Yes	Known motif				
+HHEX	Yes	Inferred motif				
+HLX	Yes	Known motif				
+HMBOX1	Yes	Known motif				
+HMX1	Yes	Known motif				
+HMX2	Yes	Known motif				
+HMX3	Yes	Known motif				
+HNF1A	Yes	Known motif				
+HNF1B	Yes	Known motif				
+HOMEZ	Yes	Known motif				
+HOPX	No	Unlikely to be sequence specific TF				
+HOXA1	Yes	Known motif				
+HOXA10	Yes	Known motif				
+HOXA11	Yes	Known motif				
+HOXA13	Yes	Known motif				
+HOXA2	Yes	Known motif				
+HOXA3	Yes	Known motif				
+HOXA4	Yes	Known motif				
+HOXA5	Yes	Known motif				
+HOXA6	Yes	Known motif				
+HOXA7	Yes	Known motif				
+HOXA9	Yes	Known motif				
+HOXB1	Yes	Known motif				
+HOXB13	Yes	Known motif				
+HOXB2	Yes	Known motif				
+HOXB3	Yes	Known motif				
+HOXB4	Yes	Known motif				
+HOXB5	Yes	Known motif				
+HOXB6	Yes	Known motif				
+HOXB7	Yes	Known motif				
+HOXB8	Yes	Known motif				
+HOXB9	Yes	Known motif				
+HOXC10	Yes	Known motif				
+HOXC11	Yes	Known motif				
+HOXC12	Yes	Known motif				
+HOXC13	Yes	Known motif				
+HOXC4	Yes	Known motif				
+HOXC5	Yes	Known motif				
+HOXC6	Yes	Known motif				
+HOXC8	Yes	Known motif				
+HOXC9	Yes	Known motif				
+HOXD1	Yes	Known motif				
+HOXD10	Yes	Known motif				
+HOXD11	Yes	Known motif				
+HOXD12	Yes	Known motif				
+HOXD13	Yes	Known motif				
+HOXD3	Yes	Known motif				
+HOXD4	Yes	Known motif				
+HOXD8	Yes	Known motif				
+HOXD9	Yes	Known motif				
+IRX1	Yes	Known motif				
+IRX2	Yes	Known motif				
+IRX3	Yes	Known motif				
+IRX4	Yes	Known motif				
+IRX5	Yes	Known motif				
+IRX6	Yes	Inferred motif				
+ISL1	Yes	Known motif				
+ISL2	Yes	Known motif				
+ISX	Yes	Known motif				
+LBX1	Yes	Known motif				
+LBX2	Yes	Known motif				
+LEUTX	Yes	Likely to be sequence specific TF				
+LHX1	Yes	Known motif				
+LHX2	Yes	Known motif				
+LHX3	Yes	Known motif				
+LHX4	Yes	Known motif				
+LHX5	Yes	Known motif				
+LHX6	Yes	Known motif				
+LHX8	Yes	Known motif				
+LHX9	Yes	Known motif				
+LMX1A	Yes	Known motif				
+LMX1B	Yes	Known motif				
+MEIS1	Yes	Known motif				
+MEIS2	Yes	Known motif				
+MEIS3	Yes	Known motif				
+MEOX1	Yes	Known motif				
+MEOX2	Yes	Known motif				
+MIXL1	Yes	Known motif				
+MKX	Yes	Likely to be sequence specific TF				
+MNX1	Yes	Known motif				
+MSX1	Yes	Known motif				
+MSX2	Yes	Known motif				
+NANOG	Yes	Known motif				
+NANOGNB	Yes	Likely to be sequence specific TF				
+NANOGP8	Yes	Known motif				
+NKX1-1	Yes	Known motif				
+NKX1-2	Yes	Known motif				
+NKX2-1	Yes	Known motif				
+NKX2-2	Yes	Known motif				
+NKX2-3	Yes	Known motif				
+NKX2-4	Yes	Known motif				
+NKX2-5	Yes	Known motif				
+NKX2-6	Yes	Inferred motif				
+NKX2-8	Yes	Known motif				
+NKX3-1	Yes	Known motif				
+NKX3-2	Yes	Known motif				
+NKX6-1	Yes	Known motif				
+NKX6-2	Yes	Known motif				
+NKX6-3	Yes	Known motif				
+NOBOX	Yes	Known motif				
+NOTO	Yes	Known motif				
+OTP	Yes	Known motif				
+OTX1	Yes	Known motif				
+OTX2	Yes	Known motif				
+PBX1	Yes	Known motif				
+PBX2	Yes	Known motif				
+PBX3	Yes	Known motif				
+PBX4	Yes	Known motif				
+PDX1	Yes	Known motif				
+PHOX2A	Yes	Known motif				
+PHOX2B	Yes	Known motif				
+PITX1	Yes	Known motif				
+PITX2	Yes	Known motif				
+PITX3	Yes	Known motif				
+PKNOX1	Yes	Known motif				
+PKNOX2	Yes	Known motif				
+PROP1	Yes	Known motif				
+PRRX1	Yes	Known motif				
+PRRX2	Yes	Known motif				
+RAX	Yes	Known motif				
+RAX2	Yes	Known motif				
+RHOXF1	Yes	Known motif				
+RHOXF2	Yes	Known motif				
+RHOXF2B	Yes	Inferred motif				
+SEBOX	Yes	Inferred motif				
+SHOX	Yes	Known motif				
+SHOX2	Yes	Known motif				
+SIX1	Yes	Known motif				
+SIX2	Yes	Known motif				
+SIX3	Yes	Known motif				
+SIX4	Yes	Known motif				
+SIX5	Yes	Known motif				
+SIX6	Yes	Known motif				
+TGIF1	Yes	Known motif				
+TGIF2	Yes	Known motif				
+TGIF2LX	Yes	Known motif				
+TGIF2LY	Yes	Known motif				
+TLX1	Yes	Known motif				
+TLX2	Yes	Known motif				
+TLX3	Yes	Known motif				
+TPRX1	Yes	Likely to be sequence specific TF				
+UNCX	Yes	Known motif				
+VAX1	Yes	Known motif				
+VAX2	Yes	Known motif				
+VENTX	Yes	Known motif				
+VSX1	Yes	Known motif				
+VSX2	Yes	Known motif				
+ZFHX2	Yes	Known motif				
+ZHX1	Yes	Known motif				
+ZHX2	Yes	Likely to be sequence specific TF				
+ZHX3	Yes	Likely to be sequence specific TF				
+PAX2	Yes	Known motif				
+PAX3	Yes	Known motif				
+PAX4	Yes	Known motif				
+PAX6	Yes	Known motif				
+PAX7	Yes	Known motif				
+POU1F1	Yes	Known motif				
+POU2F1	Yes	Known motif				
+POU2F2	Yes	Known motif				
+POU2F3	Yes	Known motif				
+POU3F1	Yes	Known motif				
+POU3F2	Yes	Known motif				
+POU3F3	Yes	Known motif				
+POU3F4	Yes	Known motif				
+POU4F1	Yes	Known motif				
+POU4F2	Yes	Known motif				
+POU4F3	Yes	Known motif				
+POU5F1	Yes	Known motif				
+POU5F1B	Yes	Known motif				
+POU5F2	Yes	Likely to be sequence specific TF				
+POU6F1	Yes	Known motif				
+POU6F2	Yes	Known motif				
+HSF1	Yes	Known motif				
+HSF2	Yes	Known motif				
+HSF4	Yes	Known motif				
+HSF5	Yes	Known motif				
+HSFX1	Yes	Likely to be sequence specific TF				
+HSFX2	Yes	Likely to be sequence specific TF				
+HSFY1	Yes	Known motif				
+HSFY2	Yes	Known motif				
+IRF1	Yes	Known motif				
+IRF2	Yes	Known motif				
+IRF3	Yes	Known motif				
+IRF4	Yes	Known motif				
+IRF5	Yes	Known motif				
+IRF6	Yes	Known motif				
+IRF7	Yes	Known motif				
+IRF8	Yes	Known motif				
+IRF9	Yes	Known motif				
+LYAR	No	Unlikely to be sequence specific TF				
+MSANTD1	Yes	Likely to be sequence specific TF				
+MSANTD3	Yes	Known motif				
+NAIF1	Yes	Inferred motif				
+BORCS8-MEF2B	Yes	Known motif				
+MEF2A	Yes	Known motif				
+MEF2B	Yes	Known motif				
+MEF2C	Yes	Known motif				
+MEF2D	Yes	Known motif				
+SRF	Yes	Known motif				
+BAZ2B	Yes	Likely to be sequence specific TF				
+MBD2	Yes	Known motif				
+MBD3	Yes	Likely to be sequence specific TF				
+MBD4	Yes	Likely to be sequence specific TF				
+MBD6	Yes	Likely to be sequence specific TF				
+PIN1	Yes	Likely to be sequence specific TF				
+SETDB1	Yes	Known motif				
+SETDB2	Yes	Likely to be sequence specific TF				
+BAZ2A	Yes	Likely to be sequence specific TF				
+MECP2	Yes	Known motif				
+MBD1	Yes	Likely to be sequence specific TF				
+MTERF1	Yes	Known motif				
+MTERF2	Yes	Likely to be sequence specific TF				
+MTERF3	Yes	Likely to be sequence specific TF				
+MTERF4	Yes	Likely to be sequence specific TF				
+NEB	No	Unlikely to be sequence specific TF				
+C17orf49	No	Unlikely to be sequence specific TF				
+CDC5L	Yes	Known motif				
+CHD2	No	Unlikely to be sequence specific TF				
+CRAMP1	No	Unlikely to be sequence specific TF				
+DMTF1	Yes	Likely to be sequence specific TF				
+DNAJC1	No	Unlikely to be sequence specific TF				
+DNAJC2	No	Unlikely to be sequence specific TF				
+ELMSAN1	No	Unlikely to be sequence specific TF				
+KIAA1841	No	Unlikely to be sequence specific TF				
+MIER1	No	Unlikely to be sequence specific TF				
+MIER2	No	Unlikely to be sequence specific TF				
+MIER3	No	Unlikely to be sequence specific TF				
+MIS18BP1	No	Unlikely to be sequence specific TF				
+MSANTD4	Yes	Likely to be sequence specific TF				
+MYB	Yes	Known motif				
+MYBL1	Yes	Known motif				
+MYBL2	Yes	Known motif				
+MYPOP	Yes	Likely to be sequence specific TF				
+MYSM1	Yes	Likely to be sequence specific TF				
+NCOR1	No	Unlikely to be sequence specific TF				
+NCOR2	No	Unlikely to be sequence specific TF				
+PRDM11	No	Unlikely to be sequence specific TF				
+RCOR1	No	Unlikely to be sequence specific TF				
+RCOR2	No	Unlikely to be sequence specific TF				
+RCOR3	No	Unlikely to be sequence specific TF				
+SMARCA1	No	Unlikely to be sequence specific TF				
+SMARCA5	No	Unlikely to be sequence specific TF				
+SMARCC1	No	Unlikely to be sequence specific TF				
+SMARCC2	No	Unlikely to be sequence specific TF				
+SNAPC4	Yes	Likely to be sequence specific TF				
+TADA2A	No	Unlikely to be sequence specific TF				
+TADA2B	No	Unlikely to be sequence specific TF				
+TERB1	Yes	Likely to be sequence specific TF				
+TERF1	Yes	Likely to be sequence specific TF				
+TERF2	Yes	Inferred motif				
+TERF2IP	No	Unlikely to be sequence specific TF				
+TTF1	Yes	Likely to be sequence specific TF				
+ZZZ3	Yes	Known motif				
+MTA1	No	Unlikely to be sequence specific TF				
+MTA2	No	Unlikely to be sequence specific TF				
+MTA3	No	Unlikely to be sequence specific TF				
+RERE	No	Unlikely to be sequence specific TF				
+ZMYM1	No	Unlikely to be sequence specific TF				
+ZMYM2	No	Unlikely to be sequence specific TF				
+ZMYM3	No	Unlikely to be sequence specific TF				
+ZMYM4	No	Unlikely to be sequence specific TF				
+ZMYM5	No	Unlikely to be sequence specific TF				
+ZMYM6	No	Unlikely to be sequence specific TF				
+ZMYND10	No	Unlikely to be sequence specific TF				
+MYRF	Yes	Known motif				
+MYRFL	Yes	Likely to be sequence specific TF				
+NFX1	Yes	Likely to be sequence specific TF				
+NFXL1	Yes	Likely to be sequence specific TF				
+ZNF330	No	Unlikely to be sequence specific TF				
+AR	Yes	Known motif				
+ESR1	Yes	Known motif				
+ESR2	Yes	Known motif				
+ESRRA	Yes	Known motif				
+ESRRB	Yes	Known motif				
+ESRRG	Yes	Known motif				
+HNF4A	Yes	Known motif				
+HNF4G	Yes	Known motif				
+NR0B1	Yes	Known motif				
+NR1D1	Yes	Known motif				
+NR1D2	Yes	Known motif				
+NR1H2	Yes	Known motif				
+NR1H3	Yes	Inferred motif				
+NR1H4	Yes	Known motif				
+NR1I2	Yes	Known motif				
+NR1I3	Yes	Known motif				
+NR2C1	Yes	Known motif				
+NR2C2	Yes	Known motif				
+NR2E1	Yes	Known motif				
+NR2E3	Yes	Known motif				
+NR2F1	Yes	Known motif				
+NR2F2	Yes	Known motif				
+NR2F6	Yes	Known motif				
+NR3C1	Yes	Known motif				
+NR3C2	Yes	Known motif				
+NR4A1	Yes	Known motif				
+NR4A2	Yes	Known motif				
+NR4A3	Yes	Known motif				
+NR5A1	Yes	Known motif				
+NR5A2	Yes	Known motif				
+NR6A1	Yes	Known motif				
+PGR	Yes	Known motif				
+PPARA	Yes	Known motif				
+PPARD	Yes	Known motif				
+PPARG	Yes	Known motif				
+RARA	Yes	Known motif				
+RARB	Yes	Known motif				
+RARG	Yes	Known motif				
+RORA	Yes	Known motif				
+RORB	Yes	Known motif				
+RORC	Yes	Known motif				
+RXRA	Yes	Known motif				
+RXRB	Yes	Known motif				
+RXRG	Yes	Known motif				
+THRA	Yes	Known motif				
+THRB	Yes	Known motif				
+VDR	Yes	Known motif				
+AATF	No	Unlikely to be sequence specific TF				
+ABL1	No	Unlikely to be sequence specific TF				
+ABRA	No	Unlikely to be sequence specific TF				
+AC020915.1	No	Unlikely to be sequence specific TF				
+ACOD1	No	Unlikely to be sequence specific TF				
+ACTR3B	No	Unlikely to be sequence specific TF				
+ACTR3C	No	Unlikely to be sequence specific TF				
+ADAM8	No	Unlikely to be sequence specific TF				
+ADAMTS17	No	Unlikely to be sequence specific TF				
+ADAMTS19	No	Unlikely to be sequence specific TF				
+ADAR	No	Unlikely to be sequence specific TF				
+ADGRA1	No	Unlikely to be sequence specific TF				
+ADGRG3	No	Unlikely to be sequence specific TF				
+AEBP1	Yes	Likely to be sequence specific TF				
+AES	No	Unlikely to be sequence specific TF				
+AFAP1 	No	Unlikely to be sequence specific TF				
+AFF1	No	Unlikely to be sequence specific TF				
+AFF3	No	Unlikely to be sequence specific TF				
+AFF4	No	Unlikely to be sequence specific TF				
+AGER	No	Unlikely to be sequence specific TF				
+AGT	No	Unlikely to be sequence specific TF				
+AIM2	No	Unlikely to be sequence specific TF				
+AKT1	No	Unlikely to be sequence specific TF				
+ALK	No	Unlikely to be sequence specific TF				
+ALKBH2	No	Unlikely to be sequence specific TF				
+AMH	No	Unlikely to be sequence specific TF				
+ANAPC2	No	Unlikely to be sequence specific TF				
+ANKRD30A	No	Unlikely to be sequence specific TF				
+ANXA3	No	Unlikely to be sequence specific TF				
+ANXA4	No	Unlikely to be sequence specific TF				
+AP5Z1	No	Unlikely to be sequence specific TF				
+APBB3	No	Unlikely to be sequence specific TF				
+APEX1	No	Unlikely to be sequence specific TF				
+APOBEC3A	No	ssDNA/RNA binding				
+APOBEC3B	No	ssDNA/RNA binding				
+APOBEC3G	No	ssDNA/RNA binding				
+APTX	No	ssDNA/RNA binding				
+ARHGAP35	Yes	Likely to be sequence specific TF				
+ARHGEF2	No	Unlikely to be sequence specific TF				
+ARHGEF5	No	Unlikely to be sequence specific TF				
+ARRB1	No	Unlikely to be sequence specific TF				
+ARRB2	No	Unlikely to be sequence specific TF				
+ASCC1	No	Unlikely to be sequence specific TF				
+ATF7IP	No	Unlikely to be sequence specific TF				
+ATM	No	Unlikely to be sequence specific TF				
+ATR	No	Unlikely to be sequence specific TF				
+ATRX	No	Unlikely to be sequence specific TF				
+ATXN7	No	Unlikely to be sequence specific TF				
+BAG1	No	Unlikely to be sequence specific TF				
+BANF1	No	Unlikely to be sequence specific TF				
+BANP	No	Unlikely to be sequence specific TF				
+BCL10	No	Unlikely to be sequence specific TF				
+BCL3	No	Unlikely to be sequence specific TF				
+BCLAF1	No	Unlikely to be sequence specific TF				
+BCOR	No	Unlikely to be sequence specific TF				
+BDP1	No	Unlikely to be sequence specific TF				
+BEX1	No	Unlikely to be sequence specific TF				
+BIN1	No	Unlikely to be sequence specific TF				
+BLM	No	Unlikely to be sequence specific TF				
+BLZF1	No	Unlikely to be sequence specific TF				
+BMI1	No	Unlikely to be sequence specific TF				
+BMP2	No	Unlikely to be sequence specific TF				
+BMP4	No	Unlikely to be sequence specific TF				
+BMP7	No	Unlikely to be sequence specific TF				
+BMPR1A	No	Unlikely to be sequence specific TF				
+BOD1L1	No	Unlikely to be sequence specific TF				
+BOLA1	No	Unlikely to be sequence specific TF				
+BOLA2	No	Unlikely to be sequence specific TF				
+BOLA2B	No	Unlikely to be sequence specific TF				
+BOLA3	No	Unlikely to be sequence specific TF				
+BPNT1	No	Unlikely to be sequence specific TF				
+BPTF	Yes	Known motif				
+BRCA1	No	Unlikely to be sequence specific TF				
+BRD4	No	Unlikely to be sequence specific TF				
+BRD7	No	Unlikely to be sequence specific TF				
+BRD8	No	Unlikely to be sequence specific TF				
+BRD9	No	Unlikely to be sequence specific TF				
+BRF1	No	Unlikely to be sequence specific TF				
+BRF2	Yes	Likely to be sequence specific TF				
+BRMS1	No	Unlikely to be sequence specific TF				
+BRPF1	No	Unlikely to be sequence specific TF				
+BTAF1	No	Unlikely to be sequence specific TF				
+BTBD8	No	Unlikely to be sequence specific TF				
+BTG2	No	Unlikely to be sequence specific TF				
+BTK	No	Unlikely to be sequence specific TF				
+BTRC	No	Unlikely to be sequence specific TF				
+BUD31	No	Unlikely to be sequence specific TF				
+C14orf39	No	Unlikely to be sequence specific TF				
+C1D	No	Unlikely to be sequence specific TF				
+C20orf194	No	Unlikely to be sequence specific TF				
+C3orf33	No	Unlikely to be sequence specific TF				
+CACTIN	No	Unlikely to be sequence specific TF				
+CAMK1D	No	Unlikely to be sequence specific TF				
+CAMK2A	No	Unlikely to be sequence specific TF				
+CAPN15	No	Unlikely to be sequence specific TF				
+CAPN3	No	Unlikely to be sequence specific TF				
+CARD11	No	Unlikely to be sequence specific TF				
+CARD14	No	Unlikely to be sequence specific TF				
+CARF	Yes	Known motif				
+CASP8AP2	No	Unlikely to be sequence specific TF				
+CAT	No	Unlikely to be sequence specific TF				
+CBFA2T2	No	Unlikely to be sequence specific TF				
+CBFA2T3	No	Unlikely to be sequence specific TF				
+CBFB	No	Unlikely to be sequence specific TF				
+CBL	No	Unlikely to be sequence specific TF				
+CBLL1	No	Unlikely to be sequence specific TF				
+CC2D1A	Yes	Likely to be sequence specific TF				
+CC2D1B	No	Unlikely to be sequence specific TF				
+CCDC71	No	Unlikely to be sequence specific TF				
+CCNT1	No	Unlikely to be sequence specific TF				
+CCNT2	No	Unlikely to be sequence specific TF				
+CD36	No	Unlikely to be sequence specific TF				
+CD40	No	Unlikely to be sequence specific TF				
+CD40LG	No	Unlikely to be sequence specific TF				
+CDC6	No	Unlikely to be sequence specific TF				
+CDK5RAP3	No	Unlikely to be sequence specific TF				
+CDK7	No	Unlikely to be sequence specific TF				
+CDK8	No	Unlikely to be sequence specific TF				
+CDK9	No	Unlikely to be sequence specific TF				
+CDKN1A	No	Unlikely to be sequence specific TF				
+CDKN2A	No	Unlikely to be sequence specific TF				
+CEBPZ	Yes	Known motif				
+CELF3	No	ssDNA/RNA binding				
+CENPA	Yes	Likely to be sequence specific TF				
+CENPS	Yes	Likely to be sequence specific TF				
+CENPT	Yes	Likely to be sequence specific TF				
+CENPX	Yes	Likely to be sequence specific TF				
+CFLAR	No	Unlikely to be sequence specific TF				
+CGGBP1	Yes	Likely to be sequence specific TF				
+CHCHD3	Yes	Likely to be sequence specific TF				
+CHD1	No	Unlikely to be sequence specific TF				
+CHD6	No	Unlikely to be sequence specific TF				
+CHD7	No	Unlikely to be sequence specific TF				
+CHD9	No	Unlikely to be sequence specific TF				
+CHP1	No	ssDNA/RNA binding				
+CHRAC1	No	Unlikely to be sequence specific TF				
+CHUK	No	Unlikely to be sequence specific TF				
+CHURC1	No	Unlikely to be sequence specific TF				
+CIB1	No	Unlikely to be sequence specific TF				
+CIITA	No	Unlikely to be sequence specific TF				
+CIR1	No	Unlikely to be sequence specific TF				
+CITED1	No	Unlikely to be sequence specific TF				
+CITED2	No	Unlikely to be sequence specific TF				
+CITED4	No	Unlikely to be sequence specific TF				
+CIZ1	No	Unlikely to be sequence specific TF				
+CLU	No	Unlikely to be sequence specific TF				
+CMKLR1	No	Unlikely to be sequence specific TF				
+CNBP	No	ssDNA/RNA binding				
+CNOT3	No	Unlikely to be sequence specific TF				
+CNOT4	No	Unlikely to be sequence specific TF				
+CNOT7	No	Unlikely to be sequence specific TF				
+CNOT8	No	Unlikely to be sequence specific TF				
+COMMD1	No	Unlikely to be sequence specific TF				
+COMMD6	No	Unlikely to be sequence specific TF				
+COMMD7	No	Unlikely to be sequence specific TF				
+COPS2	No	Unlikely to be sequence specific TF				
+COPS3	No	Unlikely to be sequence specific TF				
+COPS4	No	Unlikely to be sequence specific TF				
+CPEB1	Yes	Known motif				
+CREBBP	No	Unlikely to be sequence specific TF				
+CREG1	No	Unlikely to be sequence specific TF				
+CRTC1	No	Unlikely to be sequence specific TF				
+CRTC2	No	Unlikely to be sequence specific TF				
+CRTC3	No	Unlikely to be sequence specific TF				
+CSRNP1	Yes	Likely to be sequence specific TF				
+CSRNP2	Yes	Likely to be sequence specific TF				
+CSRNP3	Yes	Likely to be sequence specific TF				
+CTBP1	No	Unlikely to be sequence specific TF				
+CTBP2	No	Unlikely to be sequence specific TF				
+CTH	No	Unlikely to be sequence specific TF				
+CTNNB1	No	Unlikely to be sequence specific TF				
+CTNNBIP1	No	Unlikely to be sequence specific TF				
+CUL1	No	Unlikely to be sequence specific TF				
+CUL2	No	Unlikely to be sequence specific TF				
+CUL3	No	Unlikely to be sequence specific TF				
+CUL4A	No	Unlikely to be sequence specific TF				
+CUL4B	No	Unlikely to be sequence specific TF				
+CUL5	No	Unlikely to be sequence specific TF				
+CYLD	No	Unlikely to be sequence specific TF				
+CYP1B1	No	Unlikely to be sequence specific TF				
+CYTL1	No	Unlikely to be sequence specific TF				
+DAB2IP	No	Unlikely to be sequence specific TF				
+DACH1	Yes	Likely to be sequence specific TF				
+DACH2	Yes	Likely to be sequence specific TF				
+DAP	No	Unlikely to be sequence specific TF				
+DAXX	No	Unlikely to be sequence specific TF				
+DCP1A	No	Unlikely to be sequence specific TF				
+DDB1	No	Unlikely to be sequence specific TF				
+DDB2	No	Unlikely to be sequence specific TF				
+DDN	No	Unlikely to be sequence specific TF				
+DDR2	No	Unlikely to be sequence specific TF				
+DDRGK1	No	Unlikely to be sequence specific TF				
+DDX3X	No	ssDNA/RNA binding				
+DDX5	No	Unlikely to be sequence specific TF				
+DDX58	No	Unlikely to be sequence specific TF				
+DEK	No	Unlikely to be sequence specific TF				
+DEPDC1	No	Unlikely to be sequence specific TF				
+DEPDC1B	No	Unlikely to be sequence specific TF				
+DEPDC4	No	Unlikely to be sequence specific TF				
+DEPDC5	No	Unlikely to be sequence specific TF				
+DEPDC7	No	Unlikely to be sequence specific TF				
+DEPTOR	No	Unlikely to be sequence specific TF				
+DHX34	No	Unlikely to be sequence specific TF				
+DHX36	No	ssDNA/RNA binding				
+DISP3	No	Unlikely to be sequence specific TF				
+DMAP1	No	Unlikely to be sequence specific TF				
+DMC1	No	Unlikely to be sequence specific TF				
+DMRTC1	No	Unlikely to be sequence specific TF				
+DNA2	No	ssDNA/RNA binding				
+DNAJA3	No	Unlikely to be sequence specific TF				
+DNAJC21	No	ssDNA/RNA binding				
+DNMT3A	No	Unlikely to be sequence specific TF				
+DNMT3B	No	Unlikely to be sequence specific TF				
+DNMT3L	No	Unlikely to be sequence specific TF				
+DNTT	No	ssDNA/RNA binding				
+DPF2	No	Unlikely to be sequence specific TF				
+DR1	Yes	Likely to be sequence specific TF				
+DRAP1	Yes	Likely to be sequence specific TF				
+DSP	No	Unlikely to be sequence specific TF				
+DTX1	No	Unlikely to be sequence specific TF				
+DUSP12	No	Unlikely to be sequence specific TF				
+DVL1	No	Unlikely to be sequence specific TF				
+DVL2	No	Unlikely to be sequence specific TF				
+DVL3	No	Unlikely to be sequence specific TF				
+DZIP1L	No	Unlikely to be sequence specific TF				
+EAF2	No	Unlikely to be sequence specific TF				
+EDA	No	Unlikely to be sequence specific TF				
+EDA2R	No	Unlikely to be sequence specific TF				
+EDF1	No	Unlikely to be sequence specific TF				
+EDN1	No	Unlikely to be sequence specific TF				
+EED	No	Unlikely to be sequence specific TF				
+EGLN1	No	Unlikely to be sequence specific TF				
+EID1	No	Unlikely to be sequence specific TF				
+EID2	No	Unlikely to be sequence specific TF				
+EIF2AK2	No	Unlikely to be sequence specific TF				
+EIF2AK4	No	Unlikely to be sequence specific TF				
+EIF3C	No	Unlikely to be sequence specific TF				
+EIF3CL	No	Unlikely to be sequence specific TF				
+EIF3K	No	Unlikely to be sequence specific TF				
+EME1	No	Unlikely to be sequence specific TF				
+ENO1	No	Unlikely to be sequence specific TF				
+EP300	No	Unlikely to be sequence specific TF				
+EP400	No	Unlikely to be sequence specific TF				
+EPHA5	No	Unlikely to be sequence specific TF				
+EPM2AIP1	No	Unlikely to be sequence specific TF				
+ERBIN	No	Unlikely to be sequence specific TF				
+ERC1	No	Unlikely to be sequence specific TF				
+ERCC3	No	Unlikely to be sequence specific TF				
+ERCC4	No	ssDNA/RNA binding				
+EWSR1	No	ssDNA/RNA binding				
+EXO1	No	Unlikely to be sequence specific TF				
+EXOC2	No	Unlikely to be sequence specific TF				
+EXOG	No	Unlikely to be sequence specific TF				
+EZH1	No	Unlikely to be sequence specific TF				
+EZH2	No	Unlikely to be sequence specific TF				
+FAAP24	No	Unlikely to be sequence specific TF				
+FAM153C	No	Unlikely to be sequence specific TF				
+FAM171B	No	Unlikely to be sequence specific TF				
+FAM200A	No	Unlikely to be sequence specific TF				
+FAN1	No	Unlikely to be sequence specific TF				
+FANCA	No	Unlikely to be sequence specific TF				
+FANCD2	No	Unlikely to be sequence specific TF				
+FANK1	No	Unlikely to be sequence specific TF				
+FARSA	No	Unlikely to be sequence specific TF				
+FARSB	No	Unlikely to be sequence specific TF				
+FBN1	No	Unlikely to be sequence specific TF				
+FBXO41	No	Unlikely to be sequence specific TF				
+FEN1	No	Unlikely to be sequence specific TF				
+FER	No	Unlikely to be sequence specific TF				
+FGD1	No	Unlikely to be sequence specific TF				
+FHL2	No	Unlikely to be sequence specific TF				
+FLNA	No	Unlikely to be sequence specific TF				
+FMNL2	No	Unlikely to be sequence specific TF				
+FUBP1	No	ssDNA/RNA binding				
+FUBP3	No	ssDNA/RNA binding				
+FUS	No	ssDNA/RNA binding				
+FZD1	No	Unlikely to be sequence specific TF				
+FZD2	No	Unlikely to be sequence specific TF				
+FZD4	No	Unlikely to be sequence specific TF				
+FZD6	No	Unlikely to be sequence specific TF				
+GABPB1	No	Unlikely to be sequence specific TF				
+GABPB2	No	Unlikely to be sequence specific TF				
+GADD45A	No	Unlikely to be sequence specific TF				
+GAS6	No	Unlikely to be sequence specific TF				
+GAS7	No	Unlikely to be sequence specific TF				
+GCFC2	No	Unlikely to be sequence specific TF				
+GEN1	No	Unlikely to be sequence specific TF				
+GLMP	Yes	Likely to be sequence specific TF				
+GOLGB1	No	Unlikely to be sequence specific TF				
+GON4L	No	Unlikely to be sequence specific TF				
+GPATCH8	No	Unlikely to be sequence specific TF				
+GPBP1	Yes	Likely to be sequence specific TF				
+GPBP1L1	Yes	Likely to be sequence specific TF				
+GPER1	No	Unlikely to be sequence specific TF				
+GPR155	No	Unlikely to be sequence specific TF				
+GREM1	No	Unlikely to be sequence specific TF				
+GRM6	No	Unlikely to be sequence specific TF				
+GTF2A1	No	Unlikely to be sequence specific TF				
+GTF2A1L	No	Unlikely to be sequence specific TF				
+GTF2A2	No	Unlikely to be sequence specific TF				
+GTF2B	Yes	Known motif				
+GTF2E2	No	Unlikely to be sequence specific TF				
+GTF2F1	No	Unlikely to be sequence specific TF				
+GTF2F2	No	Unlikely to be sequence specific TF				
+GTF2H1	No	Unlikely to be sequence specific TF				
+GTF2H2	No	Unlikely to be sequence specific TF				
+GTF2H2C	No	Unlikely to be sequence specific TF				
+GTF2H3	No	Unlikely to be sequence specific TF				
+GTF2H4	No	Unlikely to be sequence specific TF				
+GTF3C1	No	Unlikely to be sequence specific TF				
+GTF3C2	No	Unlikely to be sequence specific TF				
+H1F0	No	Unlikely to be sequence specific TF				
+H1FOO	No	Unlikely to be sequence specific TF				
+H1FX	No	Unlikely to be sequence specific TF				
+HAVCR2	No	Unlikely to be sequence specific TF				
+HCFC1	No	Unlikely to be sequence specific TF				
+HCK	No	Unlikely to be sequence specific TF				
+HDAC1	No	Unlikely to be sequence specific TF				
+HDAC10	No	Unlikely to be sequence specific TF				
+HDAC2	No	Unlikely to be sequence specific TF				
+HDAC3	No	Unlikely to be sequence specific TF				
+HDAC4	No	Unlikely to be sequence specific TF				
+HDAC5	No	Unlikely to be sequence specific TF				
+HDAC6	No	Unlikely to be sequence specific TF				
+HDAC7	No	Unlikely to be sequence specific TF				
+HDAC8	No	Unlikely to be sequence specific TF				
+HDAC9	No	Unlikely to be sequence specific TF				
+HELZ2	No	Unlikely to be sequence specific TF				
+HIPK2	No	Unlikely to be sequence specific TF				
+HIRA	No	Unlikely to be sequence specific TF				
+HIST1H1A	No	Unlikely to be sequence specific TF				
+HIST1H1B	No	Unlikely to be sequence specific TF				
+HIST1H1C	No	Unlikely to be sequence specific TF				
+HIST1H1D	No	Unlikely to be sequence specific TF				
+HIST1H1E	No	Unlikely to be sequence specific TF				
+HIST1H1T	No	Unlikely to be sequence specific TF				
+HLA-DQB1	No	Unlikely to be sequence specific TF				
+HLA-DQB2	No	Unlikely to be sequence specific TF				
+HLA-DRB1	No	Unlikely to be sequence specific TF				
+HLA-DRB3	No	Unlikely to be sequence specific TF				
+HLA-DRB5	No	Unlikely to be sequence specific TF				
+HLTF	No	ssDNA/RNA binding				
+HMOX1	No	Unlikely to be sequence specific TF				
+HNRNPA1	No	ssDNA/RNA binding				
+HNRNPA3	No	ssDNA/RNA binding				
+HNRNPAB	No	ssDNA/RNA binding				
+HNRNPCL2	No	ssDNA/RNA binding				
+HNRNPD	No	ssDNA/RNA binding				
+HNRNPDL	No	ssDNA/RNA binding				
+HNRNPK	No	ssDNA/RNA binding				
+HNRNPL	No	ssDNA/RNA binding				
+HNRNPU	No	ssDNA/RNA binding				
+HP1BP3	No	Unlikely to be sequence specific TF				
+HR	No	Unlikely to be sequence specific TF				
+HSBP1	No	Unlikely to be sequence specific TF				
+HSPA1A	No	Unlikely to be sequence specific TF				
+HSPA1B	No	Unlikely to be sequence specific TF				
+ICAM1	No	Unlikely to be sequence specific TF				
+IFI16	No	Unlikely to be sequence specific TF				
+IFNB1	No	Unlikely to be sequence specific TF				
+IGHM	No	Unlikely to be sequence specific TF				
+IKBKB	No	Unlikely to be sequence specific TF				
+IKBKG	No	Unlikely to be sequence specific TF				
+IL10	No	Unlikely to be sequence specific TF				
+IL1B	No	Unlikely to be sequence specific TF				
+IL1RAP	No	Unlikely to be sequence specific TF				
+IL4	No	Unlikely to be sequence specific TF				
+IL5	No	Unlikely to be sequence specific TF				
+IL6	No	Unlikely to be sequence specific TF				
+INF2	No	Unlikely to be sequence specific TF				
+ING4	No	Unlikely to be sequence specific TF				
+INS	No	Unlikely to be sequence specific TF				
+IRAK1	No	Unlikely to be sequence specific TF				
+IRAK2	No	Unlikely to be sequence specific TF				
+IRAK3	No	Unlikely to be sequence specific TF				
+IRF2BP1	No	Unlikely to be sequence specific TF				
+ITCH	No	Unlikely to be sequence specific TF				
+ITGB2	No	Unlikely to be sequence specific TF				
+ITGB3BP	No	Unlikely to be sequence specific TF				
+IZUMO2	No	Unlikely to be sequence specific TF				
+JADE1	No	Unlikely to be sequence specific TF				
+JAK2	No	Unlikely to be sequence specific TF				
+JMY	No	Unlikely to be sequence specific TF				
+JUP	No	Unlikely to be sequence specific TF				
+KANSL2	No	Unlikely to be sequence specific TF				
+KAT2A	No	Unlikely to be sequence specific TF				
+KAT2B	No	Unlikely to be sequence specific TF				
+KAT5	No	Unlikely to be sequence specific TF				
+KAT6A	No	Unlikely to be sequence specific TF				
+KAT6B	No	Unlikely to be sequence specific TF				
+KAT8	No	Unlikely to be sequence specific TF				
+KCNIP3	Yes	Likely to be sequence specific TF				
+KDM1A	No	Unlikely to be sequence specific TF				
+KDM3A	No	Unlikely to be sequence specific TF				
+KEAP1	No	Unlikely to be sequence specific TF				
+KIAA1549	No	Unlikely to be sequence specific TF				
+KIAA1683	No	Unlikely to be sequence specific TF				
+KIAA1958	No	Unlikely to be sequence specific TF				
+KIT	No	Unlikely to be sequence specific TF				
+KNTC1	No	Unlikely to be sequence specific TF				
+KRAS	No	Unlikely to be sequence specific TF				
+KRBOX1	No	Unlikely to be sequence specific TF				
+KRTAP5-1	No	Unlikely to be sequence specific TF				
+KRTAP5-9	No	Unlikely to be sequence specific TF				
+KRTAP9-9	No	Unlikely to be sequence specific TF				
+LARP1	No	ssDNA/RNA binding				
+LARP1B	No	ssDNA/RNA binding				
+LARP4	No	ssDNA/RNA binding				
+LARP4B	No	ssDNA/RNA binding				
+LARP6	No	ssDNA/RNA binding				
+LARP7	No	ssDNA/RNA binding				
+LGALS9	No	Unlikely to be sequence specific TF				
+LGR4	No	Unlikely to be sequence specific TF				
+LIG1	No	Unlikely to be sequence specific TF				
+LIG3	No	Unlikely to be sequence specific TF				
+LMO2	No	Unlikely to be sequence specific TF				
+LMO4	No	Unlikely to be sequence specific TF				
+LPP	No	Unlikely to be sequence specific TF				
+LRP5	No	ssDNA/RNA binding				
+LRP6	No	Unlikely to be sequence specific TF				
+LRP8	No	ssDNA/RNA binding				
+LRRFIP1	No	Unlikely to be sequence specific TF				
+LRRFIP2	No	Unlikely to be sequence specific TF				
+LSR	No	Unlikely to be sequence specific TF				
+LTF	Yes	Known motif				
+LTN1	No	Unlikely to be sequence specific TF				
+LZTFL1	No	Unlikely to be sequence specific TF				
+LZTR1	No	Unlikely to be sequence specific TF				
+LZTS1	No	Unlikely to be sequence specific TF				
+MACC1	No	Unlikely to be sequence specific TF				
+MACF1	No	Unlikely to be sequence specific TF				
+MAD2L2	No	Unlikely to be sequence specific TF				
+MALT1	No	Unlikely to be sequence specific TF				
+MAML1	No	Unlikely to be sequence specific TF				
+MAML3	No	Unlikely to be sequence specific TF				
+MAP2K5	No	Unlikely to be sequence specific TF				
+MAP3K10	No	Unlikely to be sequence specific TF				
+MAP3K13	No	Unlikely to be sequence specific TF				
+MAP3K7	No	Unlikely to be sequence specific TF				
+MAPK1	No	Unlikely to be sequence specific TF				
+MAPK10	No	Unlikely to be sequence specific TF				
+MAPK11	No	Unlikely to be sequence specific TF				
+MAPK14	No	Unlikely to be sequence specific TF				
+MAPK3	No	Unlikely to be sequence specific TF				
+MAPK8	No	Unlikely to be sequence specific TF				
+MAPK9	No	Unlikely to be sequence specific TF				
+MATR3	No	ssDNA/RNA binding				
+MAVS	No	Unlikely to be sequence specific TF				
+MB21D1	No	Unlikely to be sequence specific TF				
+MBTPS2	No	Unlikely to be sequence specific TF				
+MDFI	No	Unlikely to be sequence specific TF				
+MDM2	No	ssDNA/RNA binding				
+MDM4	No	Unlikely to be sequence specific TF				
+MED1	No	Unlikely to be sequence specific TF				
+MED12	No	Unlikely to be sequence specific TF				
+MED13	No	Unlikely to be sequence specific TF				
+MED13L	No	Unlikely to be sequence specific TF				
+MED14	No	Unlikely to be sequence specific TF				
+MED15	No	Unlikely to be sequence specific TF				
+MED16	No	Unlikely to be sequence specific TF				
+MED17	No	Unlikely to be sequence specific TF				
+MED21	No	Unlikely to be sequence specific TF				
+MED23	No	Unlikely to be sequence specific TF				
+MED24	No	Unlikely to be sequence specific TF				
+MED6	No	Unlikely to be sequence specific TF				
+MEN1	No	Unlikely to be sequence specific TF				
+MET	No	Unlikely to be sequence specific TF				
+MGMT	No	Unlikely to be sequence specific TF				
+MID2	No	Unlikely to be sequence specific TF				
+MINK1	No	Unlikely to be sequence specific TF				
+MKL1	No	Unlikely to be sequence specific TF				
+MKL2	No	Unlikely to be sequence specific TF				
+MKRN3	No	ssDNA/RNA binding				
+MLLT1	No	Unlikely to be sequence specific TF				
+MLLT10	No	Unlikely to be sequence specific TF				
+MLLT11	No	Unlikely to be sequence specific TF				
+MLLT3	No	Unlikely to be sequence specific TF				
+MLLT6	No	Unlikely to be sequence specific TF				
+MN1	No	Unlikely to be sequence specific TF				
+MNAT1	No	Unlikely to be sequence specific TF				
+MPG	No	Unlikely to be sequence specific TF				
+MRPL28	No	Unlikely to be sequence specific TF				
+MRRF	No	Unlikely to be sequence specific TF				
+MSH2	No	Unlikely to be sequence specific TF				
+MSH3	No	Unlikely to be sequence specific TF				
+MSH6	No	Unlikely to be sequence specific TF				
+MSL3	No	Unlikely to be sequence specific TF				
+MSRB2	No	Unlikely to be sequence specific TF				
+MST1R	No	Unlikely to be sequence specific TF				
+MTDH	No	Unlikely to be sequence specific TF				
+MTF2	Yes	Known motif				
+MTPN	No	Unlikely to be sequence specific TF				
+MUS81	No	Unlikely to be sequence specific TF				
+MYBBP1A	No	Unlikely to be sequence specific TF				
+MYCBP	No	Unlikely to be sequence specific TF				
+MYD88	No	Unlikely to be sequence specific TF				
+MYEF2	No	ssDNA/RNA binding				
+MYOCD	No	Unlikely to be sequence specific TF				
+NAB2	No	Unlikely to be sequence specific TF				
+NABP2	No	ssDNA/RNA binding				
+NACC2	Yes	Likely to be sequence specific TF				
+NCOA4	No	Unlikely to be sequence specific TF				
+NCOA5	No	Unlikely to be sequence specific TF				
+NCOA6	No	Unlikely to be sequence specific TF				
+NCOA7	No	Unlikely to be sequence specific TF				
+NDN	No	Unlikely to be sequence specific TF				
+NDP	No	Unlikely to be sequence specific TF				
+NEIL1	No	Unlikely to be sequence specific TF				
+NFAM1	No	Unlikely to be sequence specific TF				
+NFE4	Yes	Known motif				
+NFKBIA	No	Unlikely to be sequence specific TF				
+NFKBIB	No	Unlikely to be sequence specific TF				
+NFKBID	No	Unlikely to be sequence specific TF				
+NFKBIL1	No	Unlikely to be sequence specific TF				
+NFKBIZ	No	Unlikely to be sequence specific TF				
+NFRKB	No	Unlikely to be sequence specific TF				
+NFYB	Yes	Known motif				
+NFYC	Yes	Known motif				
+NKRF	Yes	Likely to be sequence specific TF				
+NLRC3	No	Unlikely to be sequence specific TF				
+NLRC4	No	Unlikely to be sequence specific TF				
+NLRC5	No	Unlikely to be sequence specific TF				
+NLRP12	No	Unlikely to be sequence specific TF				
+NLRP2B	No	Unlikely to be sequence specific TF				
+NLRP3	No	Unlikely to be sequence specific TF				
+NME2	Yes	Likely to be sequence specific TF				
+NOC3L	No	Unlikely to be sequence specific TF				
+NOC4L	No	Unlikely to be sequence specific TF				
+NOCT	No	Unlikely to be sequence specific TF				
+NOD1	No	Unlikely to be sequence specific TF				
+NOD2	No	Unlikely to be sequence specific TF				
+NODAL	No	Unlikely to be sequence specific TF				
+NONO	No	ssDNA/RNA binding				
+NOP2	No	Unlikely to be sequence specific TF				
+NOTCH1	No	Unlikely to be sequence specific TF				
+NOTCH2	No	Unlikely to be sequence specific TF				
+NOTCH3	No	Unlikely to be sequence specific TF				
+NPM1	No	Unlikely to be sequence specific TF				
+NR0B2	No	Unlikely to be sequence specific TF				
+NRF1	Yes	Known motif				
+NRG1	No	Unlikely to be sequence specific TF				
+NRIP1	No	Unlikely to be sequence specific TF				
+NRIP3	No	Unlikely to be sequence specific TF				
+NRK	No	Unlikely to be sequence specific TF				
+NSD1	No	Unlikely to be sequence specific TF				
+NTRK1	No	Unlikely to be sequence specific TF				
+NUCKS1	No	Unlikely to be sequence specific TF				
+NUP98	No	Unlikely to be sequence specific TF				
+OGG1	No	Unlikely to be sequence specific TF				
+OPRD1	No	Unlikely to be sequence specific TF				
+OTOP3	No	Unlikely to be sequence specific TF				
+OTULIN	No	Unlikely to be sequence specific TF				
+PA2G4	Yes	Likely to be sequence specific TF				
+PABPN1	No	ssDNA/RNA binding				
+PARK7	No	Unlikely to be sequence specific TF				
+PARP1	No	Unlikely to be sequence specific TF				
+PARP10	No	ssDNA/RNA binding				
+PAWR	No	Unlikely to be sequence specific TF				
+PAXBP1	No	Unlikely to be sequence specific TF				
+PAXIP1	No	Unlikely to be sequence specific TF				
+PCBD1	No	Unlikely to be sequence specific TF				
+PCBP1	No	ssDNA/RNA binding				
+PCBP2	No	ssDNA/RNA binding				
+PCBP3	No	ssDNA/RNA binding				
+PCGF2	Yes	Likely to be sequence specific TF				
+PCGF6	Yes	Likely to be sequence specific TF				
+PCNA	No	Unlikely to be sequence specific TF				
+PCSK6	No	Unlikely to be sequence specific TF				
+PDCD7	No	Unlikely to be sequence specific TF				
+PDS5B	No	Unlikely to be sequence specific TF				
+PELI1	No	Unlikely to be sequence specific TF				
+PER1	No	Unlikely to be sequence specific TF				
+PER2	No	Unlikely to be sequence specific TF				
+PER3	No	Unlikely to be sequence specific TF				
+PEX14	No	Unlikely to be sequence specific TF				
+PFDN1	No	Unlikely to be sequence specific TF				
+PGBD1	No	Unlikely to be sequence specific TF				
+PGS1	No	Unlikely to be sequence specific TF				
+PHB	No	Unlikely to be sequence specific TF				
+PHB2	No	Unlikely to be sequence specific TF				
+PHF1	Yes	Known motif				
+PHF19 	Yes	Likely to be sequence specific TF				
+PHF5A	No	Unlikely to be sequence specific TF				
+PHTF1	No	Unlikely to be sequence specific TF				
+PHTF2	No	Unlikely to be sequence specific TF				
+PIAS1	No	Unlikely to be sequence specific TF				
+PIAS2	No	Unlikely to be sequence specific TF				
+PIAS3	No	Unlikely to be sequence specific TF				
+PIAS4	No	Unlikely to be sequence specific TF				
+PIDD1	No	Unlikely to be sequence specific TF				
+PIKFYVE	No	Unlikely to be sequence specific TF				
+PIM1	No	Unlikely to be sequence specific TF				
+PINK1	No	Unlikely to be sequence specific TF				
+PKHD1	No	Unlikely to be sequence specific TF				
+PKHD1L1	No	Unlikely to be sequence specific TF				
+PLA2G10	No	Unlikely to be sequence specific TF				
+PLA2G1B	No	Unlikely to be sequence specific TF				
+PLEK	No	Unlikely to be sequence specific TF				
+PLEK2	No	Unlikely to be sequence specific TF				
+PLEKHA4	No	Unlikely to be sequence specific TF				
+PLPP3	No	Unlikely to be sequence specific TF				
+PLSCR1	Yes	Likely to be sequence specific TF				
+PLXNA1	No	Unlikely to be sequence specific TF				
+PLXNA2	No	Unlikely to be sequence specific TF				
+PLXNA3	No	Unlikely to be sequence specific TF				
+PLXNA4	No	Unlikely to be sequence specific TF				
+PLXNB1	No	Unlikely to be sequence specific TF				
+PLXNB2	No	Unlikely to be sequence specific TF				
+PLXNB3	No	Unlikely to be sequence specific TF				
+PLXNC1	No	Unlikely to be sequence specific TF				
+PLXND1	No	Unlikely to be sequence specific TF				
+PML	No	Unlikely to be sequence specific TF				
+PNKP	No	Unlikely to be sequence specific TF				
+POGZ	No	Unlikely to be sequence specific TF				
+POLA1	No	Unlikely to be sequence specific TF				
+POLB	No	Unlikely to be sequence specific TF				
+POLE3	No	Unlikely to be sequence specific TF				
+POLE4	No	Unlikely to be sequence specific TF				
+POLG	No	Unlikely to be sequence specific TF				
+POLH	No	Unlikely to be sequence specific TF				
+POLI	No	Unlikely to be sequence specific TF				
+POLK	No	Unlikely to be sequence specific TF				
+POLL	No	Unlikely to be sequence specific TF				
+POLM	No	Unlikely to be sequence specific TF				
+POLN	No	Unlikely to be sequence specific TF				
+POLQ	No	Unlikely to be sequence specific TF				
+POLR1B	No	Unlikely to be sequence specific TF				
+POLR2A	No	Unlikely to be sequence specific TF				
+POLR2B	No	Unlikely to be sequence specific TF				
+POLR2E	No	Unlikely to be sequence specific TF				
+POLR2J	No	Unlikely to be sequence specific TF				
+POLR2K	No	Unlikely to be sequence specific TF				
+POLR2L	No	Unlikely to be sequence specific TF				
+POLR3A	No	Unlikely to be sequence specific TF				
+POLRMT	No	Unlikely to be sequence specific TF				
+POT1	No	ssDNA/RNA binding				
+POU2AF1	Yes	Known motif				
+PPARGC1A	No	ssDNA/RNA binding				
+PPARGC1B	No	ssDNA/RNA binding				
+PPP1R13L	No	Unlikely to be sequence specific TF				
+PPP2R3B	No	Unlikely to be sequence specific TF				
+PPP2R5B	No	Unlikely to be sequence specific TF				
+PPP3CA	No	Unlikely to be sequence specific TF				
+PPRC1	No	ssDNA/RNA binding				
+PQBP1	No	Unlikely to be sequence specific TF				
+PRAM1	No	Unlikely to be sequence specific TF				
+PRAP1	No	Unlikely to be sequence specific TF				
+PRB3	No	Unlikely to be sequence specific TF				
+PRDM7	No	Unlikely to be sequence specific TF				
+PRDX3	No	Unlikely to be sequence specific TF				
+PREB	Yes	Likely to be sequence specific TF				
+PREX1	No	Unlikely to be sequence specific TF				
+PREX2	No	Unlikely to be sequence specific TF				
+PRH2	No	Unlikely to be sequence specific TF				
+PRIM2	No	ssDNA/RNA binding				
+PRIMPOL	No	Unlikely to be sequence specific TF				
+PRKCB	No	Unlikely to be sequence specific TF				
+PRKCH	No	Unlikely to be sequence specific TF				
+PRKCI	No	Unlikely to be sequence specific TF				
+PRKCQ	No	Unlikely to be sequence specific TF				
+PRKCZ	No	Unlikely to be sequence specific TF				
+PRKD1	No	Unlikely to be sequence specific TF				
+PRKD2	No	Unlikely to be sequence specific TF				
+PRKN	No	Unlikely to be sequence specific TF				
+PRMT2	No	Unlikely to be sequence specific TF				
+PRNP	No	Unlikely to be sequence specific TF				
+PSMA6	No	Unlikely to be sequence specific TF				
+PSMC5	No	Unlikely to be sequence specific TF				
+PSMD10	No	Unlikely to be sequence specific TF				
+PSMD11	No	Unlikely to be sequence specific TF				
+PSMD12	No	Unlikely to be sequence specific TF				
+PSPC1	No	ssDNA/RNA binding				
+PTCH1	No	Unlikely to be sequence specific TF				
+PTEN	No	Unlikely to be sequence specific TF				
+PTGIS	No	Unlikely to be sequence specific TF				
+PTH	No	Unlikely to be sequence specific TF				
+PTTG1	No	Unlikely to be sequence specific TF				
+PUM3	No	Unlikely to be sequence specific TF				
+PURA	Yes	Known motif				
+PURB	Yes	Likely to be sequence specific TF				
+PURG	Yes	Likely to be sequence specific TF				
+PYCARD	No	Unlikely to be sequence specific TF				
+PYDC1	No	Unlikely to be sequence specific TF				
+PYDC2	No	Unlikely to be sequence specific TF				
+QRICH1	No	Unlikely to be sequence specific TF				
+RAB7B	No	Unlikely to be sequence specific TF				
+RAD21	No	Unlikely to be sequence specific TF				
+RAD51	No	Unlikely to be sequence specific TF				
+RAG1	Yes	Likely to be sequence specific TF				
+RAI1	No	Unlikely to be sequence specific TF				
+RAPGEF3	No	Unlikely to be sequence specific TF				
+RAPGEF4	No	Unlikely to be sequence specific TF				
+RAPGEF5	No	Unlikely to be sequence specific TF				
+RB1	No	Unlikely to be sequence specific TF				
+RBBP7	No	Unlikely to be sequence specific TF				
+RBCK1	Yes	Likely to be sequence specific TF				
+RBL1	No	Unlikely to be sequence specific TF				
+RBL2	No	Unlikely to be sequence specific TF				
+RBM10	No	ssDNA/RNA binding				
+RBM20	No	ssDNA/RNA binding				
+RBM22	No	ssDNA/RNA binding				
+RBM26	No	ssDNA/RNA binding				
+RBM27	No	ssDNA/RNA binding				
+RBM5	No	ssDNA/RNA binding				
+RBM6	No	ssDNA/RNA binding				
+RCAN1	No	Unlikely to be sequence specific TF				
+RECQL	No	Unlikely to be sequence specific TF				
+RELL2	No	Unlikely to be sequence specific TF				
+RELN	No	Unlikely to be sequence specific TF				
+REV1	No	Unlikely to be sequence specific TF				
+REXO4	Yes	Likely to be sequence specific TF				
+RFC1	No	Unlikely to be sequence specific TF				
+RFXANK	No	Unlikely to be sequence specific TF				
+RFXAP	No	Unlikely to be sequence specific TF				
+RGCC	No	Unlikely to be sequence specific TF				
+RGS11	No	Unlikely to be sequence specific TF				
+RGS6	No	Unlikely to be sequence specific TF				
+RGS7	No	Unlikely to be sequence specific TF				
+RGS9	No	Unlikely to be sequence specific TF				
+RHEBL1	No	Unlikely to be sequence specific TF				
+RING1	No	Unlikely to be sequence specific TF				
+RIOK2	No	Unlikely to be sequence specific TF				
+RIPK1	No	Unlikely to be sequence specific TF				
+RIPK2	No	Unlikely to be sequence specific TF				
+RIPK3	No	Unlikely to be sequence specific TF				
+RIPK4	No	Unlikely to be sequence specific TF				
+RLIM	No	Unlikely to be sequence specific TF				
+RNASE2	No	Unlikely to be sequence specific TF				
+RNASEH1	No	ssDNA/RNA binding				
+RNF114	No	Unlikely to be sequence specific TF				
+RNF125	No	Unlikely to be sequence specific TF				
+RNF138	No	ssDNA/RNA binding				
+RNF14	No	Unlikely to be sequence specific TF				
+RNF166	No	Unlikely to be sequence specific TF				
+RNF2	No	Unlikely to be sequence specific TF				
+RNF25	No	Unlikely to be sequence specific TF				
+RNF31	No	ssDNA/RNA binding				
+RNF4	No	Unlikely to be sequence specific TF				
+RNF41	No	Unlikely to be sequence specific TF				
+RPA2	No	ssDNA/RNA binding				
+RPA4	No	ssDNA/RNA binding				
+RPL7	No	Unlikely to be sequence specific TF				
+RPL7A	No	Unlikely to be sequence specific TF				
+RPS27A	No	ssDNA/RNA binding				
+RPS6KA4	No	Unlikely to be sequence specific TF				
+RPS6KA5	No	Unlikely to be sequence specific TF				
+RRN3	No	Unlikely to be sequence specific TF				
+RUNX1T1	No	Unlikely to be sequence specific TF				
+RWDD3	No	Unlikely to be sequence specific TF				
+RYBP	No	ssDNA/RNA binding				
+S100A12	No	Unlikely to be sequence specific TF				
+S100A8	No	Unlikely to be sequence specific TF				
+S100A9	No	Unlikely to be sequence specific TF				
+SAFB	Yes	Likely to be sequence specific TF				
+SAFB2	Yes	Likely to be sequence specific TF				
+SAV1	No	Unlikely to be sequence specific TF				
+SCAND1	No	Unlikely to be sequence specific TF				
+SCAND2P	No	Unlikely to be sequence specific TF				
+SCAPER	No	Unlikely to be sequence specific TF				
+SCMH1	Yes	Likely to be sequence specific TF				
+SCML1	No	Unlikely to be sequence specific TF				
+SCML2	No	Unlikely to be sequence specific TF				
+SEMA4A	No	Unlikely to be sequence specific TF				
+SERTAD1	No	Unlikely to be sequence specific TF				
+SERTAD2	No	Unlikely to be sequence specific TF				
+SETD6	No	Unlikely to be sequence specific TF				
+SF3A2	No	ssDNA/RNA binding				
+SF3A3	No	ssDNA/RNA binding				
+SFPQ	No	ssDNA/RNA binding				
+SFRP4	No	Unlikely to be sequence specific TF				
+SFRP5	No	Unlikely to be sequence specific TF				
+SFTPB	No	Unlikely to be sequence specific TF				
+SGK1	No	Unlikely to be sequence specific TF				
+SGK3	No	Unlikely to be sequence specific TF				
+SHH	No	Unlikely to be sequence specific TF				
+SHPRH	No	Unlikely to be sequence specific TF				
+SIGIRR	No	Unlikely to be sequence specific TF				
+SIK1	No	Unlikely to be sequence specific TF				
+SIN3A	No	Unlikely to be sequence specific TF				
+SIN3B	No	Unlikely to be sequence specific TF				
+SIRT1	No	Unlikely to be sequence specific TF				
+SIRT2	No	Unlikely to be sequence specific TF				
+SIRT3	No	Unlikely to be sequence specific TF				
+SIRT6	No	Unlikely to be sequence specific TF				
+SIVA1	No	Unlikely to be sequence specific TF				
+SKI	Yes	Likely to be sequence specific TF				
+SKIDA1	No	Unlikely to be sequence specific TF				
+SKIL	Yes	Likely to be sequence specific TF				
+SKOR1	Yes	Known motif				
+SLC22A4	No	Unlikely to be sequence specific TF				
+SLC26A10	No	Unlikely to be sequence specific TF				
+SLC26A3	No	Unlikely to be sequence specific TF				
+SLC30A9	No	Unlikely to be sequence specific TF				
+SLC39A10	No	Unlikely to be sequence specific TF				
+SLC4A10	No	Unlikely to be sequence specific TF				
+SMARCA2	No	Unlikely to be sequence specific TF				
+SMARCA4	No	Unlikely to be sequence specific TF				
+SMARCAL1	No	Unlikely to be sequence specific TF				
+SMARCB1	No	Unlikely to be sequence specific TF				
+SMARCD1	No	Unlikely to be sequence specific TF				
+SMARCD2	No	Unlikely to be sequence specific TF				
+SMARCD3	No	Unlikely to be sequence specific TF				
+SMC3	No	Unlikely to be sequence specific TF				
+SMO	No	Unlikely to be sequence specific TF				
+SMUG1	No	Unlikely to be sequence specific TF				
+SMYD1	No	Unlikely to be sequence specific TF				
+SMYD3	Yes	Likely to be sequence specific TF				
+SNAPC2	Yes	Likely to be sequence specific TF				
+SNAPC5	Yes	Likely to be sequence specific TF				
+SNRPC	No	Unlikely to be sequence specific TF				
+SNURF	No	Unlikely to be sequence specific TF				
+SNW1	No	Unlikely to be sequence specific TF				
+SOGA3	No	Unlikely to be sequence specific TF				
+SON	Yes	Likely to be sequence specific TF				
+SORBS2	No	Unlikely to be sequence specific TF				
+SPEN	Yes	Likely to be sequence specific TF				
+SPHK1	No	Unlikely to be sequence specific TF				
+SPZ1	Yes	Known motif				
+SSB	No	ssDNA/RNA binding				
+SSBP2	No	ssDNA/RNA binding				
+SSBP3	No	ssDNA/RNA binding				
+SSBP4	No	ssDNA/RNA binding				
+SSH1	No	Unlikely to be sequence specific TF				
+SSH2	No	Unlikely to be sequence specific TF				
+SSH3	No	Unlikely to be sequence specific TF				
+SSX1	No	Unlikely to be sequence specific TF				
+STAG1	No	Unlikely to be sequence specific TF				
+STK16	No	Unlikely to be sequence specific TF				
+STK3	No	Unlikely to be sequence specific TF				
+STK36	No	Unlikely to be sequence specific TF				
+STRN	No	Unlikely to be sequence specific TF				
+STRN3	No	Unlikely to be sequence specific TF				
+SUB1	No	ssDNA/RNA binding				
+SUFU	No	Unlikely to be sequence specific TF				
+SUMO1	No	Unlikely to be sequence specific TF				
+SUPT16H	No	Unlikely to be sequence specific TF				
+SUPT4H1	No	Unlikely to be sequence specific TF				
+SUPT5H	No	Unlikely to be sequence specific TF				
+SUPT6H	No	ssDNA/RNA binding				
+SUV39H1	No	Unlikely to be sequence specific TF				
+SUV39H2	No	Unlikely to be sequence specific TF				
+SUZ12	No	Unlikely to be sequence specific TF				
+SYK	No	Unlikely to be sequence specific TF				
+TAB1	No	Unlikely to be sequence specific TF				
+TAB2	No	ssDNA/RNA binding				
+TAB3	No	ssDNA/RNA binding				
+TADA3	No	Unlikely to be sequence specific TF				
+TAF1	No	Unlikely to be sequence specific TF				
+TAF10	No	Unlikely to be sequence specific TF				
+TAF11	No	Unlikely to be sequence specific TF				
+TAF12	No	Unlikely to be sequence specific TF				
+TAF13	No	Unlikely to be sequence specific TF				
+TAF1A	No	Unlikely to be sequence specific TF				
+TAF1B	No	Unlikely to be sequence specific TF				
+TAF1C	No	Unlikely to be sequence specific TF				
+TAF1L	No	Unlikely to be sequence specific TF				
+TAF2	No	Unlikely to be sequence specific TF				
+TAF3	No	Unlikely to be sequence specific TF				
+TAF4	No	Unlikely to be sequence specific TF				
+TAF4B	No	Unlikely to be sequence specific TF				
+TAF5	No	Unlikely to be sequence specific TF				
+TAF5L	No	Unlikely to be sequence specific TF				
+TAF6	No	Unlikely to be sequence specific TF				
+TAF6L	No	Unlikely to be sequence specific TF				
+TAF7	No	Unlikely to be sequence specific TF				
+TAF7L	No	Unlikely to be sequence specific TF				
+TAF8	No	Unlikely to be sequence specific TF				
+TAF9	No	Unlikely to be sequence specific TF				
+TAF9B	No	Unlikely to be sequence specific TF				
+TARDBP	No	ssDNA/RNA binding				
+TAX1BP1	No	Unlikely to be sequence specific TF				
+TBL1Y	No	Unlikely to be sequence specific TF				
+TCEA2	No	ssDNA/RNA binding				
+TCEAL1	No	Unlikely to be sequence specific TF				
+TCEAL7	No	Unlikely to be sequence specific TF				
+TCEAL8	No	Unlikely to be sequence specific TF				
+TCF19	No	Unlikely to be sequence specific TF				
+TCF20	Yes	Likely to be sequence specific TF				
+TCF25	No	Unlikely to be sequence specific TF				
+TDG	No	Unlikely to be sequence specific TF				
+TDP1	No	ssDNA/RNA binding				
+TDP2	No	ssDNA/RNA binding				
+TET2	Yes	Likely to be sequence specific TF				
+TGFB1	No	Unlikely to be sequence specific TF				
+TGFB1I1	No	Unlikely to be sequence specific TF				
+TGS1	No	Unlikely to be sequence specific TF				
+THRAP3	No	Unlikely to be sequence specific TF				
+THYN1	Yes	Likely to be sequence specific TF				
+TIA1	No	ssDNA/RNA binding				
+TICAM1	No	Unlikely to be sequence specific TF				
+TIPARP	No	Unlikely to be sequence specific TF				
+TIRAP	No	Unlikely to be sequence specific TF				
+TLE1	No	Unlikely to be sequence specific TF				
+TLE2	No	Unlikely to be sequence specific TF				
+TLE3	No	Unlikely to be sequence specific TF				
+TLE4	No	Unlikely to be sequence specific TF				
+TLE6	No	Unlikely to be sequence specific TF				
+TLR2	No	Unlikely to be sequence specific TF				
+TLR3	No	ssDNA/RNA binding				
+TLR4	No	Unlikely to be sequence specific TF				
+TLR9	No	Unlikely to be sequence specific TF				
+TMEM235	No	Unlikely to be sequence specific TF				
+TMF1	Yes	Likely to be sequence specific TF				
+TNF	No	Unlikely to be sequence specific TF				
+TNFAIP3	No	Unlikely to be sequence specific TF				
+TNFRSF11A	No	Unlikely to be sequence specific TF				
+TNFRSF4	No	Unlikely to be sequence specific TF				
+TNFSF11	No	Unlikely to be sequence specific TF				
+TNFSF18	No	Unlikely to be sequence specific TF				
+TNFSF4	No	Unlikely to be sequence specific TF				
+TONSL	No	Unlikely to be sequence specific TF				
+TOP1	No	Unlikely to be sequence specific TF				
+TOP2A	No	Unlikely to be sequence specific TF				
+TOP2B	No	Unlikely to be sequence specific TF				
+TOPORS	Yes	Known motif				
+TP53BP1	No	Unlikely to be sequence specific TF				
+TRADD	No	Unlikely to be sequence specific TF				
+TRAF1	No	Unlikely to be sequence specific TF				
+TRAF2	No	Unlikely to be sequence specific TF				
+TRAF3	No	Unlikely to be sequence specific TF				
+TRAF4	No	Unlikely to be sequence specific TF				
+TRAF5	No	Unlikely to be sequence specific TF				
+TRAF6	No	Unlikely to be sequence specific TF				
+TRAPPC9	No	Unlikely to be sequence specific TF				
+TREX1	No	Unlikely to be sequence specific TF				
+TRIB1	No	Unlikely to be sequence specific TF				
+TRIB3	No	Unlikely to be sequence specific TF				
+TRIM13	No	Unlikely to be sequence specific TF				
+TRIM14	No	Unlikely to be sequence specific TF				
+TRIM15	No	Unlikely to be sequence specific TF				
+TRIM21	No	Unlikely to be sequence specific TF				
+TRIM22	No	Unlikely to be sequence specific TF				
+TRIM23	No	Unlikely to be sequence specific TF				
+TRIM24	No	Unlikely to be sequence specific TF				
+TRIM25	No	Unlikely to be sequence specific TF				
+TRIM26	No	Unlikely to be sequence specific TF				
+TRIM27	No	Unlikely to be sequence specific TF				
+TRIM28	No	Unlikely to be sequence specific TF				
+TRIM29	No	Unlikely to be sequence specific TF				
+TRIM3	No	ssDNA/RNA binding				
+TRIM31	No	Unlikely to be sequence specific TF				
+TRIM32	No	ssDNA/RNA binding				
+TRIM33	No	Unlikely to be sequence specific TF				
+TRIM34	No	Unlikely to be sequence specific TF				
+TRIM37	No	Unlikely to be sequence specific TF				
+TRIM38	No	Unlikely to be sequence specific TF				
+TRIM40	No	Unlikely to be sequence specific TF				
+TRIM5	No	Unlikely to be sequence specific TF				
+TRIM52	No	Unlikely to be sequence specific TF				
+TRIM62	No	Unlikely to be sequence specific TF				
+TRIM8	No	Unlikely to be sequence specific TF				
+TRIP11	No	Unlikely to be sequence specific TF				
+TRIT1	No	ssDNA/RNA binding				
+TRMT1L	No	Unlikely to be sequence specific TF				
+TRRAP	No	Unlikely to be sequence specific TF				
+TSC2	No	Unlikely to be sequence specific TF				
+TSC22D1	Yes	Likely to be sequence specific TF				
+TSC22D2	No	Unlikely to be sequence specific TF				
+TSC22D3	No	Unlikely to be sequence specific TF				
+TSC22D4	No	Unlikely to be sequence specific TF				
+TSN	No	Unlikely to be sequence specific TF				
+TSSK4	No	Unlikely to be sequence specific TF				
+TUB	No	Unlikely to be sequence specific TF				
+TULP4	No	Unlikely to be sequence specific TF				
+TUT1	No	ssDNA/RNA binding				
+TXK	No	Unlikely to be sequence specific TF				
+U2AF1	No	ssDNA/RNA binding				
+U2AF1L4	No	ssDNA/RNA binding				
+UBA52	No	Unlikely to be sequence specific TF				
+UBB	No	Unlikely to be sequence specific TF				
+UBC	No	Unlikely to be sequence specific TF				
+UBE2K	No	Unlikely to be sequence specific TF				
+UBE2N	No	Unlikely to be sequence specific TF				
+UBE2V1	No	Unlikely to be sequence specific TF				
+UBN1	No	Unlikely to be sequence specific TF				
+UBR4	No	Unlikely to be sequence specific TF				
+UBTFL6	No	Unlikely to be sequence specific TF				
+UFL1	No	Unlikely to be sequence specific TF				
+UHRF1	No	Unlikely to be sequence specific TF				
+UHRF2	No	Unlikely to be sequence specific TF				
+UNG	No	Unlikely to be sequence specific TF				
+USP39	No	Unlikely to be sequence specific TF				
+USP7	No	Unlikely to be sequence specific TF				
+UTF1	No	Unlikely to be sequence specific TF				
+VAV1	No	Unlikely to be sequence specific TF				
+VEGFA	No	Unlikely to be sequence specific TF				
+VGLL1	No	Unlikely to be sequence specific TF				
+VGLL2	No	Unlikely to be sequence specific TF				
+VGLL3	No	Unlikely to be sequence specific TF				
+VHLL	No	Unlikely to be sequence specific TF				
+VPS72	No	Unlikely to be sequence specific TF				
+WFS1	No	Unlikely to be sequence specific TF				
+WNT1	No	Unlikely to be sequence specific TF				
+WNT10B	No	Unlikely to be sequence specific TF				
+WNT2	No	Unlikely to be sequence specific TF				
+WNT3A	No	Unlikely to be sequence specific TF				
+WNT5A	No	Unlikely to be sequence specific TF				
+WNT8B	No	Unlikely to be sequence specific TF				
+WRN	No	Unlikely to be sequence specific TF				
+WWOX	No	Unlikely to be sequence specific TF				
+WWP2	No	Unlikely to be sequence specific TF				
+WWTR1	No	Unlikely to be sequence specific TF				
+XCL1	No	Unlikely to be sequence specific TF				
+XPA	Yes	Known motif				
+YEATS2	No	Unlikely to be sequence specific TF				
+YEATS4	No	Unlikely to be sequence specific TF				
+YOD1	No	Unlikely to be sequence specific TF				
+ZBED6CL	No	Unlikely to be sequence specific TF				
+ZBP1	No	Unlikely to be sequence specific TF				
+ZCCHC11	No	ssDNA/RNA binding				
+ZCCHC6	No	ssDNA/RNA binding				
+ZDHHC11	No	Unlikely to be sequence specific TF				
+ZDHHC19	No	Unlikely to be sequence specific TF				
+ZMAT2	No	Unlikely to be sequence specific TF				
+ZNF137P	No	Unlikely to be sequence specific TF				
+ZNF185	No	Unlikely to be sequence specific TF				
+ZNF638	No	Unlikely to be sequence specific TF				
+ZNF720	No	Unlikely to be sequence specific TF				
+ZNF738	No	Unlikely to be sequence specific TF				
+ZNF862	No	Unlikely to be sequence specific TF				
+ZNFX1	No	Unlikely to be sequence specific TF				
+ZRANB2	No	ssDNA/RNA binding				
+TP53	Yes	Known motif				
+TP63	Yes	Known motif				
+TP73	Yes	Known motif				
+PAX1	Yes	Known motif				
+PAX5	Yes	Known motif				
+PAX8	Yes	Known motif				
+PAX9	Yes	Known motif				
+LCOR	Yes	Known motif				
+LCORL	Yes	Known motif				
+PROX1	Yes	Known motif				
+PROX2	Yes	Inferred motif				
+NFAT5	Yes	Known motif				
+NFATC1	Yes	Known motif				
+NFATC2	Yes	Known motif				
+NFATC3	Yes	Known motif				
+NFATC4	Yes	Known motif				
+NFKB1	Yes	Known motif				
+NFKB2	Yes	Known motif				
+REL	Yes	Known motif				
+RELA	Yes	Known motif				
+RELB	Yes	Known motif				
+RFX1	Yes	Known motif				
+RFX2	Yes	Known motif				
+RFX3	Yes	Known motif				
+RFX4	Yes	Known motif				
+RFX5	Yes	Known motif				
+RFX6	Yes	Inferred motif				
+RFX7	Yes	Known motif				
+RFX8	Yes	Likely to be sequence specific TF				
+RUNX1	Yes	Known motif				
+RUNX2	Yes	Known motif				
+RUNX3	Yes	Known motif				
+AIRE	Yes	Known motif				
+DEAF1	Yes	Inferred motif				
+GLA	No	Unlikely to be sequence specific TF				
+GMEB1	Yes	Known motif				
+GMEB2	Yes	Known motif				
+SKOR2	Yes	Known motif				
+SP100	Yes	Likely to be sequence specific TF				
+SP110	Yes	Likely to be sequence specific TF				
+SP140	Yes	Likely to be sequence specific TF				
+SP140L	Yes	Likely to be sequence specific TF				
+SART1	No	ssDNA/RNA binding				
+RPL36A	No	Unlikely to be sequence specific TF				
+NFIA	Yes	Known motif				
+NFIB	Yes	Known motif				
+NFIC	Yes	Known motif				
+NFIX	Yes	Known motif				
+SMAD1	Yes	Known motif				
+SMAD2	No	Unlikely to be sequence specific TF				
+SMAD3	Yes	Known motif				
+SMAD4	Yes	Known motif				
+SMAD5	Yes	Known motif				
+SMAD6	No	Unlikely to be sequence specific TF				
+SMAD7	No	Unlikely to be sequence specific TF				
+SMAD9	Yes	Known motif				
+STAT1	Yes	Known motif				
+STAT2	Yes	Known motif				
+STAT3	Yes	Known motif				
+STAT4	Yes	Known motif				
+STAT5A	Yes	Known motif				
+STAT5B	Yes	Known motif				
+STAT6	Yes	Known motif				
+EOMES	Yes	Known motif				
+MGA	Yes	Known motif				
+T	Yes	Known motif				
+TBR1	Yes	Known motif				
+TBX1	Yes	Known motif				
+TBX10	Yes	Inferred motif				
+TBX15	Yes	Known motif				
+TBX18	Yes	Known motif				
+TBX19	Yes	Known motif				
+TBX2	Yes	Known motif				
+TBX20	Yes	Known motif				
+TBX21	Yes	Known motif				
+TBX22	Yes	Known motif				
+TBX3	Yes	Known motif				
+TBX4	Yes	Known motif				
+TBX5	Yes	Known motif				
+TBX6	Yes	Known motif				
+TBP	Yes	Known motif				
+TBPL1	Yes	Likely to be sequence specific TF				
+TBPL2	Yes	Inferred motif				
+LIN54	Yes	Inferred motif				
+TESMIN	No	Unlikely to be sequence specific TF				
+APOA4	No	Unlikely to be sequence specific TF				
+TEAD1	Yes	Known motif				
+TEAD2	Yes	Known motif				
+TEAD3	Yes	Known motif				
+TEAD4	Yes	Known motif				
+THAP1	Yes	Known motif				
+THAP10	Yes	Likely to be sequence specific TF				
+THAP11	Yes	Likely to be sequence specific TF				
+THAP12	Yes	Known motif				
+THAP2	Yes	Likely to be sequence specific TF				
+THAP3	Yes	Likely to be sequence specific TF				
+THAP4	Yes	Likely to be sequence specific TF				
+THAP5	Yes	Likely to be sequence specific TF				
+THAP6	Yes	Likely to be sequence specific TF				
+THAP7	Yes	Likely to be sequence specific TF				
+THAP8	Yes	Likely to be sequence specific TF				
+THAP9	Yes	Likely to be sequence specific TF				
+ZFAND5	No	ssDNA/RNA binding				

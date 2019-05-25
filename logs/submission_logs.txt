@@ -63,3 +63,111 @@ motif_discovery: <input id="motif_discovery" name="motif_discovery" type="checkb
 email: send.results.here@peaks.com
 
 ******************************************************************************
+
+time stamp: 2019-05-05_21:33:49.240897
+
+promoter: True
+
+enhancer: True
+
+transcription_factors: KLF9,ZNF644,NFIC,ZNF776,SP5,ZNF704,E2F7,MYNN,ZSCAN29,HLF,BCL11B,SKIL,ZNF18,ZNF48,PRDM4,THRB,ZBTB40,MEF2D,ZNF680,ZNF8,ELK4,TBX1,SMAD4,ZNF280D,NR2C2,CREM,BATF,ZNF217,IRF5,IRF9,ZXDB,NFE4,ZNF629,ETS2,EGR4,JUN,HHEX,KLF8,ZBTB17,ZNF155,REST,ADNP,TBP,HIC1,SPIC,NFIL3,ESR2,E2F5,ZNF584,SOX9,MAFK,CTCF,ZNF181,ZNF280C,ZNF20,ZNF30,MAX,ZNF350,MAZ,ZNF416,TCF21,THAP4,TFAP4,NCOA2,ZNF365,NR3C1,CEBPG,HOMEZ,ZNF407,TCF7,ZNF404,MAFF,ZFP64,MEF2C,ZNF624,RFX7,MBD4,RARB,DPF3,CBX2,ZNF488,LCORL,ZNF354C,IRF4,E2F6,NANOG,ZNF84,ZBTB5,TSHZ2,ZNF138,CREBL2,CEBPZ,ZBED9,BHLHE40,ETV4,ZNF766,ZNF589,EBF1,HMG20B,ZNF579,BCL6,ZNF514,ZSCAN26,ZNF654,ZNF785,IRF7,STAT5A,ZNF69,ZBTB20,ZSCAN4,VDR,SIX5,ZNF76,ELK1,THRA,ATF7,ZNF512,RBAK,KLF4,ZNF148,PRDM10,ZNF239,SP7,ZNF274,ZFP37,MAFG,NR2F6,CEBPD,SIX4,DEAF1,ZIK1,HMGN3,ZNF645,NFYC,CUX1,CTCFL,ERG,BRF2,ZNF114,RUNX2,REPIN1,ZC3H8,MXI1,ZNF146,ZNF664,ZNF34,ZNF43,ZNF175,ZSCAN9,MLX,ZNF850,HOXC5,RFX5,ZNF747,ZBTB26,SOX5,E2F4,ZNF610,ZFP69,KLF1,ZNF16,ZNF578,ZNF57,STAT1,SMAD5,ZNF140,ZNF558,SOX6,NEUROD4,ZNF580,ZNF266,TSC22D1,ZNF394,REL,ZNF14,KLF5,ZNF7,OVOL3,ELF4,ZNF530,PRDM6,ATF4,GATA6,ZNF658,TAL1,HBP1,ZNF24,SOX1,ZHX2,ZNF639,MTF2,ZNF19,ZFHX3,ZNF157,ZNF524,SCRT1,ZNF195,ZFP1,TFEB,TFAP2C,ZNF26,DNMT1,ZSCAN2,ZNF740,HES5,ZNF316,ZNF491,ZNF777,ZNF248,KDM5B,NRF1,TGIF1,MBD1,ZSCAN16,TFDP2,NFATC4,ZNF324,ZNF70,ZNF207,IKZF2,ZKSCAN8,ZSCAN5C,SP4,ZNF529,KLF17,MYB,KMT2B,TCF7L1,ZIC2,MYC,INSM1,ZNF560,BACH1,ELF2,OSR1,SRF,ZBTB49,PRDM1,ZNF548,DRAP1,ZNF707,HINFP,ZNF347,ZNF384,ZSCAN18,ZZZ3,MITF,CDC5L,HSF5,ZBTB8A,TEAD1,NFE2L2,KAT7,ZNF687,USF1,ZNF600,ZNF670,ZNF507,ZNF426,ZFP3,E2F2,ZGPAT,T,SNAI3,CHAMP1,KLF6,SALL1,ESRRB,ZNF318,JUND,TEAD4,ZNF605,ZNF519,MXD1,MEIS3,HNF4G,MIXL1,MXD4,ZNF547,NKX2-8,YBX1,SREBF2,KLF16,ZNF697,KLF7,ZNF837,NR4A1,ZNF544,ETV6,ZNF45,ZNF391,PPARG,ZNF197,TEAD2,ZNF335,HMBOX1,NFXL1,NFIA,ZNF2,ZNF22,ZNF366,ZNF66,KLF3,ZNF300,RXRB,ZNF184,ZFX,ZNF10,PBX1,HNF4A,ZBTB48,ZNF79,ZNF555,ZKSCAN5,ZNF174,ZNF423,ZBTB7C,ZNF398,ZNF169,TCF3,ZBTB10
+
+tissue_types: lymphoblastoid,vasculature,corneal_epithelium_cell_(CEC)_line,intestine,bronchus,placenta,KSHV_positive_B_cell_lymphoma,lung,Th1,NA,colorectal_carcinoma,neonatal_human_foreskin_fibroblasts_(primary_culture_cells),vagina,esophagus,stomach,gonad,breast,Epstein-Barr_Virus_transformed_lymphoblastoid,breast_carcinoma_cell_line,lymph_node,myelogenous_leukaemia,ovary,T-acute_lymphoblastic_leukemia_(T-ALL)_cell_line,peripheral_blood_mononuclear_cells_(PBMCs),bodily_fluid,eye,epithelium,uterus,large_intestine,heart,human_hepatic_stellate_cells,None,musculature_of_body,kidney,lung_carcinoma_cells,CD34+_derived_erythroblasts,bone_element,embryo,Leukemic_T-cell,Epithelial_cells_immortalized_with_hTERT,EBV_positive_B-cells,Human_keratinocytes,adipose_tissue,EBV_positive_B_lymphocyte_line,mammary_gland,prostate_gland,spleen,nerve,limb,blood_vessel,blood,artery,Jurkat,_clone_E6-1_T_lymphocyte,liver,adrenal_gland,vein,pancreas,extraembryonic_component,HSPC,lymphoid_tissue,CD133+_expanded_UCB,Breast_cancer_derived_cell_line,penis,thyroid_gland,testis,spinal_cord,skin_of_body,connective_tissue,brain
+
+pileup: 1.0
+
+log_p: 3.0
+
+fold_enrichment: 1.0
+
+log_q: 3.0
+
+dist_tss_upstream: 1000
+
+dist_tss_downstream: 100
+
+peak_count: 1
+
+include_motif_sites: True
+
+motif_score: 0.1
+
+motif_log_p: 3.0
+
+motif_discovery: False
+
+email: send.results.here@peaks.com
+
+******************************************************************************
+
+time stamp: 2019-05-05_22:05:27.085549
+
+promoter: True
+
+enhancer: True
+
+transcription_factors: ZNF670,SP7,ZNF24,KLF8,ZNF416,ZNF558,ZNF639,IRF5,HBP1,KLF9,TEAD2,ZNF384,ZNF514,ZBTB40,ZNF2,HMGN3,ZNF184,ZNF407,ZNF644,REPIN1,MAZ,ZNF69,TCF7L1,ZBTB17,ZNF654,KLF1,ZNF207,KAT7,ZNF530,ZNF704,ZNF48,ZNF488,OVOL3,ZNF776,MAFK,NFIC,SOX9,ZNF777,CBX2,NR4A1,ZNF350,E2F6,ZNF7,TCF3,ZNF34,SALL1,SRF,EBF1,HINFP,ZBTB7C,THRB,ZNF57,ZNF18,E2F4,IRF4,ZNF529,ELF2,HES5,TBX1,ZNF45,KLF4,ZNF79,ZNF324,ZBTB49,ZNF404,CDC5L,IRF9,ZFP1,KLF3,SMAD5,ETV4,NFIL3,ZNF14,SP5,TEAD1,KLF7,HHEX,ZNF140,ZKSCAN8,CHAMP1,ZNF524,TFDP2,TSC22D1,RFX7,MBD1,ZNF84,HIC1,NANOG,ESR2,ZBTB26,ZC3H8,HMBOX1,ZHX2,ZSCAN29,MAFF,NFIA,ZNF146,ZNF658,SOX6,ZNF624,ZNF181,ZNF580,STAT1,ZFP69,ADNP,TGIF1,ZNF512,PRDM10,NKX2-8,CUX1,THAP4,NR3C1,ZFHX3,ZNF519,ZNF19,ZNF629,HLF,MITF,YBX1,ZNF578,ELK1,OSR1,ZNF197,IKZF2,ZNF394,ZNF274,ZBTB8A,SKIL,RARB,ZNF680,BATF,MXD4,ZNF114,ZNF491,ZFP3,ZNF547,JUN,ZSCAN16,ATF7,ATF4,NR2C2,NCOA2,E2F7,T,TFEB,ZNF610,HMG20B,ESRRB,ZNF280C,KDM5B,ZNF10,MBD4,ZNF148,ZNF426,ELF4,ZNF645,RFX5,ZIC2,ZNF155,ZNF589,MLX,MXI1,ZNF423,NEUROD4,ZNF175,ZNF26,ZNF43,HOMEZ,LCORL,ZNF687,ZNF548,REL,NFXL1,MXD1,SMAD4,E2F2,TFAP2C,ZNF174,TBP,MEIS3,ZNF584,PRDM4,REST,DEAF1,RXRB,RUNX2,NR2F6,ZNF169,ZNF837,ZNF316,ZNF16,USF1,PRDM1,HOXC5,ZIK1,ZNF697,SP4,ZSCAN5C,ERG,ZNF507,ZNF740,ZSCAN18,NFATC4,PBX1,ZNF555,HNF4G,ZNF365,ZSCAN26,NFE2L2,KLF16,ZBED9,BCL6,DRAP1,ZBTB5,ZNF22,ZNF354C,ZZZ3,ZNF280D,PPARG,CEBPZ,ZSCAN9,SIX4,NFYC,KMT2B,ZSCAN2,ZNF335,ZNF605,NRF1,ZFX,ZNF76,ZBTB20,ZNF248,CEBPD,ZGPAT,BACH1,EGR4,MEF2D,DPF3,TSHZ2,ZNF217,CREBL2,CTCF,ZNF8,ZNF20,SOX5,ZKSCAN5,ZNF391,ZNF138,STAT5A,VDR,ZNF30,ZNF579,MTF2,ZNF347,ZNF560,SNAI3,ZNF600,MEF2C,SIX5,BHLHE40,JUND,INSM1,ZNF398,ZNF239,ZXDB,BCL11B,ZNF707,ZNF266,ZNF66,SOX1,ZNF366,TFAP4,MAFG,MYC,KLF17,SCRT1,ETV6,DNMT1,ZNF300,ZBTB48,CREM,HNF4A,PRDM6,TCF21,ZBTB10,ZFP64,ELK4,ZFP37,NFE4,KLF6,MYB,CEBPG,TEAD4,ZNF544,RBAK,ZNF70,TCF7,HSF5,GATA6,THRA,ZNF850,BRF2,TAL1,MYNN,ZNF318,ZNF785,MIXL1,SPIC,KLF5,E2F5,IRF7,ZNF157,CTCFL,ZNF195,MAX,ZNF747,ETS2,ZNF664,ZNF766,SREBF2,ZSCAN4
+
+tissue_types: CD133+_expanded_UCB,lymphoid_tissue,connective_tissue,EBV_positive_B_lymphocyte_line,HSPC,uterus,adipose_tissue,blood_vessel,placenta,NA,heart,T-acute_lymphoblastic_leukemia_(T-ALL)_cell_line,testis,Th1,vein,Human_keratinocytes,Epithelial_cells_immortalized_with_hTERT,liver,limb,Epstein-Barr_Virus_transformed_lymphoblastoid,myelogenous_leukaemia,Breast_cancer_derived_cell_line,corneal_epithelium_cell_(CEC)_line,lung,bodily_fluid,kidney,blood,lymph_node,spinal_cord,neonatal_human_foreskin_fibroblasts_(primary_culture_cells),vasculature,Jurkat,_clone_E6-1_T_lymphocyte,EBV_positive_B-cells,pancreas,esophagus,extraembryonic_component,breast_carcinoma_cell_line,Leukemic_T-cell,prostate_gland,adrenal_gland,epithelium,mammary_gland,gonad,ovary,peripheral_blood_mononuclear_cells_(PBMCs),breast,nerve,colorectal_carcinoma,KSHV_positive_B_cell_lymphoma,CD34+_derived_erythroblasts,vagina,embryo,artery,None,human_hepatic_stellate_cells,bone_element,lymphoblastoid,skin_of_body,lung_carcinoma_cells,eye,bronchus,brain,spleen,intestine,musculature_of_body,stomach,penis,large_intestine,thyroid_gland
+
+pileup: 1.0
+
+log_p: 3.0
+
+fold_enrichment: 1.0
+
+log_q: 3.0
+
+dist_tss_upstream: 1000
+
+dist_tss_downstream: 100
+
+peak_count: 1
+
+include_motif_sites: True
+
+motif_score: 0.1
+
+motif_log_p: 3.0
+
+motif_discovery: False
+
+email: send.results.here@peaks.com
+
+******************************************************************************
+
+time stamp: 2019-05-05_22:21:02.474081
+
+promoter: True
+
+enhancer: True
+
+transcription_factors: ZNF384,ELK4,ZNF280D,ZNF70,ZNF45,KLF6,ZNF181,ZNF266,ZNF324,ZNF704,ZBTB5,IRF7,ZNF48,ELF4,MEF2D,ZNF578,HSF5,HMGN3,HHEX,MYB,ZSCAN5C,ZNF610,ZSCAN18,NFE2L2,ZNF547,ZNF519,TFAP2C,HES5,SKIL,REPIN1,ZKSCAN5,HMBOX1,ZNF658,ZNF57,ZNF639,ZNF785,ZFP1,RBAK,ZNF274,ZNF488,ELF2,USF1,ZNF850,MBD1,ZNF558,OSR1,ZNF407,ZNF747,ZNF707,ZZZ3,ZFHX3,ZNF654,ZNF580,PPARG,JUND,TSC22D1,MLX,ZNF629,BHLHE40,ZNF600,BRF2,KLF3,TCF7,SOX6,ZFP69,ZNF584,ZNF184,PRDM4,ZNF146,ZNF491,ZNF148,ZNF391,ZNF548,SP4,ZNF335,SOX5,T,TBX1,SIX4,CREBL2,ETV6,MTF2,CTCF,ZNF354C,ZNF24,ZNF20,ZBTB8A,ZNF766,NFIA,ZNF19,ETV4,SALL1,NFATC4,E2F7,DEAF1,MXD1,SP7,ZNF14,NFXL1,ZNF350,ZNF79,ZNF248,ZNF26,YBX1,KLF8,ZNF560,TGIF1,ZNF544,ZNF740,HOXC5,NEUROD4,ZNF30,MAFF,RARB,ZNF155,ZNF589,SOX9,MAFK,CBX2,NR2C2,ZNF529,HINFP,ZSCAN4,ZNF423,ZNF398,MYNN,NANOG,TEAD1,ZNF579,VDR,IRF4,NR4A1,NRF1,REST,ZNF197,ZSCAN9,NFYC,NR2F6,MITF,REL,IKZF2,ZNF507,ZIC2,ZSCAN26,MIXL1,ZNF347,ATF7,SOX1,ZFP3,ZNF605,ZSCAN16,ESR2,E2F5,DRAP1,ZBTB48,LCORL,MAX,CUX1,ZNF318,ZXDB,PBX1,BCL6,TFEB,SRF,ESRRB,ZNF624,PRDM10,ZNF837,ZNF84,ZNF416,NFIL3,SCRT1,TSHZ2,TFDP2,EGR4,ZNF645,MEF2C,ZC3H8,ZNF34,ZNF22,ATF4,CEBPG,BACH1,TCF3,SMAD5,ZNF217,RFX7,ZNF43,E2F2,KAT7,DPF3,MEIS3,TFAP4,ZNF524,ZNF207,ZKSCAN8,ZNF10,NKX2-8,KLF5,PRDM1,ZNF687,EBF1,SP5,TBP,KMT2B,ZNF555,ZNF664,ZNF174,ZNF426,ADNP,ELK1,ZNF138,KLF17,ZNF69,INSM1,ZNF644,CTCFL,ZNF280C,SNAI3,KLF7,E2F4,ZNF394,ZNF7,MXD4,ZNF680,ZGPAT,ZBTB40,TCF7L1,JUN,THAP4,ZFX,ZBTB26,PRDM6,ZFP37,SIX5,ZNF670,CREM,NFE4,ZNF777,KLF9,ZNF76,HNF4A,TEAD2,ZFP64,CEBPD,ZNF316,SMAD4,THRB,RUNX2,DNMT1,NR3C1,ZBTB49,KLF16,ZNF512,RFX5,HMG20B,HBP1,ZNF18,HOMEZ,ZBTB17,ZBTB7C,ZNF140,CEBPZ,ZNF776,ZBTB20,ZNF8,TCF21,SPIC,TAL1,ZNF175,ZNF16,IRF9,ZNF239,MBD4,ZBTB10,ZNF530,MYC,NCOA2,THRA,ZNF365,ZNF157,ZNF195,KDM5B,ZIK1,BATF,HIC1,STAT5A,KLF4,ZNF697,ERG,GATA6,ZHX2,ZSCAN2,ZNF169,IRF5,ETS2,ZNF366,STAT1,KLF1,MAZ,RXRB,ZNF2,ZNF300,ZNF404,E2F6,ZNF114,HNF4G,ZNF514,MXI1,SREBF2,NFIC,CHAMP1,ZNF66,TEAD4,ZSCAN29,BCL11B,ZBED9,OVOL3,CDC5L,MAFG,HLF
+
+tissue_types: pancreas,blood,eye,embryo,intestine,stomach,Jurkat,_clone_E6-1_T_lymphocyte,lymph_node,myelogenous_leukaemia,uterus,human_hepatic_stellate_cells,vein,Leukemic_T-cell,artery,NA,extraembryonic_component,kidney,brain,spleen,penis,bronchus,T-acute_lymphoblastic_leukemia_(T-ALL)_cell_line,lung_carcinoma_cells,lymphoid_tissue,ovary,colorectal_carcinoma,lymphoblastoid,EBV_positive_B-cells,adrenal_gland,Human_keratinocytes,peripheral_blood_mononuclear_cells_(PBMCs),breast,CD133+_expanded_UCB,esophagus,thyroid_gland,bodily_fluid,corneal_epithelium_cell_(CEC)_line,vagina,KSHV_positive_B_cell_lymphoma,connective_tissue,mammary_gland,Epstein-Barr_Virus_transformed_lymphoblastoid,bone_element,musculature_of_body,testis,breast_carcinoma_cell_line,gonad,EBV_positive_B_lymphocyte_line,Th1,vasculature,lung,blood_vessel,heart,epithelium,Breast_cancer_derived_cell_line,neonatal_human_foreskin_fibroblasts_(primary_culture_cells),adipose_tissue,Epithelial_cells_immortalized_with_hTERT,liver,nerve,HSPC,skin_of_body,large_intestine,limb,spinal_cord,CD34+_derived_erythroblasts,placenta,prostate_gland,None
+
+pileup: 1.0
+
+log_p: 3.0
+
+fold_enrichment: 1.0
+
+log_q: 3.0
+
+dist_tss_upstream: 1000
+
+dist_tss_downstream: 100
+
+peak_count: 1
+
+include_motif_sites: True
+
+motif_score: 0.1
+
+motif_log_p: 3.0
+
+motif_discovery: False
+
+email: send.results.here@peaks.com
+
+******************************************************************************

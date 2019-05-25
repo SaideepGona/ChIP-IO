@@ -15,6 +15,8 @@ pwd = os.getcwd()
 reference_genome = pwd + "/all_regs/allregs.fa"
 occurences_dir = pwd + "/motif_occurences/"
 
+
+
 # GENERAL ANALYSIS
 
 
@@ -26,7 +28,8 @@ occurences_dir = pwd + "/motif_occurences/"
 # metadata_dict = pickle.load(open(metadata_path, "rb"))      # Contains metadata on all datasets
 # print(metadata_dict)
 
-motifs_dir = pwd + "/motif_dir/"        # Find all the available meme style motifs
+# motifs_dir = pwd + "/motif_dir/"        # Find all the available meme style motifs
+motifs_dir = pwd + "/hocomoco/individual/"
 motif_files = glob.glob(motifs_dir+"*")
 all_motif_tfs = set([x.split("/")[-1].rstrip(".meme") for x in motif_files])        
 
