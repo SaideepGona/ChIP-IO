@@ -54,32 +54,36 @@ for mof in motif_occs_files:
 
             line_count = 0
             for line in m:
-                if line_count == 0:
-                    line_count += 1
-                    continue
+                try:
+                    if line_count == 0:
+                        line_count += 1
+                        continue
 
-                p_l = line.rstrip("\n").split("\t")
-                # print(p_l)
-                # motif_id	motif_alt_id	sequence_name	start	stop	strand	score	p-value	q-value	matched_sequence
-                cur_reg = p_l[2]
-                chrom = reg_map[cur_reg]["chr"]
-                new_start = str(int(reg_map[cur_reg]["start"]) + int(p_l[3]))
-                new_end = str(int(reg_map[cur_reg]["start"]) + int(p_l[4]))
-                dif = str(abs(int(new_start) - int(new_end)))    
-                summit = str(int(int(new_start) + int(dif)/2))
-                strand = p_l[5]
-                score = p_l[6]
-                p_value = str(-1 * np.log10(float(p_l[7])))
-                q_value = p_l[8]
-                bed_line = [
-                    chrom,
-                    new_start,
-                    new_end,
-                    dif,
-                    summit,
-                    score,
-                    p_value,
-                    q_value
-                ]
+                    p_l = line.rstrip("\n").split("\t")
+                    # print(p_l)
+                    # motif_id	motif_alt_id	sequence_name	start	stop	strand	score	p-value	q-value	matched_sequence
+                    cur_reg = p_l[2]
+                    chrom = reg_map[cur_reg]["chr"]
+                    new_start = str(int(reg_map[cur_reg]["start"]) + int(p_l[3]))
+                    new_end = str(int(reg_map[cur_reg]["start"]) + int(p_l[4]))
+                    dif = str(abs(int(new_start) - int(new_end)))    
+                    summit = str(int(int(new_start) + int(dif)/2))
+                    strand = p_l[5]
+                    score = p_l[6]
+                    p_value = str(-1 * np.log10(float(p_l[7])))
+                    q_value = p_l[8]
+                    bed_line = [
+                        chrom,
+                        new_start,
+                        new_end,
+                        dif,
+                        summit,
+                        score,
+                        p_value,
+                        q_value
+                    ]
 
-                out.write("\t".join(bed_line) + '\n')
+                    out.write("\t".join(bed_line) + '\n')
+                except Exception as e:
+                    print(e)
+                    print(line)
