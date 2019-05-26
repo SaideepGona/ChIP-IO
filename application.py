@@ -1086,7 +1086,7 @@ def filter_motif_occs(columns, user_params, in_file_path, out_file_path, time_st
                 p_line = line.rstrip("\n").split("\t")
                 # print(p_line)   
                 if constraints_met(p_line, user_params, "motif_occs"):
-                    write_tissue(pwd + "/intermediates/annotation_"+ p_line[11] +"_" + time_string + ".bed", "\t".join(p_line)+"\n")
+                    write_tissue(pwd + "/intermediates/annotation_"+ p_line[8] +"_" + time_string + ".bed", "\t".join(p_line)+"\n")
                     out.write("\t".join(p_line)+"\n")
                     num_pass_motifs += 1
 
