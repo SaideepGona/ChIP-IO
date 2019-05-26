@@ -963,14 +963,14 @@ def constraints_met(data, user_params, constraints_type):
             return False
     
     elif constraints_type == "motif_occs":
-        print(data, "to be filtered in -constraints met-")
-        print(user_params["motif_score"], " ", user_params["motif_p_val"])
+        # print(data, "to be filtered in -constraints met-")
+        # print(user_params["motif_score"], " ", user_params["motif_p_val"])
         if (float(data[6]) > user_params["motif_score"] and
             float(data[5]) > user_params["motif_p_val"]
         ):
-            print("Passed")
-            print(data[6], " ", user_params["motif_score"])
-            print(data[5], " ", user_params["motif_p_val"])
+            # print("Passed")
+            # print(data[6], " ", user_params["motif_score"])
+            # print(data[5], " ", user_params["motif_p_val"])
             return True
         else:
             return False
