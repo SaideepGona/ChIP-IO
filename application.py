@@ -295,6 +295,7 @@ all_tissues_meta = []
 for exp in metadata_dict.keys():
     tf = metadata_dict[exp]["tf"]
     if tf in all_tfs_set:
+        # print(tf)
         all_tfs_meta.append(tf)
     t = metadata_dict[exp]["tissue"]
     if type(t) == list:
@@ -307,8 +308,8 @@ for exp in metadata_dict.keys():
         all_tissues_meta.append(t)
 
 all_possible = {
-"transcription_factors": all_tfs_meta,
-"tissue_types": all_tissues_meta
+"transcription_factors": list(set(all_tfs_meta)),
+"tissue_types": list(set(all_tissues_meta))
 }
 
 cur_tfs_path = pwd + "/static_lists/all_tfs_cur.txt"
