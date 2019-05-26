@@ -373,6 +373,7 @@ def run_pipeline(user_params):
     temp_motif_occs_file = pwd + "/intermediates/tempmotifs_" + time_string + ".bed"
     removable_junk.append(temp_motif_occs_file)
     filter_motif_occs(motif_occs_column_list, user_params, all_motif_occs, temp_motif_occs_file, time_string, removable_junk)
+    sort_in_place(temp_motif_occs_file)
 
     step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Peaks Queried and Filtered")
@@ -437,7 +438,7 @@ def run_pipeline(user_params):
         sort_in_place(enhancer_intersect)
         print("enhancers processed")
 
-        # Calculates enhancer-peak intersection
+        # Calculates enhancer-motif intersection
         if user_params["include_motif_sites"]:
             enhancer_motif_intersect = pwd + "/intermediates/" + "enhancermotifintersect_" + time_string + ".bed"
             removable_junk.append(enhancer_motif_intersect)
@@ -962,10 +963,13 @@ def constraints_met(data, user_params, constraints_type):
             return False
     
     elif constraints_type == "motif_occs":
-        # print(data)
+        print(data, "to be filtered in -constraints met-")
         if (float(data[5]) > user_params["motif_score"] and
             float(data[6]) > user_params["motif_p_val"]
         ):
+            print("Passed")
+            print(data[5], " ", user_params["motif_score"])
+            print(data[6], " ", user_params["motif_p_val"])
             return True
         else:
             return False
