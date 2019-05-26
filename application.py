@@ -292,7 +292,7 @@ all_tfs_meta = []
 all_tissues_meta = []
 
 for exp in metadata_dict.keys():
-    all_tfs_meta.append(metadata_dict[exp]["tf"]])
+    all_tfs_meta.append(metadata_dict[exp]["tf"])
     t = metadata_dict[exp]["tissue"]
     if type(t) == list:
         if len(t) == 0:
