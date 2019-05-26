@@ -91,14 +91,15 @@ with open(all_genes_path, "r") as ag:
     for line in ag:
         all_genes.append(line.rstrip("\n"))
 current_stats["all_genes"]=str(len(all_genes))
-print("NUMBER OF GENES: ", len(all_genes))
+print("NUMBER OF KNOWN GENES/REGIONS: ", len(all_genes))
 
 all_tfs = []
 with open(all_tfs_path, "r") as at:
     for line in at:
         all_tfs.append(line.rstrip("\n"))
 current_stats["all_tfs"]=str(len(all_tfs))
-print("NUMBER OF TFS: ", len(all_tfs))
+print("NUMBER OF KNOWN TFS: ", len(all_tfs))
+all_tfs_set = set(all_tfs)
 
 metadata_path = pwd + "/pass_metadata/metadata.pkl"     
 metadata_dict = pickle.load(open(metadata_path, "rb"))      # Contains metadata on all datasets
@@ -292,7 +293,9 @@ all_tfs_meta = []
 all_tissues_meta = []
 
 for exp in metadata_dict.keys():
-    all_tfs_meta.append(metadata_dict[exp]["tf"])
+    tf = metadata_dict[exp]["tf"]
+    if tf in all_tfs_set:
+        all_tfs_meta.append(tf)
     t = metadata_dict[exp]["tissue"]
     if type(t) == list:
         if len(t) == 0:
@@ -310,6 +313,7 @@ all_possible = {
 
 cur_tfs_path = pwd + "/static_lists/all_tfs_cur.txt"
 cur_tiss_path = pwd + "/static_lists/all_tissues_cur.txt"
+
 
 print("NUMBER OF TFS FROM ChIP-SEQ STUDIES: " + str(len(all_possible["transcription_factors"])))
 current_stats["study_tfs"]=str(len(all_possible["transcription_factors"]))
