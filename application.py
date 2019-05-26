@@ -927,10 +927,10 @@ def promoter_motif_tgtable_update(user_params, anno_file, tf_gene_table):
             if line_count == 0:
                 line_count += 1
                 continue
-
+            print(p_l, " tgtable update line")
             peak_id = int(p_l[8])
             gene_id = p_l[4]
-            ori_peak_tf = p_l[15]    
+            ori_peak_tf = p_l[12]    
 
             if gene_id in tf_gene_table:
                 if ori_peak_tf in tf_gene_table[gene_id]:
@@ -1056,9 +1056,11 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, time_string,
     # }
 
     num_pass_peaks = 0
+    total_peaks = 0
     with open(in_file_path, "r") as infile:
         with open(out_file_path, "a") as out:
             for line in infile:
+                total_peaks += 1
                 p_line = line.rstrip("\n").split("\t")
                 # print(p_line)
                 if constraints_met(p_line, user_params, "peaks"):
@@ -1067,6 +1069,8 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, time_string,
                     num_pass_peaks += 1
 
     print("number of passed peaks: "+str(num_pass_peaks))
+    print("number of motifs: "+str(total_peaks))
+    print("ratio: ", float(num_pass_peaks)/float(total_peaks))
     for f in to_be_sorted:
         sort_in_place(f)
 
@@ -1107,9 +1111,11 @@ def filter_motif_occs(columns, user_params, in_file_path, out_file_path, time_st
         # }
 
     num_pass_motifs = 0
+    total_motifs = 0
     with open(in_file_path, "r") as infile:
         with open(out_file_path, "a") as out:
             for line in infile:
+                total_motifs += 1
                 p_line = line.rstrip("\n").split("\t")
                 # print(p_line)   
                 if constraints_met(p_line, user_params, "motif_occs"):
@@ -1118,6 +1124,9 @@ def filter_motif_occs(columns, user_params, in_file_path, out_file_path, time_st
                     num_pass_motifs += 1
 
     print("number of passed motifs: "+str(num_pass_motifs))
+    print("number of motifs: "+str(total_motifs))
+    print("ratio: ", float(num_pass_motifs)/float(total_motifs))
+
     for f in to_be_sorted:
         sort_in_place(f)
 
