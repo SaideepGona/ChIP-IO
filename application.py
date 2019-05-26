@@ -281,9 +281,31 @@ class DownloadFiles():
         self.tissues = [metadata_dict[x]["tissue"] for x in accessions]
 
 
+
+
+# all_possible = {
+# "transcription_factors": list(set([x.transcription_factors for x in ChIP_Meta.query.all()])),
+# "tissue_types": list(set([x.tissue_types for x in ChIP_Meta.query.all()]))
+# }
+
+all_tfs_meta = []
+all_tissues_meta = []
+
+for exp in metadata_dict.keys():
+    all_tfs_meta.append(exp["tf"])
+    t = metadata_dict["tissue"]
+    if type(t) == list:
+        if len(t) == 0:
+            continue
+        else:
+            for x in metadata_dict["tissue"]:
+                all_tissues_meta.append(x)
+    else:
+        all_tissues_meta.append(t)
+
 all_possible = {
-"transcription_factors": list(set([x.transcription_factors for x in ChIP_Meta.query.all()])),
-"tissue_types": list(set([x.tissue_types for x in ChIP_Meta.query.all()]))
+"transcription_factors": all_tfs_meta,
+"tissue_types": all_tissues_meta
 }
 
 cur_tfs_path = pwd + "/static_lists/all_tfs_cur.txt"
