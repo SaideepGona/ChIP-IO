@@ -202,9 +202,11 @@ if True:
     print("Sorting files")
     for m_f in motif_occ_files:
         sort_in_place(m_f)
+        remove_trailing_tabs(m_f)
     footprint_files = glob.glob(gtrd_footprints_dir+"*")
     for f_f in footprint_files:
         sort_in_place(f_f)
+        remove_trailing_tabs(f_f)
     # os.system('rm '+pass_motif_dir+"*")
     print(motif_occ_files)
     print(footprint_files)

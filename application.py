@@ -265,8 +265,8 @@ class DownloadFiles():
         self.preset_files_strip = preset_files_strip
         self.num_preset_files = len(preset_files)
         self.preset_mappings = [parse_f_name(x) for x in preset_files_strip]
-        print(self.preset_files_strip)
-        print(self.preset_mappings)
+        # print(self.preset_files_strip)
+        # print(self.preset_mappings)
 
     def collect_peaks(self, peak_dir):
         peak_files = glob.glob(pwd + "/" + peak_dir + "/*")

@@ -86,7 +86,7 @@ for mof in motif_occs_files:
                         q_value
                     ]
 
-                    out.write("\t".join(bed_line) + '\n')
+                    out.write("\t".join(bed_line).rstrip("\t") + '\n')
                 except Exception as e:
                     print(e)
                     print(line)
