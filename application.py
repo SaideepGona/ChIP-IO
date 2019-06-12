@@ -28,37 +28,21 @@ from wtforms_html5 import AutoAttrMeta
 
 import multiprocessing
 
-#TODO Replace data with GTRD data
-#TODO Set up reusable aliasing for TF names, tissue names
 #TODO Figure out load handling before wide adoption
-#TODO Finish motif mapping!
-    # Reorganize motif mapping occurences to be bed files
-    # Modify the motif filtering to match the bed file
-    # Treat the motifs as peak files in terms of overlap testing
-    # Generate seperate and joint count tables as output
-    # TEST OUT CURRENT IMPLIMENTATION
-
-#TODO Motif-finding from mapped peaks 
-#TODO Motif finding with epigenetic priors
-#TODO Standardize tissue names
+#TODO Fix enhancer lack of results
+#TODO Fix motif finding lack of results
+#TODO MORE TESTING
+#TODO Set up reusable aliasing for TF names, tissue names
 #TODO Calculate more complex distributions of peak p-values
-#TODO Start writing formal writeup for BioArXive
-#TODO Collect more motifs from hocomoco, etc.
-#TODO Subset peaks based on the presence of an overlapping motif(should it occur near summit?)
+#TODO Split data by TF/tissue ahead of time
+#TODO Do more pre-computation to improve speed
 #TODO Loading bar for query
-#TODO Split application.py into app_modules
 #TODO Reorganize python code
-#TODO Get ansible deployment running
-#TODO Set up a test server with ansible deployment
-#TODO Parallelize IO to improve speed
-#TODO Include aliases in gene target lists
-#TODO Get email sending working
 #TODO Incorporate TRRUST interactions
-#TODO Collect data for mouse
+#TODO Extend to other organisms
+#TODO Get ansible deployment running
 #TODO Improve searchability via google
 
-# DONE?
-#TODO Convert hg19 studies and update input peaks + metadata
 
 # OTHER COMMENTS
 # Similar work includes TRANSFAC, iRegulon, GTRD
@@ -104,7 +88,7 @@ all_tfs_set = set(all_tfs)
 metadata_path = pwd + "/pass_metadata/metadata.pkl"     
 metadata_dict = pickle.load(open(metadata_path, "rb"))      # Contains metadata on all datasets
 
-all_peaks = pwd+"/all_peaks_small.tsv"
+all_peaks = pwd+"/all_peaks.tsv"
 all_motif_occs = pwd + "/all_motif_occs.tsv"
 
 # New params
@@ -563,13 +547,13 @@ def run_pipeline(user_params):
 
     # print(removable_junk)
     
-    # os.system("rm -rf "+output_files_dir)
-    # for f in removable_junk:
-    #     try:
-    #         os.remove(f)
-    #     except:
-    #         print("Can't dispose of junk: " + f)
-    #         continue
+    os.system("rm -rf "+output_files_dir)
+    for f in removable_junk:
+        try:
+            os.remove(f)
+        except:
+            print("Can't dispose of junk: " + f)
+            continue
 
     print("END PIPELINE *************************************************************************************************************")
 
@@ -1069,7 +1053,7 @@ def filter_peaks(columns, user_params, in_file_path, out_file_path, time_string,
                     num_pass_peaks += 1
 
     print("number of passed peaks: "+str(num_pass_peaks))
-    print("number of motifs: "+str(total_peaks))
+    print("number of peaks: "+str(total_peaks))
     print("ratio: ", float(num_pass_peaks)/float(total_peaks))
     for f in to_be_sorted:
         sort_in_place(f)

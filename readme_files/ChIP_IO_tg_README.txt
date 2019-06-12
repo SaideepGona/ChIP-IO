@@ -4,20 +4,21 @@ PLEASE READ THROUGH THIS DOCUMENT BEFORE USING THE PROVIDED data
 
 Current Reference Genome: GRCh38
 Current Annotation: gencode.v29
+Updated README: 6.11.19 
 
 ------------ Output Description ------------
 
 *** .tgtable file ***
 
-Your output folder contains one or more .tgtable files. This is actually a tab-seperated value(tsv) file. It contains tabular data 
+Your output folder contains one or more .tgtable files. Currently two are provided, one with peaks drawn ChIP-Seq studies and 
+one containing peaks drawn from motif predictions. These are actually tab-seperated value(tsv) file. They contain tabular data 
 with the metadata:
 
 Rows: Gene + Gene Regions
 Columns: Transcription Factors
 
 Table entries correspond to the number of ChIP-Seq peaks for a given transcription factor mapping to regulatory regions of
-a given gene. Currently these peaks come only from raw ChIP-Seq peak data, but future versions will include motif/epigenetic
-prior binding site prediction to reduce false positive rates where applicable.
+a given gene. 
 
 *** .bintgtable file ***
 
