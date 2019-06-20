@@ -1,8 +1,10 @@
 '''
 Author: Saideep Gona
 
-This is the core script for the ChIP-Base application which hosts large-scale ChIP-Seq data. It allows for parameter specification and generation of binary
-tf-gene binding tables. Built using the python Flask framework.
+This is the core script for the ChIP-IO application which hosts 
+large-scale ChIP-Seq data. It allows for parameter specification 
+and generation of tf-gene binding tables. Built using the python 
+Flask framework.
 '''
 import os, sys
 from datetime import datetime
@@ -32,8 +34,12 @@ import multiprocessing
 #TODO Fix enhancer lack of results
 #TODO Fix motif finding lack of results
 #TODO MORE TESTING
+#TODO Find ChIP-Seq study distribution across TFs, Tissues
 #TODO Set up reusable aliasing for TF names, tissue names
 #TODO Calculate more complex distributions of peak p-values
+#TODO Run presets
+#TODO FAQ Section
+#TODO Add more download tables for other data
 #TODO Split data by TF/tissue ahead of time
 #TODO Do more pre-computation to improve speed
 #TODO Loading bar for query
@@ -88,8 +94,11 @@ all_tfs_set = set(all_tfs)
 metadata_path = pwd + "/pass_metadata/metadata.pkl"     
 metadata_dict = pickle.load(open(metadata_path, "rb"))      # Contains metadata on all datasets
 
-all_peaks = pwd+"/all_peaks.tsv"
-all_motif_occs = pwd + "/all_motif_occs.tsv"
+all_peaks = pwd+"/all_peaks_small.tsv"
+all_motif_occs = pwd + "/all_motif_occs_small.tsv"
+
+# all_peaks = pwd+"/all_peaks.tsv"
+# all_motif_occs = pwd + "/all_motif_occs.tsv"
 
 # New params
 
@@ -381,10 +390,11 @@ def run_pipeline(user_params):
     sort_in_place(temp_peaks_file)
 
     # Perform similar filtering of motif occurences
-    temp_motif_occs_file = pwd + "/intermediates/tempmotifs_" + time_string + ".bed"
-    removable_junk.append(temp_motif_occs_file)
-    filter_motif_occs(motif_occs_column_list, user_params, all_motif_occs, temp_motif_occs_file, time_string, removable_junk)
-    sort_in_place(temp_motif_occs_file)
+    if user_params["include_motif_sites"]:
+        temp_motif_occs_file = pwd + "/intermediates/tempmotifs_" + time_string + ".bed"
+        removable_junk.append(temp_motif_occs_file)
+        filter_motif_occs(motif_occs_column_list, user_params, all_motif_occs, temp_motif_occs_file, time_string, removable_junk)
+        sort_in_place(temp_motif_occs_file)
 
     step_num = make_check(step_num, time_string, removable_junk)
     print("||||||||||||||||||Peaks Queried and Filtered")
@@ -415,9 +425,19 @@ def run_pipeline(user_params):
 
         # Calculates enhancer-peak intersection
         enhancer_bed_dir = pwd + "/enhancer-gene/processed/tissue_beds/"
-        intersect_output = pwd + "/intermediates/" + "annotation_" + time_string + ".bed"
-        removable_junk.append(intersect_output)
-        process_enhancers(user_params, intersect_output, enhancer_bed_dir, all_reg_regions, time_string)   # Computes tissue-specific intersect of peaks with enhancers
+        enhancer_intersect = pwd + "/intermediates/" + "enhancerintersect_" + time_string + ".bed"
+        removable_junk.append(enhancer_intersect)
+        process_enhancers(user_params, enhancer_intersect, enhancer_bed_dir, all_reg_regions, time_string)      # Computes tissue-specific intersect of peaks with enhancers
+        sort_in_place(enhancer_intersect)
+
+        # Calculates enhancer-motif intersection
+        if user_params["include_motif_sites"]:
+            enhancer_motif_intersect = pwd + "/intermediates/" + "enhancermotifintersect_" + time_string + ".bed"
+            removable_junk.append(enhancer_motif_intersect)
+            process_enhancers(user_params, enhancer_motif_intersect, enhancer_bed_dir, all_reg_regions, time_string)      # Computes tissue-specific intersect of peaks with enhancers
+            sort_in_place(enhancer_motif_intersect)
+
+        print("enhancers processed")
 
     elif user_params["promoter"] and user_params["enhancer"]:   # Promoter and Enhancer
 
@@ -511,25 +531,26 @@ def run_pipeline(user_params):
     removable_junk.append(bin_tg_write_file)
     binarize_tsv(tg_table, all_genes, all_tfs, bin_tg_write_file, tf_set, user_params)
 
-    print("Writing motif tg table")
-    motiftg_write_file = output_files_dir + "motiftgtable_" + time_string + ".tgtable"                       # Output file for tg-table
-    removable_junk.append(motiftg_write_file)
-    write_dict_tsv(motif_tg_table, all_genes, all_tfs, motiftg_write_file, tf_set)
+    if user_params["include_motif_sites"]:
+        print("Writing motif tg table")
+        motiftg_write_file = output_files_dir + "motiftgtable_" + time_string + ".tgtable"                       # Output file for tg-table
+        removable_junk.append(motiftg_write_file)
+        write_dict_tsv(motif_tg_table, all_genes, all_tfs, motiftg_write_file, tf_set)
 
-    bin_motiftg_write_file = output_files_dir + "motiftgtable_" + time_string + ".bintgtable"                       # Output file for tg-table
-    removable_junk.append(bin_motiftg_write_file)
-    binarize_tsv(motif_tg_table, all_genes, all_tfs, bin_motiftg_write_file, tf_set, user_params)
+        bin_motiftg_write_file = output_files_dir + "motiftgtable_" + time_string + ".bintgtable"                       # Output file for tg-table
+        removable_junk.append(bin_motiftg_write_file)
+        binarize_tsv(motif_tg_table, all_genes, all_tfs, bin_motiftg_write_file, tf_set, user_params)
 
     # pickle_tg_table = output_files_dir + "tgtable_" + time_string + ".pkl"                       # Pickle file for tg-table
     # removable_junk.append(pickle_tg_table)
     # with open(pickle_tg_table, "w")  as ptable:
     #     pickle.save(pickle.highest_protocol)
-
-    print("Starting Motif Discovery")
-    motifs_disc_file = output_files_dir + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
-    removable_junk.append(motifs_disc_file)
-    # output_files.append(motifs_disc_file)
-    motif_discovery(final_peak_file, time_string, motifs_disc_file)
+    if user_params["motif_discovery"]:
+        print("Starting Motif Discovery")
+        motifs_disc_file = output_files_dir + time_string + "_motif_discovery.txt"                     # Perform motif discovery on mapped peaks
+        removable_junk.append(motifs_disc_file)
+        # output_files.append(motifs_disc_file)
+        motif_discovery(final_peak_file, time_string, motifs_disc_file)
 
     print("||||||||||||||||||Motif Matching, Discovery and TG Table Complete")
 
@@ -729,7 +750,9 @@ def process_enhancers(user_params, intersect_out, enh_bed_dir, all_reg_regions, 
 
     file_prefix = intersect_out.rstrip(".bed")
     tissue_peak_beds = []
-    tissue_intersect_beds = []
+    # tissue_motif_beds = []
+    peak_tissue_intersect_beds = []
+
     for tissue in user_params["tissue_types"]:
         # print(tissue)
         enhancer_bed = enh_bed_dir + "/" + tissue + ".bed"   # Write enhancers to regulatory region file
@@ -737,11 +760,17 @@ def process_enhancers(user_params, intersect_out, enh_bed_dir, all_reg_regions, 
             print(enhancer_bed, " is not an enhancer bed file")
             continue
 
-        temp_peaks_file = pwd + "/intermediates/annotation_"+ tissue +"_" + time_string + ".bed"   # Temporary, tissue-specific peak file
-        print(temp_peaks_file)
-        tissue_peak_beds.append(temp_peaks_file)                                                            
-        tissue_intersect = file_prefix+"_tempintersect_"+tissue+".bed"
-        tissue_intersect_beds.append(tissue_intersect)                                                      
+        temp_tissue_peaks_file = pwd + "/intermediates/annotation_"+ tissue +"_" + time_string + ".bed"   # Temporary, tissue-specific peak file
+        # temp_tissue_motif_file = pwd + "/intermediates/motif_annotation_"+ tissue +"_" + time_string + ".bed"
+
+        tissue_peak_beds.append(temp_tissue_peaks_file)
+        # tissue_motif_beds.append(temp_tissue_motif_file) 
+
+        peak_tissue_intersect = file_prefix+"_tempintersect_"+tissue+".bed"
+        peak_tissue_intersect_beds.append(peak_tissue_intersect)                                                      
+
+        # motif_tissue_intersect = file_prefix+"_motiftempintersect_"+tissue+".bed"
+        # motif_tissue_intersect_beds.append(motif_tissue_intersect)   
 
         try:    # write enhancer regions to all regulatory regions
             with open(enhancer_bed, "r") as eb:
@@ -755,22 +784,35 @@ def process_enhancers(user_params, intersect_out, enh_bed_dir, all_reg_regions, 
 
         # enhancer_bed: 7 cols, index 6 is gene name
         # temp_peaks_file: 13 cols, index 10 is tf name (17 when intersected)
-        sort_in_place(temp_peaks_file)
-        bed_intersect(enhancer_bed, temp_peaks_file, tissue_intersect)
-        sort_in_place(tissue_intersect)
+        sort_in_place(temp_tissue_peaks_file)
+        bed_intersect(enhancer_bed, temp_tissue_peaks_file, peak_tissue_intersect)
+        sort_in_place(peak_tissue_intersect)
+
+        # if user_params["include_motif_sites"]:
+            # sort_in_place(temp_tissue_motifs_file)
+            # bed_intersect(enhancer_bed, temp_tissue_motifs_file, motif_tissue_intersect)
+            # sort_in_place(motif_tissue_intersect)
     
-    intersect_files = " ".join(tissue_intersect_beds)
+    intersect_files = " ".join(peak_tissue_intersect_beds)
     if len(intersect_files) == 0:
         os.system("touch "+intersect_out)
     else:
         os.system("cat "+ intersect_files+ " > "+intersect_out)
 
-    for f in tissue_intersect_beds:
-        try:
-            os.remove(f)
-        except:
-            print("Can't dispose of intersect file: " + f)
-            continue
+    # motif_intersect_out = "motif_" + intersect_out
+    # motif_intersect_files = " ".join(motif_tissue_intersect_beds)
+    # if len(motif_intersect_files) == 0:
+        # os.system("touch "+motif_intersect_out)
+    # else:
+        # os.system("cat "+ motif_intersect_files+ " > "+motif_intersect_out)
+
+
+    # for f in tissue_intersect_beds:
+    #     try:
+    #         os.remove(f)
+    #     except:
+    #         print("Can't dispose of intersect file: " + f)
+    #         continue
 
 def write_dict_tsv(tg_table, all_genes, all_tfs, table_write, tf_set):
     '''
@@ -1103,7 +1145,7 @@ def filter_motif_occs(columns, user_params, in_file_path, out_file_path, time_st
                 p_line = line.rstrip("\n").split("\t")
                 # print(p_line)   
                 if constraints_met(p_line, user_params, "motif_occs"):
-                    write_tissue(pwd + "/intermediates/annotation_"+ p_line[8] +"_" + time_string + ".bed", "\t".join(p_line)+"\n")
+                    write_tissue(pwd + "/intermediates/motif_annotation_"+ p_line[8] +"_" + time_string + ".bed", "\t".join(p_line)+"\n")
                     out.write("\t".join(p_line)+"\n")
                     num_pass_motifs += 1
 
@@ -1116,7 +1158,7 @@ def filter_motif_occs(columns, user_params, in_file_path, out_file_path, time_st
 
 def convert_query_to_file(columns, query_result, user_params, file_path):
     '''
-    Converts the output of a db query to a tsv file and saves the file00000
+    Converts the output of a db query to a tsv file and saves the file
     '''
 
     peaks_list = []

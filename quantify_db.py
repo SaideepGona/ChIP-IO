@@ -8,6 +8,7 @@ output summary statistics
 import os, sys
 import glob
 import pickle
+import pandas as pd
 
 pwd = os.getcwd()
 metadata_file = pwd + "/pass_metadata/metadata.pkl"
@@ -51,6 +52,22 @@ unique_tissues_chip = set()
 
 unique_tissues_dnase = set()
 unique_tissues_enhancers = set()
+
+all_tfs = {}
+all_tissues = {}
+for study in meta.keys():
+    all_tfs[study["tf"])] += 1
+    all_tissues[study["tissue"])] += 1
+
+tfxtissue_studies = {}
+for tf in all_tfs.keys():
+    new_row = {}
+    for tis in all_tissues.keys():
+        new_row[tis] = 0
+    tfxtissue_studies[tf] = new_row
+
+
+
 
 for study in meta.keys():
     if study[0:2] == "EX":
