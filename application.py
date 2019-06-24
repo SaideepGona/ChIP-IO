@@ -30,6 +30,7 @@ from wtforms_html5 import AutoAttrMeta
 
 import multiprocessing
 
+#TODO Document web interface and data
 #TODO Figure out load handling before wide adoption
 #TODO Fix enhancer lack of results
 #TODO Fix motif finding lack of results
@@ -48,7 +49,10 @@ import multiprocessing
 #TODO Extend to other organisms
 #TODO Get ansible deployment running
 #TODO Improve searchability via google
-
+#TODO Enhancer DBS:
+    # HACER
+    # EnhancerAtlas
+    # Sedb
 
 # OTHER COMMENTS
 # Similar work includes TRANSFAC, iRegulon, GTRD
@@ -274,8 +278,43 @@ class DownloadFiles():
         self.tfs = [metadata_dict[x]["tf"] for x in accessions]
         self.tissues = [metadata_dict[x]["tissue"] for x in accessions]
 
+    def collect_motif_occurences(self, motif_occ_dir):
 
+        motif_occ_files = glob.glob(pwd + "/" + motif_occ_dir + "/*")
+        unpath_motif_occ_files = ["#".join(x.split("/")) for x in motif_occ_files]
+        motif_occ_files_strip = [x.split("/")[-1] for x in motif_occ_files]
+        tfs = [x.split("_")[0] for x in motif_occ_files_strip]
+        tissues = ["_".join(x.split("_")[1:-1]) for x in motif_occ_files_strip]
+        self.motif_occ_files = motif_occ_files
+        self.unpath_motif_occ_files = unpath_motif_occ_files
+        self.motif_occ_files_strip = motif_occ_files_strip
+        self.num_motif_occ_files = len(motif_occ_files)
+        self.motif_tfs = tfs
+        self.motif_tissues = tissues
 
+    def collect_enhancers(self, enhancer_dir):
+        enhancer_files = glob.glob(pwd + "/" + enhancer_dir + "/*")
+        unpath_enhancer_files = ["#".join(x.split("/")) for x in enhancer_files]
+        enhancer_files_strip = [x.split("/")[-1] for x in enhancer_files]
+        self.enhancer_tissues = [x.rstrip(".bed") for x in enhancer_files_strip]
+        self.enhancer_files = enhancer_files
+        self.unpath_enhancer_files = unpath_enhancer_files
+        self.enhancer_files_strip = enhancer_files_strip
+        self.num_enhancer_files = len(enhancer_files)
+        # self.enhancer_mappings = [parse_f_name(x) for x in enhancer_files_strip]
+  
+    def collect_pwms(self, pwm_dir):
+        pwm_files = glob.glob(pwd + "/" + pwm_dir + "/*")
+        unpath_pwm_files = ["#".join(x.split("/")) for x in pwm_files]
+        pwm_files_strip = [x.split("/")[-1] for x in pwm_files]
+        pwm_tfs = [x.rstrip(".meme") for x in pwm_files_strip]
+        self.pwm_files = pwm_files
+        self.unpath_pwm_files = unpath_pwm_files
+        self.pwm_files_strip = pwm_files_strip
+        self.num_pwm_files = len(pwm_files)
+        self.pwm_tfs = pwm_tfs
+        # self.pwm_mappings = [parse_f_name(x) for x in pwm_files_strip]
+  
 
 # all_possible = {
 # "transcription_factors": list(set([x.transcription_factors for x in ChIP_Meta.query.all()])),
@@ -1460,6 +1499,8 @@ def contact():
 download_files = DownloadFiles()
 download_files.collect_peaks("pass_peaks")
 download_files.collect_presets("presets")
-
+download_files.collect_motif_occurences("pass_motifs")
+download_files.collect_enhancers("enhancer-gene/processed/tissue_beds")
+download_files.collect_pwms("motifs/pwms")
 # print(download_files.preset_mappings)
 

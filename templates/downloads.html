@@ -13,7 +13,7 @@
 <div id="featured1">
     <div class="container">
         <div class="title">
-            <h2>Analysis Presets</h2>
+            <h2>Regulatory Analysis Presets</h2>
         </div>
         <div class="row">
                 <input class="col-6" type="text" id="presetsFileNameInput" onkeyup="presetsFileSearch()" placeholder="Search by experiment accessions..">
@@ -51,7 +51,7 @@
 <div id="featured2">
     <div class="container">
         <div class="title">
-            <h2>Raw Data</h2>
+            <h2>Raw Peak Data</h2>
         </div>
         <div class="row">
             <input class="col-6" type="text" id="peakFileNameInput" onkeyup="peakFileSearch()" placeholder="Search by experiment accessions..">
@@ -85,4 +85,109 @@
         </div>
     </div>
 </div>
+
+<div id="featured1">
+    <div class="container">
+        <div class="title">
+            <h2>Raw Motif Occurences</h2>
+        </div>
+        <div class="row">
+            <input class="col-6" type="text" id="motifFileNameInput" onkeyup="motifFileSearch()" placeholder="Search by experiment accessions..">
+            <input class="col-3" type="text" id="motifTFInput" onkeyup="motifFileSearch()" placeholder="Search by transcription factor..">
+            <input class="col-3" type="text" id="motifTissueInput" onkeyup="motifFileSearch()" placeholder="Search by tissue type..">
+        </div>
+        <div class="row" style="height:100vh; overflow: auto;">
+            <table id="motifFileTable">
+                <tr class="header">
+                    <th style="width:52%;color:rgb(88, 88, 88)">Filename</th>
+                    <th style="width:24%;color:rgb(88, 88, 88)">Transcription Factor</th>
+                    <th style="width:24%;color:rgb(88, 88, 88)">Tissue Type</th>
+                </tr>
+
+                {% for file_ind in range(download_files.num_motif_occ_files) %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('download_file', file_path = download_files.unpath_motif_occ_files[loop.index]) }}">
+                            <button style="height: 100%; width: 100%" class='btn btn-secondary'>{{ download_files.motif_occ_files_strip[loop.index] }}</button>
+                        </a>
+                    </td>
+                    <td>
+                        {{ download_files.motif_tfs[loop.index] }}
+                    </td>
+                    <td>
+                        {{ download_files.motif_tissues[loop.index] }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="featured2">
+    <div class="container">
+        <div class="title">
+            <h2>Raw Enhancer Loci</h2>
+        </div>
+        <div class="row">
+            <input class="col-6" type="text" id="enhancerFileNameInput" onkeyup="motifFileSearch()" placeholder="Search by experiment accessions..">
+            <input class="col-6" type="text" id="enhancerTissueInput" onkeyup="motifFileSearch()" placeholder="Search by tissue type..">
+        </div>
+        <div class="row" style="height:100vh; overflow: auto;">
+            <table id="enhancerFileTable">
+                <tr class="header">
+                    <th style="width:52%;color:rgb(88, 88, 88)">Filename</th>
+                    <th style="width:48%;color:rgb(88, 88, 88)">Tissue Type</th>
+                </tr>
+
+                {% for file_ind in range(download_files.num_enhancer_files) %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('download_file', file_path = download_files.unpath_enhancer_files[loop.index]) }}">
+                            <button style="height: 100%; width: 100%" class='btn btn-secondary'>{{ download_files.enhancer_files_strip[loop.index] }}</button>
+                        </a>
+                    </td>
+                    <td>
+                        {{ download_files.enhancer_tissues[loop.index] }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="featured1">
+    <div class="container">
+        <div class="title">
+            <h2>Raw Motif PWMs</h2>
+        </div>
+        <div class="row">
+            <input class="col-6" type="text" id="pwmFileNameInput" onkeyup="pwmFileSearch()" placeholder="Search by experiment accessions..">
+            <input class="col-6" type="text" id="pwmTFInput" onkeyup="pwmFileSearch()" placeholder="Search by transcription factor..">
+        </div>
+        <div class="row" style="height:100vh; overflow: auto;">
+            <table id="pwmFileTable">
+                <tr class="header">
+                    <th style="width:52%;color:rgb(88, 88, 88)">Filename</th>
+                    <th style="width:48%;color:rgb(88, 88, 88)">Transcription Factor</th>
+                </tr>
+
+                {% for file_ind in range(download_files.num_pwm_files) %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('download_file', file_path = download_files.unpath_pwm_files[loop.index]) }}">
+                            <button style="height: 100%; width: 100%" class='btn btn-secondary'>{{ download_files.pwm_files_strip[loop.index] }}</button>
+                        </a>
+                    </td>
+                    <td>
+                        {{ download_files.pwm_tfs[loop.index] }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
 {% endblock body %}25vw
